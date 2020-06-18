@@ -100,6 +100,7 @@ Partial Class FrmMain
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.mmMain
         Me.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
+        Me.MinimumSize = New System.Drawing.Size(1444, 587)
         Me.Name = "FrmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "MyPIM"
