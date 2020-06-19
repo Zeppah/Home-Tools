@@ -34,7 +34,12 @@ Public Class FrmMain
     End Sub
 
     Private Sub MnuExit(sender As Object, e As EventArgs) Handles miExit.Click
+        SaveSettings()
         Application.Exit()
+    End Sub
+
+    Private Sub FrmMain_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        SaveSettings()
     End Sub
 
 #End Region

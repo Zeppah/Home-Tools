@@ -29,7 +29,6 @@ Partial Class FrmMain
         Me.miExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.miTracker = New System.Windows.Forms.ToolStripMenuItem()
         Me.Form1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AddToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.lblClock = New System.Windows.Forms.Label()
         Me.TmrClock = New System.Windows.Forms.Timer(Me.components)
         Me.mmMain.SuspendLayout()
@@ -68,16 +67,9 @@ Partial Class FrmMain
         '
         'Form1ToolStripMenuItem
         '
-        Me.Form1ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem1})
         Me.Form1ToolStripMenuItem.Name = "Form1ToolStripMenuItem"
         Me.Form1ToolStripMenuItem.Size = New System.Drawing.Size(97, 29)
         Me.Form1ToolStripMenuItem.Text = "Contacts"
-        '
-        'AddToolStripMenuItem1
-        '
-        Me.AddToolStripMenuItem1.Name = "AddToolStripMenuItem1"
-        Me.AddToolStripMenuItem1.Size = New System.Drawing.Size(180, 30)
-        Me.AddToolStripMenuItem1.Text = "Add"
         '
         'lblClock
         '
@@ -125,5 +117,4 @@ Partial Class FrmMain
     Friend WithEvents TmrClock As Timer
     Friend WithEvents miTracker As ToolStripMenuItem
     Friend WithEvents Form1ToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AddToolStripMenuItem1 As ToolStripMenuItem
 End Class

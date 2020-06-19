@@ -20,8 +20,8 @@ Public Class FrmTracker
         End If
 
         'Store input in the TrackerRecord array for saving the record
-        intRecordIndexNumber += 1
-        strTrackerRecord(0) = intRecordIndexNumber.ToString
+        intTrackerRecordIndexNumber += 1
+        strTrackerRecord(0) = intTrackerRecordIndexNumber.ToString
         strTrackerRecord(1) = tbxDescription.Text
         strTrackerRecord(2) = CStr((dtpDate.Value.Date + dtpTime.Value.TimeOfDay).Ticks)
         strTrackerRecord(3) = tbxAmount.Text
@@ -32,7 +32,7 @@ Public Class FrmTracker
         strTrackerRecord(8) = cbxOther.Checked.ToString
 
         SaveSettings()
-        SaveRecord()
+        SaveTrackerRecord()
 
         'Clear the input to add another record
         tbxDescription.Text = ""

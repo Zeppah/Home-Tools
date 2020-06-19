@@ -214,7 +214,7 @@ Partial Class FrmTracker
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FrmTracker"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Tracker - Add"
+        Me.Text = "Tracker"
         Me.gbxCategories.ResumeLayout(False)
         Me.gbxCategories.PerformLayout()
         Me.ResumeLayout(False)
