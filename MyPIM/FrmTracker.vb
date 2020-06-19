@@ -1,16 +1,16 @@
 ﻿
-'''' *** Header ***
-'''' Project: Tracker Add/Edit Screen
+'''' <HEADER>
+'''' Project: Tracker Add Record Screen
 '''' Author: Larry Benner
 '''' Date: 6/17/2020
 '''' Revisions:
-'''' ***  End Header ***
+'''' </HEADER>
 
 Public Class FrmTracker
 
 #Region "*** Event Handlers ***"
 
-    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+    Private Sub BtnAddTrackerRecord_Click(sender As Object, e As EventArgs) Handles btnAddTrackerRecord.Click
 
         'Validate that a description was entered
         If tbxDescription.Text = "" Then
@@ -19,6 +19,7 @@ Public Class FrmTracker
             Return
         End If
 
+        'Store input in the TrackerRecord array for saving the record
         intRecordIndexNumber += 1
         strTrackerRecord(0) = intRecordIndexNumber.ToString
         strTrackerRecord(1) = tbxDescription.Text
@@ -33,21 +34,21 @@ Public Class FrmTracker
         SaveSettings()
         SaveRecord()
 
-        FrmMain.Enabled = True
-        Me.Close()
+        'Clear the input to add another record
+        tbxDescription.Text = ""
+        dtpDate.Value = Date.Now
+        dtpTime.Value = Date.Now
+        tbxAmount.Text = "0"
+        cbxTime.Checked = False
+        cbxAppointment.Checked = False
+        cbxBill.Checked = False
+        cbxBirthday.Checked = False
+        cbxOther.Checked = False
 
-    End Sub
-
-    Private Sub CkbTime_CheckedChanged(sender As Object, e As EventArgs) Handles cbxTime.CheckedChanged
-        If cbxTime.Checked Then
-            dtpTime.Show()
-            dtpTime.Focus()
-        Else
-            dtpTime.Hide()
-        End If
     End Sub
 
     Private Sub CkbBill_CheckChanged(sender As Object, e As EventArgs) Handles cbxBill.CheckedChanged
+        'Display the Amount field when the Bill category is selected
         If cbxBill.Checked = True Then
             lblAmount.Show()
             tbxAmount.Visible = True
@@ -58,7 +59,18 @@ Public Class FrmTracker
         End If
     End Sub
 
+    Private Sub CkbTime_CheckedChanged(sender As Object, e As EventArgs) Handles cbxTime.CheckedChanged
+        'Display the Time picker when Time is selected
+        If cbxTime.Checked Then
+            dtpTime.Show()
+            dtpTime.Focus()
+        Else
+            dtpTime.Hide()
+        End If
+    End Sub
+
     Private Sub TbxAmount_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbxAmount.KeyPress
+        'Only allow five whole numbers and two decimal places
         If Char.IsControl(e.KeyChar) Then
         ElseIf Char.IsDigit(e.KeyChar) OrElse e.KeyChar = "."c Then
 
@@ -80,6 +92,7 @@ Public Class FrmTracker
     End Sub
 
     Private Sub TbxAmount_LostFocus(sender As Object, e As EventArgs) Handles tbxAmount.LostFocus
+        'Clear out pasted characters
         If IsNumeric(tbxAmount.Text) <> True Then
             tbxAmount.Text = "0"
             MsgBox("Invalid Number", vbExclamation, "Input Error")
@@ -90,6 +103,10 @@ Public Class FrmTracker
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         FrmMain.Enabled = True
         Me.Close()
+    End Sub
+
+    Private Sub FrmTracker_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        FrmMain.Enabled = True
     End Sub
 
 #End Region

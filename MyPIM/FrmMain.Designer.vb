@@ -28,11 +28,10 @@ Partial Class FrmMain
         Me.miFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.miExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.miTracker = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Form1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.lblClock = New System.Windows.Forms.Label()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.AddToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.lblClock = New System.Windows.Forms.Label()
+        Me.TmrClock = New System.Windows.Forms.Timer(Me.components)
         Me.mmMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -63,16 +62,9 @@ Partial Class FrmMain
         '
         'miTracker
         '
-        Me.miTracker.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem})
         Me.miTracker.Name = "miTracker"
         Me.miTracker.Size = New System.Drawing.Size(84, 29)
         Me.miTracker.Text = "Tracker"
-        '
-        'AddToolStripMenuItem
-        '
-        Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
-        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
-        Me.AddToolStripMenuItem.Text = "Add"
         '
         'Form1ToolStripMenuItem
         '
@@ -80,6 +72,12 @@ Partial Class FrmMain
         Me.Form1ToolStripMenuItem.Name = "Form1ToolStripMenuItem"
         Me.Form1ToolStripMenuItem.Size = New System.Drawing.Size(97, 29)
         Me.Form1ToolStripMenuItem.Text = "Contacts"
+        '
+        'AddToolStripMenuItem1
+        '
+        Me.AddToolStripMenuItem1.Name = "AddToolStripMenuItem1"
+        Me.AddToolStripMenuItem1.Size = New System.Drawing.Size(180, 30)
+        Me.AddToolStripMenuItem1.Text = "Add"
         '
         'lblClock
         '
@@ -93,14 +91,8 @@ Partial Class FrmMain
         Me.lblClock.Text = "Label1"
         Me.lblClock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Timer1
+        'TmrClock
         '
-        '
-        'AddToolStripMenuItem1
-        '
-        Me.AddToolStripMenuItem1.Name = "AddToolStripMenuItem1"
-        Me.AddToolStripMenuItem1.Size = New System.Drawing.Size(180, 30)
-        Me.AddToolStripMenuItem1.Text = "Add"
         '
         'FrmMain
         '
@@ -130,9 +122,8 @@ Partial Class FrmMain
     Friend WithEvents miFile As ToolStripMenuItem
     Friend WithEvents miExit As ToolStripMenuItem
     Friend WithEvents lblClock As Label
-    Friend WithEvents Timer1 As Timer
+    Friend WithEvents TmrClock As Timer
     Friend WithEvents miTracker As ToolStripMenuItem
-    Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Form1ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AddToolStripMenuItem1 As ToolStripMenuItem
 End Class

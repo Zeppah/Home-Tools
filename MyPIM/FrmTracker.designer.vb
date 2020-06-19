@@ -28,7 +28,7 @@ Partial Class FrmTracker
         Me.tbxDescription = New System.Windows.Forms.TextBox()
         Me.dtpDate = New System.Windows.Forms.DateTimePicker()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
-        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnAddTrackerRecord = New System.Windows.Forms.Button()
         Me.cbxTime = New System.Windows.Forms.CheckBox()
         Me.dtpTime = New System.Windows.Forms.DateTimePicker()
         Me.gbxCategories = New System.Windows.Forms.GroupBox()
@@ -86,16 +86,16 @@ Partial Class FrmTracker
         Me.dtpDate.Size = New System.Drawing.Size(150, 26)
         Me.dtpDate.TabIndex = 1
         '
-        'btnAdd
+        'btnAddTrackerRecord
         '
-        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAdd.Location = New System.Drawing.Point(143, 184)
-        Me.btnAdd.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(112, 36)
-        Me.btnAdd.TabIndex = 4
-        Me.btnAdd.Text = "Add"
-        Me.btnAdd.UseVisualStyleBackColor = True
+        Me.btnAddTrackerRecord.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnAddTrackerRecord.Location = New System.Drawing.Point(143, 184)
+        Me.btnAddTrackerRecord.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnAddTrackerRecord.Name = "btnAddTrackerRecord"
+        Me.btnAddTrackerRecord.Size = New System.Drawing.Size(112, 36)
+        Me.btnAddTrackerRecord.TabIndex = 4
+        Me.btnAddTrackerRecord.Text = "Add"
+        Me.btnAddTrackerRecord.UseVisualStyleBackColor = True
         '
         'cbxTime
         '
@@ -198,13 +198,12 @@ Partial Class FrmTracker
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
         Me.ClientSize = New System.Drawing.Size(529, 273)
-        Me.ControlBox = False
         Me.Controls.Add(Me.tbxAmount)
         Me.Controls.Add(Me.lblAmount)
         Me.Controls.Add(Me.gbxCategories)
         Me.Controls.Add(Me.dtpTime)
         Me.Controls.Add(Me.cbxTime)
-        Me.Controls.Add(Me.btnAdd)
+        Me.Controls.Add(Me.btnAddTrackerRecord)
         Me.Controls.Add(Me.dtpDate)
         Me.Controls.Add(Me.tbxDescription)
         Me.Controls.Add(Me.lblDescription)
@@ -229,7 +228,7 @@ Partial Class FrmTracker
     Friend WithEvents tbxDescription As TextBox
     Friend WithEvents dtpDate As DateTimePicker
     Friend WithEvents ColorDialog1 As ColorDialog
-    Friend WithEvents btnAdd As Button
+    Friend WithEvents btnAddTrackerRecord As Button
     Friend WithEvents cbxTime As CheckBox
     Friend WithEvents dtpTime As DateTimePicker
     Friend WithEvents gbxCategories As GroupBox
