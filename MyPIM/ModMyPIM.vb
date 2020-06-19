@@ -83,7 +83,7 @@ Module ModMyPIM
                 & strContactRecord(6) & strDelimiter & strContactRecord(7) & strDelimiter _
                 & strContactRecord(8) & strDelimiter & strContactRecord(9) & strDelimiter _
                 & strContactRecord(10) & strDelimiter & strContactRecord(11) & strDelimiter _
-                & strContactRecord(12) & strDelimiter & strContactsFile(13) & strDelimiter _
+                & strContactRecord(12) & strDelimiter & strContactRecord(13) & strDelimiter _
                 & strContactRecord(14)
 
             filewriter.WriteLine(record)

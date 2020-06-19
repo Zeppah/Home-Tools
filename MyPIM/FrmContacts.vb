@@ -5,13 +5,13 @@
 
         'Store input in the TrackerRecord array for saving the record
         intContactRecordIndexNumber += 1
-        strContactRecord(0) = intTrackerRecordIndexNumber.ToString
+        strContactRecord(0) = intContactRecordIndexNumber.ToString
         strContactRecord(1) = tbxFirstName.Text
         strContactRecord(2) = tbxMiddleName.Text
         strContactRecord(3) = tbxLastName.Text
         strContactRecord(4) = tbxCompany.Text
         strContactRecord(5) = tbxAddress1.Text
-        strContactRecord(6) = tbxAddress1.Text
+        strContactRecord(6) = tbxAddress2.Text
         strContactRecord(7) = tbxCity.Text
         strContactRecord(8) = cbxState.Text
         strContactRecord(9) = mtbZipcode.Text
