@@ -36,7 +36,7 @@ Module ModTracker
     Public Sub SaveRecord()
         Try
             'True appends the record to the file. False replaces the file.
-            Dim filewriter As New StreamWriter(DataPath & "\" & SettingsFile, True)
+            Dim filewriter As New StreamWriter(DataPath & "\" & TrackerFile, True)
             Dim record As String = Nothing
             record = Nothing
             record = strTrackerRecord(0) & delimiter & strTrackerRecord(1) & delimiter & strTrackerRecord(2) _
@@ -69,7 +69,7 @@ Module ModTracker
     End Sub
 
     Public Sub SaveSettings()
-        File.WriteAllText(DataPath & "\Settings.tsv", CStr(intRecordIndexNumber))
+        File.WriteAllText(DataPath & "\" & SettingsFile, CStr(intRecordIndexNumber))
     End Sub
 
 #End Region

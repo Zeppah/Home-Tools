@@ -19,6 +19,7 @@ Public Class FrmMain
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ReadSettings()
         Timer1.Start()
+        MsgBox(DataPath)
     End Sub
 
 #End Region
@@ -36,6 +37,12 @@ Public Class FrmMain
     Private Sub MnuExit(sender As Object, e As EventArgs) Handles miExit.Click
         Application.Exit()
     End Sub
+
+    Private Sub AddToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AddToolStripMenuItem1.Click
+        Me.Enabled = False
+        FrmContacts.Show()
+    End Sub
+
 
 #End Region
 

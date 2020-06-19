@@ -29,8 +29,10 @@ Partial Class FrmMain
         Me.miExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.miTracker = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Form1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.lblClock = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.AddToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.mmMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -38,7 +40,7 @@ Partial Class FrmMain
         '
         Me.mmMain.BackColor = System.Drawing.Color.Bisque
         Me.mmMain.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.mmMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miFile, Me.miTracker})
+        Me.mmMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miFile, Me.miTracker, Me.Form1ToolStripMenuItem})
         Me.mmMain.Location = New System.Drawing.Point(0, 0)
         Me.mmMain.Name = "mmMain"
         Me.mmMain.Padding = New System.Windows.Forms.Padding(8, 2, 0, 2)
@@ -56,7 +58,7 @@ Partial Class FrmMain
         'miExit
         '
         Me.miExit.Name = "miExit"
-        Me.miExit.Size = New System.Drawing.Size(180, 30)
+        Me.miExit.Size = New System.Drawing.Size(114, 30)
         Me.miExit.Text = "Exit"
         '
         'miTracker
@@ -72,6 +74,13 @@ Partial Class FrmMain
         Me.AddToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
         Me.AddToolStripMenuItem.Text = "Add"
         '
+        'Form1ToolStripMenuItem
+        '
+        Me.Form1ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem1})
+        Me.Form1ToolStripMenuItem.Name = "Form1ToolStripMenuItem"
+        Me.Form1ToolStripMenuItem.Size = New System.Drawing.Size(97, 29)
+        Me.Form1ToolStripMenuItem.Text = "Contacts"
+        '
         'lblClock
         '
         Me.lblClock.Anchor = System.Windows.Forms.AnchorStyles.Top
@@ -86,6 +95,12 @@ Partial Class FrmMain
         '
         'Timer1
         '
+        '
+        'AddToolStripMenuItem1
+        '
+        Me.AddToolStripMenuItem1.Name = "AddToolStripMenuItem1"
+        Me.AddToolStripMenuItem1.Size = New System.Drawing.Size(180, 30)
+        Me.AddToolStripMenuItem1.Text = "Add"
         '
         'FrmMain
         '
@@ -118,4 +133,6 @@ Partial Class FrmMain
     Friend WithEvents Timer1 As Timer
     Friend WithEvents miTracker As ToolStripMenuItem
     Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Form1ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddToolStripMenuItem1 As ToolStripMenuItem
 End Class
