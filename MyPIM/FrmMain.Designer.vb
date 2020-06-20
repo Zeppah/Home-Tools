@@ -29,13 +29,14 @@ Partial Class FrmMain
         Me.miExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.miTracker = New System.Windows.Forms.ToolStripMenuItem()
         Me.Form1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BrowserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.lblClock = New System.Windows.Forms.Label()
         Me.TmrClock = New System.Windows.Forms.Timer(Me.components)
         Me.lblCalendar = New System.Windows.Forms.Label()
         Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
         Me.cbxEventPicker = New System.Windows.Forms.ComboBox()
         Me.lblSelectTrackerEvent = New System.Windows.Forms.Label()
+        Me.txbSearch = New System.Windows.Forms.TextBox()
+        Me.btnSearch = New System.Windows.Forms.Button()
         Me.mmMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -43,7 +44,7 @@ Partial Class FrmMain
         '
         Me.mmMain.BackColor = System.Drawing.Color.Bisque
         Me.mmMain.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.mmMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miFile, Me.miTracker, Me.Form1ToolStripMenuItem, Me.BrowserToolStripMenuItem})
+        Me.mmMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miFile, Me.miTracker, Me.Form1ToolStripMenuItem})
         Me.mmMain.Location = New System.Drawing.Point(0, 0)
         Me.mmMain.Name = "mmMain"
         Me.mmMain.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
@@ -61,7 +62,7 @@ Partial Class FrmMain
         'miExit
         '
         Me.miExit.Name = "miExit"
-        Me.miExit.Size = New System.Drawing.Size(114, 30)
+        Me.miExit.Size = New System.Drawing.Size(180, 30)
         Me.miExit.Text = "Exit"
         '
         'miTracker
@@ -75,12 +76,6 @@ Partial Class FrmMain
         Me.Form1ToolStripMenuItem.Name = "Form1ToolStripMenuItem"
         Me.Form1ToolStripMenuItem.Size = New System.Drawing.Size(97, 29)
         Me.Form1ToolStripMenuItem.Text = "Contacts"
-        '
-        'BrowserToolStripMenuItem
-        '
-        Me.BrowserToolStripMenuItem.Name = "BrowserToolStripMenuItem"
-        Me.BrowserToolStripMenuItem.Size = New System.Drawing.Size(92, 29)
-        Me.BrowserToolStripMenuItem.Text = "Browser"
         '
         'lblClock
         '
@@ -143,12 +138,32 @@ Partial Class FrmMain
         Me.lblSelectTrackerEvent.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.lblSelectTrackerEvent.Visible = False
         '
+        'txbSearch
+        '
+        Me.txbSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txbSearch.Location = New System.Drawing.Point(953, 1)
+        Me.txbSearch.Name = "txbSearch"
+        Me.txbSearch.Size = New System.Drawing.Size(353, 33)
+        Me.txbSearch.TabIndex = 7
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSearch.Location = New System.Drawing.Point(1326, 0)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(91, 33)
+        Me.btnSearch.TabIndex = 8
+        Me.btnSearch.Text = "Search"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
         Me.ClientSize = New System.Drawing.Size(1429, 548)
+        Me.Controls.Add(Me.btnSearch)
+        Me.Controls.Add(Me.txbSearch)
         Me.Controls.Add(Me.lblSelectTrackerEvent)
         Me.Controls.Add(Me.cbxEventPicker)
         Me.Controls.Add(Me.MonthCalendar1)
@@ -183,5 +198,6 @@ Partial Class FrmMain
     Friend WithEvents MonthCalendar1 As MonthCalendar
     Friend WithEvents cbxEventPicker As ComboBox
     Friend WithEvents lblSelectTrackerEvent As Label
-    Friend WithEvents BrowserToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents txbSearch As TextBox
+    Friend WithEvents btnSearch As Button
 End Class

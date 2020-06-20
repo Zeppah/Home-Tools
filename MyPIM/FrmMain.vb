@@ -95,8 +95,12 @@ Public Class FrmMain
 
 
 #End Region
-    Private Sub BrowserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BrowserToolStripMenuItem.Click
-        Me.Enabled = False
-        FrmMyBrowser.Show()
+
+
+    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        Process.Start("http://www.google.com/#hl=en&q=" & txbSearch.Text.Replace(" ", "+"))
+        txbSearch.Text = ""
+        txbSearch.Focus()
     End Sub
+
 End Class
