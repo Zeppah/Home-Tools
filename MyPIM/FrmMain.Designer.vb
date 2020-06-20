@@ -29,6 +29,7 @@ Partial Class FrmMain
         Me.miExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.miTracker = New System.Windows.Forms.ToolStripMenuItem()
         Me.Form1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BrowserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.lblClock = New System.Windows.Forms.Label()
         Me.TmrClock = New System.Windows.Forms.Timer(Me.components)
         Me.lblCalendar = New System.Windows.Forms.Label()
@@ -42,7 +43,7 @@ Partial Class FrmMain
         '
         Me.mmMain.BackColor = System.Drawing.Color.Bisque
         Me.mmMain.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.mmMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miFile, Me.miTracker, Me.Form1ToolStripMenuItem})
+        Me.mmMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miFile, Me.miTracker, Me.Form1ToolStripMenuItem, Me.BrowserToolStripMenuItem})
         Me.mmMain.Location = New System.Drawing.Point(0, 0)
         Me.mmMain.Name = "mmMain"
         Me.mmMain.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
@@ -75,11 +76,17 @@ Partial Class FrmMain
         Me.Form1ToolStripMenuItem.Size = New System.Drawing.Size(97, 29)
         Me.Form1ToolStripMenuItem.Text = "Contacts"
         '
+        'BrowserToolStripMenuItem
+        '
+        Me.BrowserToolStripMenuItem.Name = "BrowserToolStripMenuItem"
+        Me.BrowserToolStripMenuItem.Size = New System.Drawing.Size(92, 29)
+        Me.BrowserToolStripMenuItem.Text = "Browser"
+        '
         'lblClock
         '
         Me.lblClock.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblClock.BackColor = System.Drawing.Color.Bisque
-        Me.lblClock.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblClock.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblClock.Location = New System.Drawing.Point(463, 0)
         Me.lblClock.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblClock.Name = "lblClock"
@@ -93,6 +100,7 @@ Partial Class FrmMain
         '
         'lblCalendar
         '
+        Me.lblCalendar.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblCalendar.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCalendar.Location = New System.Drawing.Point(584, 33)
         Me.lblCalendar.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
@@ -104,6 +112,7 @@ Partial Class FrmMain
         '
         'MonthCalendar1
         '
+        Me.MonthCalendar1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.MonthCalendar1.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MonthCalendar1.Location = New System.Drawing.Point(538, 75)
         Me.MonthCalendar1.Margin = New System.Windows.Forms.Padding(10)
@@ -112,6 +121,7 @@ Partial Class FrmMain
         '
         'cbxEventPicker
         '
+        Me.cbxEventPicker.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.cbxEventPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxEventPicker.FormattingEnabled = True
         Me.cbxEventPicker.ImeMode = System.Windows.Forms.ImeMode.NoControl
@@ -124,6 +134,7 @@ Partial Class FrmMain
         '
         'lblSelectTrackerEvent
         '
+        Me.lblSelectTrackerEvent.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblSelectTrackerEvent.Location = New System.Drawing.Point(533, 247)
         Me.lblSelectTrackerEvent.Name = "lblSelectTrackerEvent"
         Me.lblSelectTrackerEvent.Size = New System.Drawing.Size(232, 57)
@@ -153,6 +164,7 @@ Partial Class FrmMain
         Me.Name = "FrmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "MyPIM"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.mmMain.ResumeLayout(False)
         Me.mmMain.PerformLayout()
         Me.ResumeLayout(False)
@@ -171,4 +183,5 @@ Partial Class FrmMain
     Friend WithEvents MonthCalendar1 As MonthCalendar
     Friend WithEvents cbxEventPicker As ComboBox
     Friend WithEvents lblSelectTrackerEvent As Label
+    Friend WithEvents BrowserToolStripMenuItem As ToolStripMenuItem
 End Class

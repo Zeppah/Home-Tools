@@ -47,6 +47,7 @@ Public Class FrmMain
 #Region "*** Calendar Events ***"
     Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateSelected
 
+        'Show the Event Picker if a date is selected
         cbxEventPicker.Visible = True
         cbxEventPicker.DroppedDown = True
         cbxEventPicker.SelectedIndex = 0
@@ -55,9 +56,10 @@ Public Class FrmMain
     End Sub
 
     Private Sub CbxEventPicker_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cbxEventPicker.SelectionChangeCommitted
-        dteEventDate = MonthCalendar1.SelectionRange.Start.Date
 
-        FrmTracker.dtpDate.Value = dteEventDate
+        'Set the defaults for the Tracker Screen
+        FrmTracker.dtpDate.Value = MonthCalendar1.SelectionRange.Start.Date
+
         Select Case cbxEventPicker.SelectedIndex
             Case 0
                 FrmTracker.cbxAppointment.Checked = True
@@ -70,22 +72,31 @@ Public Class FrmMain
             Case Else
 
         End Select
+
         cbxEventPicker.Visible = False
         cbxEventPicker.DroppedDown = False
         lblSelectTrackerEvent.Hide()
 
         Me.Enabled = False
         FrmTracker.Show()
+
     End Sub
 
     Private Sub CbxEventPicker_DropDownClosed(sender As Object, e As EventArgs) Handles cbxEventPicker.DropDownClosed
+
+        'Hide the EventPicker and label if focus is lost
         cbxEventPicker.Visible = False
-        cbxEventPicker.DroppedDown = False
         lblSelectTrackerEvent.Hide()
+
     End Sub
+
+
 
 
 
 #End Region
-
+    Private Sub BrowserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BrowserToolStripMenuItem.Click
+        Me.Enabled = False
+        FrmMyBrowser.Show()
+    End Sub
 End Class
