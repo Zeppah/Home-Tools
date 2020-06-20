@@ -44,4 +44,48 @@ Public Class FrmMain
 
 #End Region
 
+#Region "*** Calendar Events ***"
+    Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateSelected
+
+        cbxEventPicker.Visible = True
+        cbxEventPicker.DroppedDown = True
+        cbxEventPicker.SelectedIndex = 0
+        lblSelectTrackerEvent.Show()
+
+    End Sub
+
+    Private Sub CbxEventPicker_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cbxEventPicker.SelectionChangeCommitted
+        dteEventDate = MonthCalendar1.SelectionRange.Start.Date
+
+        FrmTracker.dtpDate.Value = dteEventDate
+        Select Case cbxEventPicker.SelectedIndex
+            Case 0
+                FrmTracker.cbxAppointment.Checked = True
+            Case 1
+                FrmTracker.cbxBill.Checked = True
+            Case 2
+                FrmTracker.cbxBirthday.Checked = True
+            Case 3
+                FrmTracker.cbxOther.Checked = True
+            Case Else
+
+        End Select
+        cbxEventPicker.Visible = False
+        cbxEventPicker.DroppedDown = False
+        lblSelectTrackerEvent.Hide()
+
+        Me.Enabled = False
+        FrmTracker.Show()
+    End Sub
+
+    Private Sub CbxEventPicker_DropDownClosed(sender As Object, e As EventArgs) Handles cbxEventPicker.DropDownClosed
+        cbxEventPicker.Visible = False
+        cbxEventPicker.DroppedDown = False
+        lblSelectTrackerEvent.Hide()
+    End Sub
+
+
+
+#End Region
+
 End Class

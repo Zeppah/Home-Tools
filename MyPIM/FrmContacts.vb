@@ -3,6 +3,13 @@
 #Region "*** Event Handlers ***"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 
+        If tbxFirstName.Text = "" And tbxMiddleName.Text = "" And tbxLastName.Text = "" _
+            And tbxCompany.Text = "" Then
+            Dim unused = MsgBox("Must enter either a Name or Company!", vbExclamation, "Input Error")
+            Dim unused1 = tbxFirstName.Focus()
+            Return
+        End If
+
         'Store input in the TrackerRecord array for saving the record
         intContactRecordIndexNumber += 1
         strContactRecord(0) = intContactRecordIndexNumber.ToString

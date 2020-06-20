@@ -144,13 +144,13 @@ Partial Class FrmContacts
         '
         'cbxState
         '
+        Me.cbxState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxState.FormattingEnabled = True
         Me.cbxState.Items.AddRange(New Object() {"AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "AS", "GU", "MH", "FM", "MP", "PW", "PR", "VI"})
         Me.cbxState.Location = New System.Drawing.Point(406, 171)
         Me.cbxState.Name = "cbxState"
         Me.cbxState.Size = New System.Drawing.Size(47, 29)
         Me.cbxState.TabIndex = 7
-        Me.cbxState.Text = "NC"
         '
         'lblState
         '
@@ -246,6 +246,7 @@ Partial Class FrmContacts
         '
         'cbxGroups
         '
+        Me.cbxGroups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxGroups.FormattingEnabled = True
         Me.cbxGroups.Items.AddRange(New Object() {"Acquaintance", "Business", "Family", "Friends", "Other"})
         Me.cbxGroups.Location = New System.Drawing.Point(345, 235)
@@ -254,7 +255,6 @@ Partial Class FrmContacts
         Me.cbxGroups.Size = New System.Drawing.Size(279, 29)
         Me.cbxGroups.Sorted = True
         Me.cbxGroups.TabIndex = 12
-        Me.cbxGroups.Text = "Family"
         '
         'lblGroups
         '

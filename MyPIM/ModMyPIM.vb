@@ -37,7 +37,7 @@ Imports System.IO
 Module ModMyPIM
 
 #Region "*** Public Variables ***"
-
+    Friend dteEventDate As Date                                 'Date for the selected event from calendar
     Friend intContactRecordIndexNumber As Integer = 0           'Unique Index Number for each Contact
     Friend intTrackerRecordIndexNumber As Integer = 0           'Unique Index Number for each Tracker
     Friend strContactRecord(15) As String                       'Holds the fields for each condact record
