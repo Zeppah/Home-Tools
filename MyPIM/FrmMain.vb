@@ -96,6 +96,7 @@ Public Class FrmMain
 
 #End Region
 
+#Region "***** Browser Section *****"
 
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Process.Start("http://www.google.com/#hl=en&q=" & txbSearch.Text.Replace(" ", "+"))
@@ -103,4 +104,30 @@ Public Class FrmMain
         txbSearch.Focus()
     End Sub
 
+    Private Sub WeatherToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WeatherToolStripMenuItem.Click
+        Process.Start("https://forecast.weather.gov")
+    End Sub
+
+    Private Sub YouTubeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles YouTubeToolStripMenuItem.Click
+        Process.Start("https://youtube.com")
+    End Sub
+
+    Private Sub NewsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewsToolStripMenuItem.Click
+        Process.Start("https://news.google.com")
+    End Sub
+
+    Private Sub CoronavirusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CoronavirusToolStripMenuItem.Click
+        Process.Start("https://ncov2019.live/")
+    End Sub
+
+    Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem.Click
+        Process.Start("https://www.jango.com/")
+    End Sub
+
+    Private Sub MailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MailToolStripMenuItem.Click
+        Process.Start("https://Mail.google.com")
+    End Sub
+
+
+#End Region
 End Class

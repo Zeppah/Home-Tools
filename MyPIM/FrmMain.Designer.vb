@@ -37,7 +37,15 @@ Partial Class FrmMain
         Me.lblSelectTrackerEvent = New System.Windows.Forms.Label()
         Me.txbSearch = New System.Windows.Forms.TextBox()
         Me.btnSearch = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.WeatherToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NewsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CoronavirusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YouTubeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mmMain.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'mmMain
@@ -149,12 +157,63 @@ Partial Class FrmMain
         'btnSearch
         '
         Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSearch.BackColor = System.Drawing.Color.Linen
+        Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSearch.Location = New System.Drawing.Point(1326, 0)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(91, 33)
         Me.btnSearch.TabIndex = 8
         Me.btnSearch.Text = "Search"
-        Me.btnSearch.UseVisualStyleBackColor = True
+        Me.btnSearch.UseVisualStyleBackColor = False
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
+        Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CoronavirusToolStripMenuItem, Me.MailToolStripMenuItem, Me.MusicToolStripMenuItem, Me.NewsToolStripMenuItem, Me.WeatherToolStripMenuItem, Me.YouTubeToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(951, 37)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(466, 29)
+        Me.MenuStrip1.TabIndex = 9
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'WeatherToolStripMenuItem
+        '
+        Me.WeatherToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.WeatherToolStripMenuItem.Name = "WeatherToolStripMenuItem"
+        Me.WeatherToolStripMenuItem.Size = New System.Drawing.Size(84, 25)
+        Me.WeatherToolStripMenuItem.Text = "Weather"
+        '
+        'NewsToolStripMenuItem
+        '
+        Me.NewsToolStripMenuItem.Name = "NewsToolStripMenuItem"
+        Me.NewsToolStripMenuItem.Size = New System.Drawing.Size(62, 25)
+        Me.NewsToolStripMenuItem.Text = "News"
+        '
+        'CoronavirusToolStripMenuItem
+        '
+        Me.CoronavirusToolStripMenuItem.Name = "CoronavirusToolStripMenuItem"
+        Me.CoronavirusToolStripMenuItem.Size = New System.Drawing.Size(109, 25)
+        Me.CoronavirusToolStripMenuItem.Text = "Coronavirus"
+        '
+        'YouTubeToolStripMenuItem
+        '
+        Me.YouTubeToolStripMenuItem.Name = "YouTubeToolStripMenuItem"
+        Me.YouTubeToolStripMenuItem.Size = New System.Drawing.Size(85, 25)
+        Me.YouTubeToolStripMenuItem.Text = "YouTube"
+        '
+        'MusicToolStripMenuItem
+        '
+        Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
+        Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(65, 25)
+        Me.MusicToolStripMenuItem.Text = "Music"
+        '
+        'MailToolStripMenuItem
+        '
+        Me.MailToolStripMenuItem.Name = "MailToolStripMenuItem"
+        Me.MailToolStripMenuItem.Size = New System.Drawing.Size(53, 25)
+        Me.MailToolStripMenuItem.Text = "Mail"
         '
         'FrmMain
         '
@@ -170,6 +229,7 @@ Partial Class FrmMain
         Me.Controls.Add(Me.lblCalendar)
         Me.Controls.Add(Me.lblClock)
         Me.Controls.Add(Me.mmMain)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -179,9 +239,10 @@ Partial Class FrmMain
         Me.Name = "FrmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "MyPIM"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.mmMain.ResumeLayout(False)
         Me.mmMain.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -200,4 +261,11 @@ Partial Class FrmMain
     Friend WithEvents lblSelectTrackerEvent As Label
     Friend WithEvents txbSearch As TextBox
     Friend WithEvents btnSearch As Button
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents CoronavirusToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents NewsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents WeatherToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents YouTubeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MailToolStripMenuItem As ToolStripMenuItem
 End Class
