@@ -38,14 +38,18 @@ Partial Class FrmMain
         Me.txbSearch = New System.Windows.Forms.TextBox()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.WeatherToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NewsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CoronavirusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.YouTubeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NewsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WeatherToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YouTubeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.dgvTracker = New System.Windows.Forms.DataGridView()
+        Me.dgvContacts = New System.Windows.Forms.DataGridView()
         Me.mmMain.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        CType(Me.dgvTracker, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvContacts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'mmMain
@@ -70,7 +74,7 @@ Partial Class FrmMain
         'miExit
         '
         Me.miExit.Name = "miExit"
-        Me.miExit.Size = New System.Drawing.Size(180, 30)
+        Me.miExit.Size = New System.Drawing.Size(114, 30)
         Me.miExit.Text = "Exit"
         '
         'miTracker
@@ -178,36 +182,11 @@ Partial Class FrmMain
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'WeatherToolStripMenuItem
-        '
-        Me.WeatherToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.WeatherToolStripMenuItem.Name = "WeatherToolStripMenuItem"
-        Me.WeatherToolStripMenuItem.Size = New System.Drawing.Size(84, 25)
-        Me.WeatherToolStripMenuItem.Text = "Weather"
-        '
-        'NewsToolStripMenuItem
-        '
-        Me.NewsToolStripMenuItem.Name = "NewsToolStripMenuItem"
-        Me.NewsToolStripMenuItem.Size = New System.Drawing.Size(62, 25)
-        Me.NewsToolStripMenuItem.Text = "News"
-        '
         'CoronavirusToolStripMenuItem
         '
         Me.CoronavirusToolStripMenuItem.Name = "CoronavirusToolStripMenuItem"
         Me.CoronavirusToolStripMenuItem.Size = New System.Drawing.Size(109, 25)
         Me.CoronavirusToolStripMenuItem.Text = "Coronavirus"
-        '
-        'YouTubeToolStripMenuItem
-        '
-        Me.YouTubeToolStripMenuItem.Name = "YouTubeToolStripMenuItem"
-        Me.YouTubeToolStripMenuItem.Size = New System.Drawing.Size(85, 25)
-        Me.YouTubeToolStripMenuItem.Text = "YouTube"
-        '
-        'MusicToolStripMenuItem
-        '
-        Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
-        Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(65, 25)
-        Me.MusicToolStripMenuItem.Text = "Music"
         '
         'MailToolStripMenuItem
         '
@@ -215,12 +194,63 @@ Partial Class FrmMain
         Me.MailToolStripMenuItem.Size = New System.Drawing.Size(53, 25)
         Me.MailToolStripMenuItem.Text = "Mail"
         '
+        'MusicToolStripMenuItem
+        '
+        Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
+        Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(65, 25)
+        Me.MusicToolStripMenuItem.Text = "Music"
+        '
+        'NewsToolStripMenuItem
+        '
+        Me.NewsToolStripMenuItem.Name = "NewsToolStripMenuItem"
+        Me.NewsToolStripMenuItem.Size = New System.Drawing.Size(62, 25)
+        Me.NewsToolStripMenuItem.Text = "News"
+        '
+        'WeatherToolStripMenuItem
+        '
+        Me.WeatherToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.WeatherToolStripMenuItem.Name = "WeatherToolStripMenuItem"
+        Me.WeatherToolStripMenuItem.Size = New System.Drawing.Size(84, 25)
+        Me.WeatherToolStripMenuItem.Text = "Weather"
+        '
+        'YouTubeToolStripMenuItem
+        '
+        Me.YouTubeToolStripMenuItem.Name = "YouTubeToolStripMenuItem"
+        Me.YouTubeToolStripMenuItem.Size = New System.Drawing.Size(85, 25)
+        Me.YouTubeToolStripMenuItem.Text = "YouTube"
+        '
+        'dgvTracker
+        '
+        Me.dgvTracker.AllowUserToAddRows = False
+        Me.dgvTracker.AllowUserToDeleteRows = False
+        Me.dgvTracker.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.dgvTracker.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.dgvTracker.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvTracker.Location = New System.Drawing.Point(14, 384)
+        Me.dgvTracker.Name = "dgvTracker"
+        Me.dgvTracker.ReadOnly = True
+        Me.dgvTracker.Size = New System.Drawing.Size(1291, 148)
+        Me.dgvTracker.TabIndex = 11
+        '
+        'dgvContacts
+        '
+        Me.dgvContacts.AllowUserToAddRows = False
+        Me.dgvContacts.AllowUserToDeleteRows = False
+        Me.dgvContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvContacts.Location = New System.Drawing.Point(14, 563)
+        Me.dgvContacts.Name = "dgvContacts"
+        Me.dgvContacts.ReadOnly = True
+        Me.dgvContacts.Size = New System.Drawing.Size(1290, 138)
+        Me.dgvContacts.TabIndex = 12
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
-        Me.ClientSize = New System.Drawing.Size(1429, 548)
+        Me.ClientSize = New System.Drawing.Size(1429, 726)
+        Me.Controls.Add(Me.dgvContacts)
+        Me.Controls.Add(Me.dgvTracker)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.txbSearch)
         Me.Controls.Add(Me.lblSelectTrackerEvent)
@@ -243,6 +273,8 @@ Partial Class FrmMain
         Me.mmMain.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        CType(Me.dgvTracker, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvContacts, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -268,4 +300,6 @@ Partial Class FrmMain
     Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents YouTubeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents dgvTracker As DataGridView
+    Friend WithEvents dgvContacts As DataGridView
 End Class

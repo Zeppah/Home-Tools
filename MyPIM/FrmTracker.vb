@@ -19,20 +19,28 @@ Public Class FrmTracker
             Return
         End If
 
-        'Store input in the TrackerRecord array for saving the record
-        intTrackerRecordIndexNumber += 1
-        strTrackerRecord(0) = intTrackerRecordIndexNumber.ToString
-        strTrackerRecord(1) = tbxDescription.Text
-        strTrackerRecord(2) = CStr((dtpDate.Value.Date + dtpTime.Value.TimeOfDay).Ticks)
-        strTrackerRecord(3) = tbxAmount.Text
-        strTrackerRecord(4) = cbxTime.Checked.ToString
-        strTrackerRecord(5) = cbxAppointment.Checked.ToString
-        strTrackerRecord(6) = cbxBill.Checked.ToString
-        strTrackerRecord(7) = cbxBirthday.Checked.ToString
-        strTrackerRecord(8) = cbxOther.Checked.ToString
+        intTrackerRecordIndexNumber += 1 'increment the id number for new record
 
-        SaveSettings()
-        SaveTrackerRecord()
+        'Add the new record to the dtbTracker DataTable
+        Dim newrow As DataRow = dtbTracker.NewRow
+
+        newrow("id") = intTrackerRecordIndexNumber
+        newrow("Description") = tbxDescription.Text
+        newrow("Date") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+        newrow("Amount") = tbxAmount.Text
+        newrow("Time") = cbxTime.Checked
+        newrow("Appointment") = cbxAppointment.Checked
+        newrow("Bill") = cbxBill.Checked
+        newrow("Birthday") = cbxBirthday.Checked
+        newrow("Other") = cbxOther.Checked
+
+        dtbTracker.Rows.Add(newrow)
+
+        'Save the DataTable
+        DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
+
+        SaveSettings() 'index number has been changed
+
 
         'Clear the input to add another record
         tbxDescription.Text = ""

@@ -1,58 +1,174 @@
 ﻿#Region "*** Imports ***"
 
 Imports System.IO
+Imports System.Data
 
 #End Region
 
 #Region "*** Reference Section ***"
 
-'strContactRecord(0) = Cstr(intContactRecordIndexNumber)    : integer
-'strContactRecord(1) = tbxFirstName.Text                    : String
-'strContactRecord(2) = tbxMiddleName.Text                   : String
-'strContactRecord(3) = tbxLastName.Text                     : String
-'strContactRecord(4) = tbxCompany.Text                      : String
-'strContactRecord(5) = tbxAddress1.Text                     : String
-'strContactRecord(6) = tbxAddress2.Text                     : String
-'strContactRecord(7) = tbxCity.Text                         : String
-'strContactRecord(8) = cbxState.Text                        : String
-'strContactRecord(9) = mtbZipcode.Text                      : String
-'strContactRecord(10) = mtbPhone.Text                       : String
-'strContactRecord(11) = tbxEmail.Text                       : String
-'strContactRecord(12) = mtbBirthdate.Text                   : String
-'strContactRecord(13) = cbxGroups.Text                      : String
-'strContactRecord(14) = tbxNotes.Text                       : String
+'intContactRecordIndexNumber            : integer
+'tbxFirstName.Text                      : String
+'tbxMiddleName.Text                     : String
+'tbxLastName.Text                       : String
+'tbxCompany.Text                        : String
+'tbxAddress1.Text                       : String
+'tbxAddress2.Text                       : String
+'tbxCity.Text                           : String
+'cbxState.Text                          : String
+'mtbZipcode.Text                        : String
+'mtbPhone.Text                          : String
+'tbxEmail.Text                          : String
+'mtbBirthdate.Text                      : String
+'cbxGroups.Text                         : String
+'tbxNotes.Text                          : String
 
-'strTrackerRecord(0) = CStr(intTrackerRecordIndexNumber)    : integer
-'strTrackerRecord(1) = tbxDescription.Text                  : string
-'strTrackerRecord(2) = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay).ToString : Date Ticks
-'strTrackerRecord(3) = tbxAmount.ToString                   : Double
-'strTrackerRecord(4) = cbxTime.Checked.ToString             : Boolean
-'strTrackerRecord(5) = cbxAppointment.Checked.ToString      : Boolean
-'strTrackerRecord(6) = cbxBill.Checked.ToString             : Boolean
-'strTrackerRecord(7) = cbxBirthday.Checked.ToString         : Boolean
-'strTrackerRecord(8) = cbxOther.Checked.ToString            : Boolean
+
+'intTrackerRecordIndexNumber                    : integer
+'tbxDescription.Text                            : string
+'(dtpDate.Value.Date + dtpTime.Value.TimeOfDay) : DateTime
+'tbxAmount                                      : Double
+'cbxTime.Checked                                : Boolean
+'cbxAppointment.Checked                         : Boolean
+'cbxBill.Checked                                : Boolean
+'cbxBirthday.Checked                            : Boolean
+'cbxOther.Checked                               : Boolean
 
 #End Region
 
 Module ModMyPIM
 
 #Region "*** Public Variables ***"
+
+    Friend dtbContacts As New DataTable                         'The datatable for contacts
+    Friend dtbTracker As New DataTable                          'The datatable for the Tracker events
     Friend dteEventDate As Date                                 'Date for the selected event from calendar
     Friend intContactRecordIndexNumber As Integer = 0           'Unique Index Number for each Contact
     Friend intTrackerRecordIndexNumber As Integer = 0           'Unique Index Number for each Tracker
-    Friend strContactRecord(15) As String                       'Holds the fields for each condact record
     Friend strDataPath As String = Application.UserAppDataPath  'The Users Data Path
     Friend strDelimiter As String = ControlChars.Tab            'Delimiter for Tab Separated Files
     Friend strContactsFile As String = "Contacts.tsv"           'The Contacts record file
     Friend strSettingsFile As String = "Settings.tsv"           'The Settings file
     Friend strTrackersFile As String = "Tracker.tsv"            'The Trackers record file
-    Friend strTrackerRecord(9) As String                        'Holds the fields for each tracker record
+
+#End Region
+
+#Region "*** Define DataTables ***"
+
+    Public Sub DefineContactsDataTable()
+        With dtbContacts
+            .Columns.Add("id", System.Type.GetType("System.Int32"))
+            .Columns.Add("First Name", System.Type.GetType("System.String"))
+            .Columns.Add("Middle Name", System.Type.GetType("System.String"))
+            .Columns.Add("Last Name", System.Type.GetType("System.String"))
+            .Columns.Add("Company", System.Type.GetType("System.String"))
+            .Columns.Add("Address1", System.Type.GetType("System.String"))
+            .Columns.Add("Address2", System.Type.GetType("System.String"))
+            .Columns.Add("City", System.Type.GetType("System.String"))
+            .Columns.Add("State", System.Type.GetType("System.String"))
+            .Columns.Add("Zipcode", System.Type.GetType("System.String"))
+            .Columns.Add("Phone", System.Type.GetType("System.String"))
+            .Columns.Add("Email", System.Type.GetType("System.String"))
+            .Columns.Add("Birthdate", System.Type.GetType("System.String"))
+            .Columns.Add("Groups", System.Type.GetType("System.String"))
+            .Columns.Add("Notes", System.Type.GetType("System.String"))
+        End With
+    End Sub
+
+    Public Sub DefineTrackerDataTable()
+        With dtbTracker
+            .Columns.Add("id", System.Type.GetType("System.Int32"))
+            .Columns.Add("Description", System.Type.GetType("System.String"))
+            .Columns.Add("Date", System.Type.GetType("System.DateTime"))
+            .Columns.Add("Amount", System.Type.GetType("System.Double"))
+            .Columns.Add("Time", System.Type.GetType("System.Boolean"))
+            .Columns.Add("Appointment", System.Type.GetType("System.Boolean"))
+            .Columns.Add("Bill", System.Type.GetType("System.Boolean"))
+            .Columns.Add("Birthday", System.Type.GetType("System.Boolean"))
+            .Columns.Add("Other", System.Type.GetType("System.Boolean"))
+        End With
+    End Sub
 
 #End Region
 
 #Region "*** Read and Write Files ***"
 
-    Public Sub ReadSettings()
+    '***** Read TSV Files *****
+
+    ' Read the input CSV file to a DataTable. By default the values are Tab 
+    ' delimited, but you can use the second overload version to use any other 
+    ' string you want.
+    '
+    ' Example:
+    '    CSV2DataTable(DataTable, "C:\Records.tsv")
+    Public Sub CSV2DataTable(ByVal table As DataTable, ByVal filename As String)
+        CSV2DataTable(table, filename, vbTab)
+    End Sub
+    Public Sub CSV2DataTable(ByVal table As DataTable, ByVal filename As String, ByVal sepChar As String)
+
+        Dim TextLine As String
+        Dim SplitLine() As String
+
+        If System.IO.File.Exists(filename) = True Then
+            Dim objReader As New System.IO.StreamReader(filename, System.Text.Encoding.Default)
+            Do While objReader.Peek() <> -1
+                TextLine = objReader.ReadLine()
+                SplitLine = Split(TextLine, sepChar)
+                table.Rows.Add(SplitLine)
+            Loop
+            objReader.Close()
+        Else
+            'Save the DataTable
+            DataTable2CSV(table, filename)
+        End If
+
+    End Sub
+
+
+    '***** Write TSV Files *****
+
+    ' Save the input DataTable to a CSV file. By default the values are Tab 
+    ' delimited, but you can use the second overload version to use any other 
+    ' string you want.
+    '
+    ' Example:
+    '    DataTable2CSV(DataTable, "C:\Users.tsv")
+    Sub DataTable2CSV(ByVal table As DataTable, ByVal filename As String)
+        DataTable2CSV(table, filename, vbTab)
+    End Sub
+    Sub DataTable2CSV(ByVal table As DataTable, ByVal filename As String,
+    ByVal sepChar As String)
+        Dim writer As System.IO.StreamWriter
+        Try
+            writer = New System.IO.StreamWriter(filename)
+
+            '' first write a line with the columns name
+            Dim sep As String = ""
+            Dim builder As New System.Text.StringBuilder
+            'For Each col As DataColumn In table.Columns
+            '    builder.Append(sep).Append(col.ColumnName)
+            '    sep = sepChar
+            'Next
+            'writer.WriteLine(builder.ToString())
+
+            ' then write all the rows
+            For Each row As DataRow In table.Rows
+                sep = ""
+                builder = New System.Text.StringBuilder
+
+                For Each col As DataColumn In table.Columns
+                    builder.Append(sep).Append(row(col.ColumnName))
+                    sep = sepChar
+                Next
+                writer.WriteLine(builder.ToString())
+            Next
+        Finally
+            If Not writer Is Nothing Then writer.Close()
+        End Try
+    End Sub
+
+
+    Public Sub LoadSettings()
         Dim SplitLine() As String
         If File.Exists(strDataPath & "\" & strSettingsFile) = True Then
             'Open the StreamReader
@@ -69,49 +185,6 @@ Module ModMyPIM
             SaveSettings()
         End If
     End Sub
-
-
-    Public Sub SaveContactRecord()
-        Try
-            'True appends the record to the file. False replaces the file.
-            Dim filewriter As New StreamWriter(strDataPath & "\" & strContactsFile, True)
-            Dim record As String = Nothing
-            record = Nothing
-            record = strContactRecord(0) & strDelimiter & strContactRecord(1) & strDelimiter _
-                & strContactRecord(2) & strDelimiter & strContactRecord(3) & strDelimiter _
-                & strContactRecord(4) & strDelimiter & strContactRecord(5) & strDelimiter _
-                & strContactRecord(6) & strDelimiter & strContactRecord(7) & strDelimiter _
-                & strContactRecord(8) & strDelimiter & strContactRecord(9) & strDelimiter _
-                & strContactRecord(10) & strDelimiter & strContactRecord(11) & strDelimiter _
-                & strContactRecord(12) & strDelimiter & strContactRecord(13) & strDelimiter _
-                & strContactRecord(14)
-
-            filewriter.WriteLine(record)
-            filewriter.Close()
-        Catch ex As Exception
-            Dim unused = MsgBox("Error trying to write Contact record.")
-        End Try
-
-    End Sub
-
-    Public Sub SaveTrackerRecord()
-        Try
-            'True appends the record to the file. False replaces the file.
-            Dim filewriter As New StreamWriter(strDataPath & "\" & strTrackersFile, True)
-            Dim record As String = Nothing
-            record = Nothing
-            record = strTrackerRecord(0) & strDelimiter & strTrackerRecord(1) & strDelimiter & strTrackerRecord(2) _
-                & strDelimiter & strTrackerRecord(3) & strDelimiter & strTrackerRecord(4) _
-                & strDelimiter & strTrackerRecord(5) & strDelimiter & strTrackerRecord(6) _
-                & strDelimiter & strTrackerRecord(7) & strDelimiter & strTrackerRecord(8)
-            filewriter.WriteLine(record)
-            filewriter.Close()
-        Catch ex As Exception
-            Dim unused = MsgBox("Error trying to write Tracker record.")
-        End Try
-
-    End Sub
-
     Public Sub SaveSettings()
         File.WriteAllText(strDataPath & "\" & strSettingsFile, CStr(intTrackerRecordIndexNumber) _
             & strDelimiter & CStr(intContactRecordIndexNumber))

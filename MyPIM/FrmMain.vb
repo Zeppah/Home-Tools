@@ -1,19 +1,40 @@
 ﻿
+#Region "*** Imports ***"
+
+Imports System.IO
+Imports System.Text
+
+#End Region
+
 ''' <HEADER>
 ''' Project: My Personal Information Manager
 ''' Author: Larry Benner
 ''' Date: 6/17/2020
 ''' Revisions:
 ''' </HEADER>
-
+''' 
 Public Class FrmMain
 
 #Region "*** Start ***"
 
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ReadSettings()
+
+        LoadSettings()
         TmrClock.Start()
+        DefineTrackerDataTable()
+        CSV2DataTable(dtbTracker, strDataPath & "\" & strTrackersFile)
+        DefineContactsDataTable()
+        CSV2DataTable(dtbContacts, strDataPath & "\" & strContactsFile)
+
+        Me.dgvTracker.DataSource = dtbTracker
+        Me.dgvContacts.DataSource = dtbContacts
+
     End Sub
+
+#End Region
+#Region "*** Datagridview code ***"
+
+
 
 #End Region
 
@@ -128,6 +149,6 @@ Public Class FrmMain
         Process.Start("https://Mail.google.com")
     End Sub
 
-
 #End Region
+
 End Class

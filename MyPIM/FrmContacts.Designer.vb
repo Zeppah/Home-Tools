@@ -34,7 +34,7 @@ Partial Class FrmContacts
         Me.cbxState = New System.Windows.Forms.ComboBox()
         Me.lblState = New System.Windows.Forms.Label()
         Me.tbxNotes = New System.Windows.Forms.TextBox()
-        Me.mtbBirthday = New System.Windows.Forms.MaskedTextBox()
+        Me.mtbBirthdate = New System.Windows.Forms.MaskedTextBox()
         Me.mtbZipcode = New System.Windows.Forms.MaskedTextBox()
         Me.tbxFirstName = New System.Windows.Forms.TextBox()
         Me.tbxMiddleName = New System.Windows.Forms.TextBox()
@@ -170,14 +170,14 @@ Partial Class FrmContacts
         Me.tbxNotes.Size = New System.Drawing.Size(507, 155)
         Me.tbxNotes.TabIndex = 13
         '
-        'mtbBirthday
+        'mtbBirthdate
         '
-        Me.mtbBirthday.Location = New System.Drawing.Point(117, 235)
-        Me.mtbBirthday.Mask = "00/00/0000 90:00"
-        Me.mtbBirthday.Name = "mtbBirthday"
-        Me.mtbBirthday.Size = New System.Drawing.Size(150, 29)
-        Me.mtbBirthday.TabIndex = 11
-        Me.mtbBirthday.ValidatingType = GetType(Date)
+        Me.mtbBirthdate.Location = New System.Drawing.Point(117, 235)
+        Me.mtbBirthdate.Mask = "00/00/0000 90:00"
+        Me.mtbBirthdate.Name = "mtbBirthdate"
+        Me.mtbBirthdate.Size = New System.Drawing.Size(150, 29)
+        Me.mtbBirthdate.TabIndex = 11
+        Me.mtbBirthdate.ValidatingType = GetType(Date)
         '
         'mtbZipcode
         '
@@ -312,7 +312,7 @@ Partial Class FrmContacts
         Me.Controls.Add(Me.tbxMiddleName)
         Me.Controls.Add(Me.tbxFirstName)
         Me.Controls.Add(Me.mtbZipcode)
-        Me.Controls.Add(Me.mtbBirthday)
+        Me.Controls.Add(Me.mtbBirthdate)
         Me.Controls.Add(Me.tbxNotes)
         Me.Controls.Add(Me.lblState)
         Me.Controls.Add(Me.cbxState)
@@ -347,7 +347,7 @@ Partial Class FrmContacts
     Friend WithEvents cbxState As ComboBox
     Friend WithEvents lblState As Label
     Friend WithEvents tbxNotes As TextBox
-    Friend WithEvents mtbBirthday As MaskedTextBox
+    Friend WithEvents mtbBirthdate As MaskedTextBox
     Friend WithEvents mtbZipcode As MaskedTextBox
     Friend WithEvents tbxFirstName As TextBox
     Friend WithEvents tbxMiddleName As TextBox

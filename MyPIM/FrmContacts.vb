@@ -10,25 +10,29 @@
             Return
         End If
 
-        'Store input in the TrackerRecord array for saving the record
-        intContactRecordIndexNumber += 1
-        strContactRecord(0) = intContactRecordIndexNumber.ToString
-        strContactRecord(1) = tbxFirstName.Text
-        strContactRecord(2) = tbxMiddleName.Text
-        strContactRecord(3) = tbxLastName.Text
-        strContactRecord(4) = tbxCompany.Text
-        strContactRecord(5) = tbxAddress1.Text
-        strContactRecord(6) = tbxAddress2.Text
-        strContactRecord(7) = tbxCity.Text
-        strContactRecord(8) = cbxState.Text
-        strContactRecord(9) = mtbZipcode.Text
-        strContactRecord(10) = mtbPhone.Text
-        strContactRecord(11) = tbxEmail.Text
-        strContactRecord(12) = mtbBirthday.Text
-        strContactRecord(13) = tbxNotes.Text
+        'Add the new record to the dtbContacts DataTable
+        Dim newrow As DataRow = dtbContacts.NewRow
+
+        newrow("id") = intTrackerRecordIndexNumber
+        newrow("First Name") = tbxFirstName.Text
+        newrow("Middle Name") = tbxMiddleName.Text
+        newrow("Last Name") = tbxLastName.Text
+        newrow("Company") = tbxCompany.Text
+        newrow("Address1") = tbxAddress1.Text
+        newrow("Address2") = tbxAddress2.Text
+        newrow("City") = tbxCity.Text
+        newrow("State") = cbxState.Text
+        newrow("Zipcode") = mtbZipcode.Text
+        newrow("Phone") = mtbPhone.Text
+        newrow("Email") = tbxEmail.Text
+        newrow("Birthdate") = mtbBirthdate.Text
+        newrow("Notes") = tbxNotes.Text
+        dtbContacts.Rows.Add(newrow)
+
+        'Save the DataTable
+        DataTable2CSV(dtbContacts, strDataPath & "\" & strContactsFile)
 
         SaveSettings()
-        SaveContactRecord()
 
         'Clear the input for another record
         tbxFirstName.Text = ""
@@ -42,7 +46,7 @@
         mtbZipcode.Text = ""
         mtbPhone.Text = ""
         tbxEmail.Text = ""
-        mtbBirthday.Text = ""
+        mtbBirthdate.Text = ""
         tbxNotes.Text = ""
 
     End Sub
