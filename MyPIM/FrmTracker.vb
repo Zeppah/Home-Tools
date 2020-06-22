@@ -18,24 +18,35 @@ Public Class FrmTracker
             Dim unused1 = tbxDescription.Focus()
             Return
         End If
+        If btnAddTrackerRecord.Text = "Add" Then
+            intTrackerRecordIndexNumber += 1 'increment the id number for new record
 
-        intTrackerRecordIndexNumber += 1 'increment the id number for new record
+            'Add the new record to the dtbTracker DataTable
+            Dim newrow As DataRow = dtbTracker.NewRow
 
-        'Add the new record to the dtbTracker DataTable
-        Dim newrow As DataRow = dtbTracker.NewRow
+            newrow("id") = intTrackerRecordIndexNumber
+            newrow("Description") = tbxDescription.Text
+            newrow("Date") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+            newrow("Amount") = tbxAmount.Text
+            newrow("Time") = cbxTime.Checked
+            newrow("Appointment") = cbxAppointment.Checked
+            newrow("Bill") = cbxBill.Checked
+            newrow("Birthday") = cbxBirthday.Checked
+            newrow("Other") = cbxOther.Checked
 
-        newrow("id") = intTrackerRecordIndexNumber
-        newrow("Description") = tbxDescription.Text
-        newrow("Date") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
-        newrow("Amount") = tbxAmount.Text
-        newrow("Time") = cbxTime.Checked
-        newrow("Appointment") = cbxAppointment.Checked
-        newrow("Bill") = cbxBill.Checked
-        newrow("Birthday") = cbxBirthday.Checked
-        newrow("Other") = cbxOther.Checked
+            dtbTracker.Rows.Add(newrow)
+        ElseIf btnAddTrackerRecord.Text = "Save" Then
 
-        dtbTracker.Rows.Add(newrow)
+            dtbTracker.Rows.Item(intTrackerEditRow).Item("Description") = tbxDescription.Text
+            dtbTracker.Rows.Item(intTrackerEditRow).Item("Date") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+            dtbTracker.Rows.Item(intTrackerEditRow).Item("Amount") = tbxAmount.Text
+            dtbTracker.Rows.Item(intTrackerEditRow).Item("Time") = cbxTime.Checked
+            dtbTracker.Rows.Item(intTrackerEditRow).Item("Appointment") = cbxAppointment.Checked
+            dtbTracker.Rows.Item(intTrackerEditRow).Item("Bill") = cbxBill.Checked
+            dtbTracker.Rows.Item(intTrackerEditRow).Item("Birthday") = cbxBirthday.Checked
+            dtbTracker.Rows.Item(intTrackerEditRow).Item("Other") = cbxOther.Checked
 
+        End If
         'Save the DataTable
         DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
 
@@ -52,6 +63,13 @@ Public Class FrmTracker
         cbxBill.Checked = False
         cbxBirthday.Checked = False
         cbxOther.Checked = False
+
+        If btnAddTrackerRecord.Text = "Save" Then
+            btnAddTrackerRecord.Text = "Add"
+            FrmMain.Enabled = True
+            FrmMain.DisplayTrackers()
+            Me.Close()
+        End If
 
     End Sub
 

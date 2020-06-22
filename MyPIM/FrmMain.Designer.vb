@@ -44,12 +44,13 @@ Partial Class FrmMain
         Me.NewsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WeatherToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.YouTubeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.dgvTracker = New System.Windows.Forms.DataGridView()
-        Me.dgvContacts = New System.Windows.Forms.DataGridView()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.flpTracker = New System.Windows.Forms.FlowLayoutPanel()
+        Me.btnSort = New System.Windows.Forms.Button()
+        Me.btnNotePad = New System.Windows.Forms.Button()
         Me.mmMain.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
-        CType(Me.dgvTracker, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dgvContacts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'mmMain
@@ -219,29 +220,51 @@ Partial Class FrmMain
         Me.YouTubeToolStripMenuItem.Size = New System.Drawing.Size(85, 25)
         Me.YouTubeToolStripMenuItem.Text = "YouTube"
         '
-        'dgvTracker
+        'ComboBox1
         '
-        Me.dgvTracker.AllowUserToAddRows = False
-        Me.dgvTracker.AllowUserToDeleteRows = False
-        Me.dgvTracker.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.dgvTracker.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.dgvTracker.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTracker.Location = New System.Drawing.Point(14, 384)
-        Me.dgvTracker.Name = "dgvTracker"
-        Me.dgvTracker.ReadOnly = True
-        Me.dgvTracker.Size = New System.Drawing.Size(1291, 148)
-        Me.dgvTracker.TabIndex = 11
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"All", "Appointments", "Bills", "Birthdays", "Other"})
+        Me.ComboBox1.Location = New System.Drawing.Point(24, 45)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(149, 33)
+        Me.ComboBox1.TabIndex = 14
+        Me.ComboBox1.Text = "All"
         '
-        'dgvContacts
+        'btnAdd
         '
-        Me.dgvContacts.AllowUserToAddRows = False
-        Me.dgvContacts.AllowUserToDeleteRows = False
-        Me.dgvContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvContacts.Location = New System.Drawing.Point(14, 563)
-        Me.dgvContacts.Name = "dgvContacts"
-        Me.dgvContacts.ReadOnly = True
-        Me.dgvContacts.Size = New System.Drawing.Size(1290, 138)
-        Me.dgvContacts.TabIndex = 12
+        Me.btnAdd.Location = New System.Drawing.Point(362, 46)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(75, 32)
+        Me.btnAdd.TabIndex = 11
+        Me.btnAdd.Text = "Add"
+        Me.btnAdd.UseVisualStyleBackColor = True
+        '
+        'flpTracker
+        '
+        Me.flpTracker.AutoScroll = True
+        Me.flpTracker.Location = New System.Drawing.Point(12, 86)
+        Me.flpTracker.Name = "flpTracker"
+        Me.flpTracker.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
+        Me.flpTracker.Size = New System.Drawing.Size(440, 819)
+        Me.flpTracker.TabIndex = 13
+        '
+        'btnSort
+        '
+        Me.btnSort.Location = New System.Drawing.Point(281, 47)
+        Me.btnSort.Name = "btnSort"
+        Me.btnSort.Size = New System.Drawing.Size(75, 33)
+        Me.btnSort.TabIndex = 12
+        Me.btnSort.Text = "Sort"
+        Me.btnSort.UseVisualStyleBackColor = True
+        '
+        'btnNotePad
+        '
+        Me.btnNotePad.Location = New System.Drawing.Point(951, 122)
+        Me.btnNotePad.Name = "btnNotePad"
+        Me.btnNotePad.Size = New System.Drawing.Size(124, 44)
+        Me.btnNotePad.TabIndex = 15
+        Me.btnNotePad.Text = "Notepad++"
+        Me.btnNotePad.UseVisualStyleBackColor = True
         '
         'FrmMain
         '
@@ -249,8 +272,11 @@ Partial Class FrmMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
         Me.ClientSize = New System.Drawing.Size(1429, 726)
-        Me.Controls.Add(Me.dgvContacts)
-        Me.Controls.Add(Me.dgvTracker)
+        Me.Controls.Add(Me.btnNotePad)
+        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.btnAdd)
+        Me.Controls.Add(Me.flpTracker)
+        Me.Controls.Add(Me.btnSort)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.txbSearch)
         Me.Controls.Add(Me.lblSelectTrackerEvent)
@@ -273,8 +299,6 @@ Partial Class FrmMain
         Me.mmMain.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        CType(Me.dgvTracker, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvContacts, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -300,6 +324,9 @@ Partial Class FrmMain
     Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents YouTubeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MailToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents dgvTracker As DataGridView
-    Friend WithEvents dgvContacts As DataGridView
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents btnAdd As Button
+    Friend WithEvents flpTracker As FlowLayoutPanel
+    Friend WithEvents btnSort As Button
+    Friend WithEvents btnNotePad As Button
 End Class

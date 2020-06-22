@@ -45,11 +45,15 @@ Module ModMyPIM
     Friend dteEventDate As Date                                 'Date for the selected event from calendar
     Friend intContactRecordIndexNumber As Integer = 0           'Unique Index Number for each Contact
     Friend intTrackerRecordIndexNumber As Integer = 0           'Unique Index Number for each Tracker
+    Friend intTrackerEditRow As Integer = 0                     'dtbTracker Row being edited
     Friend strDataPath As String = Application.UserAppDataPath  'The Users Data Path
     Friend strDelimiter As String = ControlChars.Tab            'Delimiter for Tab Separated Files
     Friend strContactsFile As String = "Contacts.tsv"           'The Contacts record file
     Friend strSettingsFile As String = "Settings.tsv"           'The Settings file
     Friend strTrackersFile As String = "Tracker.tsv"            'The Trackers record file
+    'Used to give unique control names such as lblTracker1, lblTracker2 etc.
+    Friend TrackerPanelsAddedCount As Integer = 0
+
 
 #End Region
 
