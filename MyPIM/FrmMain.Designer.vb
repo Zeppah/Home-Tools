@@ -44,11 +44,15 @@ Partial Class FrmMain
         Me.NewsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WeatherToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.YouTubeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cboTracker = New System.Windows.Forms.ComboBox()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.flpTracker = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnSort = New System.Windows.Forms.Button()
         Me.btnNotePad = New System.Windows.Forms.Button()
+        Me.cboContact = New System.Windows.Forms.ComboBox()
+        Me.BtnAddContact = New System.Windows.Forms.Button()
+        Me.flpContact = New System.Windows.Forms.FlowLayoutPanel()
+        Me.btnContactSort = New System.Windows.Forms.Button()
         Me.mmMain.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -110,7 +114,7 @@ Partial Class FrmMain
         '
         Me.lblCalendar.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblCalendar.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCalendar.Location = New System.Drawing.Point(584, 33)
+        Me.lblCalendar.Location = New System.Drawing.Point(646, 44)
         Me.lblCalendar.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCalendar.Name = "lblCalendar"
         Me.lblCalendar.Size = New System.Drawing.Size(154, 33)
@@ -122,7 +126,7 @@ Partial Class FrmMain
         '
         Me.MonthCalendar1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.MonthCalendar1.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MonthCalendar1.Location = New System.Drawing.Point(538, 75)
+        Me.MonthCalendar1.Location = New System.Drawing.Point(600, 86)
         Me.MonthCalendar1.Margin = New System.Windows.Forms.Padding(10)
         Me.MonthCalendar1.Name = "MonthCalendar1"
         Me.MonthCalendar1.TabIndex = 3
@@ -134,7 +138,7 @@ Partial Class FrmMain
         Me.cbxEventPicker.FormattingEnabled = True
         Me.cbxEventPicker.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.cbxEventPicker.Items.AddRange(New Object() {"Appointment", "Bill", "Birthday", "Other"})
-        Me.cbxEventPicker.Location = New System.Drawing.Point(538, 307)
+        Me.cbxEventPicker.Location = New System.Drawing.Point(600, 318)
         Me.cbxEventPicker.Name = "cbxEventPicker"
         Me.cbxEventPicker.Size = New System.Drawing.Size(227, 33)
         Me.cbxEventPicker.TabIndex = 5
@@ -143,7 +147,7 @@ Partial Class FrmMain
         'lblSelectTrackerEvent
         '
         Me.lblSelectTrackerEvent.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.lblSelectTrackerEvent.Location = New System.Drawing.Point(533, 247)
+        Me.lblSelectTrackerEvent.Location = New System.Drawing.Point(595, 258)
         Me.lblSelectTrackerEvent.Name = "lblSelectTrackerEvent"
         Me.lblSelectTrackerEvent.Size = New System.Drawing.Size(232, 57)
         Me.lblSelectTrackerEvent.TabIndex = 6
@@ -220,19 +224,19 @@ Partial Class FrmMain
         Me.YouTubeToolStripMenuItem.Size = New System.Drawing.Size(85, 25)
         Me.YouTubeToolStripMenuItem.Text = "YouTube"
         '
-        'ComboBox1
+        'cboTracker
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"All", "Appointments", "Bills", "Birthdays", "Other"})
-        Me.ComboBox1.Location = New System.Drawing.Point(24, 45)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(149, 33)
-        Me.ComboBox1.TabIndex = 14
-        Me.ComboBox1.Text = "All"
+        Me.cboTracker.FormattingEnabled = True
+        Me.cboTracker.Items.AddRange(New Object() {"All", "Appointments", "Bills", "Birthdays", "Other"})
+        Me.cboTracker.Location = New System.Drawing.Point(32, 87)
+        Me.cboTracker.Name = "cboTracker"
+        Me.cboTracker.Size = New System.Drawing.Size(149, 33)
+        Me.cboTracker.TabIndex = 14
+        Me.cboTracker.Text = "All"
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(362, 46)
+        Me.btnAdd.Location = New System.Drawing.Point(362, 88)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(75, 32)
         Me.btnAdd.TabIndex = 11
@@ -242,39 +246,84 @@ Partial Class FrmMain
         'flpTracker
         '
         Me.flpTracker.AutoScroll = True
-        Me.flpTracker.Location = New System.Drawing.Point(12, 86)
+        Me.flpTracker.Location = New System.Drawing.Point(12, 129)
         Me.flpTracker.Name = "flpTracker"
         Me.flpTracker.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
-        Me.flpTracker.Size = New System.Drawing.Size(440, 819)
+        Me.flpTracker.Size = New System.Drawing.Size(440, 625)
         Me.flpTracker.TabIndex = 13
         '
         'btnSort
         '
-        Me.btnSort.Location = New System.Drawing.Point(281, 47)
+        Me.btnSort.Location = New System.Drawing.Point(281, 88)
         Me.btnSort.Name = "btnSort"
-        Me.btnSort.Size = New System.Drawing.Size(75, 33)
+        Me.btnSort.Size = New System.Drawing.Size(75, 32)
         Me.btnSort.TabIndex = 12
         Me.btnSort.Text = "Sort"
         Me.btnSort.UseVisualStyleBackColor = True
         '
         'btnNotePad
         '
-        Me.btnNotePad.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnNotePad.Location = New System.Drawing.Point(951, 122)
+        Me.btnNotePad.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.btnNotePad.Location = New System.Drawing.Point(652, 379)
         Me.btnNotePad.Name = "btnNotePad"
         Me.btnNotePad.Size = New System.Drawing.Size(124, 44)
         Me.btnNotePad.TabIndex = 15
         Me.btnNotePad.Text = "Notepad++"
         Me.btnNotePad.UseVisualStyleBackColor = True
         '
+        'cboContact
+        '
+        Me.cboContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboContact.FormattingEnabled = True
+        Me.cboContact.Items.AddRange(New Object() {"All", "Acquaintance", "Business", "Family", "Friend", "Other"})
+        Me.cboContact.Location = New System.Drawing.Point(980, 86)
+        Me.cboContact.Name = "cboContact"
+        Me.cboContact.Size = New System.Drawing.Size(149, 33)
+        Me.cboContact.TabIndex = 19
+        Me.cboContact.Text = "All"
+        '
+        'BtnAddContact
+        '
+        Me.BtnAddContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddContact.Location = New System.Drawing.Point(1318, 88)
+        Me.BtnAddContact.Name = "BtnAddContact"
+        Me.BtnAddContact.Size = New System.Drawing.Size(75, 32)
+        Me.BtnAddContact.TabIndex = 16
+        Me.BtnAddContact.Text = "Add"
+        Me.BtnAddContact.UseVisualStyleBackColor = True
+        '
+        'flpContact
+        '
+        Me.flpContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.flpContact.AutoScroll = True
+        Me.flpContact.Location = New System.Drawing.Point(968, 129)
+        Me.flpContact.Name = "flpContact"
+        Me.flpContact.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
+        Me.flpContact.Size = New System.Drawing.Size(440, 625)
+        Me.flpContact.TabIndex = 18
+        '
+        'btnContactSort
+        '
+        Me.btnContactSort.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnContactSort.Location = New System.Drawing.Point(1237, 87)
+        Me.btnContactSort.Name = "btnContactSort"
+        Me.btnContactSort.Size = New System.Drawing.Size(75, 32)
+        Me.btnContactSort.TabIndex = 17
+        Me.btnContactSort.Text = "Sort"
+        Me.btnContactSort.UseVisualStyleBackColor = True
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
-        Me.ClientSize = New System.Drawing.Size(1429, 726)
+        Me.ClientSize = New System.Drawing.Size(1429, 990)
+        Me.Controls.Add(Me.cboContact)
+        Me.Controls.Add(Me.BtnAddContact)
+        Me.Controls.Add(Me.flpContact)
+        Me.Controls.Add(Me.btnContactSort)
         Me.Controls.Add(Me.btnNotePad)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.cboTracker)
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.flpTracker)
         Me.Controls.Add(Me.btnSort)
@@ -325,9 +374,13 @@ Partial Class FrmMain
     Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents YouTubeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MailToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cboTracker As ComboBox
     Friend WithEvents btnAdd As Button
     Friend WithEvents flpTracker As FlowLayoutPanel
     Friend WithEvents btnSort As Button
     Friend WithEvents btnNotePad As Button
+    Friend WithEvents cboContact As ComboBox
+    Friend WithEvents BtnAddContact As Button
+    Friend WithEvents flpContact As FlowLayoutPanel
+    Friend WithEvents btnContactSort As Button
 End Class

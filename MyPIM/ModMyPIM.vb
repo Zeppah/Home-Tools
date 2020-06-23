@@ -43,6 +43,7 @@ Module ModMyPIM
     Friend dtbContacts As New DataTable                         'The datatable for contacts
     Friend dtbTracker As New DataTable                          'The datatable for the Tracker events
     Friend dteEventDate As Date                                 'Date for the selected event from calendar
+    Friend intContactEditRow As Integer = 0                     'dtbContact Row being edited
     Friend intContactRecordIndexNumber As Integer = 0           'Unique Index Number for each Contact
     Friend intTrackerRecordIndexNumber As Integer = 0           'Unique Index Number for each Tracker
     Friend intTrackerEditRow As Integer = 0                     'dtbTracker Row being edited
@@ -50,10 +51,15 @@ Module ModMyPIM
     Friend strDelimiter As String = ControlChars.Tab            'Delimiter for Tab Separated Files
     Friend strContactsFile As String = "Contacts.tsv"           'The Contacts record file
     Friend strSettingsFile As String = "Settings.tsv"           'The Settings file
+    Friend strContactSortOrder As String = "A"                  'Tracker datatable sort order 'dtbTracker'
     Friend strTrackerSortOrder As String = "A"                  'Tracker datatable sort order 'dtbTracker'
     Friend strTrackersFile As String = "Tracker.tsv"            'The Trackers record file
+
     'Used to give unique control names such as pnlTracker1, pnlTracker2 etc.
     Friend TrackerPanelsAddedCount As Integer = 0
+    'Used to give unique control names such as pnlContact1, pnlContact2 etc.
+    Friend ContactPanelsAddedCount As Integer = 0
+
 
 
 #End Region
@@ -184,6 +190,7 @@ Module ModMyPIM
                 intTrackerRecordIndexNumber = CInt(SplitLine(0))    ' Tracker Record Counter
                 intContactRecordIndexNumber = CInt(SplitLine(1))    ' Contact Record Counter
                 strTrackerSortOrder = SplitLine(2)                  ' Tracker display sort order
+                strContactSortOrder = SplitLine(3)                  ' Contact display sort order
             Loop
             'Close the StreamReader
             objReader.Close()
@@ -193,7 +200,8 @@ Module ModMyPIM
     End Sub
     Public Sub SaveSettings()
         File.WriteAllText(strDataPath & "\" & strSettingsFile, CStr(intTrackerRecordIndexNumber) _
-            & strDelimiter & CStr(intContactRecordIndexNumber) & strDelimiter & strTrackerSortOrder)
+            & strDelimiter & CStr(intContactRecordIndexNumber) & strDelimiter & strTrackerSortOrder _
+            & strDelimiter & strContactSortOrder)
     End Sub
 
 #End Region

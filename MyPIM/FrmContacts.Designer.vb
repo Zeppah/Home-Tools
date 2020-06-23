@@ -46,7 +46,7 @@ Partial Class FrmContacts
         Me.tbxCity = New System.Windows.Forms.TextBox()
         Me.cbxGroups = New System.Windows.Forms.ComboBox()
         Me.lblGroups = New System.Windows.Forms.Label()
-        Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnSaveContactRecord = New System.Windows.Forms.Button()
         Me.tbxCompany = New System.Windows.Forms.TextBox()
         Me.lblCompany = New System.Windows.Forms.Label()
         Me.SuspendLayout()
@@ -146,7 +146,7 @@ Partial Class FrmContacts
         '
         Me.cbxState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxState.FormattingEnabled = True
-        Me.cbxState.Items.AddRange(New Object() {"AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "AS", "GU", "MH", "FM", "MP", "PW", "PR", "VI"})
+        Me.cbxState.Items.AddRange(New Object() {"AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WI", "WV", "WY", "AS", "FM", "GU", "MH", "MP", "PR", "PW", "VI"})
         Me.cbxState.Location = New System.Drawing.Point(406, 171)
         Me.cbxState.Name = "cbxState"
         Me.cbxState.Size = New System.Drawing.Size(47, 29)
@@ -248,7 +248,7 @@ Partial Class FrmContacts
         '
         Me.cbxGroups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxGroups.FormattingEnabled = True
-        Me.cbxGroups.Items.AddRange(New Object() {"Acquaintance", "Business", "Family", "Friends", "Other"})
+        Me.cbxGroups.Items.AddRange(New Object() {"Acquaintance", "Business", "Family", "Friend", "Other"})
         Me.cbxGroups.Location = New System.Drawing.Point(345, 235)
         Me.cbxGroups.MaxDropDownItems = 25
         Me.cbxGroups.Name = "cbxGroups"
@@ -266,14 +266,14 @@ Partial Class FrmContacts
         Me.lblGroups.Text = "Groups: "
         Me.lblGroups.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'btnSave
+        'btnSaveContactRecord
         '
-        Me.btnSave.Location = New System.Drawing.Point(117, 453)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(127, 38)
-        Me.btnSave.TabIndex = 14
-        Me.btnSave.Text = "Save"
-        Me.btnSave.UseVisualStyleBackColor = True
+        Me.btnSaveContactRecord.Location = New System.Drawing.Point(117, 453)
+        Me.btnSaveContactRecord.Name = "btnSaveContactRecord"
+        Me.btnSaveContactRecord.Size = New System.Drawing.Size(127, 38)
+        Me.btnSaveContactRecord.TabIndex = 14
+        Me.btnSaveContactRecord.Text = "Add"
+        Me.btnSaveContactRecord.UseVisualStyleBackColor = True
         '
         'tbxCompany
         '
@@ -300,7 +300,7 @@ Partial Class FrmContacts
         Me.ClientSize = New System.Drawing.Size(734, 551)
         Me.Controls.Add(Me.tbxCompany)
         Me.Controls.Add(Me.lblCompany)
-        Me.Controls.Add(Me.btnSave)
+        Me.Controls.Add(Me.btnSaveContactRecord)
         Me.Controls.Add(Me.lblGroups)
         Me.Controls.Add(Me.cbxGroups)
         Me.Controls.Add(Me.tbxCity)
@@ -359,7 +359,7 @@ Partial Class FrmContacts
     Friend WithEvents tbxCity As TextBox
     Friend WithEvents cbxGroups As ComboBox
     Friend WithEvents lblGroups As Label
-    Friend WithEvents btnSave As Button
+    Friend WithEvents btnSaveContactRecord As Button
     Friend WithEvents tbxCompany As TextBox
     Friend WithEvents lblCompany As Label
 End Class
