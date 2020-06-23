@@ -29,7 +29,7 @@
             newrow("Phone") = mtbPhone.Text
             newrow("Email") = tbxEmail.Text
             newrow("Birthdate") = mtbBirthdate.Text
-            newrow("Groups") = cbxGroups.SelectedItem.ToString
+            newrow("Groups") = cbxGroups.Text
             newrow("Notes") = tbxNotes.Text
             dtbContacts.Rows.Add(newrow)
 
@@ -67,6 +67,7 @@
             dtbContacts.Rows.Item(intContactEditRow).Item("Phone") = mtbPhone.Text
             dtbContacts.Rows.Item(intContactEditRow).Item("Email") = tbxEmail.Text
             dtbContacts.Rows.Item(intContactEditRow).Item("Birthdate") = mtbBirthdate.Text
+            dtbContacts.Rows.Item(intContactEditRow).Item("Groups") = cbxGroups.Text
             dtbContacts.Rows.Item(intContactEditRow).Item("Notes") = tbxNotes.Text
 
             'Save the DataTable
