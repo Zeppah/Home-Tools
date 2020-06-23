@@ -344,6 +344,25 @@ Public Class FrmMain
 
     End Sub
 
+    Private Sub BtnSort_Click(sender As Object, e As EventArgs) Handles btnSort.Click
+
+        If strTrackerSortOrder = "A" Then
+            dtbTracker.DefaultView.Sort = "Date ASC"
+            dtbTracker = dtbTracker.DefaultView.ToTable
+            strTrackerSortOrder = "D"
+        Else
+            dtbTracker.DefaultView.Sort = "Date DESC"
+            dtbTracker = dtbTracker.DefaultView.ToTable
+            strTrackerSortOrder = "A"
+        End If
+
+        DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
+        SaveSettings()
+        DisplayTrackers()
+
+    End Sub
+
+
 #End Region
 
 #Region "*** Event Procedures ***"

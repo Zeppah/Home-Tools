@@ -259,6 +259,7 @@ Partial Class FrmMain
         '
         'btnNotePad
         '
+        Me.btnNotePad.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnNotePad.Location = New System.Drawing.Point(951, 122)
         Me.btnNotePad.Name = "btnNotePad"
         Me.btnNotePad.Size = New System.Drawing.Size(124, 44)

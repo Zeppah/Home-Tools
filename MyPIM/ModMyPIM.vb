@@ -50,6 +50,7 @@ Module ModMyPIM
     Friend strDelimiter As String = ControlChars.Tab            'Delimiter for Tab Separated Files
     Friend strContactsFile As String = "Contacts.tsv"           'The Contacts record file
     Friend strSettingsFile As String = "Settings.tsv"           'The Settings file
+    Friend strTrackerSortOrder As String = "A"                  'Tracker datatable sort order 'dtbTracker'
     Friend strTrackersFile As String = "Tracker.tsv"            'The Trackers record file
     'Used to give unique control names such as lblTracker1, lblTracker2 etc.
     Friend TrackerPanelsAddedCount As Integer = 0
@@ -177,11 +178,12 @@ Module ModMyPIM
         If File.Exists(strDataPath & "\" & strSettingsFile) = True Then
             'Open the StreamReader
             Dim objReader As New StreamReader(strDataPath & "\" & strSettingsFile, System.Text.Encoding.Default)
-            Do While objReader.Peek() <> -1                     'Peek to see if there is another line of data to process
-                Dim TextLine As String = objReader.ReadLine()   'Read the next line of data
-                SplitLine = Split(TextLine, strDelimiter) 'Separate the line into the SplitLine array
-                intTrackerRecordIndexNumber = CInt(SplitLine(0)) ' Tracker Record Counter
-                intContactRecordIndexNumber = CInt(SplitLine(1)) ' Contact Record Counter
+            Do While objReader.Peek() <> -1                         ' Peek to see if there is another line of data to process
+                Dim TextLine As String = objReader.ReadLine()       ' Read the next line of data
+                SplitLine = Split(TextLine, strDelimiter)           ' Separate the line into the SplitLine array
+                intTrackerRecordIndexNumber = CInt(SplitLine(0))    ' Tracker Record Counter
+                intContactRecordIndexNumber = CInt(SplitLine(1))    ' Contact Record Counter
+                strTrackerSortOrder = SplitLine(2)                  ' Tracker display sort order
             Loop
             'Close the StreamReader
             objReader.Close()
@@ -191,7 +193,7 @@ Module ModMyPIM
     End Sub
     Public Sub SaveSettings()
         File.WriteAllText(strDataPath & "\" & strSettingsFile, CStr(intTrackerRecordIndexNumber) _
-            & strDelimiter & CStr(intContactRecordIndexNumber))
+            & strDelimiter & CStr(intContactRecordIndexNumber) & strDelimiter & strTrackerSortOrder)
     End Sub
 
 #End Region
