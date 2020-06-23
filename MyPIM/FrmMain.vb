@@ -56,6 +56,10 @@ Public Class FrmMain
                         CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
                     ElseIf row("Bill").ToString = "True" Then
                         CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
+                        Dim g As New Panel
+                        g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                        g.BackColor = Color.Pink
+
                     End If
 
 
@@ -83,7 +87,9 @@ Public Class FrmMain
                         CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
                         CreateTrackerEditButton(CurrentTrackerPanelName)
                         CreateTrackerDeleteButton(CurrentTrackerPanelName)
-
+                        Dim g As New Panel
+                        g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                        g.BackColor = Color.Pink
                     End If
 
                 Case 3 'Birthday Selected
