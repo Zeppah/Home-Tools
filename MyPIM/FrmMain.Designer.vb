@@ -43,7 +43,9 @@ Partial Class FrmMain
         Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WeatherToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.YouTubeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EntertainmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NetFlixToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YoutubeToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.cboTracker = New System.Windows.Forms.ComboBox()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.flpTracker = New System.Windows.Forms.FlowLayoutPanel()
@@ -162,9 +164,9 @@ Partial Class FrmMain
         'txbSearch
         '
         Me.txbSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txbSearch.Location = New System.Drawing.Point(953, 1)
+        Me.txbSearch.Location = New System.Drawing.Point(927, 1)
         Me.txbSearch.Name = "txbSearch"
-        Me.txbSearch.Size = New System.Drawing.Size(353, 33)
+        Me.txbSearch.Size = New System.Drawing.Size(379, 33)
         Me.txbSearch.TabIndex = 7
         '
         'btnSearch
@@ -184,10 +186,10 @@ Partial Class FrmMain
         Me.MenuStrip1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CoronavirusToolStripMenuItem, Me.MailToolStripMenuItem, Me.MusicToolStripMenuItem, Me.NewsToolStripMenuItem, Me.WeatherToolStripMenuItem, Me.YouTubeToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(951, 37)
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CoronavirusToolStripMenuItem, Me.MailToolStripMenuItem, Me.MusicToolStripMenuItem, Me.NewsToolStripMenuItem, Me.WeatherToolStripMenuItem, Me.EntertainmentToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(911, 37)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(466, 29)
+        Me.MenuStrip1.Size = New System.Drawing.Size(506, 29)
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -222,11 +224,24 @@ Partial Class FrmMain
         Me.WeatherToolStripMenuItem.Size = New System.Drawing.Size(84, 25)
         Me.WeatherToolStripMenuItem.Text = "Weather"
         '
-        'YouTubeToolStripMenuItem
+        'EntertainmentToolStripMenuItem
         '
-        Me.YouTubeToolStripMenuItem.Name = "YouTubeToolStripMenuItem"
-        Me.YouTubeToolStripMenuItem.Size = New System.Drawing.Size(85, 25)
-        Me.YouTubeToolStripMenuItem.Text = "YouTube"
+        Me.EntertainmentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NetFlixToolStripMenuItem, Me.YoutubeToolStripMenuItem1})
+        Me.EntertainmentToolStripMenuItem.Name = "EntertainmentToolStripMenuItem"
+        Me.EntertainmentToolStripMenuItem.Size = New System.Drawing.Size(125, 25)
+        Me.EntertainmentToolStripMenuItem.Text = "Entertainment"
+        '
+        'NetFlixToolStripMenuItem
+        '
+        Me.NetFlixToolStripMenuItem.Name = "NetFlixToolStripMenuItem"
+        Me.NetFlixToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
+        Me.NetFlixToolStripMenuItem.Text = "NetFlix"
+        '
+        'YoutubeToolStripMenuItem1
+        '
+        Me.YoutubeToolStripMenuItem1.Name = "YoutubeToolStripMenuItem1"
+        Me.YoutubeToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
+        Me.YoutubeToolStripMenuItem1.Text = "Youtube"
         '
         'cboTracker
         '
@@ -249,11 +264,13 @@ Partial Class FrmMain
         '
         'flpTracker
         '
+        Me.flpTracker.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.flpTracker.AutoScroll = True
         Me.flpTracker.Location = New System.Drawing.Point(12, 129)
         Me.flpTracker.Name = "flpTracker"
         Me.flpTracker.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
-        Me.flpTracker.Size = New System.Drawing.Size(440, 625)
+        Me.flpTracker.Size = New System.Drawing.Size(443, 860)
         Me.flpTracker.TabIndex = 13
         '
         'btnSort
@@ -288,12 +305,13 @@ Partial Class FrmMain
         '
         'flpContact
         '
-        Me.flpContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.flpContact.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.flpContact.AutoScroll = True
-        Me.flpContact.Location = New System.Drawing.Point(968, 129)
+        Me.flpContact.Location = New System.Drawing.Point(953, 129)
         Me.flpContact.Name = "flpContact"
         Me.flpContact.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
-        Me.flpContact.Size = New System.Drawing.Size(440, 625)
+        Me.flpContact.Size = New System.Drawing.Size(455, 860)
         Me.flpContact.TabIndex = 18
         '
         'btnContactSort
@@ -397,7 +415,6 @@ Partial Class FrmMain
     Friend WithEvents NewsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WeatherToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents YouTubeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MailToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents cboTracker As ComboBox
     Friend WithEvents btnAdd As Button
@@ -411,4 +428,7 @@ Partial Class FrmMain
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents FileExplorerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CalculatorToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EntertainmentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents NetFlixToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents YoutubeToolStripMenuItem1 As ToolStripMenuItem
 End Class

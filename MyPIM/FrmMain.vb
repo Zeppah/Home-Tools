@@ -875,10 +875,6 @@ Public Class FrmMain
         Process.Start("https://forecast.weather.gov")
     End Sub
 
-    Private Sub YouTubeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles YouTubeToolStripMenuItem.Click
-        Process.Start("https://youtube.com")
-    End Sub
-
     Private Sub NewsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewsToolStripMenuItem.Click
         Process.Start("https://news.google.com")
     End Sub
@@ -905,6 +901,14 @@ Public Class FrmMain
 
     Private Sub CalculatorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculatorToolStripMenuItem.Click
         System.Diagnostics.Process.Start("calc")
+    End Sub
+
+    Private Sub YoutubeToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles YoutubeToolStripMenuItem1.Click
+        Process.Start("https://youtube.com")
+    End Sub
+
+    Private Sub NetFlixToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NetFlixToolStripMenuItem.Click
+        Process.Start("https://www.netflix.com/browse")
     End Sub
 
 #End Region
