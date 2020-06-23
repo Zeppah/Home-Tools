@@ -56,12 +56,20 @@ Public Class FrmMain
                         CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
                     ElseIf row("Bill").ToString = "True" Then
                         CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
+                    End If
+                    If row("Appointment").ToString = "True" Then
+                        Dim g As New Panel
+                        g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                        g.BackColor = Color.LightGreen
+                    ElseIf row("Bill").ToString = "True" Then
                         Dim g As New Panel
                         g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
                         g.BackColor = Color.Pink
-
+                    ElseIf row("Other").ToString = "True" Then
+                        Dim g As New Panel
+                        g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                        g.BackColor = Color.Bisque
                     End If
-
 
                     CreateTrackerEditButton(CurrentTrackerPanelName)
                     CreateTrackerDeleteButton(CurrentTrackerPanelName)
@@ -75,6 +83,10 @@ Public Class FrmMain
                         CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
                         CreateTrackerEditButton(CurrentTrackerPanelName)
                         CreateTrackerDeleteButton(CurrentTrackerPanelName)
+                        Dim g As New Panel
+                        g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                        g.BackColor = Color.LightGreen
+
 
                     End If
 
@@ -119,6 +131,10 @@ Public Class FrmMain
                         End If
                         CreateTrackerEditButton(CurrentTrackerPanelName)
                         CreateTrackerDeleteButton(CurrentTrackerPanelName)
+                        Dim unused As New Panel
+                        Dim g As Panel = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                        g.BackColor = Color.Bisque
+
 
                     End If
             End Select
