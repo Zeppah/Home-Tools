@@ -46,7 +46,7 @@ Public Class FrmMain
         Dim row As DataRow
         Dim strDetail As String
         For Each row In dtbTracker.Rows
-
+            TrackerPanelsAddedCount += 1
             Select Case ComboBox1.SelectedIndex
                 Case 0 'All Selected
                     CreateTrackerPanel()
@@ -57,6 +57,8 @@ Public Class FrmMain
                     ElseIf row("Bill").ToString = "True" Then
                         CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
                     End If
+
+
                     CreateTrackerEditButton(CurrentTrackerPanelName)
                     CreateTrackerDeleteButton(CurrentTrackerPanelName)
 
@@ -67,6 +69,9 @@ Public Class FrmMain
                         CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
                         CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
                         CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                        CreateTrackerEditButton(CurrentTrackerPanelName)
+                        CreateTrackerDeleteButton(CurrentTrackerPanelName)
+
                     End If
 
                 Case 2 'Bill Selected
@@ -76,6 +81,9 @@ Public Class FrmMain
                         CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
                         CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
                         CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
+                        CreateTrackerEditButton(CurrentTrackerPanelName)
+                        CreateTrackerDeleteButton(CurrentTrackerPanelName)
+
                     End If
 
                 Case 3 'Birthday Selected
@@ -87,6 +95,9 @@ Public Class FrmMain
                         If row("Time").ToString = "True" Then
                             CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
                         End If
+                        CreateTrackerEditButton(CurrentTrackerPanelName)
+                        CreateTrackerDeleteButton(CurrentTrackerPanelName)
+
                     End If
 
                 Case Else 'Other Selected
@@ -100,6 +111,9 @@ Public Class FrmMain
                         ElseIf row("Bill").ToString = "True" Then
                             CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
                         End If
+                        CreateTrackerEditButton(CurrentTrackerPanelName)
+                        CreateTrackerDeleteButton(CurrentTrackerPanelName)
+
                     End If
             End Select
         Next row
@@ -126,7 +140,7 @@ Public Class FrmMain
 
         'Update panel variables
         CurrentTrackerPanelName = contactPanel.Name
-        TrackerPanelsAddedCount += 1
+        'TrackerPanelsAddedCount += 1
 
     End Sub
 

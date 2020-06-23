@@ -71,6 +71,7 @@ Public Class FrmTracker
             Me.Close()
         End If
 
+
     End Sub
 
     Private Sub CkbBill_CheckChanged(sender As Object, e As EventArgs) Handles cbxBill.CheckedChanged
@@ -127,12 +128,17 @@ Public Class FrmTracker
     End Sub
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+
         FrmMain.Enabled = True
+        FrmMain.DisplayTrackers()
+
         Me.Close()
     End Sub
 
     Private Sub FrmTracker_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         FrmMain.Enabled = True
+        FrmMain.DisplayTrackers()
+
     End Sub
 
 #End Region

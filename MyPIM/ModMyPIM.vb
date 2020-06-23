@@ -52,7 +52,7 @@ Module ModMyPIM
     Friend strSettingsFile As String = "Settings.tsv"           'The Settings file
     Friend strTrackerSortOrder As String = "A"                  'Tracker datatable sort order 'dtbTracker'
     Friend strTrackersFile As String = "Tracker.tsv"            'The Trackers record file
-    'Used to give unique control names such as lblTracker1, lblTracker2 etc.
+    'Used to give unique control names such as pnlTracker1, pnlTracker2 etc.
     Friend TrackerPanelsAddedCount As Integer = 0
 
 
