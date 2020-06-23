@@ -895,8 +895,16 @@ Public Class FrmMain
         Process.Start("https://Mail.google.com")
     End Sub
 
-    Private Sub BtnNotePad_Click(sender As Object, e As EventArgs) Handles btnNotePad.Click
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
         System.Diagnostics.Process.Start("Notepad++")
+    End Sub
+
+    Private Sub FileExplorerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FileExplorerToolStripMenuItem.Click
+        System.Diagnostics.Process.Start("explorer")
+    End Sub
+
+    Private Sub CalculatorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculatorToolStripMenuItem.Click
+        System.Diagnostics.Process.Start("calc")
     End Sub
 
 #End Region

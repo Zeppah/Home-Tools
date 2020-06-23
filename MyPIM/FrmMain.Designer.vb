@@ -48,13 +48,17 @@ Partial Class FrmMain
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.flpTracker = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnSort = New System.Windows.Forms.Button()
-        Me.btnNotePad = New System.Windows.Forms.Button()
         Me.cboContact = New System.Windows.Forms.ComboBox()
         Me.BtnAddContact = New System.Windows.Forms.Button()
         Me.flpContact = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnContactSort = New System.Windows.Forms.Button()
+        Me.MenuStrip2 = New System.Windows.Forms.MenuStrip()
+        Me.CalculatorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FileExplorerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.mmMain.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        Me.MenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'mmMain
@@ -261,16 +265,6 @@ Partial Class FrmMain
         Me.btnSort.Text = "Sort"
         Me.btnSort.UseVisualStyleBackColor = True
         '
-        'btnNotePad
-        '
-        Me.btnNotePad.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnNotePad.Location = New System.Drawing.Point(652, 379)
-        Me.btnNotePad.Name = "btnNotePad"
-        Me.btnNotePad.Size = New System.Drawing.Size(124, 44)
-        Me.btnNotePad.TabIndex = 15
-        Me.btnNotePad.Text = "Notepad++"
-        Me.btnNotePad.UseVisualStyleBackColor = True
-        '
         'cboContact
         '
         Me.cboContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -312,17 +306,46 @@ Partial Class FrmMain
         Me.btnContactSort.Text = "Sort"
         Me.btnContactSort.UseVisualStyleBackColor = True
         '
+        'MenuStrip2
+        '
+        Me.MenuStrip2.Dock = System.Windows.Forms.DockStyle.None
+        Me.MenuStrip2.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalculatorToolStripMenuItem, Me.FileExplorerToolStripMenuItem, Me.ToolStripMenuItem1})
+        Me.MenuStrip2.Location = New System.Drawing.Point(0, 33)
+        Me.MenuStrip2.Name = "MenuStrip2"
+        Me.MenuStrip2.Size = New System.Drawing.Size(324, 29)
+        Me.MenuStrip2.TabIndex = 20
+        Me.MenuStrip2.Text = "MenuStrip2"
+        '
+        'CalculatorToolStripMenuItem
+        '
+        Me.CalculatorToolStripMenuItem.Name = "CalculatorToolStripMenuItem"
+        Me.CalculatorToolStripMenuItem.Size = New System.Drawing.Size(95, 25)
+        Me.CalculatorToolStripMenuItem.Text = "Calculator"
+        '
+        'FileExplorerToolStripMenuItem
+        '
+        Me.FileExplorerToolStripMenuItem.Name = "FileExplorerToolStripMenuItem"
+        Me.FileExplorerToolStripMenuItem.Size = New System.Drawing.Size(112, 25)
+        Me.FileExplorerToolStripMenuItem.Text = "File Explorer"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(109, 25)
+        Me.ToolStripMenuItem1.Text = "Notepad++"
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
         Me.ClientSize = New System.Drawing.Size(1429, 990)
+        Me.Controls.Add(Me.MenuStrip2)
         Me.Controls.Add(Me.cboContact)
         Me.Controls.Add(Me.BtnAddContact)
         Me.Controls.Add(Me.flpContact)
         Me.Controls.Add(Me.btnContactSort)
-        Me.Controls.Add(Me.btnNotePad)
         Me.Controls.Add(Me.cboTracker)
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.flpTracker)
@@ -349,6 +372,8 @@ Partial Class FrmMain
         Me.mmMain.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.MenuStrip2.ResumeLayout(False)
+        Me.MenuStrip2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -378,9 +403,12 @@ Partial Class FrmMain
     Friend WithEvents btnAdd As Button
     Friend WithEvents flpTracker As FlowLayoutPanel
     Friend WithEvents btnSort As Button
-    Friend WithEvents btnNotePad As Button
     Friend WithEvents cboContact As ComboBox
     Friend WithEvents BtnAddContact As Button
     Friend WithEvents flpContact As FlowLayoutPanel
     Friend WithEvents btnContactSort As Button
+    Friend WithEvents MenuStrip2 As MenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents FileExplorerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CalculatorToolStripMenuItem As ToolStripMenuItem
 End Class
