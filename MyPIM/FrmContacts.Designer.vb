@@ -165,6 +165,7 @@ Partial Class FrmContacts
         '
         'tbxNotes
         '
+        Me.tbxNotes.AcceptsReturn = True
         Me.tbxNotes.Location = New System.Drawing.Point(117, 268)
         Me.tbxNotes.MaxLength = 30
         Me.tbxNotes.Name = "tbxNotes"
@@ -278,7 +279,7 @@ Partial Class FrmContacts
         '
         Me.btnSaveContactRecord.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnSaveContactRecord.BackColor = System.Drawing.Color.Bisque
-        Me.btnSaveContactRecord.Location = New System.Drawing.Point(117, 314)
+        Me.btnSaveContactRecord.Location = New System.Drawing.Point(117, 318)
         Me.btnSaveContactRecord.Name = "btnSaveContactRecord"
         Me.btnSaveContactRecord.Size = New System.Drawing.Size(127, 38)
         Me.btnSaveContactRecord.TabIndex = 14

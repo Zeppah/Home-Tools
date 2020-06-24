@@ -59,6 +59,9 @@ Partial Class FrmMain
         Me.FileExplorerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.cboTrackerTime = New System.Windows.Forms.ComboBox()
+        Me.lblMemos = New System.Windows.Forms.Label()
+        Me.lblContacts = New System.Windows.Forms.Label()
+        Me.lblTrackers = New System.Windows.Forms.Label()
         Me.mmMain.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.MenuStrip2.SuspendLayout()
@@ -249,7 +252,7 @@ Partial Class FrmMain
         '
         Me.cboTracker.FormattingEnabled = True
         Me.cboTracker.Items.AddRange(New Object() {"All", "Appointments", "Bills", "Birthdays", "Other"})
-        Me.cboTracker.Location = New System.Drawing.Point(22, 86)
+        Me.cboTracker.Location = New System.Drawing.Point(20, 135)
         Me.cboTracker.Name = "cboTracker"
         Me.cboTracker.Size = New System.Drawing.Size(149, 33)
         Me.cboTracker.TabIndex = 14
@@ -258,7 +261,7 @@ Partial Class FrmMain
         'btnAdd
         '
         Me.btnAdd.BackColor = System.Drawing.Color.Bisque
-        Me.btnAdd.Location = New System.Drawing.Point(369, 85)
+        Me.btnAdd.Location = New System.Drawing.Point(367, 134)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(75, 32)
         Me.btnAdd.TabIndex = 11
@@ -270,16 +273,16 @@ Partial Class FrmMain
         Me.flpTracker.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.flpTracker.AutoScroll = True
-        Me.flpTracker.Location = New System.Drawing.Point(12, 129)
+        Me.flpTracker.Location = New System.Drawing.Point(12, 192)
         Me.flpTracker.Name = "flpTracker"
         Me.flpTracker.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
-        Me.flpTracker.Size = New System.Drawing.Size(443, 860)
+        Me.flpTracker.Size = New System.Drawing.Size(443, 797)
         Me.flpTracker.TabIndex = 13
         '
         'btnSort
         '
         Me.btnSort.BackColor = System.Drawing.Color.Bisque
-        Me.btnSort.Location = New System.Drawing.Point(288, 85)
+        Me.btnSort.Location = New System.Drawing.Point(286, 134)
         Me.btnSort.Name = "btnSort"
         Me.btnSort.Size = New System.Drawing.Size(75, 32)
         Me.btnSort.TabIndex = 12
@@ -291,7 +294,7 @@ Partial Class FrmMain
         Me.cboContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboContact.FormattingEnabled = True
         Me.cboContact.Items.AddRange(New Object() {"All", "Acquaintance", "Business", "Family", "Friend", "Other"})
-        Me.cboContact.Location = New System.Drawing.Point(980, 86)
+        Me.cboContact.Location = New System.Drawing.Point(974, 135)
         Me.cboContact.Name = "cboContact"
         Me.cboContact.Size = New System.Drawing.Size(149, 33)
         Me.cboContact.TabIndex = 19
@@ -301,7 +304,7 @@ Partial Class FrmMain
         '
         Me.BtnAddContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnAddContact.BackColor = System.Drawing.Color.Bisque
-        Me.BtnAddContact.Location = New System.Drawing.Point(1318, 88)
+        Me.BtnAddContact.Location = New System.Drawing.Point(1312, 137)
         Me.BtnAddContact.Name = "BtnAddContact"
         Me.BtnAddContact.Size = New System.Drawing.Size(75, 32)
         Me.BtnAddContact.TabIndex = 16
@@ -313,17 +316,17 @@ Partial Class FrmMain
         Me.flpContact.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.flpContact.AutoScroll = True
-        Me.flpContact.Location = New System.Drawing.Point(953, 129)
+        Me.flpContact.Location = New System.Drawing.Point(953, 192)
         Me.flpContact.Name = "flpContact"
         Me.flpContact.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
-        Me.flpContact.Size = New System.Drawing.Size(455, 860)
+        Me.flpContact.Size = New System.Drawing.Size(455, 797)
         Me.flpContact.TabIndex = 18
         '
         'btnContactSort
         '
         Me.btnContactSort.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnContactSort.BackColor = System.Drawing.Color.Bisque
-        Me.btnContactSort.Location = New System.Drawing.Point(1237, 87)
+        Me.btnContactSort.Location = New System.Drawing.Point(1231, 136)
         Me.btnContactSort.Name = "btnContactSort"
         Me.btnContactSort.Size = New System.Drawing.Size(75, 32)
         Me.btnContactSort.TabIndex = 17
@@ -364,11 +367,46 @@ Partial Class FrmMain
         '
         Me.cboTrackerTime.FormattingEnabled = True
         Me.cboTrackerTime.Items.AddRange(New Object() {"All", "Today", "7 Days", "30 Days", "365 Days"})
-        Me.cboTrackerTime.Location = New System.Drawing.Point(177, 86)
+        Me.cboTrackerTime.Location = New System.Drawing.Point(175, 135)
         Me.cboTrackerTime.Name = "cboTrackerTime"
         Me.cboTrackerTime.Size = New System.Drawing.Size(109, 33)
         Me.cboTrackerTime.TabIndex = 21
         Me.cboTrackerTime.Text = "All"
+        '
+        'lblMemos
+        '
+        Me.lblMemos.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.lblMemos.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMemos.Location = New System.Drawing.Point(462, 372)
+        Me.lblMemos.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblMemos.Name = "lblMemos"
+        Me.lblMemos.Size = New System.Drawing.Size(484, 33)
+        Me.lblMemos.TabIndex = 22
+        Me.lblMemos.Text = "Memos"
+        Me.lblMemos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblContacts
+        '
+        Me.lblContacts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblContacts.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblContacts.Location = New System.Drawing.Point(947, 86)
+        Me.lblContacts.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblContacts.Name = "lblContacts"
+        Me.lblContacts.Size = New System.Drawing.Size(461, 33)
+        Me.lblContacts.TabIndex = 23
+        Me.lblContacts.Text = "Contacts"
+        Me.lblContacts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblTrackers
+        '
+        Me.lblTrackers.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTrackers.Location = New System.Drawing.Point(6, 86)
+        Me.lblTrackers.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblTrackers.Name = "lblTrackers"
+        Me.lblTrackers.Size = New System.Drawing.Size(449, 33)
+        Me.lblTrackers.TabIndex = 24
+        Me.lblTrackers.Text = "Trackers"
+        Me.lblTrackers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'FrmMain
         '
@@ -376,6 +414,9 @@ Partial Class FrmMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
         Me.ClientSize = New System.Drawing.Size(1429, 990)
+        Me.Controls.Add(Me.lblTrackers)
+        Me.Controls.Add(Me.lblContacts)
+        Me.Controls.Add(Me.lblMemos)
         Me.Controls.Add(Me.cboTrackerTime)
         Me.Controls.Add(Me.MenuStrip2)
         Me.Controls.Add(Me.cboContact)
@@ -450,4 +491,7 @@ Partial Class FrmMain
     Friend WithEvents NetFlixToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents YoutubeToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents cboTrackerTime As ComboBox
+    Friend WithEvents lblMemos As Label
+    Friend WithEvents lblContacts As Label
+    Friend WithEvents lblTrackers As Label
 End Class
