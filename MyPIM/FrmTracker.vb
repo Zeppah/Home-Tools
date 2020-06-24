@@ -18,6 +18,7 @@ Public Class FrmTracker
             Dim unused1 = tbxDescription.Focus()
             Return
         End If
+
         If btnAddTrackerRecord.Text = "Add" Then
             intTrackerRecordIndexNumber += 1 'increment the id number for new record
 
@@ -35,6 +36,11 @@ Public Class FrmTracker
             newrow("Other") = cbxOther.Checked
 
             dtbTracker.Rows.Add(newrow)
+            'Save the DataTable
+            DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
+            'Save the settings, index number has been changed
+            SaveSettings()
+
         ElseIf btnAddTrackerRecord.Text = "Save" Then
 
             dtbTracker.Rows.Item(intTrackerEditRow).Item("Description") = tbxDescription.Text
@@ -46,12 +52,12 @@ Public Class FrmTracker
             dtbTracker.Rows.Item(intTrackerEditRow).Item("Birthday") = cbxBirthday.Checked
             dtbTracker.Rows.Item(intTrackerEditRow).Item("Other") = cbxOther.Checked
 
+            btnAddTrackerRecord.Text = "Add"
+            FrmMain.Enabled = True
+
+            Me.Close()
+
         End If
-        'Save the DataTable
-        DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
-
-        SaveSettings() 'index number has been changed
-
 
         'Clear the input to add another record
         tbxDescription.Text = ""
@@ -63,14 +69,6 @@ Public Class FrmTracker
         cbxBill.Checked = False
         cbxBirthday.Checked = False
         cbxOther.Checked = False
-
-        If btnAddTrackerRecord.Text = "Save" Then
-            btnAddTrackerRecord.Text = "Add"
-            FrmMain.Enabled = True
-            FrmMain.DisplayTrackers()
-            Me.Close()
-        End If
-
 
     End Sub
 
@@ -130,14 +128,15 @@ Public Class FrmTracker
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
 
         FrmMain.Enabled = True
-        FrmMain.DisplayTrackers()
-
+        FrmMain.TrackerSort()
         Me.Close()
+
     End Sub
 
     Private Sub FrmTracker_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+
         FrmMain.Enabled = True
-        FrmMain.DisplayTrackers()
+        FrmMain.TrackerSort()
 
     End Sub
 

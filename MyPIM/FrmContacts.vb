@@ -71,9 +71,8 @@
             dtbContacts.Rows.Item(intContactEditRow).Item("Notes") = tbxNotes.Text
 
             'Save the DataTable
-            DataTable2CSV(dtbContacts, strDataPath & "\" & strContactsFile)
             FrmMain.Enabled = True
-            FrmMain.DisplayContacts()
+            FrmMain.ContactsSort()
             Me.Close()
 
         End If
@@ -81,12 +80,12 @@
 
     Private Sub FrmContacts_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         FrmMain.Enabled = True
-        FrmMain.DisplayContacts()
+        FrmMain.ContactsSort()
     End Sub
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         FrmMain.Enabled = True
-        FrmMain.DisplayContacts()
+        FrmMain.ContactsSort()
         Me.Close()
     End Sub
 

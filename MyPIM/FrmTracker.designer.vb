@@ -44,13 +44,14 @@ Partial Class FrmTracker
         'btnExit
         '
         Me.btnExit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnExit.BackColor = System.Drawing.Color.Bisque
         Me.btnExit.Location = New System.Drawing.Point(411, 229)
         Me.btnExit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(105, 30)
         Me.btnExit.TabIndex = 5
         Me.btnExit.Text = "Exit"
-        Me.btnExit.UseVisualStyleBackColor = True
+        Me.btnExit.UseVisualStyleBackColor = False
         '
         'lblDate
         '
@@ -73,6 +74,7 @@ Partial Class FrmTracker
         'tbxDescription
         '
         Me.tbxDescription.Location = New System.Drawing.Point(143, 16)
+        Me.tbxDescription.MaxLength = 30
         Me.tbxDescription.Name = "tbxDescription"
         Me.tbxDescription.Size = New System.Drawing.Size(337, 26)
         Me.tbxDescription.TabIndex = 0
@@ -89,13 +91,14 @@ Partial Class FrmTracker
         'btnAddTrackerRecord
         '
         Me.btnAddTrackerRecord.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnAddTrackerRecord.BackColor = System.Drawing.Color.Bisque
         Me.btnAddTrackerRecord.Location = New System.Drawing.Point(143, 184)
         Me.btnAddTrackerRecord.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnAddTrackerRecord.Name = "btnAddTrackerRecord"
         Me.btnAddTrackerRecord.Size = New System.Drawing.Size(112, 36)
         Me.btnAddTrackerRecord.TabIndex = 4
         Me.btnAddTrackerRecord.Text = "Add"
-        Me.btnAddTrackerRecord.UseVisualStyleBackColor = True
+        Me.btnAddTrackerRecord.UseVisualStyleBackColor = False
         '
         'cbxTime
         '

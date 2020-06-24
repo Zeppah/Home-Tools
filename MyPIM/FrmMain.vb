@@ -402,7 +402,19 @@ Public Class FrmMain
 
     End Sub
 
+    Friend Sub TrackerSort()
 
+        If strTrackerSortOrder = "A" Then
+            dtbTracker.DefaultView.Sort = "Date DESC"
+            dtbTracker = dtbTracker.DefaultView.ToTable
+        Else
+            dtbTracker.DefaultView.Sort = "Date ASC"
+            dtbTracker = dtbTracker.DefaultView.ToTable
+        End If
+
+        DisplayTrackers()
+
+    End Sub
 #End Region
 
 #Region "*** Contact Panels Display ***"
@@ -444,7 +456,7 @@ Public Class FrmMain
                         Case "Business"
                             Dim unused As New Panel
                             Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
-                            g.BackColor = Color.Gray
+                            g.BackColor = Color.LightGray
                         Case "Other"
                             Dim unused As New Panel
                             Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
@@ -482,7 +494,7 @@ Public Class FrmMain
                         CreateContactDeleteButton(CurrentContactPanelName)
                         Dim unused As New Panel
                         Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
-                        g.BackColor = Color.Gray
+                        g.BackColor = Color.LightGray
                     End If
                 Case 3 'Family Selected
                     If row("Groups").ToString = "Family" Then
@@ -771,17 +783,31 @@ Public Class FrmMain
     Private Sub BtnContactSort_Click(sender As Object, e As EventArgs) Handles btnContactSort.Click
 
         If strContactSortOrder = "A" Then
-            dtbContacts.DefaultView.Sort = "First Name ASC"
+            dtbContacts.DefaultView.Sort = "Company ASC, First Name ASC"
             dtbContacts = dtbContacts.DefaultView.ToTable
             strContactSortOrder = "D"
         Else
-            dtbContacts.DefaultView.Sort = "First Name DESC"
+            dtbContacts.DefaultView.Sort = "Company DESC, First Name DESC"
             dtbContacts = dtbContacts.DefaultView.ToTable
             strContactSortOrder = "A"
         End If
 
         DataTable2CSV(dtbContacts, strDataPath & "\" & strContactsFile)
         SaveSettings()
+        DisplayContacts()
+
+    End Sub
+
+    Public Sub ContactsSort() 'To sort the file after an edit or add
+
+        If strContactSortOrder = "D" Then
+            dtbContacts.DefaultView.Sort = "Company ASC, First Name ASC"
+            dtbContacts = dtbContacts.DefaultView.ToTable
+        Else
+            dtbContacts.DefaultView.Sort = "Company DESC, First Name DESC"
+            dtbContacts = dtbContacts.DefaultView.ToTable
+        End If
+
         DisplayContacts()
 
     End Sub

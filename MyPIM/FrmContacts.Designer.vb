@@ -54,13 +54,14 @@ Partial Class FrmContacts
         'btnExit
         '
         Me.btnExit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnExit.Location = New System.Drawing.Point(614, 499)
+        Me.btnExit.BackColor = System.Drawing.Color.Bisque
+        Me.btnExit.Location = New System.Drawing.Point(614, 374)
         Me.btnExit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(107, 38)
         Me.btnExit.TabIndex = 15
         Me.btnExit.Text = "Exit"
-        Me.btnExit.UseVisualStyleBackColor = True
+        Me.btnExit.UseVisualStyleBackColor = False
         '
         'lblName
         '
@@ -125,11 +126,11 @@ Partial Class FrmContacts
         'lblNotes
         '
         Me.lblNotes.AutoSize = True
-        Me.lblNotes.Location = New System.Drawing.Point(53, 269)
+        Me.lblNotes.Location = New System.Drawing.Point(25, 271)
         Me.lblNotes.Name = "lblNotes"
-        Me.lblNotes.Size = New System.Drawing.Size(58, 21)
+        Me.lblNotes.Size = New System.Drawing.Size(86, 21)
         Me.lblNotes.TabIndex = 7
-        Me.lblNotes.Text = "Notes: "
+        Me.lblNotes.Text = "Comment: "
         Me.lblNotes.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'lblZipcode
@@ -147,9 +148,9 @@ Partial Class FrmContacts
         Me.cbxState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxState.FormattingEnabled = True
         Me.cbxState.Items.AddRange(New Object() {"AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WI", "WV", "WY", "AS", "FM", "GU", "MH", "MP", "PR", "PW", "VI"})
-        Me.cbxState.Location = New System.Drawing.Point(406, 171)
+        Me.cbxState.Location = New System.Drawing.Point(402, 171)
         Me.cbxState.Name = "cbxState"
-        Me.cbxState.Size = New System.Drawing.Size(47, 29)
+        Me.cbxState.Size = New System.Drawing.Size(55, 29)
         Me.cbxState.TabIndex = 7
         '
         'lblState
@@ -165,9 +166,9 @@ Partial Class FrmContacts
         'tbxNotes
         '
         Me.tbxNotes.Location = New System.Drawing.Point(117, 268)
-        Me.tbxNotes.Multiline = True
+        Me.tbxNotes.MaxLength = 30
         Me.tbxNotes.Name = "tbxNotes"
-        Me.tbxNotes.Size = New System.Drawing.Size(507, 155)
+        Me.tbxNotes.Size = New System.Drawing.Size(507, 29)
         Me.tbxNotes.TabIndex = 13
         '
         'mtbBirthdate
@@ -190,6 +191,7 @@ Partial Class FrmContacts
         'tbxFirstName
         '
         Me.tbxFirstName.Location = New System.Drawing.Point(117, 37)
+        Me.tbxFirstName.MaxLength = 10
         Me.tbxFirstName.Name = "tbxFirstName"
         Me.tbxFirstName.Size = New System.Drawing.Size(165, 29)
         Me.tbxFirstName.TabIndex = 0
@@ -197,6 +199,7 @@ Partial Class FrmContacts
         'tbxMiddleName
         '
         Me.tbxMiddleName.Location = New System.Drawing.Point(288, 37)
+        Me.tbxMiddleName.MaxLength = 10
         Me.tbxMiddleName.Name = "tbxMiddleName"
         Me.tbxMiddleName.Size = New System.Drawing.Size(165, 29)
         Me.tbxMiddleName.TabIndex = 1
@@ -204,6 +207,7 @@ Partial Class FrmContacts
         'tbxLastName
         '
         Me.tbxLastName.Location = New System.Drawing.Point(459, 37)
+        Me.tbxLastName.MaxLength = 10
         Me.tbxLastName.Name = "tbxLastName"
         Me.tbxLastName.Size = New System.Drawing.Size(165, 29)
         Me.tbxLastName.TabIndex = 2
@@ -211,6 +215,7 @@ Partial Class FrmContacts
         'tbxAddress1
         '
         Me.tbxAddress1.Location = New System.Drawing.Point(117, 103)
+        Me.tbxAddress1.MaxLength = 30
         Me.tbxAddress1.Name = "tbxAddress1"
         Me.tbxAddress1.Size = New System.Drawing.Size(507, 29)
         Me.tbxAddress1.TabIndex = 4
@@ -218,6 +223,7 @@ Partial Class FrmContacts
         'tbxAddress2
         '
         Me.tbxAddress2.Location = New System.Drawing.Point(117, 136)
+        Me.tbxAddress2.MaxLength = 30
         Me.tbxAddress2.Name = "tbxAddress2"
         Me.tbxAddress2.Size = New System.Drawing.Size(507, 29)
         Me.tbxAddress2.TabIndex = 5
@@ -233,6 +239,7 @@ Partial Class FrmContacts
         'tbxEmail
         '
         Me.tbxEmail.Location = New System.Drawing.Point(345, 202)
+        Me.tbxEmail.MaxLength = 30
         Me.tbxEmail.Name = "tbxEmail"
         Me.tbxEmail.Size = New System.Drawing.Size(279, 29)
         Me.tbxEmail.TabIndex = 10
@@ -240,6 +247,7 @@ Partial Class FrmContacts
         'tbxCity
         '
         Me.tbxCity.Location = New System.Drawing.Point(117, 169)
+        Me.tbxCity.MaxLength = 10
         Me.tbxCity.Name = "tbxCity"
         Me.tbxCity.Size = New System.Drawing.Size(226, 29)
         Me.tbxCity.TabIndex = 6
@@ -268,16 +276,19 @@ Partial Class FrmContacts
         '
         'btnSaveContactRecord
         '
-        Me.btnSaveContactRecord.Location = New System.Drawing.Point(117, 453)
+        Me.btnSaveContactRecord.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnSaveContactRecord.BackColor = System.Drawing.Color.Bisque
+        Me.btnSaveContactRecord.Location = New System.Drawing.Point(117, 314)
         Me.btnSaveContactRecord.Name = "btnSaveContactRecord"
         Me.btnSaveContactRecord.Size = New System.Drawing.Size(127, 38)
         Me.btnSaveContactRecord.TabIndex = 14
         Me.btnSaveContactRecord.Text = "Add"
-        Me.btnSaveContactRecord.UseVisualStyleBackColor = True
+        Me.btnSaveContactRecord.UseVisualStyleBackColor = False
         '
         'tbxCompany
         '
         Me.tbxCompany.Location = New System.Drawing.Point(117, 70)
+        Me.tbxCompany.MaxLength = 30
         Me.tbxCompany.Name = "tbxCompany"
         Me.tbxCompany.Size = New System.Drawing.Size(507, 29)
         Me.tbxCompany.TabIndex = 3
@@ -297,7 +308,7 @@ Partial Class FrmContacts
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
-        Me.ClientSize = New System.Drawing.Size(734, 551)
+        Me.ClientSize = New System.Drawing.Size(734, 426)
         Me.Controls.Add(Me.tbxCompany)
         Me.Controls.Add(Me.lblCompany)
         Me.Controls.Add(Me.btnSaveContactRecord)

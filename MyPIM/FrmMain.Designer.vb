@@ -65,7 +65,7 @@ Partial Class FrmMain
         '
         'mmMain
         '
-        Me.mmMain.BackColor = System.Drawing.Color.Bisque
+        Me.mmMain.BackColor = System.Drawing.Color.LightBlue
         Me.mmMain.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.mmMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miFile, Me.miTracker, Me.Form1ToolStripMenuItem})
         Me.mmMain.Location = New System.Drawing.Point(0, 0)
@@ -103,7 +103,7 @@ Partial Class FrmMain
         'lblClock
         '
         Me.lblClock.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.lblClock.BackColor = System.Drawing.Color.Bisque
+        Me.lblClock.BackColor = System.Drawing.Color.LightBlue
         Me.lblClock.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblClock.Location = New System.Drawing.Point(463, 0)
         Me.lblClock.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
@@ -164,15 +164,15 @@ Partial Class FrmMain
         'txbSearch
         '
         Me.txbSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txbSearch.Location = New System.Drawing.Point(927, 1)
+        Me.txbSearch.Location = New System.Drawing.Point(924, 1)
         Me.txbSearch.Name = "txbSearch"
-        Me.txbSearch.Size = New System.Drawing.Size(379, 33)
+        Me.txbSearch.Size = New System.Drawing.Size(382, 33)
         Me.txbSearch.TabIndex = 7
         '
         'btnSearch
         '
         Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSearch.BackColor = System.Drawing.Color.Linen
+        Me.btnSearch.BackColor = System.Drawing.Color.Bisque
         Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSearch.Location = New System.Drawing.Point(1326, 0)
         Me.btnSearch.Name = "btnSearch"
@@ -184,10 +184,11 @@ Partial Class FrmMain
         'MenuStrip1
         '
         Me.MenuStrip1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MenuStrip1.BackColor = System.Drawing.Color.LightGreen
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CoronavirusToolStripMenuItem, Me.MailToolStripMenuItem, Me.MusicToolStripMenuItem, Me.NewsToolStripMenuItem, Me.WeatherToolStripMenuItem, Me.EntertainmentToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(911, 37)
+        Me.MenuStrip1.Location = New System.Drawing.Point(924, 33)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(506, 29)
         Me.MenuStrip1.TabIndex = 9
@@ -255,12 +256,13 @@ Partial Class FrmMain
         '
         'btnAdd
         '
+        Me.btnAdd.BackColor = System.Drawing.Color.Bisque
         Me.btnAdd.Location = New System.Drawing.Point(362, 88)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(75, 32)
         Me.btnAdd.TabIndex = 11
         Me.btnAdd.Text = "Add"
-        Me.btnAdd.UseVisualStyleBackColor = True
+        Me.btnAdd.UseVisualStyleBackColor = False
         '
         'flpTracker
         '
@@ -275,12 +277,13 @@ Partial Class FrmMain
         '
         'btnSort
         '
+        Me.btnSort.BackColor = System.Drawing.Color.Bisque
         Me.btnSort.Location = New System.Drawing.Point(281, 88)
         Me.btnSort.Name = "btnSort"
         Me.btnSort.Size = New System.Drawing.Size(75, 32)
         Me.btnSort.TabIndex = 12
         Me.btnSort.Text = "Sort"
-        Me.btnSort.UseVisualStyleBackColor = True
+        Me.btnSort.UseVisualStyleBackColor = False
         '
         'cboContact
         '
@@ -296,12 +299,13 @@ Partial Class FrmMain
         'BtnAddContact
         '
         Me.BtnAddContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddContact.BackColor = System.Drawing.Color.Bisque
         Me.BtnAddContact.Location = New System.Drawing.Point(1318, 88)
         Me.BtnAddContact.Name = "BtnAddContact"
         Me.BtnAddContact.Size = New System.Drawing.Size(75, 32)
         Me.BtnAddContact.TabIndex = 16
         Me.BtnAddContact.Text = "Add"
-        Me.BtnAddContact.UseVisualStyleBackColor = True
+        Me.BtnAddContact.UseVisualStyleBackColor = False
         '
         'flpContact
         '
@@ -317,15 +321,17 @@ Partial Class FrmMain
         'btnContactSort
         '
         Me.btnContactSort.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnContactSort.BackColor = System.Drawing.Color.Bisque
         Me.btnContactSort.Location = New System.Drawing.Point(1237, 87)
         Me.btnContactSort.Name = "btnContactSort"
         Me.btnContactSort.Size = New System.Drawing.Size(75, 32)
         Me.btnContactSort.TabIndex = 17
         Me.btnContactSort.Text = "Sort"
-        Me.btnContactSort.UseVisualStyleBackColor = True
+        Me.btnContactSort.UseVisualStyleBackColor = False
         '
         'MenuStrip2
         '
+        Me.MenuStrip2.BackColor = System.Drawing.Color.LightGreen
         Me.MenuStrip2.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip2.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalculatorToolStripMenuItem, Me.FileExplorerToolStripMenuItem, Me.ToolStripMenuItem1})
