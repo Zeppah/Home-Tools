@@ -58,6 +58,7 @@ Partial Class FrmMain
         Me.CalculatorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FileExplorerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cboTrackerTime = New System.Windows.Forms.ComboBox()
         Me.mmMain.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.MenuStrip2.SuspendLayout()
@@ -235,20 +236,20 @@ Partial Class FrmMain
         'NetFlixToolStripMenuItem
         '
         Me.NetFlixToolStripMenuItem.Name = "NetFlixToolStripMenuItem"
-        Me.NetFlixToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
+        Me.NetFlixToolStripMenuItem.Size = New System.Drawing.Size(141, 26)
         Me.NetFlixToolStripMenuItem.Text = "NetFlix"
         '
         'YoutubeToolStripMenuItem1
         '
         Me.YoutubeToolStripMenuItem1.Name = "YoutubeToolStripMenuItem1"
-        Me.YoutubeToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
+        Me.YoutubeToolStripMenuItem1.Size = New System.Drawing.Size(141, 26)
         Me.YoutubeToolStripMenuItem1.Text = "Youtube"
         '
         'cboTracker
         '
         Me.cboTracker.FormattingEnabled = True
         Me.cboTracker.Items.AddRange(New Object() {"All", "Appointments", "Bills", "Birthdays", "Other"})
-        Me.cboTracker.Location = New System.Drawing.Point(32, 87)
+        Me.cboTracker.Location = New System.Drawing.Point(22, 86)
         Me.cboTracker.Name = "cboTracker"
         Me.cboTracker.Size = New System.Drawing.Size(149, 33)
         Me.cboTracker.TabIndex = 14
@@ -257,7 +258,7 @@ Partial Class FrmMain
         'btnAdd
         '
         Me.btnAdd.BackColor = System.Drawing.Color.Bisque
-        Me.btnAdd.Location = New System.Drawing.Point(362, 88)
+        Me.btnAdd.Location = New System.Drawing.Point(369, 85)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(75, 32)
         Me.btnAdd.TabIndex = 11
@@ -278,7 +279,7 @@ Partial Class FrmMain
         'btnSort
         '
         Me.btnSort.BackColor = System.Drawing.Color.Bisque
-        Me.btnSort.Location = New System.Drawing.Point(281, 88)
+        Me.btnSort.Location = New System.Drawing.Point(288, 85)
         Me.btnSort.Name = "btnSort"
         Me.btnSort.Size = New System.Drawing.Size(75, 32)
         Me.btnSort.TabIndex = 12
@@ -359,12 +360,23 @@ Partial Class FrmMain
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(109, 25)
         Me.ToolStripMenuItem1.Text = "Notepad++"
         '
+        'cboTrackerTime
+        '
+        Me.cboTrackerTime.FormattingEnabled = True
+        Me.cboTrackerTime.Items.AddRange(New Object() {"All", "Today", "7 Days", "30 Days", "365 Days"})
+        Me.cboTrackerTime.Location = New System.Drawing.Point(177, 86)
+        Me.cboTrackerTime.Name = "cboTrackerTime"
+        Me.cboTrackerTime.Size = New System.Drawing.Size(109, 33)
+        Me.cboTrackerTime.TabIndex = 21
+        Me.cboTrackerTime.Text = "All"
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
         Me.ClientSize = New System.Drawing.Size(1429, 990)
+        Me.Controls.Add(Me.cboTrackerTime)
         Me.Controls.Add(Me.MenuStrip2)
         Me.Controls.Add(Me.cboContact)
         Me.Controls.Add(Me.BtnAddContact)
@@ -437,4 +449,5 @@ Partial Class FrmMain
     Friend WithEvents EntertainmentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NetFlixToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents YoutubeToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents cboTrackerTime As ComboBox
 End Class

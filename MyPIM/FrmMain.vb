@@ -42,106 +42,136 @@ Public Class FrmMain
 
 #Region "*** Tracker Panels Display ***"
 
-    Sub DisplayTrackers() Handles cboTracker.SelectedIndexChanged
+    Sub DisplayTrackers() Handles cboTracker.SelectedIndexChanged, cboTrackerTime.SelectedIndexChanged
 
         flpTracker.Controls.Clear()
         TrackerPanelsAddedCount = 0
-
+        Dim timeperiod As Integer
         Dim row As DataRow
         Dim strDetail As String
+        Dim EndDate As Date
+        Dim result As Integer
+
         For Each row In dtbTracker.Rows
-            TrackerPanelsAddedCount += 1
-            Select Case cboTracker.SelectedIndex
-                Case 0 'All Selected
-                    CreateTrackerPanel()
-                    CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
-                    CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                    If row("Time").ToString = "True" And row("Bill").ToString = "False" Then
-                        CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
-                    ElseIf row("Bill").ToString = "True" Then
-                        CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
-                    End If
-                    If row("Appointment").ToString = "True" Then
-                        Dim g As New Panel
-                        g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
-                        g.BackColor = Color.LightGreen
-                    ElseIf row("Bill").ToString = "True" Then
-                        Dim g As New Panel
-                        g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
-                        g.BackColor = Color.Pink
-                    ElseIf row("Other").ToString = "True" Then
-                        Dim g As New Panel
-                        g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
-                        g.BackColor = Color.Bisque
-                    End If
 
-                    CreateTrackerEditButton(CurrentTrackerPanelName)
-                    CreateTrackerDeleteButton(CurrentTrackerPanelName)
+            'Set the time period to display tracker panels
+            Select Case cboTrackerTime.SelectedIndex
+                Case 0 'All
+                    result = -1
+                Case 1 'Today
+                    timeperiod = 0
+                    EndDate = Today.AddDays(timeperiod)
+                    result = DateTime.Compare(CDate(row("Date")), EndDate)
+                Case 2 '7 Days
+                    timeperiod = 7
+                    EndDate = Today.AddDays(timeperiod)
+                    EndDate = Today.AddDays(timeperiod)
+                    result = DateTime.Compare(CDate(row("Date")), EndDate)
+                Case 3 '30 days
+                    timeperiod = 30
+                    EndDate = Today.AddDays(timeperiod)
+                    result = DateTime.Compare(CDate(row("Date")), EndDate)
+                Case 4 '365 days
+                    timeperiod = 365
+                    EndDate = Today.AddDays(timeperiod)
+                    result = DateTime.Compare(CDate(row("Date")), EndDate)
+            End Select
 
-                Case 1 'Appointment Selected
-                    strDetail = row("Appointment").ToString
-                    If strDetail = "True" Then
+            If result <= 0 Then
+
+                TrackerPanelsAddedCount += 1
+                Select Case cboTracker.SelectedIndex
+                    Case 0 'All Selected
                         CreateTrackerPanel()
                         CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
                         CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                        CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
-                        CreateTrackerEditButton(CurrentTrackerPanelName)
-                        CreateTrackerDeleteButton(CurrentTrackerPanelName)
-                        Dim g As New Panel
-                        g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
-                        g.BackColor = Color.LightGreen
-
-
-                    End If
-
-                Case 2 'Bill Selected
-                    strDetail = row("Bill").ToString
-                    If strDetail = "True" Then
-                        CreateTrackerPanel()
-                        CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
-                        CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                        CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
-                        CreateTrackerEditButton(CurrentTrackerPanelName)
-                        CreateTrackerDeleteButton(CurrentTrackerPanelName)
-                        Dim g As New Panel
-                        g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
-                        g.BackColor = Color.Pink
-                    End If
-
-                Case 3 'Birthday Selected
-                    strDetail = row("Birthday").ToString
-                    If strDetail = "True" Then
-                        CreateTrackerPanel()
-                        CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
-                        CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                        If row("Time").ToString = "True" Then
-                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
-                        End If
-                        CreateTrackerEditButton(CurrentTrackerPanelName)
-                        CreateTrackerDeleteButton(CurrentTrackerPanelName)
-
-                    End If
-
-                Case Else 'Other Selected
-                    strDetail = row("Other").ToString
-                    If strDetail = "True" Then
-                        CreateTrackerPanel()
-                        CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
-                        CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy")) 'HH:mm:ss")) '.ToString).Format("d")
                         If row("Time").ToString = "True" And row("Bill").ToString = "False" Then
                             CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
                         ElseIf row("Bill").ToString = "True" Then
                             CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
                         End If
+                        If row("Appointment").ToString = "True" Then
+                            Dim g As New Panel
+                            g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            g.BackColor = Color.LightGreen
+                        ElseIf row("Bill").ToString = "True" Then
+                            Dim g As New Panel
+                            g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            g.BackColor = Color.Pink
+                        ElseIf row("Other").ToString = "True" Then
+                            Dim g As New Panel
+                            g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            g.BackColor = Color.Bisque
+                        End If
+
                         CreateTrackerEditButton(CurrentTrackerPanelName)
                         CreateTrackerDeleteButton(CurrentTrackerPanelName)
-                        Dim unused As New Panel
-                        Dim g As Panel = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
-                        g.BackColor = Color.Bisque
+
+                    Case 1 'Appointment Selected
+                        strDetail = row("Appointment").ToString
+                        If strDetail = "True" Then
+                            CreateTrackerPanel()
+                            CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
+                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateTrackerEditButton(CurrentTrackerPanelName)
+                            CreateTrackerDeleteButton(CurrentTrackerPanelName)
+                            Dim g As New Panel
+                            g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            g.BackColor = Color.LightGreen
 
 
-                    End If
-            End Select
+                        End If
+
+                    Case 2 'Bill Selected
+                        strDetail = row("Bill").ToString
+                        If strDetail = "True" Then
+                            CreateTrackerPanel()
+                            CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
+                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
+                            CreateTrackerEditButton(CurrentTrackerPanelName)
+                            CreateTrackerDeleteButton(CurrentTrackerPanelName)
+                            Dim g As New Panel
+                            g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            g.BackColor = Color.Pink
+                        End If
+
+                    Case 3 'Birthday Selected
+                        strDetail = row("Birthday").ToString
+                        If strDetail = "True" Then
+                            CreateTrackerPanel()
+                            CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
+                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            If row("Time").ToString = "True" Then
+                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                            End If
+                            CreateTrackerEditButton(CurrentTrackerPanelName)
+                            CreateTrackerDeleteButton(CurrentTrackerPanelName)
+
+                        End If
+
+                    Case Else 'Other Selected
+                        strDetail = row("Other").ToString
+                        If strDetail = "True" Then
+                            CreateTrackerPanel()
+                            CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
+                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy")) 'HH:mm:ss")) '.ToString).Format("d")
+                            If row("Time").ToString = "True" And row("Bill").ToString = "False" Then
+                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                            ElseIf row("Bill").ToString = "True" Then
+                                CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
+                            End If
+                            CreateTrackerEditButton(CurrentTrackerPanelName)
+                            CreateTrackerDeleteButton(CurrentTrackerPanelName)
+                            Dim unused As New Panel
+                            Dim g As Panel = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            g.BackColor = Color.Bisque
+
+
+                        End If
+                End Select
+            End If
         Next row
 
         btnAdd.Focus() 'Take the focus off the listbox, keep it from being highlighted
@@ -415,6 +445,7 @@ Public Class FrmMain
         DisplayTrackers()
 
     End Sub
+
 #End Region
 
 #Region "*** Contact Panels Display ***"
