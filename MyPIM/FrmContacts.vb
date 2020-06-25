@@ -30,7 +30,10 @@
             newrow("Email") = tbxEmail.Text
             newrow("Birthdate") = mtbBirthdate.Text
             newrow("Groups") = cbxGroups.Text
-            newrow("Notes") = tbxNotes.Text
+
+            Dim s = tbxNotes.Text.Replace(vbNewLine, "_\n") 'strip Newlines to be able to save .tsv
+
+            newrow("Notes") = s
             dtbContacts.Rows.Add(newrow)
 
             'Save the DataTable
@@ -68,9 +71,14 @@
             dtbContacts.Rows.Item(intContactEditRow).Item("Email") = tbxEmail.Text
             dtbContacts.Rows.Item(intContactEditRow).Item("Birthdate") = mtbBirthdate.Text
             dtbContacts.Rows.Item(intContactEditRow).Item("Groups") = cbxGroups.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("Notes") = tbxNotes.Text
+
+            Dim s = tbxNotes.Text.Replace(vbNewLine, "_\n") 'strip Newlines to be able to save .tsv
+
+            dtbContacts.Rows.Item(intContactEditRow).Item("Notes") = s
 
             'Save the DataTable
+            DataTable2CSV(dtbContacts, strDataPath & "\" & strContactsFile)
+
             FrmMain.Enabled = True
             FrmMain.ContactsSort()
             Me.Close()

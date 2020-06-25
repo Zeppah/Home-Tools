@@ -728,7 +728,10 @@ Public Class FrmMain
                             FrmContacts.tbxEmail.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Email").ToString
                             FrmContacts.mtbBirthdate.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Birthdate").ToString
                             FrmContacts.cbxGroups.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Groups").ToString
+
+
                             FrmContacts.tbxNotes.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Notes").ToString
+                            FrmContacts.tbxNotes.Text = FrmContacts.tbxNotes.Text.Replace("_\n", vbNewLine)
 
                             Exit For 'I put "Exit For" in here because once a number is found It should stop testing ***************
 
