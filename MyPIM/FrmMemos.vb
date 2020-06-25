@@ -1,18 +1,6 @@
 ﻿Imports System.IO
 
 Public Class FrmMemos
-    Private Sub FrmMemos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Private Sub FrmMemos_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        FrmMain.Enabled = True
-    End Sub
-
-    Private Sub BtnMemoExit_Click(sender As Object, e As EventArgs) Handles btnMemoExit.Click
-        FrmMain.Enabled = True
-        Me.Close()
-    End Sub
 
     Private Sub BtnAddMemoRecord_Click(sender As Object, e As EventArgs) Handles btnAddMemoRecord.Click
         'Validate that a description was entered
@@ -46,6 +34,13 @@ Public Class FrmMemos
             btnDeleteMemo.Visible = False
             Me.Close()
         End If
+
+        'Sort the data table before saving and displaying
+        Dim datav As DataView
+        datav = dtbMemos.DefaultView
+        datav.Sort = "Header ASC" 'or DESC, or anything just search for dataview.
+        dtbMemos = datav.ToTable()
+
         DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
         dtbMemos.Clear()
         CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
@@ -66,4 +61,14 @@ Public Class FrmMemos
         Me.Close()
 
     End Sub
+
+    Private Sub FrmMemos_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        FrmMain.Enabled = True
+    End Sub
+
+    Private Sub BtnMemoExit_Click(sender As Object, e As EventArgs) Handles btnMemoExit.Click
+        FrmMain.Enabled = True
+        Me.Close()
+    End Sub
+
 End Class
