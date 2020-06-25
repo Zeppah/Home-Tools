@@ -89,6 +89,12 @@
       <DependentUpon>FrmMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmMemos.Designer.vb">
+      <DependentUpon>FrmMemos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMemos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmTracker.designer.vb">
       <DependentUpon>FrmTracker.vb</DependentUpon>
     </Compile>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMemos.resx">
+      <DependentUpon>FrmMemos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTracker.resx">
       <DependentUpon>FrmTracker.vb</DependentUpon>

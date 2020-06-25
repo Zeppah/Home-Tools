@@ -34,6 +34,9 @@ Imports System.Data
 'cbxBirthday.Checked                            : Boolean
 'cbxOther.Checked                               : Boolean
 
+
+'Header                                  : Sting
+'Memo                                   : String
 #End Region
 
 Module ModMyPIM
@@ -41,6 +44,7 @@ Module ModMyPIM
 #Region "*** Public Variables ***"
 
     Friend dtbContacts As New DataTable                         'The datatable for contacts
+    Friend dtbMemos As New DataTable                            'The datatable for memos
     Friend dtbTracker As New DataTable                          'The datatable for the Tracker events
     Friend dteEventDate As Date                                 'Date for the selected event from calendar
     Friend intContactEditRow As Integer = 0                     'dtbContact Row being edited
@@ -50,6 +54,7 @@ Module ModMyPIM
     Friend strDataPath As String = Application.UserAppDataPath  'The Users Data Path
     Friend strDelimiter As String = ControlChars.Tab            'Delimiter for Tab Separated Files
     Friend strContactsFile As String = "Contacts.tsv"           'The Contacts record file
+    Friend strMemosFile As String = "Memos.tsv"                 'The Memos file
     Friend strSettingsFile As String = "Settings.tsv"           'The Settings file
     Friend strContactSortOrder As String = "A"                  'Tracker datatable sort order 'dtbTracker'
     Friend strTrackerSortOrder As String = "A"                  'Tracker datatable sort order 'dtbTracker'
@@ -83,6 +88,13 @@ Module ModMyPIM
             .Columns.Add("Birthdate", System.Type.GetType("System.String"))
             .Columns.Add("Groups", System.Type.GetType("System.String"))
             .Columns.Add("Notes", System.Type.GetType("System.String"))
+        End With
+    End Sub
+
+    Public Sub DefineMemosDataTable()
+        With dtbMemos
+            .Columns.Add("Header", System.Type.GetType("System.String"))
+            .Columns.Add("Memo", System.Type.GetType("System.String"))
         End With
     End Sub
 
@@ -125,6 +137,7 @@ Module ModMyPIM
             Do While objReader.Peek() <> -1
                 TextLine = objReader.ReadLine()
                 SplitLine = Split(TextLine, sepChar)
+
                 table.Rows.Add(SplitLine)
             Loop
             objReader.Close()

@@ -33,9 +33,12 @@ Public Class FrmMain
         CSV2DataTable(dtbTracker, strDataPath & "\" & strTrackersFile)
         DefineContactsDataTable()
         CSV2DataTable(dtbContacts, strDataPath & "\" & strContactsFile)
+        DefineMemosDataTable()
+        CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
 
         DisplayTrackers()
         DisplayContacts()
+        FillMemoListBox()
     End Sub
 
 #End Region
@@ -845,6 +848,28 @@ Public Class FrmMain
 
 #End Region
 
+#Region "*** Memo Section ***"
+
+    Sub FillMemoListBox()
+
+        For Each row As DataRow In dtbMemos.Rows
+            cboMemos.Items.Add(row("Header"))
+            'FrmTracker.tbxDescription.Text = dtbTracker.Rows.Item(row.Item("Memo").ToString)
+
+        Next
+
+    End Sub
+
+    Private Sub CboMemos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboMemos.SelectedIndexChanged
+        FrmMemos.tbxHeading.Text = dtbMemos.Rows.Item(cboMemos.SelectedIndex).Item("Header").ToString
+        FrmMemos.tbxMemo.Text = dtbMemos.Rows.Item(cboMemos.SelectedIndex).Item("Memo").ToString
+        FrmMemos.tbxMemo.Text = FrmMemos.tbxMemo.Text.Replace("_\n", vbNewLine)
+
+        Me.Enabled = False
+        FrmMemos.Show()
+    End Sub
+#End Region
+
 #Region "*** Event Procedures ***"
 
     Private Sub MnuContacts_Click(sender As Object, e As EventArgs) Handles Form1ToolStripMenuItem.Click, BtnAddContact.Click
@@ -967,6 +992,12 @@ Public Class FrmMain
     Private Sub NetFlixToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NetFlixToolStripMenuItem.Click
         Process.Start("https://www.netflix.com/browse")
     End Sub
+
+    Private Sub BtnAddMemo_Click(sender As Object, e As EventArgs) Handles btnAddMemo.Click, MemosToolStripMenuItem.Click
+        Enabled = False
+        FrmMemos.Show()
+    End Sub
+
 
 #End Region
 
