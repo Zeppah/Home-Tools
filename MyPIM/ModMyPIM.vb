@@ -5,40 +5,6 @@ Imports System.Data
 
 #End Region
 
-#Region "*** Reference Section ***"
-
-'intContactRecordIndexNumber            : integer
-'tbxFirstName.Text                      : String
-'tbxMiddleName.Text                     : String
-'tbxLastName.Text                       : String
-'tbxCompany.Text                        : String
-'tbxAddress1.Text                       : String
-'tbxAddress2.Text                       : String
-'tbxCity.Text                           : String
-'cbxState.Text                          : String
-'mtbZipcode.Text                        : String
-'mtbPhone.Text                          : String
-'tbxEmail.Text                          : String
-'mtbBirthdate.Text                      : String
-'cbxGroups.Text                         : String
-'tbxNotes.Text                          : String
-
-
-'intTrackerRecordIndexNumber                    : integer
-'tbxDescription.Text                            : string
-'(dtpDate.Value.Date + dtpTime.Value.TimeOfDay) : DateTime
-'tbxAmount                                      : Double
-'cbxTime.Checked                                : Boolean
-'cbxAppointment.Checked                         : Boolean
-'cbxBill.Checked                                : Boolean
-'cbxBirthday.Checked                            : Boolean
-'cbxOther.Checked                               : Boolean
-
-
-'Header                                  : Sting
-'Memo                                   : String
-#End Region
-
 Module ModMyPIM
 
 #Region "*** Public Variables ***"
@@ -109,6 +75,8 @@ Module ModMyPIM
             .Columns.Add("Bill", System.Type.GetType("System.Boolean"))
             .Columns.Add("Birthday", System.Type.GetType("System.Boolean"))
             .Columns.Add("Other", System.Type.GetType("System.Boolean"))
+            .Columns.Add("SortDate", System.Type.GetType("System.DateTime"))
+
         End With
     End Sub
 

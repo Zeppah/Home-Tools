@@ -87,12 +87,28 @@ Public Class FrmMain
                     Case 0 'All Selected
                         CreateTrackerPanel()
                         CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
-                        CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                        If row("Time").ToString = "True" And row("Bill").ToString = "False" Then
+                        If row("Time").ToString = "True" And row("Bill").ToString = "False" And row("Birthday").ToString = "False" Then
                             CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
                         ElseIf row("Bill").ToString = "True" Then
                             CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
+                        ElseIf row("Birthday").ToString = "True" Then
+                            Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
+                            Dim Age As Integer
+                            Age = CInt(DateDiff(DateInterval.Year, Birthdate, Date.Today))
+                            If Age = 0 Then Age = 1
+                            If Birthdate.Month <= Date.Today.Month And Birthdate.Day < Date.Today.Day _
+                    Or Birthdate.Month < Date.Today.Month Then
+                                Age += 1
+                            End If
+
+                            Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
+
+                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Age.ToString)
+
                         End If
+
+
                         If row("Appointment").ToString = "True" Then
                             Dim g As New Panel
                             g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
@@ -145,10 +161,19 @@ Public Class FrmMain
                         If strDetail = "True" Then
                             CreateTrackerPanel()
                             CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
-                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            If row("Time").ToString = "True" Then
-                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+
+                            Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
+                            Dim Age As Integer
+                            Age = CInt(DateDiff(DateInterval.Year, Birthdate, Date.Today))
+                            If Birthdate.Month <= Date.Today.Month And Birthdate.Day < Date.Today.Day _
+                    Or Birthdate.Month < Date.Today.Month Then
+                                Age += 1
                             End If
+                            Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
+
+                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Age.ToString)
+
                             CreateTrackerEditButton(CurrentTrackerPanelName)
                             CreateTrackerDeleteButton(CurrentTrackerPanelName)
 
@@ -420,11 +445,11 @@ Public Class FrmMain
     Private Sub BtnSort_Click(sender As Object, e As EventArgs) Handles btnSort.Click
 
         If strTrackerSortOrder = "A" Then
-            dtbTracker.DefaultView.Sort = "Date ASC"
+            dtbTracker.DefaultView.Sort = "SortDate ASC"
             dtbTracker = dtbTracker.DefaultView.ToTable
             strTrackerSortOrder = "D"
         Else
-            dtbTracker.DefaultView.Sort = "Date DESC"
+            dtbTracker.DefaultView.Sort = "SortDate DESC"
             dtbTracker = dtbTracker.DefaultView.ToTable
             strTrackerSortOrder = "A"
         End If
@@ -438,12 +463,13 @@ Public Class FrmMain
     Friend Sub TrackerSort()
 
         If strTrackerSortOrder = "A" Then
-            dtbTracker.DefaultView.Sort = "Date DESC"
+            dtbTracker.DefaultView.Sort = "SortDate DESC"
             dtbTracker = dtbTracker.DefaultView.ToTable
         Else
-            dtbTracker.DefaultView.Sort = "Date ASC"
+            dtbTracker.DefaultView.Sort = "SortDate ASC"
             dtbTracker = dtbTracker.DefaultView.ToTable
         End If
+        DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
 
         DisplayTrackers()
 
@@ -957,20 +983,8 @@ Public Class FrmMain
         txbSearch.Focus()
     End Sub
 
-    Private Sub WeatherToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WeatherToolStripMenuItem.Click
-        Process.Start("https://forecast.weather.gov")
-    End Sub
-
-    Private Sub NewsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewsToolStripMenuItem.Click
-        Process.Start("https://news.google.com")
-    End Sub
-
     Private Sub CoronavirusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CoronavirusToolStripMenuItem.Click
         Process.Start("https://ncov2019.live/")
-    End Sub
-
-    Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem.Click
-        Process.Start("https://www.jango.com/")
     End Sub
 
     Private Sub MailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MailToolStripMenuItem.Click
@@ -1000,6 +1014,27 @@ Public Class FrmMain
     Private Sub BtnAddMemo_Click(sender As Object, e As EventArgs) Handles btnAddMemo.Click, MemosToolStripMenuItem.Click
         Enabled = False
         FrmMemos.Show()
+    End Sub
+
+    Private Sub NewsToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles NewsToolStripMenuItem1.Click
+        Process.Start("https://news.google.com")
+    End Sub
+
+    Private Sub OnThisDayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OnThisDayToolStripMenuItem.Click
+        Process.Start("https://www.onthisday.com")
+    End Sub
+
+    Private Sub WeatherToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles WeatherToolStripMenuItem1.Click
+        Process.Start("https://forecast.weather.gov")
+    End Sub
+
+    Private Sub CalendarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalendarToolStripMenuItem.Click
+        Process.Start("https://Calendar.google.com")
+
+    End Sub
+
+    Private Sub MusicToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem1.Click
+        Process.Start("https://www.jango.com/")
     End Sub
 
 

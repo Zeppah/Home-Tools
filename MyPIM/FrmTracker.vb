@@ -19,6 +19,11 @@ Public Class FrmTracker
             Return
         End If
 
+        If cbxAppointment.Checked = False And cbxBill.Checked = False And cbxBirthday.Checked = False And cbxOther.Checked = False Then
+            Dim unused = MsgBox("No Category Selected", vbExclamation, "Input Error")
+            Return
+        End If
+
         If btnAddTrackerRecord.Text = "Add" Then
             intTrackerRecordIndexNumber += 1 'increment the id number for new record
 
@@ -34,6 +39,24 @@ Public Class FrmTracker
             newrow("Bill") = cbxBill.Checked
             newrow("Birthday") = cbxBirthday.Checked
             newrow("Other") = cbxOther.Checked
+
+            ''Insert "SortDate" here
+            If cbxBirthday.Checked Then
+
+                Dim Birthdate As Date = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+                Dim Age As Integer
+                Age = CInt(DateDiff(DateInterval.Year, Birthdate, Date.Today))
+                If Age = 0 Then Age = 1
+                If Birthdate.Month <= Date.Today.Month And Birthdate.Day < Date.Today.Day _
+                    Or Birthdate.Month < Date.Today.Month Then
+                    Age += 1
+                End If
+
+                Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
+                    newrow("SortDate") = NextBirthDate
+                Else
+                    newrow("SortDate") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+            End If
 
             dtbTracker.Rows.Add(newrow)
             'Save the DataTable
@@ -51,6 +74,23 @@ Public Class FrmTracker
             dtbTracker.Rows.Item(intTrackerEditRow).Item("Bill") = cbxBill.Checked
             dtbTracker.Rows.Item(intTrackerEditRow).Item("Birthday") = cbxBirthday.Checked
             dtbTracker.Rows.Item(intTrackerEditRow).Item("Other") = cbxOther.Checked
+
+            If cbxBirthday.Checked Then
+
+                Dim Birthdate As Date = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+                Dim Age As Integer
+                Age = CInt(DateDiff(DateInterval.Year, Birthdate, Date.Today))
+                If Age = 0 Then Age = 1
+                If Birthdate.Month <= Date.Today.Month And Birthdate.Day < Date.Today.Day _
+                    Or Birthdate.Month < Date.Today.Month Then
+                    Age += 1
+                End If
+
+                Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
+                dtbTracker.Rows.Item(intTrackerEditRow).Item("SortDate") = NextBirthDate
+            Else
+                dtbTracker.Rows.Item(intTrackerEditRow).Item("SortDate") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+            End If
 
             btnAddTrackerRecord.Text = "Add"
             FrmMain.Enabled = True

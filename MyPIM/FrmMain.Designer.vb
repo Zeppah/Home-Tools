@@ -41,12 +41,15 @@ Partial Class FrmMain
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.CoronavirusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.WeatherToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NewsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OnThisDayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WeatherToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.EntertainmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MusicToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.NetFlixToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.YoutubeToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CalendarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.cboTracker = New System.Windows.Forms.ComboBox()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.flpTracker = New System.Windows.Forms.FlowLayoutPanel()
@@ -200,10 +203,10 @@ Partial Class FrmMain
         Me.MenuStrip1.BackColor = System.Drawing.Color.LightGreen
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CoronavirusToolStripMenuItem, Me.MailToolStripMenuItem, Me.MusicToolStripMenuItem, Me.NewsToolStripMenuItem, Me.WeatherToolStripMenuItem, Me.EntertainmentToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(924, 33)
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CoronavirusToolStripMenuItem, Me.CalendarToolStripMenuItem, Me.MailToolStripMenuItem, Me.NewsToolStripMenuItem, Me.EntertainmentToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(921, 33)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(506, 29)
+        Me.MenuStrip1.Size = New System.Drawing.Size(509, 29)
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -219,43 +222,61 @@ Partial Class FrmMain
         Me.MailToolStripMenuItem.Size = New System.Drawing.Size(53, 25)
         Me.MailToolStripMenuItem.Text = "Mail"
         '
-        'MusicToolStripMenuItem
-        '
-        Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
-        Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(65, 25)
-        Me.MusicToolStripMenuItem.Text = "Music"
-        '
         'NewsToolStripMenuItem
         '
+        Me.NewsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewsToolStripMenuItem1, Me.OnThisDayToolStripMenuItem, Me.WeatherToolStripMenuItem1})
         Me.NewsToolStripMenuItem.Name = "NewsToolStripMenuItem"
-        Me.NewsToolStripMenuItem.Size = New System.Drawing.Size(62, 25)
-        Me.NewsToolStripMenuItem.Text = "News"
+        Me.NewsToolStripMenuItem.Size = New System.Drawing.Size(128, 25)
+        Me.NewsToolStripMenuItem.Text = "Current Events"
         '
-        'WeatherToolStripMenuItem
+        'NewsToolStripMenuItem1
         '
-        Me.WeatherToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.WeatherToolStripMenuItem.Name = "WeatherToolStripMenuItem"
-        Me.WeatherToolStripMenuItem.Size = New System.Drawing.Size(84, 25)
-        Me.WeatherToolStripMenuItem.Text = "Weather"
+        Me.NewsToolStripMenuItem1.Name = "NewsToolStripMenuItem1"
+        Me.NewsToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
+        Me.NewsToolStripMenuItem1.Text = "News"
+        '
+        'OnThisDayToolStripMenuItem
+        '
+        Me.OnThisDayToolStripMenuItem.Name = "OnThisDayToolStripMenuItem"
+        Me.OnThisDayToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
+        Me.OnThisDayToolStripMenuItem.Text = "On This Day"
+        '
+        'WeatherToolStripMenuItem1
+        '
+        Me.WeatherToolStripMenuItem1.Name = "WeatherToolStripMenuItem1"
+        Me.WeatherToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
+        Me.WeatherToolStripMenuItem1.Text = "Weather"
         '
         'EntertainmentToolStripMenuItem
         '
-        Me.EntertainmentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NetFlixToolStripMenuItem, Me.YoutubeToolStripMenuItem1})
+        Me.EntertainmentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MusicToolStripMenuItem1, Me.NetFlixToolStripMenuItem, Me.YoutubeToolStripMenuItem1})
         Me.EntertainmentToolStripMenuItem.Name = "EntertainmentToolStripMenuItem"
         Me.EntertainmentToolStripMenuItem.Size = New System.Drawing.Size(125, 25)
         Me.EntertainmentToolStripMenuItem.Text = "Entertainment"
         '
+        'MusicToolStripMenuItem1
+        '
+        Me.MusicToolStripMenuItem1.Name = "MusicToolStripMenuItem1"
+        Me.MusicToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
+        Me.MusicToolStripMenuItem1.Text = "Music"
+        '
         'NetFlixToolStripMenuItem
         '
         Me.NetFlixToolStripMenuItem.Name = "NetFlixToolStripMenuItem"
-        Me.NetFlixToolStripMenuItem.Size = New System.Drawing.Size(141, 26)
+        Me.NetFlixToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
         Me.NetFlixToolStripMenuItem.Text = "NetFlix"
         '
         'YoutubeToolStripMenuItem1
         '
         Me.YoutubeToolStripMenuItem1.Name = "YoutubeToolStripMenuItem1"
-        Me.YoutubeToolStripMenuItem1.Size = New System.Drawing.Size(141, 26)
+        Me.YoutubeToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
         Me.YoutubeToolStripMenuItem1.Text = "Youtube"
+        '
+        'CalendarToolStripMenuItem
+        '
+        Me.CalendarToolStripMenuItem.Name = "CalendarToolStripMenuItem"
+        Me.CalendarToolStripMenuItem.Size = New System.Drawing.Size(86, 25)
+        Me.CalendarToolStripMenuItem.Text = "Calendar"
         '
         'cboTracker
         '
@@ -504,8 +525,6 @@ Partial Class FrmMain
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents CoronavirusToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NewsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents WeatherToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MailToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents cboTracker As ComboBox
     Friend WithEvents btnAdd As Button
@@ -529,4 +548,9 @@ Partial Class FrmMain
     Friend WithEvents btnAddMemo As Button
     Friend WithEvents MemosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents cboMemos As ComboBox
+    Friend WithEvents NewsToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents OnThisDayToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents WeatherToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents CalendarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MusicToolStripMenuItem1 As ToolStripMenuItem
 End Class
