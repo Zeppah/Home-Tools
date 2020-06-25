@@ -853,8 +853,8 @@ Public Class FrmMain
     Sub FillMemoListBox()
 
         For Each row As DataRow In dtbMemos.Rows
+
             cboMemos.Items.Add(row("Header"))
-            'FrmTracker.tbxDescription.Text = dtbTracker.Rows.Item(row.Item("Memo").ToString)
 
         Next
 
@@ -864,8 +864,9 @@ Public Class FrmMain
         FrmMemos.tbxHeading.Text = dtbMemos.Rows.Item(cboMemos.SelectedIndex).Item("Header").ToString
         FrmMemos.tbxMemo.Text = dtbMemos.Rows.Item(cboMemos.SelectedIndex).Item("Memo").ToString
         FrmMemos.tbxMemo.Text = FrmMemos.tbxMemo.Text.Replace("_\n", vbNewLine)
-
+        FrmMemos.btnAddMemoRecord.Text = "Save"
         Me.Enabled = False
+        FrmMemos.btnDeleteMemo.Visible = True
         FrmMemos.Show()
     End Sub
 #End Region

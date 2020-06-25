@@ -29,6 +29,7 @@ Partial Class FrmMemos
         Me.tbxMemo = New System.Windows.Forms.TextBox()
         Me.btnMemoExit = New System.Windows.Forms.Button()
         Me.btnAddMemoRecord = New System.Windows.Forms.Button()
+        Me.btnDeleteMemo = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lblMemos
@@ -104,12 +105,26 @@ Partial Class FrmMemos
         Me.btnAddMemoRecord.Text = "Add"
         Me.btnAddMemoRecord.UseVisualStyleBackColor = False
         '
+        'btnDeleteMemo
+        '
+        Me.btnDeleteMemo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnDeleteMemo.BackColor = System.Drawing.Color.Bisque
+        Me.btnDeleteMemo.Location = New System.Drawing.Point(219, 333)
+        Me.btnDeleteMemo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnDeleteMemo.Name = "btnDeleteMemo"
+        Me.btnDeleteMemo.Size = New System.Drawing.Size(112, 36)
+        Me.btnDeleteMemo.TabIndex = 8
+        Me.btnDeleteMemo.Text = "Delete"
+        Me.btnDeleteMemo.UseVisualStyleBackColor = False
+        Me.btnDeleteMemo.Visible = False
+        '
         'FrmMemos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
         Me.ClientSize = New System.Drawing.Size(528, 424)
+        Me.Controls.Add(Me.btnDeleteMemo)
         Me.Controls.Add(Me.btnAddMemoRecord)
         Me.Controls.Add(Me.btnMemoExit)
         Me.Controls.Add(Me.tbxMemo)
@@ -136,4 +151,5 @@ Partial Class FrmMemos
     Friend WithEvents tbxMemo As TextBox
     Friend WithEvents btnMemoExit As Button
     Friend WithEvents btnAddMemoRecord As Button
+    Friend WithEvents btnDeleteMemo As Button
 End Class

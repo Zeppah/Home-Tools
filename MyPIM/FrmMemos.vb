@@ -22,17 +22,30 @@ Public Class FrmMemos
             Return
         End If
 
-        'Add the new record to the dtbMemos DataTable
-        Dim newrow As DataRow = dtbMemos.NewRow
-        Dim s = tbxMemo.Text.Replace(vbNewLine, "_\n")
-        newrow("Header") = tbxHeading.Text
-        newrow("Memo") = s
+        If btnAddMemoRecord.Text = "Add" Then
+            'Add the new record to the dtbMemos DataTable
+            Dim newrow As DataRow = dtbMemos.NewRow
+            Dim s = tbxMemo.Text.Replace(vbNewLine, "_\n")
+            newrow("Header") = tbxHeading.Text
+            newrow("Memo") = s
 
-        dtbMemos.Rows.Add(newrow)
+            dtbMemos.Rows.Add(newrow)
 
-        tbxHeading.Text = ""
-        tbxMemo.Text = ""
-
+            tbxHeading.Text = ""
+            tbxMemo.Text = ""
+        Else
+            btnAddMemoRecord.Text = "Add"
+            dtbMemos.Rows.Item(FrmMain.cboMemos.SelectedIndex).Item("Header") = tbxHeading.Text
+            Dim s = tbxMemo.Text.Replace(vbNewLine, "_\n")
+            dtbMemos.Rows.Item(FrmMain.cboMemos.SelectedIndex).Item("Memo") = s
+            DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
+            dtbMemos.Clear()
+            CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
+            FrmMain.cboMemos.Items.Clear()
+            FrmMain.FillMemoListBox()
+            btnDeleteMemo.Visible = False
+            Me.Close()
+        End If
         DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
         dtbMemos.Clear()
         CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
@@ -41,4 +54,16 @@ Public Class FrmMemos
 
     End Sub
 
+    Private Sub BtnDeleteMemo_Click(sender As Object, e As EventArgs) Handles btnDeleteMemo.Click
+        dtbMemos.Rows.Remove(dtbMemos.Rows(FrmMain.cboMemos.SelectedIndex))
+        DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
+        dtbMemos.Clear()
+        CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
+        FrmMain.cboMemos.Items.Clear()
+        FrmMain.FillMemoListBox()
+        FrmMain.cboMemos.Text = ""
+        btnDeleteMemo.Visible = False
+        Me.Close()
+
+    End Sub
 End Class
