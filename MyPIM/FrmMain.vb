@@ -249,7 +249,7 @@ Public Class FrmMain
             End If
         Next row
 
-        btnAdd.Focus() 'Take the focus off the listbox, keep it from being highlighted
+        btnTrackerAdd.Focus() 'Take the focus off the listbox, keep it from being highlighted
 
     End Sub
 
@@ -996,12 +996,12 @@ Public Class FrmMain
 
 #Region "*** Event Procedures ***"
 
-    Private Sub MnuContacts_Click(sender As Object, e As EventArgs) Handles Form1ToolStripMenuItem.Click, BtnAddContact.Click
+    Private Sub MnuContacts_Click(sender As Object, e As EventArgs) Handles BtnAddContact.Click
         Me.Enabled = False
         FrmContacts.Show()
     End Sub
 
-    Private Sub MnuTracker_Click(sender As Object, e As EventArgs) Handles miTracker.Click, btnAdd.Click
+    Private Sub MnuTracker_Click(sender As Object, e As EventArgs) Handles btnTrackerAdd.Click
         Me.Enabled = False
         FrmTracker.Show()
     End Sub
@@ -1029,51 +1029,49 @@ Public Class FrmMain
         txbSearch.Focus()
     End Sub
 
-    Private Sub CoronavirusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CoronavirusToolStripMenuItem.Click
-        Process.Start("https://ncov2019.live/")
-    End Sub
-
-    Private Sub MailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MailToolStripMenuItem.Click
-        Process.Start("https://Mail.google.com")
-    End Sub
-
-    Private Sub CalculatorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculatorToolStripMenuItem.Click
-        System.Diagnostics.Process.Start("calc")
-    End Sub
-
-
-    Private Sub YoutubeToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles YoutubeToolStripMenuItem1.Click
-        Process.Start("https://youtube.com")
-    End Sub
-
-    Private Sub NetFlixToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NetFlixToolStripMenuItem.Click
-        Process.Start("https://www.netflix.com/browse")
-    End Sub
-
-    Private Sub BtnAddMemo_Click(sender As Object, e As EventArgs) Handles btnAddMemo.Click, MemosToolStripMenuItem.Click
+    Private Sub BtnAddMemo_Click(sender As Object, e As EventArgs) Handles btnAddMemo.Click
         Enabled = False
         FrmMemos.Show()
     End Sub
 
-    Private Sub NewsToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles NewsToolStripMenuItem1.Click
+    Private Sub MusicToolStripMenuItem1_Click(sender As Object, e As EventArgs)
+        Process.Start("https://www.jango.com/")
+    End Sub
+
+    Private Sub CalendarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CalendarToolStripMenuItem1.Click
+        Process.Start("https://Calendar.google.com")
+    End Sub
+
+    Private Sub CoronavirusToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CoronavirusToolStripMenuItem1.Click
+        Process.Start("https://ncov2019.live/")
+    End Sub
+
+    Private Sub NewsToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles NewsToolStripMenuItem2.Click
         Process.Start("https://news.google.com")
     End Sub
 
-    Private Sub OnThisDayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OnThisDayToolStripMenuItem.Click
+    Private Sub OnThisDayToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles OnThisDayToolStripMenuItem1.Click
         Process.Start("https://www.onthisday.com")
     End Sub
 
-    Private Sub WeatherToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles WeatherToolStripMenuItem1.Click
+    Private Sub WeatherToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WeatherToolStripMenuItem.Click
         Process.Start("https://forecast.weather.gov")
     End Sub
 
-    Private Sub CalendarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalendarToolStripMenuItem.Click
-        Process.Start("https://Calendar.google.com")
-
+    Private Sub NetflixToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles NetflixToolStripMenuItem1.Click
+        Process.Start("https://www.netflix.com/browse")
     End Sub
 
-    Private Sub MusicToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem1.Click
-        Process.Start("https://www.jango.com/")
+    Private Sub YouTubeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles YouTubeToolStripMenuItem.Click
+        Process.Start("https://youtube.com")
+    End Sub
+
+    Private Sub MailToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles MailToolStripMenuItem1.Click
+        Process.Start("https://Mail.google.com")
+    End Sub
+
+    Private Sub CalculatorToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CalculatorToolStripMenuItem1.Click
+        System.Diagnostics.Process.Start("calc")
     End Sub
 
 #End Region
