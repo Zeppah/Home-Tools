@@ -90,14 +90,14 @@ Public Class FrmMain
                         If row("Time").ToString = "True" And row("Bill").ToString = "False" And row("Birthday").ToString = "False" Then
                             CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
                         ElseIf row("Bill").ToString = "True" Then
+                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
                             CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
                         ElseIf row("Birthday").ToString = "True" Then
                             Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
                             Dim Age As Integer
                             Age = CInt(DateDiff(DateInterval.Year, Birthdate, Date.Today))
                             If Age = 0 Then Age = 1
-                            If Birthdate.Month <= Date.Today.Month And Birthdate.Day < Date.Today.Day _
-                    Or Birthdate.Month < Date.Today.Month Then
+                            If Birthdate.Month <= Date.Today.Month And Birthdate.Day < Date.Today.Day Or Birthdate.Month < Date.Today.Month Then
                                 Age += 1
                             End If
 
