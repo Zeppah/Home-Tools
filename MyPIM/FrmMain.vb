@@ -14,7 +14,7 @@ Imports System.Text
 ''' </HEADER>
 ''' 
 
-Public Class txbRun
+Public Class FrmMain
 
 #Region "*** Start ***"
 

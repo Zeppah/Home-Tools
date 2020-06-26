@@ -176,7 +176,7 @@ Module ModMyPIM
                 intContactRecordIndexNumber = CInt(SplitLine(1))    ' Contact Record Counter
                 strTrackerSortOrder = SplitLine(2)                  ' Tracker display sort order
                 strContactSortOrder = SplitLine(3)                  ' Contact display sort order
-                txbRun.cboTrackerTime.SelectedIndex = CInt(SplitLine(4))   ' Tracker display range
+                FrmMain.cboTrackerTime.SelectedIndex = CInt(SplitLine(4))   ' Tracker display range
             Loop
             'Close the StreamReader
             objReader.Close()
@@ -187,7 +187,7 @@ Module ModMyPIM
     Public Sub SaveSettings()
         File.WriteAllText(strDataPath & "\" & strSettingsFile, CStr(intTrackerRecordIndexNumber) _
             & strDelimiter & CStr(intContactRecordIndexNumber) & strDelimiter & strTrackerSortOrder _
-            & strDelimiter & strContactSortOrder & strDelimiter & txbRun.cboTrackerTime.SelectedIndex)
+            & strDelimiter & strContactSortOrder & strDelimiter & FrmMain.cboTrackerTime.SelectedIndex)
     End Sub
 
 #End Region

@@ -95,7 +95,7 @@ Public Class FrmTracker
             End If
 
             btnAddTrackerRecord.Text = "Add"
-            txbRun.Enabled = True
+            FrmMain.Enabled = True
 
             Me.Close()
 
@@ -169,16 +169,16 @@ Public Class FrmTracker
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
 
-        txbRun.Enabled = True
-        txbRun.TrackerSort()
+        FrmMain.Enabled = True
+        FrmMain.TrackerSort()
         Me.Close()
 
     End Sub
 
     Private Sub FrmTracker_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
 
-        txbRun.Enabled = True
-        txbRun.TrackerSort()
+        FrmMain.Enabled = True
+        FrmMain.TrackerSort()
 
     End Sub
 

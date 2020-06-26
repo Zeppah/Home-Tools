@@ -23,14 +23,14 @@ Public Class FrmMemos
             tbxMemo.Text = ""
         Else
             btnAddMemoRecord.Text = "Add"
-            dtbMemos.Rows.Item(txbRun.cboMemos.SelectedIndex).Item("Header") = tbxHeading.Text
+            dtbMemos.Rows.Item(FrmMain.cboMemos.SelectedIndex).Item("Header") = tbxHeading.Text
             Dim s = tbxMemo.Text.Replace(vbNewLine, "_\n")
-            dtbMemos.Rows.Item(txbRun.cboMemos.SelectedIndex).Item("Memo") = s
+            dtbMemos.Rows.Item(FrmMain.cboMemos.SelectedIndex).Item("Memo") = s
             DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
             dtbMemos.Clear()
             CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
-            txbRun.cboMemos.Items.Clear()
-            txbRun.FillMemoListBox()
+            FrmMain.cboMemos.Items.Clear()
+            FrmMain.FillMemoListBox()
             btnDeleteMemo.Visible = False
             Me.Close()
         End If
@@ -44,30 +44,30 @@ Public Class FrmMemos
         DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
         dtbMemos.Clear()
         CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
-        txbRun.cboMemos.Items.Clear()
-        txbRun.FillMemoListBox()
+        FrmMain.cboMemos.Items.Clear()
+        FrmMain.FillMemoListBox()
 
     End Sub
 
     Private Sub BtnDeleteMemo_Click(sender As Object, e As EventArgs) Handles btnDeleteMemo.Click
-        dtbMemos.Rows.Remove(dtbMemos.Rows(txbRun.cboMemos.SelectedIndex))
+        dtbMemos.Rows.Remove(dtbMemos.Rows(FrmMain.cboMemos.SelectedIndex))
         DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
         dtbMemos.Clear()
         CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
-        txbRun.cboMemos.Items.Clear()
-        txbRun.FillMemoListBox()
-        txbRun.cboMemos.Text = ""
+        FrmMain.cboMemos.Items.Clear()
+        FrmMain.FillMemoListBox()
+        FrmMain.cboMemos.Text = ""
         btnDeleteMemo.Visible = False
         Me.Close()
 
     End Sub
 
     Private Sub FrmMemos_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        txbRun.Enabled = True
+        FrmMain.Enabled = True
     End Sub
 
     Private Sub BtnMemoExit_Click(sender As Object, e As EventArgs) Handles btnMemoExit.Click
-        txbRun.Enabled = True
+        FrmMain.Enabled = True
         Me.Close()
     End Sub
 
