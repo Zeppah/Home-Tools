@@ -179,7 +179,7 @@ Public Class FrmMain
 
                         End If
 
-                    Case Else 'Other Selected
+                    Case 4 'Other Selected
                         strDetail = row("Other").ToString
                         If strDetail = "True" Then
                             CreateTrackerPanel()
@@ -198,6 +198,54 @@ Public Class FrmMain
 
 
                         End If
+                    Case 5 'Starred Item
+                        strDetail = row("Starred").ToString
+                        If strDetail = "True" Then
+                            CreateTrackerPanel()
+                            CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
+                            If row("Time").ToString = "True" And row("Bill").ToString = "False" And row("Birthday").ToString = "False" Then
+                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                            ElseIf row("Bill").ToString = "True" Then
+                                CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
+                            ElseIf row("Birthday").ToString = "True" Then
+                                Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
+                                Dim Age As Integer
+                                Age = CInt(DateDiff(DateInterval.Year, Birthdate, Date.Today))
+                                If Age = 0 Then Age = 1
+                                If Birthdate.Month <= Date.Today.Month And Birthdate.Day < Date.Today.Day Or Birthdate.Month < Date.Today.Month Then
+                                    Age += 1
+                                End If
+
+                                Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
+
+                                CreateTrackerDateLabel(CurrentTrackerPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
+                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Age.ToString)
+
+                            End If
+
+
+                            If row("Appointment").ToString = "True" Then
+                                Dim g As New Panel
+                                g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                                g.BackColor = Color.LightGreen
+                            ElseIf row("Bill").ToString = "True" Then
+                                Dim g As New Panel
+                                g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                                g.BackColor = Color.Pink
+                            ElseIf row("Other").ToString = "True" Then
+                                Dim g As New Panel
+                                g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                                g.BackColor = Color.Bisque
+                            End If
+
+                            CreateTrackerEditButton(CurrentTrackerPanelName)
+                            CreateTrackerDeleteButton(CurrentTrackerPanelName)
+
+
+
+                        End If
+
                 End Select
             End If
         Next row
@@ -356,6 +404,10 @@ Public Class FrmMain
 
                             If dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Other").ToString = "True" Then
                                 FrmTracker.cbxOther.Checked = True
+                            End If
+
+                            If dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Starred").ToString = "True" Then
+                                FrmTracker.cbxStarred.Checked = True
                             End If
 
                             Exit For 'I put "Exit For" in here because once a number is found It should stop testing ***************
@@ -590,7 +642,7 @@ Public Class FrmMain
                         Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.Beige
                     End If
-                Case Else 'Other Selected
+                Case 5 'Other Selected
                     If row("Groups").ToString = "Other" Then
                         CreateContactPanel()
                         Dim strFullName As String
@@ -606,6 +658,45 @@ Public Class FrmMain
                         Dim unused As New Panel
                         Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.Bisque
+                    End If
+                Case 6
+                    Dim strDetail As String
+                    strDetail = row("Starred").ToString
+                    If strDetail = "True" Then
+                        CreateContactPanel()
+                        Dim strFullName As String
+                        strFullName = row("First Name").ToString & " " & row("Middle Name").ToString & " " & row("Last Name").ToString
+                        If strFullName = "  " Then
+                            strFullName = row("Company").ToString
+                        End If
+                        CreateContactNameLabel(CurrentContactPanelName, strFullName)
+                        CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
+                        CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
+                        CreateContactEditButton(CurrentContactPanelName)
+                        CreateContactDeleteButton(CurrentContactPanelName)
+                        Select Case row("Groups").ToString
+                            Case "Acquaintance"
+                                Dim unused As New Panel
+                                Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                                g.BackColor = Color.LightGreen
+                            Case "Family"
+                                Dim unused As New Panel
+                                Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                                g.BackColor = Color.LightBlue
+                            Case "Friend"
+                                Dim unused As New Panel
+                                Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                                g.BackColor = Color.Beige
+                            Case "Business"
+                                Dim unused As New Panel
+                                Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                                g.BackColor = Color.LightGray
+                            Case "Other"
+                                Dim unused As New Panel
+                                Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                                g.BackColor = Color.Bisque
+                        End Select
+
                     End If
             End Select
         Next row
@@ -758,6 +849,10 @@ Public Class FrmMain
 
                             FrmContacts.tbxNotes.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Notes").ToString
                             FrmContacts.tbxNotes.Text = FrmContacts.tbxNotes.Text.Replace("_\n", vbNewLine)
+
+                            If dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Starred").ToString = "True" Then
+                                FrmContacts.cbxStarred.Checked = True
+                            End If
 
                             Exit For 'I put "Exit For" in here because once a number is found It should stop testing ***************
 

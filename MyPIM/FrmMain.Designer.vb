@@ -40,6 +40,7 @@ Partial Class FrmMain
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.CoronavirusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CalendarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -49,7 +50,6 @@ Partial Class FrmMain
         Me.MusicToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.NetFlixToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.YoutubeToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CalendarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.cboTracker = New System.Windows.Forms.ComboBox()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.flpTracker = New System.Windows.Forms.FlowLayoutPanel()
@@ -216,6 +216,12 @@ Partial Class FrmMain
         Me.CoronavirusToolStripMenuItem.Size = New System.Drawing.Size(109, 25)
         Me.CoronavirusToolStripMenuItem.Text = "Coronavirus"
         '
+        'CalendarToolStripMenuItem
+        '
+        Me.CalendarToolStripMenuItem.Name = "CalendarToolStripMenuItem"
+        Me.CalendarToolStripMenuItem.Size = New System.Drawing.Size(86, 25)
+        Me.CalendarToolStripMenuItem.Text = "Calendar"
+        '
         'MailToolStripMenuItem
         '
         Me.MailToolStripMenuItem.Name = "MailToolStripMenuItem"
@@ -232,19 +238,19 @@ Partial Class FrmMain
         'NewsToolStripMenuItem1
         '
         Me.NewsToolStripMenuItem1.Name = "NewsToolStripMenuItem1"
-        Me.NewsToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
+        Me.NewsToolStripMenuItem1.Size = New System.Drawing.Size(165, 26)
         Me.NewsToolStripMenuItem1.Text = "News"
         '
         'OnThisDayToolStripMenuItem
         '
         Me.OnThisDayToolStripMenuItem.Name = "OnThisDayToolStripMenuItem"
-        Me.OnThisDayToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
+        Me.OnThisDayToolStripMenuItem.Size = New System.Drawing.Size(165, 26)
         Me.OnThisDayToolStripMenuItem.Text = "On This Day"
         '
         'WeatherToolStripMenuItem1
         '
         Me.WeatherToolStripMenuItem1.Name = "WeatherToolStripMenuItem1"
-        Me.WeatherToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
+        Me.WeatherToolStripMenuItem1.Size = New System.Drawing.Size(165, 26)
         Me.WeatherToolStripMenuItem1.Text = "Weather"
         '
         'EntertainmentToolStripMenuItem
@@ -257,31 +263,25 @@ Partial Class FrmMain
         'MusicToolStripMenuItem1
         '
         Me.MusicToolStripMenuItem1.Name = "MusicToolStripMenuItem1"
-        Me.MusicToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
+        Me.MusicToolStripMenuItem1.Size = New System.Drawing.Size(141, 26)
         Me.MusicToolStripMenuItem1.Text = "Music"
         '
         'NetFlixToolStripMenuItem
         '
         Me.NetFlixToolStripMenuItem.Name = "NetFlixToolStripMenuItem"
-        Me.NetFlixToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
+        Me.NetFlixToolStripMenuItem.Size = New System.Drawing.Size(141, 26)
         Me.NetFlixToolStripMenuItem.Text = "NetFlix"
         '
         'YoutubeToolStripMenuItem1
         '
         Me.YoutubeToolStripMenuItem1.Name = "YoutubeToolStripMenuItem1"
-        Me.YoutubeToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
+        Me.YoutubeToolStripMenuItem1.Size = New System.Drawing.Size(141, 26)
         Me.YoutubeToolStripMenuItem1.Text = "Youtube"
-        '
-        'CalendarToolStripMenuItem
-        '
-        Me.CalendarToolStripMenuItem.Name = "CalendarToolStripMenuItem"
-        Me.CalendarToolStripMenuItem.Size = New System.Drawing.Size(86, 25)
-        Me.CalendarToolStripMenuItem.Text = "Calendar"
         '
         'cboTracker
         '
         Me.cboTracker.FormattingEnabled = True
-        Me.cboTracker.Items.AddRange(New Object() {"All", "Appointments", "Bills", "Birthdays", "Other"})
+        Me.cboTracker.Items.AddRange(New Object() {"All", "Appointments", "Bills", "Birthdays", "Other", "Starred"})
         Me.cboTracker.Location = New System.Drawing.Point(20, 135)
         Me.cboTracker.Name = "cboTracker"
         Me.cboTracker.Size = New System.Drawing.Size(149, 33)
@@ -323,7 +323,7 @@ Partial Class FrmMain
         '
         Me.cboContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboContact.FormattingEnabled = True
-        Me.cboContact.Items.AddRange(New Object() {"All", "Acquaintance", "Business", "Family", "Friend", "Other"})
+        Me.cboContact.Items.AddRange(New Object() {"All", "Acquaintance", "Business", "Family", "Friend", "Other", "Starred"})
         Me.cboContact.Location = New System.Drawing.Point(974, 135)
         Me.cboContact.Name = "cboContact"
         Me.cboContact.Size = New System.Drawing.Size(149, 33)

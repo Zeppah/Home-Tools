@@ -54,6 +54,8 @@ Module ModMyPIM
             .Columns.Add("Birthdate", System.Type.GetType("System.String"))
             .Columns.Add("Groups", System.Type.GetType("System.String"))
             .Columns.Add("Notes", System.Type.GetType("System.String"))
+            .Columns.Add("Starred", System.Type.GetType("System.Boolean"))
+
         End With
     End Sub
 
@@ -76,7 +78,7 @@ Module ModMyPIM
             .Columns.Add("Birthday", System.Type.GetType("System.Boolean"))
             .Columns.Add("Other", System.Type.GetType("System.Boolean"))
             .Columns.Add("SortDate", System.Type.GetType("System.DateTime"))
-
+            .Columns.Add("Starred", System.Type.GetType("System.Boolean"))
         End With
     End Sub
 

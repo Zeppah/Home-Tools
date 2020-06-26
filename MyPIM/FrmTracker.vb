@@ -39,6 +39,7 @@ Public Class FrmTracker
             newrow("Bill") = cbxBill.Checked
             newrow("Birthday") = cbxBirthday.Checked
             newrow("Other") = cbxOther.Checked
+            newrow("Starred") = cbxStarred.Checked
 
             ''Insert "SortDate" here
             If cbxBirthday.Checked Then
@@ -74,6 +75,7 @@ Public Class FrmTracker
             dtbTracker.Rows.Item(intTrackerEditRow).Item("Bill") = cbxBill.Checked
             dtbTracker.Rows.Item(intTrackerEditRow).Item("Birthday") = cbxBirthday.Checked
             dtbTracker.Rows.Item(intTrackerEditRow).Item("Other") = cbxOther.Checked
+            dtbTracker.Rows.Item(intTrackerEditRow).Item("Starred") = cbxStarred.Checked
 
             If cbxBirthday.Checked Then
 
@@ -109,7 +111,7 @@ Public Class FrmTracker
         cbxBill.Checked = False
         cbxBirthday.Checked = False
         cbxOther.Checked = False
-
+        cbxStarred.Checked = False
     End Sub
 
     Private Sub CkbBill_CheckChanged(sender As Object, e As EventArgs) Handles cbxBill.CheckedChanged

@@ -49,6 +49,7 @@ Partial Class FrmContacts
         Me.btnSaveContactRecord = New System.Windows.Forms.Button()
         Me.tbxCompany = New System.Windows.Forms.TextBox()
         Me.lblCompany = New System.Windows.Forms.Label()
+        Me.cbxStarred = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'btnExit
@@ -305,12 +306,26 @@ Partial Class FrmContacts
         Me.lblCompany.Text = "Company: "
         Me.lblCompany.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'cbxStarred
+        '
+        Me.cbxStarred.BackColor = System.Drawing.Color.OldLace
+        Me.cbxStarred.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.cbxStarred.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbxStarred.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbxStarred.Location = New System.Drawing.Point(260, 436)
+        Me.cbxStarred.Name = "cbxStarred"
+        Me.cbxStarred.Size = New System.Drawing.Size(108, 38)
+        Me.cbxStarred.TabIndex = 17
+        Me.cbxStarred.Text = "Starred"
+        Me.cbxStarred.UseVisualStyleBackColor = False
+        '
         'FrmContacts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
         Me.ClientSize = New System.Drawing.Size(734, 544)
+        Me.Controls.Add(Me.cbxStarred)
         Me.Controls.Add(Me.tbxCompany)
         Me.Controls.Add(Me.lblCompany)
         Me.Controls.Add(Me.btnSaveContactRecord)
@@ -375,4 +390,5 @@ Partial Class FrmContacts
     Friend WithEvents btnSaveContactRecord As Button
     Friend WithEvents tbxCompany As TextBox
     Friend WithEvents lblCompany As Label
+    Friend WithEvents cbxStarred As CheckBox
 End Class

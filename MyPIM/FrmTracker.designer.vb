@@ -38,6 +38,7 @@ Partial Class FrmTracker
         Me.cbxAppointment = New System.Windows.Forms.CheckBox()
         Me.lblAmount = New System.Windows.Forms.Label()
         Me.tbxAmount = New System.Windows.Forms.TextBox()
+        Me.cbxStarred = New System.Windows.Forms.CheckBox()
         Me.gbxCategories.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -125,13 +126,14 @@ Partial Class FrmTracker
         'gbxCategories
         '
         Me.gbxCategories.BackColor = System.Drawing.Color.Cyan
+        Me.gbxCategories.Controls.Add(Me.cbxStarred)
         Me.gbxCategories.Controls.Add(Me.cbxOther)
         Me.gbxCategories.Controls.Add(Me.cbxBirthday)
         Me.gbxCategories.Controls.Add(Me.cbxBill)
         Me.gbxCategories.Controls.Add(Me.cbxAppointment)
         Me.gbxCategories.Location = New System.Drawing.Point(323, 52)
         Me.gbxCategories.Name = "gbxCategories"
-        Me.gbxCategories.Size = New System.Drawing.Size(157, 143)
+        Me.gbxCategories.Size = New System.Drawing.Size(157, 169)
         Me.gbxCategories.TabIndex = 3
         Me.gbxCategories.TabStop = False
         '
@@ -195,6 +197,16 @@ Partial Class FrmTracker
         Me.tbxAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.tbxAmount.Visible = False
         '
+        'cbxStarred
+        '
+        Me.cbxStarred.AutoSize = True
+        Me.cbxStarred.Location = New System.Drawing.Point(21, 132)
+        Me.cbxStarred.Name = "cbxStarred"
+        Me.cbxStarred.Size = New System.Drawing.Size(81, 24)
+        Me.cbxStarred.TabIndex = 4
+        Me.cbxStarred.Text = "Starred"
+        Me.cbxStarred.UseVisualStyleBackColor = True
+        '
         'FrmTracker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -241,4 +253,5 @@ Partial Class FrmTracker
     Friend WithEvents cbxAppointment As CheckBox
     Friend WithEvents lblAmount As Label
     Friend WithEvents tbxAmount As TextBox
+    Friend WithEvents cbxStarred As CheckBox
 End Class

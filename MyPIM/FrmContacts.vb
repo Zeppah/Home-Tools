@@ -34,6 +34,8 @@
             Dim s = tbxNotes.Text.Replace(vbNewLine, "_\n") 'strip Newlines to be able to save .tsv
 
             newrow("Notes") = s
+            newrow("Starred") = cbxStarred.Checked
+
             dtbContacts.Rows.Add(newrow)
 
             'Save the DataTable
@@ -55,6 +57,7 @@
             tbxEmail.Text = ""
             mtbBirthdate.Text = ""
             tbxNotes.Text = ""
+            cbxStarred.Checked = False
 
             tbxFirstName.Focus()
         ElseIf btnSaveContactRecord.Text = "Save" Then
@@ -73,8 +76,9 @@
             dtbContacts.Rows.Item(intContactEditRow).Item("Groups") = cbxGroups.Text
 
             Dim s = tbxNotes.Text.Replace(vbNewLine, "_\n") 'strip Newlines to be able to save .tsv
-
             dtbContacts.Rows.Item(intContactEditRow).Item("Notes") = s
+
+            dtbContacts.Rows.Item(intContactEditRow).Item("Starred") = cbxStarred.Checked
 
             'Save the DataTable
             DataTable2CSV(dtbContacts, strDataPath & "\" & strContactsFile)
