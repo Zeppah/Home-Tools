@@ -35,7 +35,11 @@
 
             newrow("Notes") = s
             newrow("Starred") = cbxStarred.Checked
-
+            If tbxFirstName.Text = "" And tbxMiddleName.Text = "" And tbxLastName.Text = "" Then
+                newrow("SortName") = tbxCompany.Text
+            Else
+                newrow("SortName") = tbxFirstName.Text & " " & tbxMiddleName.Text & " " & tbxLastName.Text
+            End If
             dtbContacts.Rows.Add(newrow)
 
             'Save the DataTable
@@ -79,6 +83,12 @@
             dtbContacts.Rows.Item(intContactEditRow).Item("Notes") = s
 
             dtbContacts.Rows.Item(intContactEditRow).Item("Starred") = cbxStarred.Checked
+
+            If tbxFirstName.Text = "" And tbxMiddleName.Text = "" And tbxLastName.Text = "" Then
+                dtbContacts.Rows.Item(intContactEditRow).Item("SortName") = tbxCompany.Text
+            Else
+                dtbContacts.Rows.Item(intContactEditRow).Item("SortName") = tbxFirstName.Text & " " & tbxMiddleName.Text & " " & tbxLastName.Text
+            End If
 
             'Save the DataTable
             DataTable2CSV(dtbContacts, strDataPath & "\" & strContactsFile)

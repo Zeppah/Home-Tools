@@ -941,11 +941,11 @@ Public Class FrmMain
     Private Sub BtnContactSort_Click(sender As Object, e As EventArgs) Handles btnContactSort.Click
 
         If strContactSortOrder = "A" Then
-            dtbContacts.DefaultView.Sort = "Company ASC, First Name ASC"
+            dtbContacts.DefaultView.Sort = "SortName ASC"
             dtbContacts = dtbContacts.DefaultView.ToTable
             strContactSortOrder = "D"
         Else
-            dtbContacts.DefaultView.Sort = "Company DESC, First Name DESC"
+            dtbContacts.DefaultView.Sort = "SortName DESC"
             dtbContacts = dtbContacts.DefaultView.ToTable
             strContactSortOrder = "A"
         End If
@@ -959,10 +959,10 @@ Public Class FrmMain
     Public Sub ContactsSort() 'To sort the file after an edit or add
 
         If strContactSortOrder = "D" Then
-            dtbContacts.DefaultView.Sort = "Company ASC, First Name ASC"
+            dtbContacts.DefaultView.Sort = "SortName ASC"
             dtbContacts = dtbContacts.DefaultView.ToTable
         Else
-            dtbContacts.DefaultView.Sort = "Company DESC, First Name DESC"
+            dtbContacts.DefaultView.Sort = "SortName DESC"
             dtbContacts = dtbContacts.DefaultView.ToTable
         End If
 

@@ -55,6 +55,7 @@ Module ModMyPIM
             .Columns.Add("Groups", System.Type.GetType("System.String"))
             .Columns.Add("Notes", System.Type.GetType("System.String"))
             .Columns.Add("Starred", System.Type.GetType("System.Boolean"))
+            .Columns.Add("SortName", System.Type.GetType("System.String"))
 
         End With
     End Sub
