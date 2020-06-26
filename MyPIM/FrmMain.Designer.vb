@@ -372,7 +372,7 @@ Partial Class txbRun
         Me.lblTrackers.Name = "lblTrackers"
         Me.lblTrackers.Size = New System.Drawing.Size(264, 33)
         Me.lblTrackers.TabIndex = 24
-        Me.lblTrackers.Text = "Trackers"
+        Me.lblTrackers.Text = "Events"
         Me.lblTrackers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnAddMemo
