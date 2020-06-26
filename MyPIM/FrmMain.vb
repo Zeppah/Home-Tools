@@ -64,20 +64,20 @@ Public Class FrmMain
                 Case 1 'Today
                     timeperiod = 0
                     EndDate = Today.AddDays(timeperiod)
-                    result = DateTime.Compare(CDate(row("Date")), EndDate)
+                    result = DateTime.Compare(CDate(row("SortDate")), EndDate)
                 Case 2 '7 Days
                     timeperiod = 7
                     EndDate = Today.AddDays(timeperiod)
                     EndDate = Today.AddDays(timeperiod)
-                    result = DateTime.Compare(CDate(row("Date")), EndDate)
+                    result = DateTime.Compare(CDate(row("SortDate")), EndDate)
                 Case 3 '30 days
                     timeperiod = 30
                     EndDate = Today.AddDays(timeperiod)
-                    result = DateTime.Compare(CDate(row("Date")), EndDate)
+                    result = DateTime.Compare(CDate(row("SortDate")), EndDate)
                 Case 4 '365 days
                     timeperiod = 365
                     EndDate = Today.AddDays(timeperiod)
-                    result = DateTime.Compare(CDate(row("Date")), EndDate)
+                    result = DateTime.Compare(CDate(row("SortDate")), EndDate)
             End Select
 
             If result <= 0 Then
