@@ -21,6 +21,7 @@ Module ModMyPIM
     Friend strDelimiter As String = ControlChars.Tab            'Delimiter for Tab Separated Files
     Friend strContactsFile As String = "Contacts.tsv"           'The Contacts record file
     Friend strMemosFile As String = "Memos.tsv"                 'The Memos file
+    Friend strRunProgramName As String                          'The Program name to run
     Friend strSettingsFile As String = "Settings.tsv"           'The Settings file
     Friend strContactSortOrder As String = "A"                  'Tracker datatable sort order 'dtbTracker'
     Friend strTrackerSortOrder As String = "A"                  'Tracker datatable sort order 'dtbTracker'
@@ -175,7 +176,7 @@ Module ModMyPIM
                 intContactRecordIndexNumber = CInt(SplitLine(1))    ' Contact Record Counter
                 strTrackerSortOrder = SplitLine(2)                  ' Tracker display sort order
                 strContactSortOrder = SplitLine(3)                  ' Contact display sort order
-                FrmMain.cboTrackerTime.SelectedIndex = CInt(SplitLine(4))   ' Tracker display range
+                txbRun.cboTrackerTime.SelectedIndex = CInt(SplitLine(4))   ' Tracker display range
             Loop
             'Close the StreamReader
             objReader.Close()
@@ -186,7 +187,7 @@ Module ModMyPIM
     Public Sub SaveSettings()
         File.WriteAllText(strDataPath & "\" & strSettingsFile, CStr(intTrackerRecordIndexNumber) _
             & strDelimiter & CStr(intContactRecordIndexNumber) & strDelimiter & strTrackerSortOrder _
-            & strDelimiter & strContactSortOrder & strDelimiter & FrmMain.cboTrackerTime.SelectedIndex)
+            & strDelimiter & strContactSortOrder & strDelimiter & txbRun.cboTrackerTime.SelectedIndex)
     End Sub
 
 #End Region

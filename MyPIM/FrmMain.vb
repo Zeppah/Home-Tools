@@ -14,7 +14,7 @@ Imports System.Text
 ''' </HEADER>
 ''' 
 
-Public Class FrmMain
+Public Class txbRun
 
 #Region "*** Start ***"
 
@@ -35,7 +35,6 @@ Public Class FrmMain
         CSV2DataTable(dtbContacts, strDataPath & "\" & strContactsFile)
         DefineMemosDataTable()
         CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
-
         DisplayTrackers()
         DisplayContacts()
         FillMemoListBox()
@@ -1022,54 +1021,6 @@ Public Class FrmMain
 
 #End Region
 
-#Region "*** Calendar Events ***"
-    Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateSelected
-
-        'Show the Event Picker if a date is selected
-        cbxEventPicker.Visible = True
-        cbxEventPicker.DroppedDown = True
-        cbxEventPicker.SelectedIndex = 0
-        lblSelectTrackerEvent.Show()
-
-    End Sub
-
-    Private Sub CbxEventPicker_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cbxEventPicker.SelectionChangeCommitted
-
-        'Set the defaults for the Tracker Screen
-        FrmTracker.dtpDate.Value = MonthCalendar1.SelectionRange.Start.Date
-
-        Select Case cbxEventPicker.SelectedIndex
-            Case 0
-                FrmTracker.cbxAppointment.Checked = True
-            Case 1
-                FrmTracker.cbxBill.Checked = True
-            Case 2
-                FrmTracker.cbxBirthday.Checked = True
-            Case 3
-                FrmTracker.cbxOther.Checked = True
-            Case Else
-
-        End Select
-
-        cbxEventPicker.Visible = False
-        cbxEventPicker.DroppedDown = False
-        lblSelectTrackerEvent.Hide()
-
-        Me.Enabled = False
-        FrmTracker.Show()
-
-    End Sub
-
-    Private Sub CbxEventPicker_DropDownClosed(sender As Object, e As EventArgs) Handles cbxEventPicker.DropDownClosed
-
-        'Hide the EventPicker and label if focus is lost
-        cbxEventPicker.Visible = False
-        lblSelectTrackerEvent.Hide()
-
-    End Sub
-
-#End Region
-
 #Region "***** Browser Section *****"
 
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
@@ -1086,17 +1037,10 @@ Public Class FrmMain
         Process.Start("https://Mail.google.com")
     End Sub
 
-    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
-        System.Diagnostics.Process.Start("Notepad++")
-    End Sub
-
-    Private Sub FileExplorerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FileExplorerToolStripMenuItem.Click
-        System.Diagnostics.Process.Start("explorer")
-    End Sub
-
     Private Sub CalculatorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculatorToolStripMenuItem.Click
         System.Diagnostics.Process.Start("calc")
     End Sub
+
 
     Private Sub YoutubeToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles YoutubeToolStripMenuItem1.Click
         Process.Start("https://youtube.com")
@@ -1131,7 +1075,6 @@ Public Class FrmMain
     Private Sub MusicToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem1.Click
         Process.Start("https://www.jango.com/")
     End Sub
-
 
 #End Region
 

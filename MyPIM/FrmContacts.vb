@@ -93,21 +93,21 @@
             'Save the DataTable
             DataTable2CSV(dtbContacts, strDataPath & "\" & strContactsFile)
 
-            FrmMain.Enabled = True
-            FrmMain.ContactsSort()
+            txbRun.Enabled = True
+            txbRun.ContactsSort()
             Me.Close()
 
         End If
     End Sub
 
     Private Sub FrmContacts_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        FrmMain.Enabled = True
-        FrmMain.ContactsSort()
+        txbRun.Enabled = True
+        txbRun.ContactsSort()
     End Sub
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
-        FrmMain.Enabled = True
-        FrmMain.ContactsSort()
+        txbRun.Enabled = True
+        txbRun.ContactsSort()
         Me.Close()
     End Sub
 
