@@ -78,7 +78,6 @@ Public Class FrmMain
                     EndDate = Today.AddDays(timeperiod)
                     result = DateTime.Compare(CDate(row("SortDate")), EndDate)
             End Select
-
             If result <= 0 Then
 
                 TrackerPanelsAddedCount += 1
@@ -249,7 +248,7 @@ Public Class FrmMain
             End If
         Next row
 
-        btnTrackerAdd.Focus() 'Take the focus off the listbox, keep it from being highlighted
+        lblTrackers.Focus() 'Take the focus off the listbox, keep it from being highlighted
 
     End Sub
 
@@ -700,8 +699,7 @@ Public Class FrmMain
             End Select
         Next row
 
-        'DisplayContacts()
-        BtnAddContact.Focus() 'Take the focus off the listbox, keep it from being highlighted
+        lblContacts.Focus() 'Take the focus off the listbox, keep it from being highlighted
 
     End Sub
 
@@ -976,20 +974,33 @@ Public Class FrmMain
     Sub FillMemoListBox()
 
         For Each row As DataRow In dtbMemos.Rows
-
+            Dim x As String = ""
             cboMemos.Items.Add(row("Header"))
-
+            cboMemos.Items.Add(x)
         Next
 
     End Sub
 
     Private Sub CboMemos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboMemos.SelectedIndexChanged
-        FrmMemos.tbxHeading.Text = dtbMemos.Rows.Item(cboMemos.SelectedIndex).Item("Header").ToString
-        FrmMemos.tbxMemo.Text = dtbMemos.Rows.Item(cboMemos.SelectedIndex).Item("Memo").ToString
+
+        'Check to see if the index is an odd row which is a blank row
+        If cboMemos.SelectedIndex Mod 2 <> 0 Then
+            cboMemos.SelectedIndex = -1
+            Return
+        End If
+
+        'Define the datatable row based on the selected index
+        Dim dtbRow As Integer = cboMemos.SelectedIndex
+        If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
+
+        'copy the datatable information to the textbox fields replacing the _\n with a newline
+        FrmMemos.tbxHeading.Text = dtbMemos.Rows.Item(dtbRow).Item("Header").ToString
+        FrmMemos.tbxMemo.Text = dtbMemos.Rows.Item(dtbRow).Item("Memo").ToString
         FrmMemos.tbxMemo.Text = FrmMemos.tbxMemo.Text.Replace("_\n", vbNewLine)
         FrmMemos.btnAddMemoRecord.Text = "Save"
         Me.Enabled = False
         FrmMemos.btnDeleteMemo.Visible = True
+        cboMemos.SelectedIndex = -1 'Turn off the selected line highlight
         FrmMemos.Show()
     End Sub
 #End Region
