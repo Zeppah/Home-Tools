@@ -55,6 +55,7 @@ Public Class FrmMain
         Dim result As Integer
 
         For Each row In dtbTracker.Rows
+            TrackerPanelsAddedCount += 1 ' This needs to count the rows to name the buttons to corraspond to the datarecord
 
             'Set the time period to display tracker panels
             Select Case cboTrackerTime.SelectedIndex
@@ -66,7 +67,6 @@ Public Class FrmMain
                     result = DateTime.Compare(CDate(row("SortDate")), EndDate)
                 Case 2 '7 Days
                     timeperiod = 7
-                    EndDate = Today.AddDays(timeperiod)
                     EndDate = Today.AddDays(timeperiod)
                     result = DateTime.Compare(CDate(row("SortDate")), EndDate)
                 Case 3 '30 days
@@ -80,7 +80,6 @@ Public Class FrmMain
             End Select
             If result <= 0 Then
 
-                TrackerPanelsAddedCount += 1
                 Select Case cboTracker.SelectedIndex
                     Case 0 'All Selected
                         CreateTrackerPanel()
@@ -108,7 +107,7 @@ Public Class FrmMain
                             CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
                         ElseIf row("Other").ToString = "True" Then
                             CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                        CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
                         End If
 
                         If row("Appointment").ToString = "True" Then
