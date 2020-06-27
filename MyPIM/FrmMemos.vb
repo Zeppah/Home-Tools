@@ -10,6 +10,7 @@ Public Class FrmMemos
             Return
         End If
 
+        'The ADD section
         If btnAddMemoRecord.Text = "Add" Then
             'Add the new record to the dtbMemos DataTable
             Dim newrow As DataRow = dtbMemos.NewRow
@@ -21,7 +22,7 @@ Public Class FrmMemos
             tbxHeading.Focus()
             tbxHeading.Text = ""
             tbxMemo.Text = ""
-        Else
+        Else 'The EDIT section
             btnAddMemoRecord.Text = "Add"
             'Define the datatable row based on the selected index
             Dim dtbRow As Integer = FrmMain.cboMemos.SelectedIndex
@@ -54,7 +55,7 @@ Public Class FrmMemos
         CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
         FrmMain.cboMemos.Items.Clear()
         FrmMain.FillMemoListBox()
-
+        Me.Close()
     End Sub
 
     Private Sub BtnDeleteMemo_Click(sender As Object, e As EventArgs) Handles btnDeleteMemo.Click

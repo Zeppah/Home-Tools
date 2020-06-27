@@ -24,6 +24,7 @@ Public Class FrmTracker
             Return
         End If
 
+        'ADD section
         If btnAddTrackerRecord.Text = "Add" Then
             intTrackerRecordIndexNumber += 1 'increment the id number for new record
 
@@ -64,7 +65,8 @@ Public Class FrmTracker
             DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
             'Save the settings, index number has been changed
             SaveSettings()
-
+            Me.Close()
+            'EDIT Section
         ElseIf btnAddTrackerRecord.Text = "Save" Then
 
             dtbTracker.Rows.Item(intTrackerEditRow).Item("Description") = tbxDescription.Text

@@ -9,6 +9,8 @@
             Dim unused1 = tbxFirstName.Focus()
             Return
         End If
+
+        'ADD section
         If btnSaveContactRecord.Text = "Add" Then
 
             intContactRecordIndexNumber += 1 'increment the id number for new record
@@ -62,8 +64,10 @@
             mtbBirthdate.Text = ""
             tbxNotes.Text = ""
             cbxStarred.Checked = False
-
             tbxFirstName.Focus()
+            Me.Close()
+
+            'EDIT section
         ElseIf btnSaveContactRecord.Text = "Save" Then
             dtbContacts.Rows.Item(intContactEditRow).Item("First Name") = tbxFirstName.Text
             dtbContacts.Rows.Item(intContactEditRow).Item("Middle Name") = tbxMiddleName.Text
