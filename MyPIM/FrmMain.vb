@@ -985,7 +985,7 @@ Public Class FrmMain
 
         'Check to see if the index is an odd row which is a blank row
         If cboMemos.SelectedIndex Mod 2 <> 0 Then
-            cboMemos.SelectedIndex = -1
+            lblMemos.Focus()
             Return
         End If
 
@@ -1000,7 +1000,7 @@ Public Class FrmMain
         FrmMemos.btnAddMemoRecord.Text = "Save"
         Me.Enabled = False
         FrmMemos.btnDeleteMemo.Visible = True
-        cboMemos.SelectedIndex = -1 'Turn off the selected line highlight
+        lblMemos.Focus() 'Turn off the selected line highlight
         FrmMemos.Show()
     End Sub
 #End Region

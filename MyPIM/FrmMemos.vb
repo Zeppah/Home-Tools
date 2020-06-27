@@ -18,20 +18,28 @@ Public Class FrmMemos
             newrow("Memo") = s
 
             dtbMemos.Rows.Add(newrow)
-
+            tbxHeading.Focus()
             tbxHeading.Text = ""
             tbxMemo.Text = ""
         Else
             btnAddMemoRecord.Text = "Add"
-            dtbMemos.Rows.Item(FrmMain.cboMemos.SelectedIndex).Item("Header") = tbxHeading.Text
+            'Define the datatable row based on the selected index
+            Dim dtbRow As Integer = FrmMain.cboMemos.SelectedIndex
+            If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
+
+
+            dtbMemos.Rows.Item(dtbRow).Item("Header") = tbxHeading.Text
             Dim s = tbxMemo.Text.Replace(vbNewLine, "_\n")
-            dtbMemos.Rows.Item(FrmMain.cboMemos.SelectedIndex).Item("Memo") = s
+            dtbMemos.Rows.Item(dtbRow).Item("Memo") = s
             DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
             dtbMemos.Clear()
             CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
             FrmMain.cboMemos.Items.Clear()
             FrmMain.FillMemoListBox()
             btnDeleteMemo.Visible = False
+
+            FrmMain.cboMemos.Text = ""
+            FrmMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
             Me.Close()
         End If
 
@@ -50,7 +58,11 @@ Public Class FrmMemos
     End Sub
 
     Private Sub BtnDeleteMemo_Click(sender As Object, e As EventArgs) Handles btnDeleteMemo.Click
-        dtbMemos.Rows.Remove(dtbMemos.Rows(FrmMain.cboMemos.SelectedIndex))
+        'Define the datatable row based on the selected index
+        Dim dtbRow As Integer = FrmMain.cboMemos.SelectedIndex
+        If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
+
+        dtbMemos.Rows.Remove(dtbMemos.Rows(dtbRow))
         DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
         dtbMemos.Clear()
         CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
@@ -58,16 +70,22 @@ Public Class FrmMemos
         FrmMain.FillMemoListBox()
         FrmMain.cboMemos.Text = ""
         btnDeleteMemo.Visible = False
+
+        FrmMain.cboMemos.Text = ""
+        FrmMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
+
         Me.Close()
 
     End Sub
 
     Private Sub FrmMemos_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         FrmMain.Enabled = True
+        FrmMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
     End Sub
 
     Private Sub BtnMemoExit_Click(sender As Object, e As EventArgs) Handles btnMemoExit.Click
         FrmMain.Enabled = True
+        FrmMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
         Me.Close()
     End Sub
 
