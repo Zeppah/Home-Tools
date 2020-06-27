@@ -57,6 +57,7 @@ Partial Class FrmMain
         Me.lblTrackers = New System.Windows.Forms.Label()
         Me.btnAddMemo = New System.Windows.Forms.Button()
         Me.cboMemos = New System.Windows.Forms.ComboBox()
+        Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mmMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -131,7 +132,7 @@ Partial Class FrmMain
         '
         'EntertainmentToolStripMenuItem1
         '
-        Me.EntertainmentToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NetflixToolStripMenuItem1, Me.YouTubeToolStripMenuItem})
+        Me.EntertainmentToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MusicToolStripMenuItem, Me.NetflixToolStripMenuItem1, Me.YouTubeToolStripMenuItem})
         Me.EntertainmentToolStripMenuItem1.Name = "EntertainmentToolStripMenuItem1"
         Me.EntertainmentToolStripMenuItem1.Size = New System.Drawing.Size(207, 30)
         Me.EntertainmentToolStripMenuItem1.Text = "Entertainment"
@@ -139,13 +140,13 @@ Partial Class FrmMain
         'NetflixToolStripMenuItem1
         '
         Me.NetflixToolStripMenuItem1.Name = "NetflixToolStripMenuItem1"
-        Me.NetflixToolStripMenuItem1.Size = New System.Drawing.Size(157, 30)
+        Me.NetflixToolStripMenuItem1.Size = New System.Drawing.Size(180, 30)
         Me.NetflixToolStripMenuItem1.Text = "Netflix"
         '
         'YouTubeToolStripMenuItem
         '
         Me.YouTubeToolStripMenuItem.Name = "YouTubeToolStripMenuItem"
-        Me.YouTubeToolStripMenuItem.Size = New System.Drawing.Size(157, 30)
+        Me.YouTubeToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
         Me.YouTubeToolStripMenuItem.Text = "YouTube"
         '
         'MailToolStripMenuItem1
@@ -351,6 +352,12 @@ Partial Class FrmMain
         Me.cboMemos.Size = New System.Drawing.Size(341, 635)
         Me.cboMemos.TabIndex = 27
         '
+        'MusicToolStripMenuItem
+        '
+        Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
+        Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
+        Me.MusicToolStripMenuItem.Text = "Music"
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 25.0!)
@@ -424,4 +431,5 @@ Partial Class FrmMain
     Friend WithEvents YouTubeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MailToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents CalculatorToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
 End Class

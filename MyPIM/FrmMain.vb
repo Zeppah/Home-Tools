@@ -1049,9 +1049,9 @@ Public Class FrmMain
         FrmMemos.Show()
     End Sub
 
-    Private Sub MusicToolStripMenuItem1_Click(sender As Object, e As EventArgs)
-        Process.Start("https://www.jango.com/")
-    End Sub
+    'Private Sub MusicToolStripMenuItem1_Click(sender As Object, e As EventArgs)
+    '    Process.Start("https://www.jango.com/")
+    'End Sub
 
     Private Sub CalendarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CalendarToolStripMenuItem1.Click
         Process.Start("https://Calendar.google.com")
@@ -1087,6 +1087,10 @@ Public Class FrmMain
 
     Private Sub CalculatorToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CalculatorToolStripMenuItem1.Click
         System.Diagnostics.Process.Start("calc")
+    End Sub
+
+    Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem.Click
+        Process.Start("https://www.jango.com/")
     End Sub
 
 #End Region
