@@ -74,6 +74,7 @@ Public Class FrmMemos
 
         FrmMain.cboMemos.Text = ""
         FrmMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
+        FrmMain.lblMemos.Focus()
 
         Me.Close()
 
@@ -82,11 +83,13 @@ Public Class FrmMemos
     Private Sub FrmMemos_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         FrmMain.Enabled = True
         FrmMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
+        FrmMain.lblMemos.Focus()
     End Sub
 
     Private Sub BtnMemoExit_Click(sender As Object, e As EventArgs) Handles btnMemoExit.Click
         FrmMain.Enabled = True
         FrmMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
+        FrmMain.lblMemos.Focus()
         Me.Close()
     End Sub
 

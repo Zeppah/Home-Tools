@@ -65,6 +65,7 @@ Public Class FrmTracker
             DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
             'Save the settings, index number has been changed
             SaveSettings()
+            FrmMain.TrackerSort()
             Me.Close()
             'EDIT Section
         ElseIf btnAddTrackerRecord.Text = "Save" Then
@@ -98,6 +99,7 @@ Public Class FrmTracker
 
             btnAddTrackerRecord.Text = "Add"
             FrmMain.Enabled = True
+            FrmMain.TrackerSort()
 
             Me.Close()
 
@@ -172,7 +174,7 @@ Public Class FrmTracker
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
 
         FrmMain.Enabled = True
-        FrmMain.TrackerSort()
+        FrmMain.lblTrackers.Focus()
         Me.Close()
 
     End Sub
@@ -180,7 +182,7 @@ Public Class FrmTracker
     Private Sub FrmTracker_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
 
         FrmMain.Enabled = True
-        FrmMain.TrackerSort()
+        FrmMain.lblTrackers.Focus()
 
     End Sub
 

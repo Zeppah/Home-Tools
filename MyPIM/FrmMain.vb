@@ -103,9 +103,13 @@ Public Class FrmMain
 
                             CreateTrackerDateLabel(CurrentTrackerPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
                             CreateTrackerTimeLabel(CurrentTrackerPanelName, Age.ToString)
-
+                        ElseIf row("Appointment").ToString = "True" Then
+                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                        ElseIf row("Other").ToString = "True" Then
+                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                        CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
                         End If
-
 
                         If row("Appointment").ToString = "True" Then
                             Dim g As New Panel

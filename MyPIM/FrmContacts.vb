@@ -64,7 +64,10 @@
             mtbBirthdate.Text = ""
             tbxNotes.Text = ""
             cbxStarred.Checked = False
-            tbxFirstName.Focus()
+            'tbxFirstName.Focus()
+
+            FrmMain.ContactsSort()
+
             Me.Close()
 
             'EDIT section
@@ -106,12 +109,16 @@
 
     Private Sub FrmContacts_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         FrmMain.Enabled = True
-        FrmMain.ContactsSort()
+        FrmMain.lblContacts.Focus()
+
+        ' FrmMain.ContactsSort()
     End Sub
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         FrmMain.Enabled = True
-        FrmMain.ContactsSort()
+        FrmMain.lblContacts.Focus()
+
+        ' FrmMain.ContactsSort()
         Me.Close()
     End Sub
 
