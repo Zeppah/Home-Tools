@@ -223,9 +223,13 @@ Public Class FrmMain
 
                                 CreateTrackerDateLabel(CurrentTrackerPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
                                 CreateTrackerTimeLabel(CurrentTrackerPanelName, Age.ToString)
-
+                            ElseIf row("Appointment").ToString = "True" Then
+                                CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                            ElseIf row("Other").ToString = "True" Then
+                                CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
                             End If
-
 
                             If row("Appointment").ToString = "True" Then
                                 Dim g As New Panel
@@ -1048,10 +1052,6 @@ Public Class FrmMain
         Enabled = False
         FrmMemos.Show()
     End Sub
-
-    'Private Sub MusicToolStripMenuItem1_Click(sender As Object, e As EventArgs)
-    '    Process.Start("https://www.jango.com/")
-    'End Sub
 
     Private Sub CalendarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CalendarToolStripMenuItem1.Click
         Process.Start("https://Calendar.google.com")

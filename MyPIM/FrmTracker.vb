@@ -67,6 +67,7 @@ Public Class FrmTracker
             SaveSettings()
             FrmMain.TrackerSort()
             Me.Close()
+
             'EDIT Section
         ElseIf btnAddTrackerRecord.Text = "Save" Then
 
@@ -99,6 +100,9 @@ Public Class FrmTracker
 
             btnAddTrackerRecord.Text = "Add"
             FrmMain.Enabled = True
+            'Save the DataTable
+            DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
+
             FrmMain.TrackerSort()
 
             Me.Close()
