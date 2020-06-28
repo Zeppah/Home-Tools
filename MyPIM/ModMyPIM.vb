@@ -33,44 +33,44 @@ Module ModMyPIM
 
     Friend Sub AddContactsDataTableColumns()
         With ContactsDataTable
-            .Columns.Add("First Name", System.Type.GetType("System.String"))
-            .Columns.Add("Middle Name", System.Type.GetType("System.String"))
-            .Columns.Add("Last Name", System.Type.GetType("System.String"))
-            .Columns.Add("Company", System.Type.GetType("System.String"))
-            .Columns.Add("Address1", System.Type.GetType("System.String"))
-            .Columns.Add("Address2", System.Type.GetType("System.String"))
-            .Columns.Add("City", System.Type.GetType("System.String"))
-            .Columns.Add("State", System.Type.GetType("System.String"))
-            .Columns.Add("Zipcode", System.Type.GetType("System.String"))
-            .Columns.Add("Phone", System.Type.GetType("System.String"))
-            .Columns.Add("Email", System.Type.GetType("System.String"))
-            .Columns.Add("Birthdate", System.Type.GetType("System.String"))
-            .Columns.Add("Groups", System.Type.GetType("System.String"))
-            .Columns.Add("Notes", System.Type.GetType("System.String"))
-            .Columns.Add("Starred", System.Type.GetType("System.Boolean"))
-            .Columns.Add("SortName", System.Type.GetType("System.String"))
+            Dim unused = .Columns.Add("First Name", Type.GetType("System.String"))
+            Dim unused1 = .Columns.Add("Middle Name", Type.GetType("System.String"))
+            Dim unused2 = .Columns.Add("Last Name", Type.GetType("System.String"))
+            Dim unused3 = .Columns.Add("Company", Type.GetType("System.String"))
+            Dim unused4 = .Columns.Add("Address1", Type.GetType("System.String"))
+            Dim unused5 = .Columns.Add("Address2", Type.GetType("System.String"))
+            Dim unused6 = .Columns.Add("City", Type.GetType("System.String"))
+            Dim unused7 = .Columns.Add("State", Type.GetType("System.String"))
+            Dim unused8 = .Columns.Add("Zipcode", Type.GetType("System.String"))
+            Dim unused9 = .Columns.Add("Phone", Type.GetType("System.String"))
+            Dim unused10 = .Columns.Add("Email", Type.GetType("System.String"))
+            Dim unused11 = .Columns.Add("Birthdate", Type.GetType("System.String"))
+            Dim unused12 = .Columns.Add("Groups", Type.GetType("System.String"))
+            Dim unused13 = .Columns.Add("Notes", Type.GetType("System.String"))
+            Dim unused14 = .Columns.Add("Starred", Type.GetType("System.Boolean"))
+            Dim unused15 = .Columns.Add("SortName", Type.GetType("System.String"))
         End With
     End Sub
 
     Public Sub AddMemosDataTableColumns()
         With MemosDataTable
-            .Columns.Add("Title", System.Type.GetType("System.String"))
-            .Columns.Add("Memo", System.Type.GetType("System.String"))
+            Dim unused = .Columns.Add("Title", Type.GetType("System.String"))
+            Dim unused1 = .Columns.Add("Memo", Type.GetType("System.String"))
         End With
     End Sub
 
     Public Sub AddEventsDataTableColumns()
         With EventsDataTable
-            .Columns.Add("Description", System.Type.GetType("System.String"))
-            .Columns.Add("Date", System.Type.GetType("System.DateTime"))
-            .Columns.Add("Amount", System.Type.GetType("System.Double"))
-            .Columns.Add("Time", System.Type.GetType("System.Boolean"))
-            .Columns.Add("Appointment", System.Type.GetType("System.Boolean"))
-            .Columns.Add("Bill", System.Type.GetType("System.Boolean"))
-            .Columns.Add("Birthday", System.Type.GetType("System.Boolean"))
-            .Columns.Add("Other", System.Type.GetType("System.Boolean"))
-            .Columns.Add("SortDate", System.Type.GetType("System.DateTime"))
-            .Columns.Add("Starred", System.Type.GetType("System.Boolean"))
+            Dim unused = .Columns.Add("Description", Type.GetType("System.String"))
+            Dim unused1 = .Columns.Add("Date", Type.GetType("System.DateTime"))
+            Dim unused2 = .Columns.Add("Amount", Type.GetType("System.Double"))
+            Dim unused3 = .Columns.Add("Time", Type.GetType("System.Boolean"))
+            Dim unused4 = .Columns.Add("Appointment", Type.GetType("System.Boolean"))
+            Dim unused5 = .Columns.Add("Bill", Type.GetType("System.Boolean"))
+            Dim unused6 = .Columns.Add("Birthday", Type.GetType("System.Boolean"))
+            Dim unused7 = .Columns.Add("Other", Type.GetType("System.Boolean"))
+            Dim unused8 = .Columns.Add("SortDate", Type.GetType("System.DateTime"))
+            Dim unused9 = .Columns.Add("Starred", Type.GetType("System.Boolean"))
         End With
     End Sub
 
@@ -86,12 +86,12 @@ Module ModMyPIM
         Dim TextLine As String
         Dim SplitLine() As String
 
-        If System.IO.File.Exists(filename) = True Then
+        If File.Exists(filename) = True Then
             Dim fileReader As New StreamReader(filename, Text.Encoding.Default)
             Do While fileReader.Peek() <> -1
                 TextLine = fileReader.ReadLine()
                 SplitLine = Split(TextLine, Delimiter)
-                table.Rows.Add(SplitLine)
+                Dim unused = table.Rows.Add(SplitLine)
             Loop
             fileReader.Close()
         Else
@@ -120,7 +120,7 @@ Module ModMyPIM
 
                 'Build the row
                 For Each col As DataColumn In table.Columns
-                    builder.Append(sep).Append(row(col.ColumnName))
+                    Dim unused1 = builder.Append(sep).Append(row(col.ColumnName))
                     sep = Delimiter
                 Next
                 writer.WriteLine(builder.ToString())
@@ -138,7 +138,7 @@ Module ModMyPIM
         Dim SplitLine() As String
         If File.Exists(SettingsFileName) = True Then
             'Open the StreamReader
-            Dim objReader As New StreamReader(SettingsFileName, System.Text.Encoding.Default)
+            Dim objReader As New StreamReader(SettingsFileName, Text.Encoding.Default)
             Do While objReader.Peek() <> -1                      ' Peek to see if there is another line of data to process
                 Dim TextLine As String = objReader.ReadLine()    ' Read the next line of data
                 SplitLine = Split(TextLine, Delimiter)           ' Separate the line into the SplitLine array

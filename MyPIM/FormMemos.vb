@@ -1,5 +1,6 @@
 ﻿Public Class FormMemos
 
+    'Add and Edit
     Private Sub BtnAddMemo_Click(sender As Object, e As EventArgs) Handles BtnAddMemo.Click
 
         'Validate that a Title was entered
@@ -40,7 +41,7 @@
         ExitMemoForm()
     End Sub
 
-    '                                                            DELETE section
+    'Delete
     Private Sub BtnDeleteMemo_Click(sender As Object, e As EventArgs) Handles BtnDeleteMemo.Click
 
         MemosDataTable.Rows.Remove(MemosDataTable.Rows(FormMain.LstMemos.SelectedIndex))
@@ -49,12 +50,13 @@
         ExitMemoForm()
     End Sub
 
+    'Exit
     Private Sub ExitMemoForm() Handles BtnExitMemo.Click
         FormMain.LstMemos.Items.Clear()
         FormMain.FillMemoListBox()
         FormMain.Enabled = True
-        FormMain.lblMemos.Focus()
-        Me.Close()
+        Dim unused = FormMain.lblMemos.Focus()
+        Close()
     End Sub
 
 End Class
