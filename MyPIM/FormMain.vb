@@ -981,36 +981,28 @@ Public Class FormMain
     Sub FillMemoListBox()
 
         For Each row As DataRow In MemosDataTable.Rows
-            Dim x As String = ""
-            cboMemos.Items.Add(row("Title"))
-            cboMemos.Items.Add(x)
+            LstMemos.Items.Add(row("Title"))
         Next
 
     End Sub
 
-    Private Sub CboMemos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboMemos.SelectedIndexChanged
 
-        'Check to see if the index is an odd row which is a blank row
-        If cboMemos.SelectedIndex Mod 2 <> 0 Then
-            cboMemos.SelectedIndex = -1 'Cancel the selected index
-            Return
-        End If
+    Private Sub LstMemos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LstMemos.SelectedIndexChanged
 
-        'Define the datatable row based on the selected index
-        Dim dtbRow As Integer = cboMemos.SelectedIndex
-        If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
+        'The datatable row equals the selected index number
+        Dim dtbRow As Integer = LstMemos.SelectedIndex
 
-        'copy the datatable information to the textbox fields replacing the _\n with a newline
-        FormMemos.tbxHeading.Text = MemosDataTable.Rows.Item(dtbRow).Item("Title").ToString
-        FormMemos.tbxMemo.Text = MemosDataTable.Rows.Item(dtbRow).Item("Memo").ToString
-        FormMemos.tbxMemo.Text = FormMemos.tbxMemo.Text.Replace("_\n", vbNewLine)
-        FormMemos.btnAddMemoRecord.Text = "Save"
+        'copy the datatable information to the textbox fields converting the _\n to a newline
+        FormMemos.TxtTitle.Text = MemosDataTable.Rows.Item(dtbRow).Item("Title").ToString
+        FormMemos.TxtMemo.Text = MemosDataTable.Rows.Item(dtbRow).Item("Memo").ToString.Replace("_\n", vbNewLine)
+
+        FormMemos.BtnAddMemo.Text = "Save" 'This is to distinquish between Add and Edit modes. Add mode says 'Add'.
         Me.Enabled = False
-        FormMemos.btnDeleteMemo.Visible = True
-
-        lblMemos.Focus() 'Turn off the selected line highlight
+        FormMemos.BtnDeleteMemo.Visible = True
         FormMemos.Show()
+
     End Sub
+
 
 #End Region
 

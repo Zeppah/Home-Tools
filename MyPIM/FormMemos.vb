@@ -1,47 +1,32 @@
-﻿Imports System.IO
+﻿Public Class FormMemos
 
-Public Class FormMemos
+    Private Sub BtnAddMemo_Click(sender As Object, e As EventArgs) Handles BtnAddMemo.Click
 
-    Private Sub BtnAddMemoRecord_Click(sender As Object, e As EventArgs) Handles btnAddMemoRecord.Click
-        'Validate that a description was entered
-        If tbxHeading.Text = "" Then
-            Dim unused = MsgBox("No Header Entered", vbExclamation, "Input Error")
-            Dim unused1 = tbxHeading.Focus()
+        'Validate that a Title was entered
+        If TxtTitle.Text = "" Then
+            Dim unused = MsgBox("No title entered.", vbExclamation, "Input Error")
+            Dim unused1 = TxtTitle.Focus()
             Return
         End If
 
-        'The ADD section
-        If btnAddMemoRecord.Text = "Add" Then
-            'Add the new record to the dtbMemos DataTable
+        If BtnAddMemo.Text = "Add" Then                         'ADD Section
+
             Dim newrow As DataRow = MemosDataTable.NewRow
-            Dim s = tbxMemo.Text.Replace(vbNewLine, "_\n")
-            newrow("Title") = tbxHeading.Text
-            newrow("Memo") = s
+
+            newrow("Title") = TxtTitle.Text
+            newrow("Memo") = TxtMemo.Text.Replace(vbNewLine, "_\n")
 
             MemosDataTable.Rows.Add(newrow)
-            tbxHeading.Focus()
-            tbxHeading.Text = ""
-            tbxMemo.Text = ""
-        Else 'The EDIT section
-            btnAddMemoRecord.Text = "Add"
-            'Define the datatable row based on the selected index
-            Dim dtbRow As Integer = FormMain.cboMemos.SelectedIndex
-            If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
 
+        Else                                                    'EDIT section
 
-            MemosDataTable.Rows.Item(dtbRow).Item("Title") = tbxHeading.Text
-            Dim s = tbxMemo.Text.Replace(vbNewLine, "_\n")
+            'Assign the datatable row based on the selected index
+            Dim dtbRow As Integer = FormMain.LstMemos.SelectedIndex
+
+            MemosDataTable.Rows.Item(dtbRow).Item("Title") = TxtTitle.Text
+            Dim s = TxtMemo.Text.Replace(vbNewLine, "_\n")
             MemosDataTable.Rows.Item(dtbRow).Item("Memo") = s
-            DataTable2TSV(MemosDataTable, MemosFileName)
-            MemosDataTable.Clear()
-            TSV2DataTable(MemosDataTable, MemosFileName)
-            FormMain.cboMemos.Items.Clear()
-            FormMain.FillMemoListBox()
-            btnDeleteMemo.Visible = False
 
-            FormMain.cboMemos.Text = ""
-            FormMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
-            Me.Close()
         End If
 
         'Sort the data table before saving and displaying
@@ -51,44 +36,23 @@ Public Class FormMemos
         MemosDataTable = datav.ToTable()
 
         DataTable2TSV(MemosDataTable, MemosFileName)
-        MemosDataTable.Clear()
-        TSV2DataTable(MemosDataTable, MemosFileName)
-        FormMain.cboMemos.Items.Clear()
-        FormMain.FillMemoListBox()
-        Me.Close()
+
+        ExitMemoForm()
     End Sub
 
-    Private Sub BtnDeleteMemo_Click(sender As Object, e As EventArgs) Handles btnDeleteMemo.Click
-        'Define the datatable row based on the selected index
-        Dim dtbRow As Integer = FormMain.cboMemos.SelectedIndex
-        If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
+    '                                                            DELETE section
+    Private Sub BtnDeleteMemo_Click(sender As Object, e As EventArgs) Handles BtnDeleteMemo.Click
 
-        MemosDataTable.Rows.Remove(MemosDataTable.Rows(dtbRow))
+        MemosDataTable.Rows.Remove(MemosDataTable.Rows(FormMain.LstMemos.SelectedIndex))
         DataTable2TSV(MemosDataTable, MemosFileName)
-        MemosDataTable.Clear()
-        TSV2DataTable(MemosDataTable, MemosFileName)
-        FormMain.cboMemos.Items.Clear()
+
+        ExitMemoForm()
+    End Sub
+
+    Private Sub ExitMemoForm() Handles BtnExitMemo.Click
+        FormMain.LstMemos.Items.Clear()
         FormMain.FillMemoListBox()
-        FormMain.cboMemos.Text = ""
-        btnDeleteMemo.Visible = False
-
-        FormMain.cboMemos.Text = ""
-        FormMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
-        FormMain.lblMemos.Focus()
-
-        Me.Close()
-
-    End Sub
-
-    Private Sub FrmMemos_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         FormMain.Enabled = True
-        FormMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
-        FormMain.lblMemos.Focus()
-    End Sub
-
-    Private Sub BtnMemoExit_Click(sender As Object, e As EventArgs) Handles btnMemoExit.Click
-        FormMain.Enabled = True
-        FormMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
         FormMain.lblMemos.Focus()
         Me.Close()
     End Sub

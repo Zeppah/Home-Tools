@@ -22,134 +22,115 @@ Partial Class FormMemos
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lblMemos = New System.Windows.Forms.Label()
-        Me.lblHeading = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.tbxHeading = New System.Windows.Forms.TextBox()
-        Me.tbxMemo = New System.Windows.Forms.TextBox()
-        Me.btnMemoExit = New System.Windows.Forms.Button()
-        Me.btnAddMemoRecord = New System.Windows.Forms.Button()
-        Me.btnDeleteMemo = New System.Windows.Forms.Button()
+        Me.LblMemo = New System.Windows.Forms.Label()
+        Me.TxtTitle = New System.Windows.Forms.TextBox()
+        Me.TxtMemo = New System.Windows.Forms.TextBox()
+        Me.BtnExitMemo = New System.Windows.Forms.Button()
+        Me.BtnAddMemo = New System.Windows.Forms.Button()
+        Me.BtnDeleteMemo = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'lblMemos
+        'LblMemo
         '
-        Me.lblMemos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.LblMemo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblMemos.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMemos.Location = New System.Drawing.Point(2, 18)
-        Me.lblMemos.Name = "lblMemos"
-        Me.lblMemos.Size = New System.Drawing.Size(525, 55)
-        Me.lblMemos.TabIndex = 0
-        Me.lblMemos.Text = "Memo"
-        Me.lblMemos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.LblMemo.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblMemo.Location = New System.Drawing.Point(31, 23)
+        Me.LblMemo.Name = "LblMemo"
+        Me.LblMemo.Size = New System.Drawing.Size(336, 55)
+        Me.LblMemo.TabIndex = 0
+        Me.LblMemo.Text = "Memo"
+        Me.LblMemo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'lblHeading
+        'TxtTitle
         '
-        Me.lblHeading.AutoSize = True
-        Me.lblHeading.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHeading.Location = New System.Drawing.Point(13, 90)
-        Me.lblHeading.Name = "lblHeading"
-        Me.lblHeading.Size = New System.Drawing.Size(80, 21)
-        Me.lblHeading.TabIndex = 1
-        Me.lblHeading.Text = "Heading: "
+        Me.TxtTitle.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.TxtTitle.ForeColor = System.Drawing.Color.White
+        Me.TxtTitle.Location = New System.Drawing.Point(31, 92)
+        Me.TxtTitle.MaxLength = 45
+        Me.TxtTitle.Name = "TxtTitle"
+        Me.TxtTitle.Size = New System.Drawing.Size(338, 29)
+        Me.TxtTitle.TabIndex = 3
         '
-        'Label1
+        'TxtMemo
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(27, 126)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(66, 21)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Memo: "
+        Me.TxtMemo.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.TxtMemo.ForeColor = System.Drawing.Color.White
+        Me.TxtMemo.Location = New System.Drawing.Point(31, 128)
+        Me.TxtMemo.MaxLength = 0
+        Me.TxtMemo.Multiline = True
+        Me.TxtMemo.Name = "TxtMemo"
+        Me.TxtMemo.Size = New System.Drawing.Size(338, 202)
+        Me.TxtMemo.TabIndex = 4
         '
-        'tbxHeading
+        'BtnExitMemo
         '
-        Me.tbxHeading.Location = New System.Drawing.Point(99, 87)
-        Me.tbxHeading.MaxLength = 45
-        Me.tbxHeading.Name = "tbxHeading"
-        Me.tbxHeading.Size = New System.Drawing.Size(338, 29)
-        Me.tbxHeading.TabIndex = 3
+        Me.BtnExitMemo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnExitMemo.BackColor = System.Drawing.Color.Bisque
+        Me.BtnExitMemo.Location = New System.Drawing.Point(289, 416)
+        Me.BtnExitMemo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnExitMemo.Name = "BtnExitMemo"
+        Me.BtnExitMemo.Size = New System.Drawing.Size(105, 30)
+        Me.BtnExitMemo.TabIndex = 6
+        Me.BtnExitMemo.Text = "Exit"
+        Me.BtnExitMemo.UseVisualStyleBackColor = False
         '
-        'tbxMemo
+        'BtnAddMemo
         '
-        Me.tbxMemo.Location = New System.Drawing.Point(99, 123)
-        Me.tbxMemo.MaxLength = 0
-        Me.tbxMemo.Multiline = True
-        Me.tbxMemo.Name = "tbxMemo"
-        Me.tbxMemo.Size = New System.Drawing.Size(338, 202)
-        Me.tbxMemo.TabIndex = 4
+        Me.BtnAddMemo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddMemo.BackColor = System.Drawing.Color.Bisque
+        Me.BtnAddMemo.Location = New System.Drawing.Point(31, 338)
+        Me.BtnAddMemo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnAddMemo.Name = "BtnAddMemo"
+        Me.BtnAddMemo.Size = New System.Drawing.Size(112, 36)
+        Me.BtnAddMemo.TabIndex = 7
+        Me.BtnAddMemo.Text = "Add"
+        Me.BtnAddMemo.UseVisualStyleBackColor = False
         '
-        'btnMemoExit
+        'BtnDeleteMemo
         '
-        Me.btnMemoExit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnMemoExit.BackColor = System.Drawing.Color.Bisque
-        Me.btnMemoExit.Location = New System.Drawing.Point(410, 380)
-        Me.btnMemoExit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnMemoExit.Name = "btnMemoExit"
-        Me.btnMemoExit.Size = New System.Drawing.Size(105, 30)
-        Me.btnMemoExit.TabIndex = 6
-        Me.btnMemoExit.Text = "Exit"
-        Me.btnMemoExit.UseVisualStyleBackColor = False
+        Me.BtnDeleteMemo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnDeleteMemo.BackColor = System.Drawing.Color.Bisque
+        Me.BtnDeleteMemo.Location = New System.Drawing.Point(257, 338)
+        Me.BtnDeleteMemo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnDeleteMemo.Name = "BtnDeleteMemo"
+        Me.BtnDeleteMemo.Size = New System.Drawing.Size(112, 36)
+        Me.BtnDeleteMemo.TabIndex = 8
+        Me.BtnDeleteMemo.Text = "Delete"
+        Me.BtnDeleteMemo.UseVisualStyleBackColor = False
+        Me.BtnDeleteMemo.Visible = False
         '
-        'btnAddMemoRecord
-        '
-        Me.btnAddMemoRecord.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAddMemoRecord.BackColor = System.Drawing.Color.Bisque
-        Me.btnAddMemoRecord.Location = New System.Drawing.Point(99, 333)
-        Me.btnAddMemoRecord.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnAddMemoRecord.Name = "btnAddMemoRecord"
-        Me.btnAddMemoRecord.Size = New System.Drawing.Size(112, 36)
-        Me.btnAddMemoRecord.TabIndex = 7
-        Me.btnAddMemoRecord.Text = "Add"
-        Me.btnAddMemoRecord.UseVisualStyleBackColor = False
-        '
-        'btnDeleteMemo
-        '
-        Me.btnDeleteMemo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnDeleteMemo.BackColor = System.Drawing.Color.Bisque
-        Me.btnDeleteMemo.Location = New System.Drawing.Point(219, 333)
-        Me.btnDeleteMemo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnDeleteMemo.Name = "btnDeleteMemo"
-        Me.btnDeleteMemo.Size = New System.Drawing.Size(112, 36)
-        Me.btnDeleteMemo.TabIndex = 8
-        Me.btnDeleteMemo.Text = "Delete"
-        Me.btnDeleteMemo.UseVisualStyleBackColor = False
-        Me.btnDeleteMemo.Visible = False
-        '
-        'FrmMemos
+        'FormMemos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
-        Me.ClientSize = New System.Drawing.Size(528, 424)
-        Me.Controls.Add(Me.btnDeleteMemo)
-        Me.Controls.Add(Me.btnAddMemoRecord)
-        Me.Controls.Add(Me.btnMemoExit)
-        Me.Controls.Add(Me.tbxMemo)
-        Me.Controls.Add(Me.tbxHeading)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.lblHeading)
-        Me.Controls.Add(Me.lblMemos)
+        Me.ClientSize = New System.Drawing.Size(407, 456)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.BtnDeleteMemo)
+        Me.Controls.Add(Me.BtnAddMemo)
+        Me.Controls.Add(Me.BtnExitMemo)
+        Me.Controls.Add(Me.TxtMemo)
+        Me.Controls.Add(Me.TxtTitle)
+        Me.Controls.Add(Me.LblMemo)
         Me.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "FrmMemos"
+        Me.Name = "FormMemos"
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Memos"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents lblMemos As Label
-    Friend WithEvents lblHeading As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents tbxHeading As TextBox
-    Friend WithEvents tbxMemo As TextBox
-    Friend WithEvents btnMemoExit As Button
-    Friend WithEvents btnAddMemoRecord As Button
-    Friend WithEvents btnDeleteMemo As Button
+    Friend WithEvents LblMemo As Label
+    Friend WithEvents TxtTitle As TextBox
+    Friend WithEvents TxtMemo As TextBox
+    Friend WithEvents BtnExitMemo As Button
+    Friend WithEvents BtnAddMemo As Button
+    Friend WithEvents BtnDeleteMemo As Button
 End Class

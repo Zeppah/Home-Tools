@@ -57,7 +57,7 @@ Partial Class FormMain
         Me.lblContacts = New System.Windows.Forms.Label()
         Me.lblTrackers = New System.Windows.Forms.Label()
         Me.btnAddMemo = New System.Windows.Forms.Button()
-        Me.cboMemos = New System.Windows.Forms.ComboBox()
+        Me.LstMemos = New System.Windows.Forms.ListBox()
         Me.mmMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -302,7 +302,7 @@ Partial Class FormMain
         '
         Me.lblMemos.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblMemos.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMemos.Location = New System.Drawing.Point(478, 64)
+        Me.lblMemos.Location = New System.Drawing.Point(469, 195)
         Me.lblMemos.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblMemos.Name = "lblMemos"
         Me.lblMemos.Size = New System.Drawing.Size(468, 33)
@@ -337,26 +337,23 @@ Partial Class FormMain
         '
         Me.btnAddMemo.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btnAddMemo.BackColor = System.Drawing.Color.Bisque
-        Me.btnAddMemo.Location = New System.Drawing.Point(616, 100)
+        Me.btnAddMemo.Location = New System.Drawing.Point(609, 416)
         Me.btnAddMemo.Name = "btnAddMemo"
         Me.btnAddMemo.Size = New System.Drawing.Size(171, 36)
         Me.btnAddMemo.TabIndex = 25
         Me.btnAddMemo.Text = "Add Memo"
         Me.btnAddMemo.UseVisualStyleBackColor = False
         '
-        'cboMemos
+        'LstMemos
         '
-        Me.cboMemos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboMemos.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer))
-        Me.cboMemos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
-        Me.cboMemos.ForeColor = System.Drawing.Color.White
-        Me.cboMemos.FormattingEnabled = True
-        Me.cboMemos.Location = New System.Drawing.Point(539, 194)
-        Me.cboMemos.Name = "cboMemos"
-        Me.cboMemos.Size = New System.Drawing.Size(341, 635)
-        Me.cboMemos.TabIndex = 27
+        Me.LstMemos.BackColor = System.Drawing.SystemColors.Window
+        Me.LstMemos.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.LstMemos.FormattingEnabled = True
+        Me.LstMemos.ItemHeight = 25
+        Me.LstMemos.Location = New System.Drawing.Point(530, 231)
+        Me.LstMemos.Name = "LstMemos"
+        Me.LstMemos.Size = New System.Drawing.Size(341, 179)
+        Me.LstMemos.TabIndex = 28
         '
         'FormMain
         '
@@ -364,7 +361,7 @@ Partial Class FormMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
         Me.ClientSize = New System.Drawing.Size(1429, 831)
-        Me.Controls.Add(Me.cboMemos)
+        Me.Controls.Add(Me.LstMemos)
         Me.Controls.Add(Me.btnAddMemo)
         Me.Controls.Add(Me.lblTrackers)
         Me.Controls.Add(Me.lblContacts)
@@ -418,7 +415,6 @@ Partial Class FormMain
     Friend WithEvents lblContacts As Label
     Friend WithEvents lblTrackers As Label
     Friend WithEvents btnAddMemo As Button
-    Friend WithEvents cboMemos As ComboBox
     Friend WithEvents BrowserToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CalendarToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents CoronavirusToolStripMenuItem1 As ToolStripMenuItem
@@ -432,4 +428,5 @@ Partial Class FormMain
     Friend WithEvents MailToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents CalculatorToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LstMemos As ListBox
 End Class
