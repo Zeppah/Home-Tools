@@ -8,26 +8,22 @@ Module ModMyPIM
 
 #Region "*** Public Variables ***"
 
-    Friend ContactsDataTable As New DataTable                   'The Contacts DataTable
-    Friend MemosDataTable As New DataTable                      'The Memos DataTable
-    Friend EventsDataTable As New DataTable                     'The Events DataTable
-    Friend ContactRowIndex As Integer = 0                       'Contacts DataTable Row being edited
-    Friend EventRowIndex As Integer = 0                         'Event DataTable Row being edited
-    'Friend EventEditRow As Integer = 0                           'dtbEvent Row being edited
-    Friend UserDataPath As String = Application.UserAppDataPath 'The Users Data Path
-    Friend Delimiter As String = vbTab                          'Tab delimiter for .tsv files
-    Friend strContactsFile As String = "Contacts.tsv"           'The Contacts record file
-    Friend strMemosFile As String = "Memos.tsv"                 'The Memos file
-    Friend strRunProgramName As String                          'The Program name to run
-    Friend SettingsFileName As String = UserDataPath & "\Settings.tsv"   'The Settings File
-    Friend strContactSortOrder As String = "A"                  'Contact datatable sort order 'dtbTracker'
-    Friend strTrackerSortOrder As String = "A"                  'Tracker datatable sort order 'dtbTracker'
-    Friend strTrackersFile As String = "Events.tsv"            'The Events record file
+    Friend ContactsDataTable As New DataTable  'Contacts DataTable
+    Friend EventsDataTable As New DataTable    'Events DataTable
+    Friend MemosDataTable As New DataTable     'Memos DataTable
+    Friend ContactRowIndex As Integer = 0      'Contacts DataTable Row being edited
+    Friend EventRowIndex As Integer = 0        'Event DataTable Row being edited
+    Friend Delimiter As String = vbTab         'Tab delimiter for .tsv files
+    Friend UserDataPath As String = Application.UserAppDataPath          'Users Data Path
+    Friend ContactsFileName As String = UserDataPath & "\Contacts.tsv"   'Contacts file
+    Friend MemosFileName As String = UserDataPath & "\Memos.tsv"         'Memos file
+    Friend SettingsFileName As String = UserDataPath & "\Settings.tsv"   'Settings file
+    Friend EventsFileName As String = UserDataPath & "\Events.tsv"       'Events file
+    Friend EventsSortOrder As String = "A"     'Events DataTable sort order
+    Friend ContactsSortOrder As String = "A"   'Contacts DataTable sort order
 
-    'Used to give unique control names such as pnlTracker1, pnlTracker2 etc.
-    Friend TrackerPanelsAddedCount As Integer = 0
-    'Used to give unique control names such as pnlContact1, pnlContact2 etc.
-    Friend ContactPanelsAddedCount As Integer = 0
+    Friend EventPanelsAddedCount As Integer = 0    'Used to give unique control names such as pnlEvent1, pnlEvent2 etc.
+    Friend ContactPanelsAddedCount As Integer = 0  'Used to give unique control names such as pnlContact1, pnlContact2 etc.
 
 
 
@@ -35,7 +31,7 @@ Module ModMyPIM
 
 #Region "*** Define DataTables ***"
 
-    Public Sub DefineContactsDataTable()
+    Friend Sub AddContactsDataTableColumns()
         With ContactsDataTable
             .Columns.Add("First Name", System.Type.GetType("System.String"))
             .Columns.Add("Middle Name", System.Type.GetType("System.String"))
@@ -53,18 +49,17 @@ Module ModMyPIM
             .Columns.Add("Notes", System.Type.GetType("System.String"))
             .Columns.Add("Starred", System.Type.GetType("System.Boolean"))
             .Columns.Add("SortName", System.Type.GetType("System.String"))
-
         End With
     End Sub
 
-    Public Sub DefineMemosDataTable()
+    Public Sub AddMemosDataTableColumns()
         With MemosDataTable
-            .Columns.Add("Header", System.Type.GetType("System.String"))
+            .Columns.Add("Title", System.Type.GetType("System.String"))
             .Columns.Add("Memo", System.Type.GetType("System.String"))
         End With
     End Sub
 
-    Public Sub DefineEventsDataTable()
+    Public Sub AddEventsDataTableColumns()
         With EventsDataTable
             .Columns.Add("Description", System.Type.GetType("System.String"))
             .Columns.Add("Date", System.Type.GetType("System.DateTime"))
@@ -85,71 +80,54 @@ Module ModMyPIM
 
     '***** Read TSV Files *****
 
-    ' Read the input CSV file to a DataTable. By default the values are Tab 
-    ' delimited, but you can use the second overload version to use any other 
-    ' string you want.
-    '
-    ' Example:
-    '    CSV2DataTable(DataTable, "C:\Records.tsv")
-    Public Sub CSV2DataTable(ByVal table As DataTable, ByVal filename As String)
-        CSV2DataTable(table, filename, vbTab)
-    End Sub
-    Public Sub CSV2DataTable(ByVal table As DataTable, ByVal filename As String, ByVal sepChar As String)
+    ' Read the input TSV file to a DataTable.
+    Public Sub TSV2DataTable(ByVal table As DataTable, ByVal filename As String)
 
         Dim TextLine As String
         Dim SplitLine() As String
 
         If System.IO.File.Exists(filename) = True Then
-            Dim objReader As New System.IO.StreamReader(filename, System.Text.Encoding.Default)
-            Do While objReader.Peek() <> -1
-                TextLine = objReader.ReadLine()
-                SplitLine = Split(TextLine, sepChar)
-
+            Dim fileReader As New StreamReader(filename, Text.Encoding.Default)
+            Do While fileReader.Peek() <> -1
+                TextLine = fileReader.ReadLine()
+                SplitLine = Split(TextLine, Delimiter)
                 table.Rows.Add(SplitLine)
             Loop
-            objReader.Close()
+            fileReader.Close()
         Else
             'Save the DataTable
-            DataTable2CSV(table, filename)
+            DataTable2TSV(table, filename)
         End If
 
     End Sub
 
 
-    '***** Write TSV Files *****
+    '***** Write TSV File *****
 
-    ' Save the input DataTable to a CSV file. By default the values are Tab 
-    ' delimited, but you can use the second overload version to use any other 
-    ' string you want.
-    '
-    ' Example:
-    '    DataTable2CSV(DataTable, "C:\Users.tsv")
-    Sub DataTable2CSV(ByVal table As DataTable, ByVal filename As String)
-        DataTable2CSV(table, filename, vbTab)
-    End Sub
-    Sub DataTable2CSV(ByVal table As DataTable, ByVal filename As String,
-    ByVal sepChar As String)
-        Dim writer As System.IO.StreamWriter
+    ' Write the input DataTable to a TSV file.
+    Sub DataTable2TSV(ByVal table As DataTable, ByVal filename As String)
+        Dim writer As StreamWriter
         Try
-            writer = New System.IO.StreamWriter(filename)
+            writer = New StreamWriter(filename)
 
-            Dim sep As String = ""
-            Dim builder As New System.Text.StringBuilder
+            Dim sep As String = "" 'Used to start the string without a tab
+            Dim builder As New Text.StringBuilder
 
             ' write all the rows
             For Each row As DataRow In table.Rows
                 sep = ""
-                builder = New System.Text.StringBuilder
+                builder = New Text.StringBuilder
 
+                'Build the row
                 For Each col As DataColumn In table.Columns
                     builder.Append(sep).Append(row(col.ColumnName))
-                    sep = sepChar
+                    sep = Delimiter
                 Next
                 writer.WriteLine(builder.ToString())
             Next
             writer.Close()
         Catch ex As Exception
-            Dim unused = MsgBox("Failed in the DataTable2CSV routine...: " & filename)
+            Dim unused = MsgBox("Failed in the DataTable2TSV routine...: " & filename)
         End Try
 
 
@@ -161,13 +139,13 @@ Module ModMyPIM
         If File.Exists(SettingsFileName) = True Then
             'Open the StreamReader
             Dim objReader As New StreamReader(SettingsFileName, System.Text.Encoding.Default)
-            Do While objReader.Peek() <> -1                         ' Peek to see if there is another line of data to process
-                Dim TextLine As String = objReader.ReadLine()       ' Read the next line of data
+            Do While objReader.Peek() <> -1                      ' Peek to see if there is another line of data to process
+                Dim TextLine As String = objReader.ReadLine()    ' Read the next line of data
                 SplitLine = Split(TextLine, Delimiter)           ' Separate the line into the SplitLine array
-                strTrackerSortOrder = SplitLine(0)                  ' Tracker display sort order
-                strContactSortOrder = SplitLine(1)                  ' Contact display sort order
-                FormMain.cboTrackerTime.SelectedIndex = CInt(SplitLine(2))   ' Tracker display range
-                FormMain.cboTracker.SelectedIndex = CInt(SplitLine(3))       ' Tracker Category choice
+                EventsSortOrder = SplitLine(0)                   ' Events display sort order
+                ContactsSortOrder = SplitLine(1)                 ' Contacts display sort order
+                FormMain.cboTrackerTime.SelectedIndex = CInt(SplitLine(2))   ' Events display range
+                FormMain.cboTracker.SelectedIndex = CInt(SplitLine(3))       ' Events Category choice
                 FormMain.cboContact.SelectedIndex = CInt(SplitLine(4))       ' Contact Category choice
             Loop
             'Close the StreamReader
@@ -177,7 +155,7 @@ Module ModMyPIM
         End If
     End Sub
     Public Sub SaveSettings()
-        File.WriteAllText(SettingsFileName, strTrackerSortOrder & Delimiter & strContactSortOrder _
+        File.WriteAllText(SettingsFileName, EventsSortOrder & Delimiter & ContactsSortOrder _
                           & Delimiter & FormMain.cboTrackerTime.SelectedIndex & Delimiter _
                           & FormMain.cboTracker.SelectedIndex & Delimiter & FormMain.cboContact.SelectedIndex)
     End Sub

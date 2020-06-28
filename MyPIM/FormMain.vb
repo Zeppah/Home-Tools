@@ -29,12 +29,12 @@ Public Class FormMain
 
         LoadSettings()
         TmrClock.Start()
-        DefineEventsDataTable()
-        CSV2DataTable(EventsDataTable, UserDataPath & "\" & strTrackersFile)
-        DefineContactsDataTable()
-        CSV2DataTable(ContactsDataTable, UserDataPath & "\" & strContactsFile)
-        DefineMemosDataTable()
-        CSV2DataTable(MemosDataTable, UserDataPath & "\" & strMemosFile)
+        AddEventsDataTableColumns()
+        TSV2DataTable(EventsDataTable, EventsFileName)
+        AddContactsDataTableColumns()
+        TSV2DataTable(ContactsDataTable, ContactsFileName)
+        AddMemosDataTableColumns()
+        TSV2DataTable(MemosDataTable, MemosFileName)
         DisplayTrackers()
         DisplayContacts()
         FillMemoListBox()
@@ -47,7 +47,7 @@ Public Class FormMain
     Sub DisplayTrackers() Handles cboTracker.SelectedIndexChanged, cboTrackerTime.SelectedIndexChanged
 
         flpTracker.Controls.Clear()
-        TrackerPanelsAddedCount = 0
+        EventPanelsAddedCount = 0
         Dim timeperiod As Integer
         Dim row As DataRow
         Dim strDetail As String
@@ -55,7 +55,7 @@ Public Class FormMain
         Dim result As Integer
 
         For Each row In EventsDataTable.Rows
-            TrackerPanelsAddedCount += 1 ' This needs to count the rows to name the buttons to corraspond to the datarecord
+            EventPanelsAddedCount += 1 ' This needs to count the rows to name the buttons to corraspond to the datarecord
 
             'Set the time period to display tracker panels
             Select Case cboTrackerTime.SelectedIndex
@@ -269,7 +269,7 @@ Public Class FormMain
             .BorderStyle = CType(1, BorderStyle)
             .BackColor = Color.LightBlue
             .Size = New Size(420, 75)
-            .Name = "pnlTracker" + (TrackerPanelsAddedCount + 1).ToString
+            .Name = "pnlTracker" + (EventPanelsAddedCount + 1).ToString
         End With
 
         'Add panel to flow layout panel
@@ -288,7 +288,7 @@ Public Class FormMain
         With contactNameLabel
             .AutoSize = True
             .Location = New Point(10, 8)
-            .Name = "lblContactName" + TrackerPanelsAddedCount.ToString
+            .Name = "lblContactName" + EventPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = textToShow
         End With
@@ -309,7 +309,7 @@ Public Class FormMain
         With contactPhoneLabel
             .AutoSize = True
             .Location = New Point(10, 28)
-            .Name = "lblContactName" + TrackerPanelsAddedCount.ToString
+            .Name = "lblContactName" + EventPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = textToShow
         End With
@@ -330,7 +330,7 @@ Public Class FormMain
         With contactTimeLabel
             .AutoSize = True
             .Location = New Point(10, 48)
-            .Name = "lblContactName" + TrackerPanelsAddedCount.ToString
+            .Name = "lblContactName" + EventPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = textToShow
         End With
@@ -352,7 +352,7 @@ Public Class FormMain
             .AutoSize = True
             .BackColor = Color.LightBlue
             .Location = New Point(330, 5)
-            .Name = "btnEdit" + TrackerPanelsAddedCount.ToString
+            .Name = "btnEdit" + EventPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = "Edit"
         End With
@@ -438,7 +438,7 @@ Public Class FormMain
             .AutoSize = True
             .BackColor = Color.LightPink
             .Location = New Point(330, 38)
-            .Name = "btnDelete" + TrackerPanelsAddedCount.ToString
+            .Name = "btnDelete" + EventPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = "Delete"
         End With
@@ -494,24 +494,24 @@ Public Class FormMain
         Next
 
         'Save the DataTable
-        DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
+        DataTable2TSV(EventsDataTable, EventsFileName)
         DisplayTrackers()
 
     End Sub
 
     Private Sub BtnSort_Click(sender As Object, e As EventArgs) Handles btnSort.Click
 
-        If strTrackerSortOrder = "A" Then
+        If EventsSortOrder = "A" Then
             EventsDataTable.DefaultView.Sort = "SortDate ASC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
-            strTrackerSortOrder = "D"
+            EventsSortOrder = "D"
         Else
             EventsDataTable.DefaultView.Sort = "SortDate DESC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
-            strTrackerSortOrder = "A"
+            EventsSortOrder = "A"
         End If
 
-        DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
+        DataTable2TSV(EventsDataTable, EventsFileName)
         SaveSettings()
         DisplayTrackers()
 
@@ -519,14 +519,14 @@ Public Class FormMain
 
     Friend Sub TrackerSort()
 
-        If strTrackerSortOrder = "A" Then
+        If EventsSortOrder = "A" Then
             EventsDataTable.DefaultView.Sort = "SortDate DESC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
         Else
             EventsDataTable.DefaultView.Sort = "SortDate ASC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
         End If
-        DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
+        DataTable2TSV(EventsDataTable, EventsFileName)
 
         DisplayTrackers()
 
@@ -937,24 +937,24 @@ Public Class FormMain
         Next
 
         'Save the DataTable
-        DataTable2CSV(ContactsDataTable, UserDataPath & "\" & strContactsFile)
+        DataTable2TSV(ContactsDataTable, ContactsFileName)
         DisplayContacts()
 
     End Sub
 
     Private Sub BtnContactSort_Click(sender As Object, e As EventArgs) Handles btnContactSort.Click
 
-        If strContactSortOrder = "A" Then
+        If ContactsSortOrder = "A" Then
             ContactsDataTable.DefaultView.Sort = "SortName ASC"
             ContactsDataTable = ContactsDataTable.DefaultView.ToTable
-            strContactSortOrder = "D"
+            ContactsSortOrder = "D"
         Else
             ContactsDataTable.DefaultView.Sort = "SortName DESC"
             ContactsDataTable = ContactsDataTable.DefaultView.ToTable
-            strContactSortOrder = "A"
+            ContactsSortOrder = "A"
         End If
 
-        DataTable2CSV(ContactsDataTable, UserDataPath & "\" & strContactsFile)
+        DataTable2TSV(ContactsDataTable, ContactsFileName)
         SaveSettings()
         DisplayContacts()
 
@@ -962,7 +962,7 @@ Public Class FormMain
 
     Public Sub ContactsSort() 'To sort the file after an edit or add
 
-        If strContactSortOrder = "D" Then
+        If ContactsSortOrder = "D" Then
             ContactsDataTable.DefaultView.Sort = "SortName ASC"
             ContactsDataTable = ContactsDataTable.DefaultView.ToTable
         Else
@@ -982,7 +982,7 @@ Public Class FormMain
 
         For Each row As DataRow In MemosDataTable.Rows
             Dim x As String = ""
-            cboMemos.Items.Add(row("Header"))
+            cboMemos.Items.Add(row("Title"))
             cboMemos.Items.Add(x)
         Next
 
@@ -992,7 +992,7 @@ Public Class FormMain
 
         'Check to see if the index is an odd row which is a blank row
         If cboMemos.SelectedIndex Mod 2 <> 0 Then
-            lblMemos.Focus()
+            cboMemos.SelectedIndex = -1 'Cancel the selected index
             Return
         End If
 
@@ -1001,7 +1001,7 @@ Public Class FormMain
         If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
 
         'copy the datatable information to the textbox fields replacing the _\n with a newline
-        FormMemos.tbxHeading.Text = MemosDataTable.Rows.Item(dtbRow).Item("Header").ToString
+        FormMemos.tbxHeading.Text = MemosDataTable.Rows.Item(dtbRow).Item("Title").ToString
         FormMemos.tbxMemo.Text = MemosDataTable.Rows.Item(dtbRow).Item("Memo").ToString
         FormMemos.tbxMemo.Text = FormMemos.tbxMemo.Text.Replace("_\n", vbNewLine)
         FormMemos.btnAddMemoRecord.Text = "Save"

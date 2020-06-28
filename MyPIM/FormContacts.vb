@@ -43,7 +43,7 @@
             ContactsDataTable.Rows.Add(newrow)
 
             'Save the DataTable
-            DataTable2CSV(ContactsDataTable, UserDataPath & "\" & strContactsFile)
+            DataTable2TSV(ContactsDataTable, ContactsFileName)
 
             SaveSettings()
 
@@ -96,7 +96,7 @@
             End If
 
             'Save the DataTable
-            DataTable2CSV(ContactsDataTable, UserDataPath & "\" & strContactsFile)
+            DataTable2TSV(ContactsDataTable, ContactsFileName)
 
             FormMain.Enabled = True
             FormMain.ContactsSort()

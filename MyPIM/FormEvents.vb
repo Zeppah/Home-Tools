@@ -60,7 +60,7 @@ Public Class FormEvents
 
             EventsDataTable.Rows.Add(newrow)
             'Save the DataTable
-            DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
+            DataTable2TSV(EventsDataTable, EventsFileName)
             'Save the settings, index number has been changed
             SaveSettings()
             FormMain.TrackerSort()
@@ -100,7 +100,7 @@ Public Class FormEvents
             FormMain.Enabled = True
 
             'Save the DataTable
-            DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
+            DataTable2TSV(EventsDataTable, EventsFileName)
 
             FormMain.TrackerSort()
 
