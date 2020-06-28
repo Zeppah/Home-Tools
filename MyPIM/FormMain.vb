@@ -837,26 +837,26 @@ Public Class FormMain
                             ContactRowIndex = CInt(MyString) - 1 'Used to edit Contact row
 
                             ' copy data from datatable to textboxes
-                            FormContacts.tbxFirstName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("First Name").ToString
-                            FormContacts.tbxMiddleName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Middle Name").ToString
-                            FormContacts.tbxLastName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Last Name").ToString
-                            FormContacts.tbxCompany.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Company").ToString
-                            FormContacts.tbxAddress1.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Address1").ToString
-                            FormContacts.tbxAddress2.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Address2").ToString
-                            FormContacts.tbxCity.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("City").ToString
-                            FormContacts.cbxState.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("State").ToString
-                            FormContacts.mtbZipcode.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Zipcode").ToString
-                            FormContacts.mtbPhone.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Phone").ToString
-                            FormContacts.tbxEmail.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Email").ToString
-                            FormContacts.mtbBirthdate.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Birthdate").ToString
-                            FormContacts.cbxGroups.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Groups").ToString
+                            FormContacts.TxtFirstName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("First Name").ToString
+                            FormContacts.TxTMiddleName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Middle Name").ToString
+                            FormContacts.TxtLastName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Last Name").ToString
+                            FormContacts.TxtCompany.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Company").ToString
+                            FormContacts.TxtAddress1.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Address1").ToString
+                            FormContacts.TxtAddress2.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Address2").ToString
+                            FormContacts.TxtCity.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("City").ToString
+                            FormContacts.CboState.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("State").ToString
+                            FormContacts.TxtZipcode.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Zipcode").ToString
+                            FormContacts.TxtPhone.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Phone").ToString
+                            FormContacts.TxtEmail.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Email").ToString
+                            FormContacts.TxtBirthdate.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Birthdate").ToString
+                            FormContacts.CboGroups.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Groups").ToString
 
 
-                            FormContacts.tbxNotes.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Notes").ToString
-                            FormContacts.tbxNotes.Text = FormContacts.tbxNotes.Text.Replace("_\n", vbNewLine)
+                            FormContacts.TxtNotes.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Notes").ToString
+                            FormContacts.TxtNotes.Text = FormContacts.TxtNotes.Text.Replace("_\n", vbNewLine)
 
                             If ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Starred").ToString = "True" Then
-                                FormContacts.cbxStarred.Checked = True
+                                FormContacts.ChkStarred.Checked = True
                             End If
 
                             Exit For 'I put "Exit For" in here because once a number is found It should stop testing ***************
@@ -867,7 +867,7 @@ Public Class FormMain
             Next
         Next
 
-        FormContacts.btnSaveContactRecord.Text = "Save"
+        FormContacts.BtnAddContact.Text = "Save"
         Enabled = False
         FormContacts.Show()
 
