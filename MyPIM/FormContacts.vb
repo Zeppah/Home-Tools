@@ -1,4 +1,4 @@
-﻿Public Class FrmContacts
+﻿Public Class FormContacts
 
 #Region "*** Event Handlers ***"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSaveContactRecord.Click
@@ -64,7 +64,7 @@
             cbxStarred.Checked = False
             'tbxFirstName.Focus()
 
-            FrmMain.ContactsSort()
+            FormMain.ContactsSort()
 
             Me.Close()
 
@@ -98,23 +98,23 @@
             'Save the DataTable
             DataTable2CSV(ContactsDataTable, UserDataPath & "\" & strContactsFile)
 
-            FrmMain.Enabled = True
-            FrmMain.ContactsSort()
+            FormMain.Enabled = True
+            FormMain.ContactsSort()
             Me.Close()
 
         End If
     End Sub
 
     Private Sub FrmContacts_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        FrmMain.Enabled = True
-        FrmMain.lblContacts.Focus()
+        FormMain.Enabled = True
+        FormMain.lblContacts.Focus()
 
         ' FrmMain.ContactsSort()
     End Sub
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
-        FrmMain.Enabled = True
-        FrmMain.lblContacts.Focus()
+        FormMain.Enabled = True
+        FormMain.lblContacts.Focus()
 
         ' FrmMain.ContactsSort()
         Me.Close()

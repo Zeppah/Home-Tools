@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 
-Public Class FrmMemos
+Public Class FormMemos
 
     Private Sub BtnAddMemoRecord_Click(sender As Object, e As EventArgs) Handles btnAddMemoRecord.Click
         'Validate that a description was entered
@@ -25,7 +25,7 @@ Public Class FrmMemos
         Else 'The EDIT section
             btnAddMemoRecord.Text = "Add"
             'Define the datatable row based on the selected index
-            Dim dtbRow As Integer = FrmMain.cboMemos.SelectedIndex
+            Dim dtbRow As Integer = FormMain.cboMemos.SelectedIndex
             If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
 
 
@@ -35,12 +35,12 @@ Public Class FrmMemos
             DataTable2CSV(MemosDataTable, UserDataPath & "\" & strMemosFile)
             MemosDataTable.Clear()
             CSV2DataTable(MemosDataTable, UserDataPath & "\" & strMemosFile)
-            FrmMain.cboMemos.Items.Clear()
-            FrmMain.FillMemoListBox()
+            FormMain.cboMemos.Items.Clear()
+            FormMain.FillMemoListBox()
             btnDeleteMemo.Visible = False
 
-            FrmMain.cboMemos.Text = ""
-            FrmMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
+            FormMain.cboMemos.Text = ""
+            FormMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
             Me.Close()
         End If
 
@@ -53,43 +53,43 @@ Public Class FrmMemos
         DataTable2CSV(MemosDataTable, UserDataPath & "\" & strMemosFile)
         MemosDataTable.Clear()
         CSV2DataTable(MemosDataTable, UserDataPath & "\" & strMemosFile)
-        FrmMain.cboMemos.Items.Clear()
-        FrmMain.FillMemoListBox()
+        FormMain.cboMemos.Items.Clear()
+        FormMain.FillMemoListBox()
         Me.Close()
     End Sub
 
     Private Sub BtnDeleteMemo_Click(sender As Object, e As EventArgs) Handles btnDeleteMemo.Click
         'Define the datatable row based on the selected index
-        Dim dtbRow As Integer = FrmMain.cboMemos.SelectedIndex
+        Dim dtbRow As Integer = FormMain.cboMemos.SelectedIndex
         If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
 
         MemosDataTable.Rows.Remove(MemosDataTable.Rows(dtbRow))
         DataTable2CSV(MemosDataTable, UserDataPath & "\" & strMemosFile)
         MemosDataTable.Clear()
         CSV2DataTable(MemosDataTable, UserDataPath & "\" & strMemosFile)
-        FrmMain.cboMemos.Items.Clear()
-        FrmMain.FillMemoListBox()
-        FrmMain.cboMemos.Text = ""
+        FormMain.cboMemos.Items.Clear()
+        FormMain.FillMemoListBox()
+        FormMain.cboMemos.Text = ""
         btnDeleteMemo.Visible = False
 
-        FrmMain.cboMemos.Text = ""
-        FrmMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
-        FrmMain.lblMemos.Focus()
+        FormMain.cboMemos.Text = ""
+        FormMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
+        FormMain.lblMemos.Focus()
 
         Me.Close()
 
     End Sub
 
     Private Sub FrmMemos_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        FrmMain.Enabled = True
-        FrmMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
-        FrmMain.lblMemos.Focus()
+        FormMain.Enabled = True
+        FormMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
+        FormMain.lblMemos.Focus()
     End Sub
 
     Private Sub BtnMemoExit_Click(sender As Object, e As EventArgs) Handles btnMemoExit.Click
-        FrmMain.Enabled = True
-        FrmMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
-        FrmMain.lblMemos.Focus()
+        FormMain.Enabled = True
+        FormMain.cboMemos.SelectedIndex = -1 'take the focus off the selected index
+        FormMain.lblMemos.Focus()
         Me.Close()
     End Sub
 

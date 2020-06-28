@@ -14,7 +14,7 @@ Imports System.Text
 ''' </HEADER>
 ''' 
 
-Public Class FrmMain
+Public Class FormMain
 
 #Region "*** Start ***"
 
@@ -383,36 +383,36 @@ Public Class FrmMain
 
                         If IsNumeric(MyString) Then
 
-                            EventEditRow = CInt(MyString) - 1 'Used to edit Tracker row
+                            EventRowIndex = CInt(MyString) - 1 'Used to edit Tracker row
 
                             ' copy data from datatable to textboxes
-                            FrmTracker.tbxDescription.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Description").ToString
-                            FrmTracker.dtpDate.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Date").ToString
+                            FormEvents.tbxDescription.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Description").ToString
+                            FormEvents.dtpDate.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Date").ToString
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Time").ToString = "True" Then
-                                FrmTracker.cbxTime.Checked = True
-                                FrmTracker.dtpTime.Text = Format(EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Date"), "HH:mm tt")
+                                FormEvents.cbxTime.Checked = True
+                                FormEvents.dtpTime.Text = Format(EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Date"), "HH:mm tt")
                             End If
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Bill").ToString = "True" Then
-                                FrmTracker.cbxBill.Checked = True
-                                FrmTracker.tbxAmount.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Amount").ToString
+                                FormEvents.cbxBill.Checked = True
+                                FormEvents.tbxAmount.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Amount").ToString
                             End If
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Appointment").ToString = "True" Then
-                                FrmTracker.cbxAppointment.Checked = True
+                                FormEvents.cbxAppointment.Checked = True
                             End If
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Birthday").ToString = "True" Then
-                                FrmTracker.cbxBirthday.Checked = True
+                                FormEvents.cbxBirthday.Checked = True
                             End If
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Other").ToString = "True" Then
-                                FrmTracker.cbxOther.Checked = True
+                                FormEvents.cbxOther.Checked = True
                             End If
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Starred").ToString = "True" Then
-                                FrmTracker.cbxStarred.Checked = True
+                                FormEvents.cbxStarred.Checked = True
                             End If
 
                             Exit For 'I put "Exit For" in here because once a number is found It should stop testing ***************
@@ -423,9 +423,9 @@ Public Class FrmMain
             Next
         Next
 
-        FrmTracker.btnAddTrackerRecord.Text = "Save"
+        FormEvents.btnAddTrackerRecord.Text = "Save"
         Enabled = False
-        FrmTracker.Show()
+        FormEvents.Show()
 
     End Sub
 
@@ -836,26 +836,26 @@ Public Class FrmMain
                             ContactRowIndex = CInt(MyString) - 1 'Used to edit Contact row
 
                             ' copy data from datatable to textboxes
-                            FrmContacts.tbxFirstName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("First Name").ToString
-                            FrmContacts.tbxMiddleName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Middle Name").ToString
-                            FrmContacts.tbxLastName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Last Name").ToString
-                            FrmContacts.tbxCompany.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Company").ToString
-                            FrmContacts.tbxAddress1.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Address1").ToString
-                            FrmContacts.tbxAddress2.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Address2").ToString
-                            FrmContacts.tbxCity.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("City").ToString
-                            FrmContacts.cbxState.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("State").ToString
-                            FrmContacts.mtbZipcode.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Zipcode").ToString
-                            FrmContacts.mtbPhone.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Phone").ToString
-                            FrmContacts.tbxEmail.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Email").ToString
-                            FrmContacts.mtbBirthdate.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Birthdate").ToString
-                            FrmContacts.cbxGroups.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Groups").ToString
+                            FormContacts.tbxFirstName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("First Name").ToString
+                            FormContacts.tbxMiddleName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Middle Name").ToString
+                            FormContacts.tbxLastName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Last Name").ToString
+                            FormContacts.tbxCompany.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Company").ToString
+                            FormContacts.tbxAddress1.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Address1").ToString
+                            FormContacts.tbxAddress2.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Address2").ToString
+                            FormContacts.tbxCity.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("City").ToString
+                            FormContacts.cbxState.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("State").ToString
+                            FormContacts.mtbZipcode.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Zipcode").ToString
+                            FormContacts.mtbPhone.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Phone").ToString
+                            FormContacts.tbxEmail.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Email").ToString
+                            FormContacts.mtbBirthdate.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Birthdate").ToString
+                            FormContacts.cbxGroups.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Groups").ToString
 
 
-                            FrmContacts.tbxNotes.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Notes").ToString
-                            FrmContacts.tbxNotes.Text = FrmContacts.tbxNotes.Text.Replace("_\n", vbNewLine)
+                            FormContacts.tbxNotes.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Notes").ToString
+                            FormContacts.tbxNotes.Text = FormContacts.tbxNotes.Text.Replace("_\n", vbNewLine)
 
                             If ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Starred").ToString = "True" Then
-                                FrmContacts.cbxStarred.Checked = True
+                                FormContacts.cbxStarred.Checked = True
                             End If
 
                             Exit For 'I put "Exit For" in here because once a number is found It should stop testing ***************
@@ -866,9 +866,9 @@ Public Class FrmMain
             Next
         Next
 
-        FrmContacts.btnSaveContactRecord.Text = "Save"
+        FormContacts.btnSaveContactRecord.Text = "Save"
         Enabled = False
-        FrmContacts.Show()
+        FormContacts.Show()
 
     End Sub
 
@@ -1001,15 +1001,15 @@ Public Class FrmMain
         If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
 
         'copy the datatable information to the textbox fields replacing the _\n with a newline
-        FrmMemos.tbxHeading.Text = MemosDataTable.Rows.Item(dtbRow).Item("Header").ToString
-        FrmMemos.tbxMemo.Text = MemosDataTable.Rows.Item(dtbRow).Item("Memo").ToString
-        FrmMemos.tbxMemo.Text = FrmMemos.tbxMemo.Text.Replace("_\n", vbNewLine)
-        FrmMemos.btnAddMemoRecord.Text = "Save"
+        FormMemos.tbxHeading.Text = MemosDataTable.Rows.Item(dtbRow).Item("Header").ToString
+        FormMemos.tbxMemo.Text = MemosDataTable.Rows.Item(dtbRow).Item("Memo").ToString
+        FormMemos.tbxMemo.Text = FormMemos.tbxMemo.Text.Replace("_\n", vbNewLine)
+        FormMemos.btnAddMemoRecord.Text = "Save"
         Me.Enabled = False
-        FrmMemos.btnDeleteMemo.Visible = True
+        FormMemos.btnDeleteMemo.Visible = True
 
         lblMemos.Focus() 'Turn off the selected line highlight
-        FrmMemos.Show()
+        FormMemos.Show()
     End Sub
 
 #End Region
@@ -1018,12 +1018,12 @@ Public Class FrmMain
 
     Private Sub MnuContacts_Click(sender As Object, e As EventArgs) Handles BtnAddContact.Click
         Me.Enabled = False
-        FrmContacts.Show()
+        FormContacts.Show()
     End Sub
 
     Private Sub MnuTracker_Click(sender As Object, e As EventArgs) Handles btnTrackerAdd.Click
         Me.Enabled = False
-        FrmTracker.Show()
+        FormEvents.Show()
     End Sub
 
     Private Sub TmrClock_Tick(sender As Object, e As EventArgs) Handles TmrClock.Tick
@@ -1051,7 +1051,7 @@ Public Class FrmMain
 
     Private Sub BtnAddMemo_Click(sender As Object, e As EventArgs) Handles btnAddMemo.Click
         Enabled = False
-        FrmMemos.Show()
+        FormMemos.Show()
     End Sub
 
     Private Sub CalendarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CalendarToolStripMenuItem1.Click

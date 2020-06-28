@@ -6,7 +6,7 @@
 '''' Revisions:
 '''' </HEADER>
 
-Public Class FrmTracker
+Public Class FormEvents
 
 #Region "*** Event Handlers ***"
 
@@ -53,9 +53,9 @@ Public Class FrmTracker
                 End If
 
                 Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
-                    newrow("SortDate") = NextBirthDate
-                Else
-                    newrow("SortDate") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+                newrow("SortDate") = NextBirthDate
+            Else
+                newrow("SortDate") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
             End If
 
             EventsDataTable.Rows.Add(newrow)
@@ -63,21 +63,21 @@ Public Class FrmTracker
             DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
             'Save the settings, index number has been changed
             SaveSettings()
-            FrmMain.TrackerSort()
+            FormMain.TrackerSort()
             Me.Close()
 
             'EDIT Section
         ElseIf btnAddTrackerRecord.Text = "Save" Then
 
-            EventsDataTable.Rows.Item(EventEditRow).Item("Description") = tbxDescription.Text
-            EventsDataTable.Rows.Item(EventEditRow).Item("Date") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
-            EventsDataTable.Rows.Item(EventEditRow).Item("Amount") = tbxAmount.Text
-            EventsDataTable.Rows.Item(EventEditRow).Item("Time") = cbxTime.Checked
-            EventsDataTable.Rows.Item(EventEditRow).Item("Appointment") = cbxAppointment.Checked
-            EventsDataTable.Rows.Item(EventEditRow).Item("Bill") = cbxBill.Checked
-            EventsDataTable.Rows.Item(EventEditRow).Item("Birthday") = cbxBirthday.Checked
-            EventsDataTable.Rows.Item(EventEditRow).Item("Other") = cbxOther.Checked
-            EventsDataTable.Rows.Item(EventEditRow).Item("Starred") = cbxStarred.Checked
+            EventsDataTable.Rows.Item(EventRowIndex).Item("Description") = tbxDescription.Text
+            EventsDataTable.Rows.Item(EventRowIndex).Item("Date") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+            EventsDataTable.Rows.Item(EventRowIndex).Item("Amount") = tbxAmount.Text
+            EventsDataTable.Rows.Item(EventRowIndex).Item("Time") = cbxTime.Checked
+            EventsDataTable.Rows.Item(EventRowIndex).Item("Appointment") = cbxAppointment.Checked
+            EventsDataTable.Rows.Item(EventRowIndex).Item("Bill") = cbxBill.Checked
+            EventsDataTable.Rows.Item(EventRowIndex).Item("Birthday") = cbxBirthday.Checked
+            EventsDataTable.Rows.Item(EventRowIndex).Item("Other") = cbxOther.Checked
+            EventsDataTable.Rows.Item(EventRowIndex).Item("Starred") = cbxStarred.Checked
 
             If cbxBirthday.Checked Then
 
@@ -91,18 +91,18 @@ Public Class FrmTracker
                 End If
 
                 Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
-                EventsDataTable.Rows.Item(EventEditRow).Item("SortDate") = NextBirthDate
+                EventsDataTable.Rows.Item(EventRowIndex).Item("SortDate") = NextBirthDate
             Else
-                EventsDataTable.Rows.Item(EventEditRow).Item("SortDate") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+                EventsDataTable.Rows.Item(EventRowIndex).Item("SortDate") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
             End If
 
             btnAddTrackerRecord.Text = "Add"
-            FrmMain.Enabled = True
+            FormMain.Enabled = True
 
             'Save the DataTable
             DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
 
-            FrmMain.TrackerSort()
+            FormMain.TrackerSort()
 
             Me.Close()
 
@@ -176,16 +176,16 @@ Public Class FrmTracker
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
 
-        FrmMain.Enabled = True
-        FrmMain.lblTrackers.Focus()
+        FormMain.Enabled = True
+        FormMain.lblTrackers.Focus()
         Me.Close()
 
     End Sub
 
     Private Sub FrmTracker_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
 
-        FrmMain.Enabled = True
-        FrmMain.lblTrackers.Focus()
+        FormMain.Enabled = True
+        FormMain.lblTrackers.Focus()
 
     End Sub
 

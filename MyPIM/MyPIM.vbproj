@@ -76,29 +76,29 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmContacts.Designer.vb">
-      <DependentUpon>FrmContacts.vb</DependentUpon>
+    <Compile Include="FormContacts.Designer.vb">
+      <DependentUpon>FormContacts.vb</DependentUpon>
     </Compile>
-    <Compile Include="FrmContacts.vb">
+    <Compile Include="FormContacts.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.vb">
+    <Compile Include="FormMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.Designer.vb">
-      <DependentUpon>FrmMain.vb</DependentUpon>
+    <Compile Include="FormMain.Designer.vb">
+      <DependentUpon>FormMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMemos.Designer.vb">
-      <DependentUpon>FrmMemos.vb</DependentUpon>
+    <Compile Include="FormMemos.Designer.vb">
+      <DependentUpon>FormMemos.vb</DependentUpon>
     </Compile>
-    <Compile Include="FrmMemos.vb">
+    <Compile Include="FormMemos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTracker.designer.vb">
-      <DependentUpon>FrmTracker.vb</DependentUpon>
+    <Compile Include="FormEvents.designer.vb">
+      <DependentUpon>FormEvents.vb</DependentUpon>
     </Compile>
-    <Compile Include="FrmTracker.vb">
+    <Compile Include="FormEvents.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ModMyPIM.vb" />
@@ -120,17 +120,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FrmContacts.resx">
-      <DependentUpon>FrmContacts.vb</DependentUpon>
+    <EmbeddedResource Include="FormContacts.resx">
+      <DependentUpon>FormContacts.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMain.resx">
-      <DependentUpon>FrmMain.vb</DependentUpon>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMemos.resx">
-      <DependentUpon>FrmMemos.vb</DependentUpon>
+    <EmbeddedResource Include="FormMemos.resx">
+      <DependentUpon>FormMemos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTracker.resx">
-      <DependentUpon>FrmTracker.vb</DependentUpon>
+    <EmbeddedResource Include="FormEvents.resx">
+      <DependentUpon>FormEvents.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

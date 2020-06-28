@@ -12,7 +12,8 @@ Module ModMyPIM
     Friend MemosDataTable As New DataTable                      'The Memos DataTable
     Friend EventsDataTable As New DataTable                     'The Events DataTable
     Friend ContactRowIndex As Integer = 0                       'Contacts DataTable Row being edited
-    Friend EventEditRow As Integer = 0                           'dtbEvent Row being edited
+    Friend EventRowIndex As Integer = 0                         'Event DataTable Row being edited
+    'Friend EventEditRow As Integer = 0                           'dtbEvent Row being edited
     Friend UserDataPath As String = Application.UserAppDataPath 'The Users Data Path
     Friend Delimiter As String = vbTab                          'Tab delimiter for .tsv files
     Friend strContactsFile As String = "Contacts.tsv"           'The Contacts record file
@@ -165,9 +166,9 @@ Module ModMyPIM
                 SplitLine = Split(TextLine, Delimiter)           ' Separate the line into the SplitLine array
                 strTrackerSortOrder = SplitLine(0)                  ' Tracker display sort order
                 strContactSortOrder = SplitLine(1)                  ' Contact display sort order
-                FrmMain.cboTrackerTime.SelectedIndex = CInt(SplitLine(2))   ' Tracker display range
-                FrmMain.cboTracker.SelectedIndex = CInt(SplitLine(3))       ' Tracker Category choice
-                FrmMain.cboContact.SelectedIndex = CInt(SplitLine(4))       ' Contact Category choice
+                FormMain.cboTrackerTime.SelectedIndex = CInt(SplitLine(2))   ' Tracker display range
+                FormMain.cboTracker.SelectedIndex = CInt(SplitLine(3))       ' Tracker Category choice
+                FormMain.cboContact.SelectedIndex = CInt(SplitLine(4))       ' Contact Category choice
             Loop
             'Close the StreamReader
             objReader.Close()
@@ -177,8 +178,8 @@ Module ModMyPIM
     End Sub
     Public Sub SaveSettings()
         File.WriteAllText(SettingsFileName, strTrackerSortOrder & Delimiter & strContactSortOrder _
-                          & Delimiter & FrmMain.cboTrackerTime.SelectedIndex & Delimiter _
-                          & FrmMain.cboTracker.SelectedIndex & Delimiter & FrmMain.cboContact.SelectedIndex)
+                          & Delimiter & FormMain.cboTrackerTime.SelectedIndex & Delimiter _
+                          & FormMain.cboTracker.SelectedIndex & Delimiter & FormMain.cboContact.SelectedIndex)
     End Sub
 
 #End Region
