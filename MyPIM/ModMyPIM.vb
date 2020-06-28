@@ -1,7 +1,6 @@
 ﻿#Region "*** Imports ***"
 
 Imports System.IO
-Imports System.Data
 
 #End Region
 
@@ -9,23 +8,20 @@ Module ModMyPIM
 
 #Region "*** Public Variables ***"
 
-    Friend dtbContacts As New DataTable                         'The datatable for contacts
-    Friend dtbMemos As New DataTable                            'The datatable for memos
-    Friend dtbTracker As New DataTable                          'The datatable for the Tracker events
-    Friend dteEventDate As Date                                 'Date for the selected event from calendar
-    Friend intContactEditRow As Integer = 0                     'dtbContact Row being edited
-    Friend intContactRecordIndexNumber As Integer = 0           'Unique Index Number for each Contact
-    Friend intTrackerRecordIndexNumber As Integer = 0           'Unique Index Number for each Tracker
-    Friend intTrackerEditRow As Integer = 0                     'dtbTracker Row being edited
-    Friend strDataPath As String = Application.UserAppDataPath  'The Users Data Path
-    Friend strDelimiter As String = ControlChars.Tab            'Delimiter for Tab Separated Files
+    Friend ContactsDataTable As New DataTable                   'The Contacts DataTable
+    Friend MemosDataTable As New DataTable                      'The Memos DataTable
+    Friend EventsDataTable As New DataTable                     'The Events DataTable
+    Friend ContactRowIndex As Integer = 0                       'Contacts DataTable Row being edited
+    Friend EventEditRow As Integer = 0                           'dtbEvent Row being edited
+    Friend UserDataPath As String = Application.UserAppDataPath 'The Users Data Path
+    Friend Delimiter As String = vbTab                          'Tab delimiter for .tsv files
     Friend strContactsFile As String = "Contacts.tsv"           'The Contacts record file
     Friend strMemosFile As String = "Memos.tsv"                 'The Memos file
     Friend strRunProgramName As String                          'The Program name to run
-    Friend strSettingsFile As String = "Settings.tsv"           'The Settings file
+    Friend SettingsFileName As String = UserDataPath & "\Settings.tsv"   'The Settings File
     Friend strContactSortOrder As String = "A"                  'Contact datatable sort order 'dtbTracker'
     Friend strTrackerSortOrder As String = "A"                  'Tracker datatable sort order 'dtbTracker'
-    Friend strTrackersFile As String = "Tracker.tsv"            'The Trackers record file
+    Friend strTrackersFile As String = "Events.tsv"            'The Events record file
 
     'Used to give unique control names such as pnlTracker1, pnlTracker2 etc.
     Friend TrackerPanelsAddedCount As Integer = 0
@@ -39,8 +35,7 @@ Module ModMyPIM
 #Region "*** Define DataTables ***"
 
     Public Sub DefineContactsDataTable()
-        With dtbContacts
-            .Columns.Add("id", System.Type.GetType("System.Int32"))
+        With ContactsDataTable
             .Columns.Add("First Name", System.Type.GetType("System.String"))
             .Columns.Add("Middle Name", System.Type.GetType("System.String"))
             .Columns.Add("Last Name", System.Type.GetType("System.String"))
@@ -62,15 +57,14 @@ Module ModMyPIM
     End Sub
 
     Public Sub DefineMemosDataTable()
-        With dtbMemos
+        With MemosDataTable
             .Columns.Add("Header", System.Type.GetType("System.String"))
             .Columns.Add("Memo", System.Type.GetType("System.String"))
         End With
     End Sub
 
-    Public Sub DefineTrackerDataTable()
-        With dtbTracker
-            .Columns.Add("id", System.Type.GetType("System.Int32"))
+    Public Sub DefineEventsDataTable()
+        With EventsDataTable
             .Columns.Add("Description", System.Type.GetType("System.String"))
             .Columns.Add("Date", System.Type.GetType("System.DateTime"))
             .Columns.Add("Amount", System.Type.GetType("System.Double"))
@@ -138,16 +132,10 @@ Module ModMyPIM
         Try
             writer = New System.IO.StreamWriter(filename)
 
-            '' first write a line with the columns name
             Dim sep As String = ""
             Dim builder As New System.Text.StringBuilder
-            'For Each col As DataColumn In table.Columns
-            '    builder.Append(sep).Append(col.ColumnName)
-            '    sep = sepChar
-            'Next
-            'writer.WriteLine(builder.ToString())
 
-            ' then write all the rows
+            ' write all the rows
             For Each row As DataRow In table.Rows
                 sep = ""
                 builder = New System.Text.StringBuilder
@@ -158,27 +146,28 @@ Module ModMyPIM
                 Next
                 writer.WriteLine(builder.ToString())
             Next
-        Finally
-            If Not writer Is Nothing Then writer.Close()
+            writer.Close()
+        Catch ex As Exception
+            Dim unused = MsgBox("Failed in the DataTable2CSV routine...: " & filename)
         End Try
+
+
     End Sub
 
 
     Public Sub LoadSettings()
         Dim SplitLine() As String
-        If File.Exists(strDataPath & "\" & strSettingsFile) = True Then
+        If File.Exists(SettingsFileName) = True Then
             'Open the StreamReader
-            Dim objReader As New StreamReader(strDataPath & "\" & strSettingsFile, System.Text.Encoding.Default)
+            Dim objReader As New StreamReader(SettingsFileName, System.Text.Encoding.Default)
             Do While objReader.Peek() <> -1                         ' Peek to see if there is another line of data to process
                 Dim TextLine As String = objReader.ReadLine()       ' Read the next line of data
-                SplitLine = Split(TextLine, strDelimiter)           ' Separate the line into the SplitLine array
-                intTrackerRecordIndexNumber = CInt(SplitLine(0))    ' Tracker Record Counter
-                intContactRecordIndexNumber = CInt(SplitLine(1))    ' Contact Record Counter
-                strTrackerSortOrder = SplitLine(2)                  ' Tracker display sort order
-                strContactSortOrder = SplitLine(3)                  ' Contact display sort order
-                FrmMain.cboTrackerTime.SelectedIndex = CInt(SplitLine(4))   ' Tracker display range
-                FrmMain.cboTracker.SelectedIndex = CInt(SplitLine(5))       ' Tracker Category choice
-                FrmMain.cboContact.SelectedIndex = CInt(SplitLine(6))       ' Contact Category choice
+                SplitLine = Split(TextLine, Delimiter)           ' Separate the line into the SplitLine array
+                strTrackerSortOrder = SplitLine(0)                  ' Tracker display sort order
+                strContactSortOrder = SplitLine(1)                  ' Contact display sort order
+                FrmMain.cboTrackerTime.SelectedIndex = CInt(SplitLine(2))   ' Tracker display range
+                FrmMain.cboTracker.SelectedIndex = CInt(SplitLine(3))       ' Tracker Category choice
+                FrmMain.cboContact.SelectedIndex = CInt(SplitLine(4))       ' Contact Category choice
             Loop
             'Close the StreamReader
             objReader.Close()
@@ -187,10 +176,9 @@ Module ModMyPIM
         End If
     End Sub
     Public Sub SaveSettings()
-        File.WriteAllText(strDataPath & "\" & strSettingsFile, CStr(intTrackerRecordIndexNumber) _
-            & strDelimiter & CStr(intContactRecordIndexNumber) & strDelimiter & strTrackerSortOrder _
-            & strDelimiter & strContactSortOrder & strDelimiter & FrmMain.cboTrackerTime.SelectedIndex _
-            & strDelimiter & FrmMain.cboTracker.SelectedIndex & strDelimiter & FrmMain.cboContact.SelectedIndex)
+        File.WriteAllText(SettingsFileName, strTrackerSortOrder & Delimiter & strContactSortOrder _
+                          & Delimiter & FrmMain.cboTrackerTime.SelectedIndex & Delimiter _
+                          & FrmMain.cboTracker.SelectedIndex & Delimiter & FrmMain.cboContact.SelectedIndex)
     End Sub
 
 #End Region

@@ -250,7 +250,7 @@ Partial Class FrmContacts
         'tbxCity
         '
         Me.tbxCity.Location = New System.Drawing.Point(117, 169)
-        Me.tbxCity.MaxLength = 10
+        Me.tbxCity.MaxLength = 15
         Me.tbxCity.Name = "tbxCity"
         Me.tbxCity.Size = New System.Drawing.Size(226, 29)
         Me.tbxCity.TabIndex = 6

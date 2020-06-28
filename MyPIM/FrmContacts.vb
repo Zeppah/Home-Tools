@@ -13,12 +13,10 @@
         'ADD section
         If btnSaveContactRecord.Text = "Add" Then
 
-            intContactRecordIndexNumber += 1 'increment the id number for new record
 
             'Add the new record to the dtbContacts DataTable
-            Dim newrow As DataRow = dtbContacts.NewRow
+            Dim newrow As DataRow = ContactsDataTable.NewRow
 
-            newrow("id") = intContactRecordIndexNumber
             newrow("First Name") = tbxFirstName.Text
             newrow("Middle Name") = tbxMiddleName.Text
             newrow("Last Name") = tbxLastName.Text
@@ -42,10 +40,10 @@
             Else
                 newrow("SortName") = tbxFirstName.Text & " " & tbxMiddleName.Text & " " & tbxLastName.Text
             End If
-            dtbContacts.Rows.Add(newrow)
+            ContactsDataTable.Rows.Add(newrow)
 
             'Save the DataTable
-            DataTable2CSV(dtbContacts, strDataPath & "\" & strContactsFile)
+            DataTable2CSV(ContactsDataTable, UserDataPath & "\" & strContactsFile)
 
             SaveSettings()
 
@@ -72,33 +70,33 @@
 
             'EDIT section
         ElseIf btnSaveContactRecord.Text = "Save" Then
-            dtbContacts.Rows.Item(intContactEditRow).Item("First Name") = tbxFirstName.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("Middle Name") = tbxMiddleName.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("Last Name") = tbxLastName.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("Company") = tbxCompany.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("Address1") = tbxAddress1.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("Address2") = tbxAddress2.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("City") = tbxCity.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("State") = cbxState.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("Zipcode") = mtbZipcode.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("Phone") = mtbPhone.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("Email") = tbxEmail.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("Birthdate") = mtbBirthdate.Text
-            dtbContacts.Rows.Item(intContactEditRow).Item("Groups") = cbxGroups.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("First Name") = tbxFirstName.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Middle Name") = tbxMiddleName.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Last Name") = tbxLastName.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Company") = tbxCompany.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Address1") = tbxAddress1.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Address2") = tbxAddress2.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("City") = tbxCity.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("State") = cbxState.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Zipcode") = mtbZipcode.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Phone") = mtbPhone.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Email") = tbxEmail.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Birthdate") = mtbBirthdate.Text
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Groups") = cbxGroups.Text
 
             Dim s = tbxNotes.Text.Replace(vbNewLine, "_\n") 'strip Newlines to be able to save .tsv
-            dtbContacts.Rows.Item(intContactEditRow).Item("Notes") = s
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Notes") = s
 
-            dtbContacts.Rows.Item(intContactEditRow).Item("Starred") = cbxStarred.Checked
+            ContactsDataTable.Rows.Item(ContactRowIndex).Item("Starred") = cbxStarred.Checked
 
             If tbxFirstName.Text = "" And tbxMiddleName.Text = "" And tbxLastName.Text = "" Then
-                dtbContacts.Rows.Item(intContactEditRow).Item("SortName") = tbxCompany.Text
+                ContactsDataTable.Rows.Item(ContactRowIndex).Item("SortName") = tbxCompany.Text
             Else
-                dtbContacts.Rows.Item(intContactEditRow).Item("SortName") = tbxFirstName.Text & " " & tbxMiddleName.Text & " " & tbxLastName.Text
+                ContactsDataTable.Rows.Item(ContactRowIndex).Item("SortName") = tbxFirstName.Text & " " & tbxMiddleName.Text & " " & tbxLastName.Text
             End If
 
             'Save the DataTable
-            DataTable2CSV(dtbContacts, strDataPath & "\" & strContactsFile)
+            DataTable2CSV(ContactsDataTable, UserDataPath & "\" & strContactsFile)
 
             FrmMain.Enabled = True
             FrmMain.ContactsSort()

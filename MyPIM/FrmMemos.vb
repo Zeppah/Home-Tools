@@ -13,12 +13,12 @@ Public Class FrmMemos
         'The ADD section
         If btnAddMemoRecord.Text = "Add" Then
             'Add the new record to the dtbMemos DataTable
-            Dim newrow As DataRow = dtbMemos.NewRow
+            Dim newrow As DataRow = MemosDataTable.NewRow
             Dim s = tbxMemo.Text.Replace(vbNewLine, "_\n")
             newrow("Header") = tbxHeading.Text
             newrow("Memo") = s
 
-            dtbMemos.Rows.Add(newrow)
+            MemosDataTable.Rows.Add(newrow)
             tbxHeading.Focus()
             tbxHeading.Text = ""
             tbxMemo.Text = ""
@@ -29,12 +29,12 @@ Public Class FrmMemos
             If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
 
 
-            dtbMemos.Rows.Item(dtbRow).Item("Header") = tbxHeading.Text
+            MemosDataTable.Rows.Item(dtbRow).Item("Header") = tbxHeading.Text
             Dim s = tbxMemo.Text.Replace(vbNewLine, "_\n")
-            dtbMemos.Rows.Item(dtbRow).Item("Memo") = s
-            DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
-            dtbMemos.Clear()
-            CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
+            MemosDataTable.Rows.Item(dtbRow).Item("Memo") = s
+            DataTable2CSV(MemosDataTable, UserDataPath & "\" & strMemosFile)
+            MemosDataTable.Clear()
+            CSV2DataTable(MemosDataTable, UserDataPath & "\" & strMemosFile)
             FrmMain.cboMemos.Items.Clear()
             FrmMain.FillMemoListBox()
             btnDeleteMemo.Visible = False
@@ -46,13 +46,13 @@ Public Class FrmMemos
 
         'Sort the data table before saving and displaying
         Dim datav As DataView
-        datav = dtbMemos.DefaultView
+        datav = MemosDataTable.DefaultView
         datav.Sort = "Header ASC" 'or DESC, or anything just search for dataview.
-        dtbMemos = datav.ToTable()
+        MemosDataTable = datav.ToTable()
 
-        DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
-        dtbMemos.Clear()
-        CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
+        DataTable2CSV(MemosDataTable, UserDataPath & "\" & strMemosFile)
+        MemosDataTable.Clear()
+        CSV2DataTable(MemosDataTable, UserDataPath & "\" & strMemosFile)
         FrmMain.cboMemos.Items.Clear()
         FrmMain.FillMemoListBox()
         Me.Close()
@@ -63,10 +63,10 @@ Public Class FrmMemos
         Dim dtbRow As Integer = FrmMain.cboMemos.SelectedIndex
         If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
 
-        dtbMemos.Rows.Remove(dtbMemos.Rows(dtbRow))
-        DataTable2CSV(dtbMemos, strDataPath & "\" & strMemosFile)
-        dtbMemos.Clear()
-        CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
+        MemosDataTable.Rows.Remove(MemosDataTable.Rows(dtbRow))
+        DataTable2CSV(MemosDataTable, UserDataPath & "\" & strMemosFile)
+        MemosDataTable.Clear()
+        CSV2DataTable(MemosDataTable, UserDataPath & "\" & strMemosFile)
         FrmMain.cboMemos.Items.Clear()
         FrmMain.FillMemoListBox()
         FrmMain.cboMemos.Text = ""

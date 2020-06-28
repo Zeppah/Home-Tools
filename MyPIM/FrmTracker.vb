@@ -26,12 +26,10 @@ Public Class FrmTracker
 
         'ADD section
         If btnAddTrackerRecord.Text = "Add" Then
-            intTrackerRecordIndexNumber += 1 'increment the id number for new record
 
             'Add the new record to the dtbTracker DataTable
-            Dim newrow As DataRow = dtbTracker.NewRow
+            Dim newrow As DataRow = EventsDataTable.NewRow
 
-            newrow("id") = intTrackerRecordIndexNumber
             newrow("Description") = tbxDescription.Text
             newrow("Date") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
             newrow("Amount") = tbxAmount.Text
@@ -60,9 +58,9 @@ Public Class FrmTracker
                     newrow("SortDate") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
             End If
 
-            dtbTracker.Rows.Add(newrow)
+            EventsDataTable.Rows.Add(newrow)
             'Save the DataTable
-            DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
+            DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
             'Save the settings, index number has been changed
             SaveSettings()
             FrmMain.TrackerSort()
@@ -71,15 +69,15 @@ Public Class FrmTracker
             'EDIT Section
         ElseIf btnAddTrackerRecord.Text = "Save" Then
 
-            dtbTracker.Rows.Item(intTrackerEditRow).Item("Description") = tbxDescription.Text
-            dtbTracker.Rows.Item(intTrackerEditRow).Item("Date") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
-            dtbTracker.Rows.Item(intTrackerEditRow).Item("Amount") = tbxAmount.Text
-            dtbTracker.Rows.Item(intTrackerEditRow).Item("Time") = cbxTime.Checked
-            dtbTracker.Rows.Item(intTrackerEditRow).Item("Appointment") = cbxAppointment.Checked
-            dtbTracker.Rows.Item(intTrackerEditRow).Item("Bill") = cbxBill.Checked
-            dtbTracker.Rows.Item(intTrackerEditRow).Item("Birthday") = cbxBirthday.Checked
-            dtbTracker.Rows.Item(intTrackerEditRow).Item("Other") = cbxOther.Checked
-            dtbTracker.Rows.Item(intTrackerEditRow).Item("Starred") = cbxStarred.Checked
+            EventsDataTable.Rows.Item(EventEditRow).Item("Description") = tbxDescription.Text
+            EventsDataTable.Rows.Item(EventEditRow).Item("Date") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+            EventsDataTable.Rows.Item(EventEditRow).Item("Amount") = tbxAmount.Text
+            EventsDataTable.Rows.Item(EventEditRow).Item("Time") = cbxTime.Checked
+            EventsDataTable.Rows.Item(EventEditRow).Item("Appointment") = cbxAppointment.Checked
+            EventsDataTable.Rows.Item(EventEditRow).Item("Bill") = cbxBill.Checked
+            EventsDataTable.Rows.Item(EventEditRow).Item("Birthday") = cbxBirthday.Checked
+            EventsDataTable.Rows.Item(EventEditRow).Item("Other") = cbxOther.Checked
+            EventsDataTable.Rows.Item(EventEditRow).Item("Starred") = cbxStarred.Checked
 
             If cbxBirthday.Checked Then
 
@@ -93,15 +91,16 @@ Public Class FrmTracker
                 End If
 
                 Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
-                dtbTracker.Rows.Item(intTrackerEditRow).Item("SortDate") = NextBirthDate
+                EventsDataTable.Rows.Item(EventEditRow).Item("SortDate") = NextBirthDate
             Else
-                dtbTracker.Rows.Item(intTrackerEditRow).Item("SortDate") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
+                EventsDataTable.Rows.Item(EventEditRow).Item("SortDate") = (dtpDate.Value.Date + dtpTime.Value.TimeOfDay)
             End If
 
             btnAddTrackerRecord.Text = "Add"
             FrmMain.Enabled = True
+
             'Save the DataTable
-            DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
+            DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
 
             FrmMain.TrackerSort()
 

@@ -29,12 +29,12 @@ Public Class FrmMain
 
         LoadSettings()
         TmrClock.Start()
-        DefineTrackerDataTable()
-        CSV2DataTable(dtbTracker, strDataPath & "\" & strTrackersFile)
+        DefineEventsDataTable()
+        CSV2DataTable(EventsDataTable, UserDataPath & "\" & strTrackersFile)
         DefineContactsDataTable()
-        CSV2DataTable(dtbContacts, strDataPath & "\" & strContactsFile)
+        CSV2DataTable(ContactsDataTable, UserDataPath & "\" & strContactsFile)
         DefineMemosDataTable()
-        CSV2DataTable(dtbMemos, strDataPath & "\" & strMemosFile)
+        CSV2DataTable(MemosDataTable, UserDataPath & "\" & strMemosFile)
         DisplayTrackers()
         DisplayContacts()
         FillMemoListBox()
@@ -54,7 +54,7 @@ Public Class FrmMain
         Dim EndDate As Date
         Dim result As Integer
 
-        For Each row In dtbTracker.Rows
+        For Each row In EventsDataTable.Rows
             TrackerPanelsAddedCount += 1 ' This needs to count the rows to name the buttons to corraspond to the datarecord
 
             'Set the time period to display tracker panels
@@ -231,15 +231,15 @@ Public Class FrmMain
                             End If
 
                             If row("Appointment").ToString = "True" Then
-                                Dim g As New Panel
+                                Dim g As Panel
                                 g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
                                 g.BackColor = Color.LightGreen
                             ElseIf row("Bill").ToString = "True" Then
-                                Dim g As New Panel
+                                Dim g As Panel
                                 g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
                                 g.BackColor = Color.Pink
                             ElseIf row("Other").ToString = "True" Then
-                                Dim g As New Panel
+                                Dim g As Panel
                                 g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
                                 g.BackColor = Color.Bisque
                             End If
@@ -383,35 +383,35 @@ Public Class FrmMain
 
                         If IsNumeric(MyString) Then
 
-                            intTrackerEditRow = CInt(MyString) - 1 'Used to edit Tracker row
+                            EventEditRow = CInt(MyString) - 1 'Used to edit Tracker row
 
                             ' copy data from datatable to textboxes
-                            FrmTracker.tbxDescription.Text = dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Description").ToString
-                            FrmTracker.dtpDate.Text = dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Date").ToString
+                            FrmTracker.tbxDescription.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Description").ToString
+                            FrmTracker.dtpDate.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Date").ToString
 
-                            If dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Time").ToString = "True" Then
+                            If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Time").ToString = "True" Then
                                 FrmTracker.cbxTime.Checked = True
-                                FrmTracker.dtpTime.Text = Format(dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Date"), "HH:mm tt")
+                                FrmTracker.dtpTime.Text = Format(EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Date"), "HH:mm tt")
                             End If
 
-                            If dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Bill").ToString = "True" Then
+                            If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Bill").ToString = "True" Then
                                 FrmTracker.cbxBill.Checked = True
-                                FrmTracker.tbxAmount.Text = dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Amount").ToString
+                                FrmTracker.tbxAmount.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Amount").ToString
                             End If
 
-                            If dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Appointment").ToString = "True" Then
+                            If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Appointment").ToString = "True" Then
                                 FrmTracker.cbxAppointment.Checked = True
                             End If
 
-                            If dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Birthday").ToString = "True" Then
+                            If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Birthday").ToString = "True" Then
                                 FrmTracker.cbxBirthday.Checked = True
                             End If
 
-                            If dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Other").ToString = "True" Then
+                            If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Other").ToString = "True" Then
                                 FrmTracker.cbxOther.Checked = True
                             End If
 
-                            If dtbTracker.Rows.Item(CInt(MyString) - 1).Item("Starred").ToString = "True" Then
+                            If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Starred").ToString = "True" Then
                                 FrmTracker.cbxStarred.Checked = True
                             End If
 
@@ -471,7 +471,7 @@ Public Class FrmMain
                         If IsNumeric(MyString) Then
                             Dim intTrackerDeleteRow = CInt(MyString) - 1 'Used to edit Tracker row
 
-                            dtbTracker.Rows.Remove(dtbTracker.Rows(CInt(MyString) - 1))
+                            EventsDataTable.Rows.Remove(EventsDataTable.Rows(CInt(MyString) - 1))
 
                             Exit For
                         End If
@@ -494,7 +494,7 @@ Public Class FrmMain
         Next
 
         'Save the DataTable
-        DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
+        DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
         DisplayTrackers()
 
     End Sub
@@ -502,16 +502,16 @@ Public Class FrmMain
     Private Sub BtnSort_Click(sender As Object, e As EventArgs) Handles btnSort.Click
 
         If strTrackerSortOrder = "A" Then
-            dtbTracker.DefaultView.Sort = "SortDate ASC"
-            dtbTracker = dtbTracker.DefaultView.ToTable
+            EventsDataTable.DefaultView.Sort = "SortDate ASC"
+            EventsDataTable = EventsDataTable.DefaultView.ToTable
             strTrackerSortOrder = "D"
         Else
-            dtbTracker.DefaultView.Sort = "SortDate DESC"
-            dtbTracker = dtbTracker.DefaultView.ToTable
+            EventsDataTable.DefaultView.Sort = "SortDate DESC"
+            EventsDataTable = EventsDataTable.DefaultView.ToTable
             strTrackerSortOrder = "A"
         End If
 
-        DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
+        DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
         SaveSettings()
         DisplayTrackers()
 
@@ -520,13 +520,13 @@ Public Class FrmMain
     Friend Sub TrackerSort()
 
         If strTrackerSortOrder = "A" Then
-            dtbTracker.DefaultView.Sort = "SortDate DESC"
-            dtbTracker = dtbTracker.DefaultView.ToTable
+            EventsDataTable.DefaultView.Sort = "SortDate DESC"
+            EventsDataTable = EventsDataTable.DefaultView.ToTable
         Else
-            dtbTracker.DefaultView.Sort = "SortDate ASC"
-            dtbTracker = dtbTracker.DefaultView.ToTable
+            EventsDataTable.DefaultView.Sort = "SortDate ASC"
+            EventsDataTable = EventsDataTable.DefaultView.ToTable
         End If
-        DataTable2CSV(dtbTracker, strDataPath & "\" & strTrackersFile)
+        DataTable2CSV(EventsDataTable, UserDataPath & "\" & strTrackersFile)
 
         DisplayTrackers()
 
@@ -542,7 +542,7 @@ Public Class FrmMain
         ContactPanelsAddedCount = 0
 
         Dim row As DataRow
-        For Each row In dtbContacts.Rows
+        For Each row In ContactsDataTable.Rows
             ContactPanelsAddedCount += 1
             Select Case cboContact.SelectedIndex
                 Case 0 'All Selected
@@ -833,28 +833,28 @@ Public Class FrmMain
                         Dim MyString As String = childControlObject.Name.Substring(childControlObject.Name.Length - x)
                         If IsNumeric(MyString) Then
 
-                            intContactEditRow = CInt(MyString) - 1 'Used to edit Contact row
+                            ContactRowIndex = CInt(MyString) - 1 'Used to edit Contact row
 
                             ' copy data from datatable to textboxes
-                            FrmContacts.tbxFirstName.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("First Name").ToString
-                            FrmContacts.tbxMiddleName.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Middle Name").ToString
-                            FrmContacts.tbxLastName.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Last Name").ToString
-                            FrmContacts.tbxCompany.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Company").ToString
-                            FrmContacts.tbxAddress1.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Address1").ToString
-                            FrmContacts.tbxAddress2.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Address2").ToString
-                            FrmContacts.tbxCity.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("City").ToString
-                            FrmContacts.cbxState.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("State").ToString
-                            FrmContacts.mtbZipcode.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Zipcode").ToString
-                            FrmContacts.mtbPhone.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Phone").ToString
-                            FrmContacts.tbxEmail.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Email").ToString
-                            FrmContacts.mtbBirthdate.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Birthdate").ToString
-                            FrmContacts.cbxGroups.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Groups").ToString
+                            FrmContacts.tbxFirstName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("First Name").ToString
+                            FrmContacts.tbxMiddleName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Middle Name").ToString
+                            FrmContacts.tbxLastName.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Last Name").ToString
+                            FrmContacts.tbxCompany.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Company").ToString
+                            FrmContacts.tbxAddress1.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Address1").ToString
+                            FrmContacts.tbxAddress2.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Address2").ToString
+                            FrmContacts.tbxCity.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("City").ToString
+                            FrmContacts.cbxState.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("State").ToString
+                            FrmContacts.mtbZipcode.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Zipcode").ToString
+                            FrmContacts.mtbPhone.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Phone").ToString
+                            FrmContacts.tbxEmail.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Email").ToString
+                            FrmContacts.mtbBirthdate.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Birthdate").ToString
+                            FrmContacts.cbxGroups.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Groups").ToString
 
 
-                            FrmContacts.tbxNotes.Text = dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Notes").ToString
+                            FrmContacts.tbxNotes.Text = ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Notes").ToString
                             FrmContacts.tbxNotes.Text = FrmContacts.tbxNotes.Text.Replace("_\n", vbNewLine)
 
-                            If dtbContacts.Rows.Item(CInt(MyString) - 1).Item("Starred").ToString = "True" Then
+                            If ContactsDataTable.Rows.Item(CInt(MyString) - 1).Item("Starred").ToString = "True" Then
                                 FrmContacts.cbxStarred.Checked = True
                             End If
 
@@ -914,7 +914,7 @@ Public Class FrmMain
                         If IsNumeric(MyString) Then
                             Dim intContactDeleteRow = CInt(MyString) - 1 'Used to edit Contact row
 
-                            dtbContacts.Rows.Remove(dtbContacts.Rows(CInt(MyString) - 1))
+                            ContactsDataTable.Rows.Remove(ContactsDataTable.Rows(CInt(MyString) - 1))
 
                             Exit For
                         End If
@@ -937,7 +937,7 @@ Public Class FrmMain
         Next
 
         'Save the DataTable
-        DataTable2CSV(dtbContacts, strDataPath & "\" & strContactsFile)
+        DataTable2CSV(ContactsDataTable, UserDataPath & "\" & strContactsFile)
         DisplayContacts()
 
     End Sub
@@ -945,16 +945,16 @@ Public Class FrmMain
     Private Sub BtnContactSort_Click(sender As Object, e As EventArgs) Handles btnContactSort.Click
 
         If strContactSortOrder = "A" Then
-            dtbContacts.DefaultView.Sort = "SortName ASC"
-            dtbContacts = dtbContacts.DefaultView.ToTable
+            ContactsDataTable.DefaultView.Sort = "SortName ASC"
+            ContactsDataTable = ContactsDataTable.DefaultView.ToTable
             strContactSortOrder = "D"
         Else
-            dtbContacts.DefaultView.Sort = "SortName DESC"
-            dtbContacts = dtbContacts.DefaultView.ToTable
+            ContactsDataTable.DefaultView.Sort = "SortName DESC"
+            ContactsDataTable = ContactsDataTable.DefaultView.ToTable
             strContactSortOrder = "A"
         End If
 
-        DataTable2CSV(dtbContacts, strDataPath & "\" & strContactsFile)
+        DataTable2CSV(ContactsDataTable, UserDataPath & "\" & strContactsFile)
         SaveSettings()
         DisplayContacts()
 
@@ -963,11 +963,11 @@ Public Class FrmMain
     Public Sub ContactsSort() 'To sort the file after an edit or add
 
         If strContactSortOrder = "D" Then
-            dtbContacts.DefaultView.Sort = "SortName ASC"
-            dtbContacts = dtbContacts.DefaultView.ToTable
+            ContactsDataTable.DefaultView.Sort = "SortName ASC"
+            ContactsDataTable = ContactsDataTable.DefaultView.ToTable
         Else
-            dtbContacts.DefaultView.Sort = "SortName DESC"
-            dtbContacts = dtbContacts.DefaultView.ToTable
+            ContactsDataTable.DefaultView.Sort = "SortName DESC"
+            ContactsDataTable = ContactsDataTable.DefaultView.ToTable
         End If
 
         DisplayContacts()
@@ -980,7 +980,7 @@ Public Class FrmMain
 
     Sub FillMemoListBox()
 
-        For Each row As DataRow In dtbMemos.Rows
+        For Each row As DataRow In MemosDataTable.Rows
             Dim x As String = ""
             cboMemos.Items.Add(row("Header"))
             cboMemos.Items.Add(x)
@@ -1001,15 +1001,17 @@ Public Class FrmMain
         If dtbRow > 0 Then dtbRow = CInt(dtbRow / 2)
 
         'copy the datatable information to the textbox fields replacing the _\n with a newline
-        FrmMemos.tbxHeading.Text = dtbMemos.Rows.Item(dtbRow).Item("Header").ToString
-        FrmMemos.tbxMemo.Text = dtbMemos.Rows.Item(dtbRow).Item("Memo").ToString
+        FrmMemos.tbxHeading.Text = MemosDataTable.Rows.Item(dtbRow).Item("Header").ToString
+        FrmMemos.tbxMemo.Text = MemosDataTable.Rows.Item(dtbRow).Item("Memo").ToString
         FrmMemos.tbxMemo.Text = FrmMemos.tbxMemo.Text.Replace("_\n", vbNewLine)
         FrmMemos.btnAddMemoRecord.Text = "Save"
         Me.Enabled = False
         FrmMemos.btnDeleteMemo.Visible = True
+
         lblMemos.Focus() 'Turn off the selected line highlight
         FrmMemos.Show()
     End Sub
+
 #End Region
 
 #Region "*** Event Procedures ***"
