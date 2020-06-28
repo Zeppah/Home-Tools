@@ -35,6 +35,7 @@ Partial Class FormMain
         Me.OnThisDayToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.WeatherToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EntertainmentToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NetflixToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.YouTubeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -43,7 +44,7 @@ Partial Class FormMain
         Me.TmrClock = New System.Windows.Forms.Timer(Me.components)
         Me.txbSearch = New System.Windows.Forms.TextBox()
         Me.btnSearch = New System.Windows.Forms.Button()
-        Me.cboTracker = New System.Windows.Forms.ComboBox()
+        Me.cboEventList = New System.Windows.Forms.ComboBox()
         Me.btnTrackerAdd = New System.Windows.Forms.Button()
         Me.flpTracker = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnSort = New System.Windows.Forms.Button()
@@ -51,13 +52,12 @@ Partial Class FormMain
         Me.BtnAddContact = New System.Windows.Forms.Button()
         Me.flpContact = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnContactSort = New System.Windows.Forms.Button()
-        Me.cboTrackerTime = New System.Windows.Forms.ComboBox()
+        Me.cboEventTime = New System.Windows.Forms.ComboBox()
         Me.lblMemos = New System.Windows.Forms.Label()
         Me.lblContacts = New System.Windows.Forms.Label()
         Me.lblTrackers = New System.Windows.Forms.Label()
         Me.btnAddMemo = New System.Windows.Forms.Button()
         Me.cboMemos = New System.Windows.Forms.ComboBox()
-        Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mmMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -137,16 +137,22 @@ Partial Class FormMain
         Me.EntertainmentToolStripMenuItem1.Size = New System.Drawing.Size(207, 30)
         Me.EntertainmentToolStripMenuItem1.Text = "Entertainment"
         '
+        'MusicToolStripMenuItem
+        '
+        Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
+        Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(157, 30)
+        Me.MusicToolStripMenuItem.Text = "Music"
+        '
         'NetflixToolStripMenuItem1
         '
         Me.NetflixToolStripMenuItem1.Name = "NetflixToolStripMenuItem1"
-        Me.NetflixToolStripMenuItem1.Size = New System.Drawing.Size(180, 30)
+        Me.NetflixToolStripMenuItem1.Size = New System.Drawing.Size(157, 30)
         Me.NetflixToolStripMenuItem1.Text = "Netflix"
         '
         'YouTubeToolStripMenuItem
         '
         Me.YouTubeToolStripMenuItem.Name = "YouTubeToolStripMenuItem"
-        Me.YouTubeToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
+        Me.YouTubeToolStripMenuItem.Size = New System.Drawing.Size(157, 30)
         Me.YouTubeToolStripMenuItem.Text = "YouTube"
         '
         'MailToolStripMenuItem1
@@ -197,15 +203,15 @@ Partial Class FormMain
         Me.btnSearch.Text = "Search"
         Me.btnSearch.UseVisualStyleBackColor = False
         '
-        'cboTracker
+        'cboEventList
         '
-        Me.cboTracker.FormattingEnabled = True
-        Me.cboTracker.Items.AddRange(New Object() {"All Lists", "Appointments", "Bills", "Birthdays", "Other", "Starred"})
-        Me.cboTracker.Location = New System.Drawing.Point(32, 154)
-        Me.cboTracker.Name = "cboTracker"
-        Me.cboTracker.Size = New System.Drawing.Size(149, 33)
-        Me.cboTracker.TabIndex = 14
-        Me.cboTracker.Text = "All Lists"
+        Me.cboEventList.FormattingEnabled = True
+        Me.cboEventList.Items.AddRange(New Object() {"All Lists", "Appointments", "Bills", "Birthdays", "Other", "Starred"})
+        Me.cboEventList.Location = New System.Drawing.Point(32, 154)
+        Me.cboEventList.Name = "cboEventList"
+        Me.cboEventList.Size = New System.Drawing.Size(149, 33)
+        Me.cboEventList.TabIndex = 14
+        Me.cboEventList.Text = "All Lists"
         '
         'btnTrackerAdd
         '
@@ -282,15 +288,15 @@ Partial Class FormMain
         Me.btnContactSort.Text = "Sort"
         Me.btnContactSort.UseVisualStyleBackColor = False
         '
-        'cboTrackerTime
+        'cboEventTime
         '
-        Me.cboTrackerTime.FormattingEnabled = True
-        Me.cboTrackerTime.Items.AddRange(New Object() {"All Time", "Today", "Week", "Month", "Year"})
-        Me.cboTrackerTime.Location = New System.Drawing.Point(187, 154)
-        Me.cboTrackerTime.Name = "cboTrackerTime"
-        Me.cboTrackerTime.Size = New System.Drawing.Size(109, 33)
-        Me.cboTrackerTime.TabIndex = 21
-        Me.cboTrackerTime.Text = "All Time"
+        Me.cboEventTime.FormattingEnabled = True
+        Me.cboEventTime.Items.AddRange(New Object() {"All Time", "Today", "Week", "Month", "Year"})
+        Me.cboEventTime.Location = New System.Drawing.Point(187, 154)
+        Me.cboEventTime.Name = "cboEventTime"
+        Me.cboEventTime.Size = New System.Drawing.Size(109, 33)
+        Me.cboEventTime.TabIndex = 21
+        Me.cboEventTime.Text = "All Time"
         '
         'lblMemos
         '
@@ -352,13 +358,7 @@ Partial Class FormMain
         Me.cboMemos.Size = New System.Drawing.Size(341, 635)
         Me.cboMemos.TabIndex = 27
         '
-        'MusicToolStripMenuItem
-        '
-        Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
-        Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
-        Me.MusicToolStripMenuItem.Text = "Music"
-        '
-        'FrmMain
+        'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -369,12 +369,12 @@ Partial Class FormMain
         Me.Controls.Add(Me.lblTrackers)
         Me.Controls.Add(Me.lblContacts)
         Me.Controls.Add(Me.lblMemos)
-        Me.Controls.Add(Me.cboTrackerTime)
+        Me.Controls.Add(Me.cboEventTime)
         Me.Controls.Add(Me.cboContact)
         Me.Controls.Add(Me.BtnAddContact)
         Me.Controls.Add(Me.flpContact)
         Me.Controls.Add(Me.btnContactSort)
-        Me.Controls.Add(Me.cboTracker)
+        Me.Controls.Add(Me.cboEventList)
         Me.Controls.Add(Me.btnTrackerAdd)
         Me.Controls.Add(Me.flpTracker)
         Me.Controls.Add(Me.btnSort)
@@ -388,7 +388,7 @@ Partial Class FormMain
         Me.MainMenuStrip = Me.mmMain
         Me.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.MinimumSize = New System.Drawing.Size(1445, 587)
-        Me.Name = "FrmMain"
+        Me.Name = "FormMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "MyPIM"
         Me.mmMain.ResumeLayout(False)
@@ -405,7 +405,7 @@ Partial Class FormMain
     Friend WithEvents TmrClock As Timer
     Friend WithEvents txbSearch As TextBox
     Friend WithEvents btnSearch As Button
-    Friend WithEvents cboTracker As ComboBox
+    Friend WithEvents cboEventList As ComboBox
     Friend WithEvents btnTrackerAdd As Button
     Friend WithEvents flpTracker As FlowLayoutPanel
     Friend WithEvents btnSort As Button
@@ -413,7 +413,7 @@ Partial Class FormMain
     Friend WithEvents BtnAddContact As Button
     Friend WithEvents flpContact As FlowLayoutPanel
     Friend WithEvents btnContactSort As Button
-    Friend WithEvents cboTrackerTime As ComboBox
+    Friend WithEvents cboEventTime As ComboBox
     Friend WithEvents lblMemos As Label
     Friend WithEvents lblContacts As Label
     Friend WithEvents lblTrackers As Label

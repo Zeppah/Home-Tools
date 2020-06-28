@@ -35,16 +35,16 @@ Public Class FormMain
         TSV2DataTable(ContactsDataTable, ContactsFileName)
         AddMemosDataTableColumns()
         TSV2DataTable(MemosDataTable, MemosFileName)
-        DisplayTrackers()
+        DisplayEvents()
         DisplayContacts()
         FillMemoListBox()
     End Sub
 
 #End Region
 
-#Region "*** Tracker Panels Display ***"
+#Region "*** Event Panels Display ***"
 
-    Sub DisplayTrackers() Handles cboTracker.SelectedIndexChanged, cboTrackerTime.SelectedIndexChanged
+    Sub DisplayEvents() Handles cboEventList.SelectedIndexChanged, cboEventTime.SelectedIndexChanged
 
         flpTracker.Controls.Clear()
         EventPanelsAddedCount = 0
@@ -57,8 +57,8 @@ Public Class FormMain
         For Each row In EventsDataTable.Rows
             EventPanelsAddedCount += 1 ' This needs to count the rows to name the buttons to corraspond to the datarecord
 
-            'Set the time period to display tracker panels
-            Select Case cboTrackerTime.SelectedIndex
+            'Set the time period to display Event panels
+            Select Case cboEventTime.SelectedIndex
                 Case 0 'All
                     result = -1
                 Case 1 'Today
@@ -80,7 +80,7 @@ Public Class FormMain
             End Select
             If result <= 0 Then
 
-                Select Case cboTracker.SelectedIndex
+                Select Case cboEventList.SelectedIndex
                     Case 0 'All Selected
                         CreateTrackerPanel()
                         CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
@@ -495,7 +495,7 @@ Public Class FormMain
 
         'Save the DataTable
         DataTable2TSV(EventsDataTable, EventsFileName)
-        DisplayTrackers()
+        DisplayEvents()
 
     End Sub
 
@@ -513,7 +513,7 @@ Public Class FormMain
 
         DataTable2TSV(EventsDataTable, EventsFileName)
         SaveSettings()
-        DisplayTrackers()
+        DisplayEvents()
 
     End Sub
 
@@ -528,7 +528,7 @@ Public Class FormMain
         End If
         DataTable2TSV(EventsDataTable, EventsFileName)
 
-        DisplayTrackers()
+        DisplayEvents()
 
     End Sub
 
