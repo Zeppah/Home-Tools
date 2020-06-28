@@ -55,7 +55,7 @@
         FormMain.LstMemos.Items.Clear()
         FormMain.FillMemoListBox()
         FormMain.Enabled = True
-        Dim unused = FormMain.lblMemos.Focus()
+        Dim unused = FormMain.LblMemos.Focus()
         Close()
     End Sub
 

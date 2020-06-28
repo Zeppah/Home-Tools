@@ -1,11 +1,4 @@
 ﻿
-#Region "*** Imports ***"
-
-Imports System.IO
-Imports System.Text
-
-#End Region
-
 ''' <HEADER>
 ''' Project: My Personal Information Manager
 ''' Author: Larry Benner
@@ -18,8 +11,8 @@ Public Class FormMain
 
 #Region "*** Start ***"
 
-    'Indicates current tracker panel to add controls to
-    Private CurrentTrackerPanelName As String = Nothing
+    'Indicates current Event panel to add controls to
+    Private CurrentEventsPanelName As String = Nothing
 
     'Indicates current contact panel to add controls to
     Private CurrentContactPanelName As String = Nothing
@@ -45,9 +38,9 @@ Public Class FormMain
 
 #Region "*** Event Panels Display ***"
 
-    Sub DisplayEvents() Handles cboEventList.SelectedIndexChanged, cboEventTime.SelectedIndexChanged
+    Sub DisplayEvents() Handles CboEventList.SelectedIndexChanged, CboEventTime.SelectedIndexChanged
 
-        flpTracker.Controls.Clear()
+        FlpEvents.Controls.Clear()
         EventPanelsAddedCount = 0
         Dim timeperiod As Integer
         Dim row As DataRow
@@ -59,7 +52,7 @@ Public Class FormMain
             EventPanelsAddedCount += 1 ' This needs to count the rows to name the buttons to corraspond to the datarecord
 
             'Set the time period to display Event panels
-            Select Case cboEventTime.SelectedIndex
+            Select Case CboEventTime.SelectedIndex
                 Case 0 'All
                     result = -1
                 Case 1 'Today
@@ -81,15 +74,15 @@ Public Class FormMain
             End Select
             If result <= 0 Then
 
-                Select Case cboEventList.SelectedIndex
+                Select Case CboEventList.SelectedIndex
                     Case 0 'All Selected
-                        CreateTrackerPanel()
-                        CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
+                        CreateEventsPanel()
+                        CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
                         If row("Time").ToString = "True" And row("Bill").ToString = "False" And row("Birthday").ToString = "False" Then
-                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                         ElseIf row("Bill").ToString = "True" Then
-                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
+                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
                         ElseIf row("Birthday").ToString = "True" Then
                             Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
                             Dim Age As Integer
@@ -101,44 +94,42 @@ Public Class FormMain
 
                             Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Age.ToString)
+                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentEventsPanelName, Age.ToString)
                         ElseIf row("Appointment").ToString = "True" Then
-                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                         ElseIf row("Other").ToString = "True" Then
-                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                         End If
 
                         If row("Appointment").ToString = "True" Then
                             Dim g As New Panel
-                            g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.LightGreen
                         ElseIf row("Bill").ToString = "True" Then
                             Dim g As New Panel
-                            g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.Pink
                         ElseIf row("Other").ToString = "True" Then
                             Dim g As New Panel
-                            g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.Bisque
                         End If
 
-                        CreateTrackerEditButton(CurrentTrackerPanelName)
-                        CreateTrackerDeleteButton(CurrentTrackerPanelName)
+                        CreateEventsPanelButtons(CurrentEventsPanelName)
 
                     Case 1 'Appointment Selected
                         strDetail = row("Appointment").ToString
                         If strDetail = "True" Then
-                            CreateTrackerPanel()
-                            CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
-                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
-                            CreateTrackerEditButton(CurrentTrackerPanelName)
-                            CreateTrackerDeleteButton(CurrentTrackerPanelName)
+                            CreateEventsPanel()
+                            CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateEventsPanelButtons(CurrentEventsPanelName)
                             Dim g As New Panel
-                            g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.LightGreen
 
 
@@ -147,22 +138,21 @@ Public Class FormMain
                     Case 2 'Bill Selected
                         strDetail = row("Bill").ToString
                         If strDetail = "True" Then
-                            CreateTrackerPanel()
-                            CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
-                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
-                            CreateTrackerEditButton(CurrentTrackerPanelName)
-                            CreateTrackerDeleteButton(CurrentTrackerPanelName)
+                            CreateEventsPanel()
+                            CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
+                            CreateEventsPanelButtons(CurrentEventsPanelName)
                             Dim g As New Panel
-                            g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.Pink
                         End If
 
                     Case 3 'Birthday Selected
                         strDetail = row("Birthday").ToString
                         If strDetail = "True" Then
-                            CreateTrackerPanel()
-                            CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
+                            CreateEventsPanel()
+                            CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
 
                             Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
                             Dim Age As Integer
@@ -173,29 +163,27 @@ Public Class FormMain
                             End If
                             Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentTrackerPanelName, Age.ToString)
+                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
+                            CreateTrackerTimeLabel(CurrentEventsPanelName, Age.ToString)
 
-                            CreateTrackerEditButton(CurrentTrackerPanelName)
-                            CreateTrackerDeleteButton(CurrentTrackerPanelName)
+                            CreateEventsPanelButtons(CurrentEventsPanelName)
 
                         End If
 
                     Case 4 'Other Selected
                         strDetail = row("Other").ToString
                         If strDetail = "True" Then
-                            CreateTrackerPanel()
-                            CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
-                            CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy")) 'HH:mm:ss")) '.ToString).Format("d")
+                            CreateEventsPanel()
+                            CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy")) 'HH:mm:ss")) '.ToString).Format("d")
                             If row("Time").ToString = "True" And row("Bill").ToString = "False" Then
-                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                             ElseIf row("Bill").ToString = "True" Then
-                                CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
+                                CreateTrackerTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
                             End If
-                            CreateTrackerEditButton(CurrentTrackerPanelName)
-                            CreateTrackerDeleteButton(CurrentTrackerPanelName)
+                            CreateEventsPanelButtons(CurrentEventsPanelName)
                             Dim unused As New Panel
-                            Dim g As Panel = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                            Dim g As Panel = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.Bisque
 
 
@@ -203,13 +191,13 @@ Public Class FormMain
                     Case 5 'Starred Item
                         strDetail = row("Starred").ToString
                         If strDetail = "True" Then
-                            CreateTrackerPanel()
-                            CreateTrackerNameLabel(CurrentTrackerPanelName, row("Description").ToString)
+                            CreateEventsPanel()
+                            CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
                             If row("Time").ToString = "True" And row("Bill").ToString = "False" And row("Birthday").ToString = "False" Then
-                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                             ElseIf row("Bill").ToString = "True" Then
-                                CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                                CreateTrackerTimeLabel(CurrentTrackerPanelName, "$ " & row("Amount").ToString)
+                                CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateTrackerTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
                             ElseIf row("Birthday").ToString = "True" Then
                                 Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
                                 Dim Age As Integer
@@ -221,32 +209,31 @@ Public Class FormMain
 
                                 Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                                CreateTrackerDateLabel(CurrentTrackerPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
-                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Age.ToString)
+                                CreateTrackerDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
+                                CreateTrackerTimeLabel(CurrentEventsPanelName, Age.ToString)
                             ElseIf row("Appointment").ToString = "True" Then
-                                CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                             ElseIf row("Other").ToString = "True" Then
-                                CreateTrackerDateLabel(CurrentTrackerPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                                CreateTrackerTimeLabel(CurrentTrackerPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                             End If
 
                             If row("Appointment").ToString = "True" Then
                                 Dim g As Panel
-                                g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                                g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                                 g.BackColor = Color.LightGreen
                             ElseIf row("Bill").ToString = "True" Then
                                 Dim g As Panel
-                                g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                                g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                                 g.BackColor = Color.Pink
                             ElseIf row("Other").ToString = "True" Then
                                 Dim g As Panel
-                                g = DirectCast(flpTracker.Controls(CurrentTrackerPanelName), Panel)
+                                g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                                 g.BackColor = Color.Bisque
                             End If
 
-                            CreateTrackerEditButton(CurrentTrackerPanelName)
-                            CreateTrackerDeleteButton(CurrentTrackerPanelName)
+                            CreateEventsPanelButtons(CurrentEventsPanelName)
 
 
 
@@ -256,11 +243,11 @@ Public Class FormMain
             End If
         Next row
 
-        lblTrackers.Focus() 'Take the focus off the listbox, keep it from being highlighted
+        LblEvents.Focus() 'Take the focus off the listbox, keep it from being highlighted
 
     End Sub
 
-    Public Sub CreateTrackerPanel()
+    Public Sub CreateEventsPanel()
 
         Dim contactPanel As Panel
         contactPanel = New Panel()
@@ -274,10 +261,10 @@ Public Class FormMain
         End With
 
         'Add panel to flow layout panel
-        flpTracker.Controls.Add(contactPanel)
+        FlpEvents.Controls.Add(contactPanel)
 
         'Update panel variables
-        CurrentTrackerPanelName = contactPanel.Name
+        CurrentEventsPanelName = contactPanel.Name
 
     End Sub
 
@@ -295,7 +282,7 @@ Public Class FormMain
         End With
 
         'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In flpTracker.Controls
+        For Each controlObject As Control In FlpEvents.Controls
             If controlObject.Name = panelName Then
                 controlObject.Controls.Add(contactNameLabel)
             End If
@@ -316,7 +303,7 @@ Public Class FormMain
         End With
 
         'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In flpTracker.Controls
+        For Each controlObject As Control In FlpEvents.Controls
             If controlObject.Name = panelName Then
                 controlObject.Controls.Add(contactPhoneLabel)
             End If
@@ -337,19 +324,21 @@ Public Class FormMain
         End With
 
         'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In flpTracker.Controls
+        For Each controlObject As Control In FlpEvents.Controls
             If controlObject.Name = panelName Then
                 controlObject.Controls.Add(contactTimeLabel)
             End If
         Next
     End Sub
 
-    Public Sub CreateTrackerEditButton(ByVal panelName As String)
-        Dim TrackerEditButton As Button
-        TrackerEditButton = New Button
+    Public Sub CreateEventsPanelButtons(ByVal panelName As String)
+        Dim EventDeleteButton As Button
+        EventDeleteButton = New Button
+        Dim EventEditButton As Button
+        EventEditButton = New Button
 
-        'Set Properties
-        With TrackerEditButton
+        'Set Properties of the Event Edit button
+        With EventEditButton
             .AutoSize = True
             .BackColor = Color.LightBlue
             .Location = New Point(330, 5)
@@ -358,23 +347,35 @@ Public Class FormMain
             .Text = "Edit"
         End With
 
+        'Set Properties
+        With EventDeleteButton
+            .AutoSize = True
+            .BackColor = Color.LightPink
+            .Location = New Point(330, 38)
+            .Name = "btnDelete" + EventPanelsAddedCount.ToString
+            .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
+            .Text = "Delete"
+        End With
+
+
         'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In flpTracker.Controls
+        For Each controlObject As Control In FlpEvents.Controls
             If controlObject.Name = panelName Then
-                controlObject.Controls.Add(TrackerEditButton)
+                controlObject.Controls.Add(EventDeleteButton)
+                controlObject.Controls.Add(EventEditButton)
             End If
         Next
 
         'Add Handler for the Click Event
-        AddHandler TrackerEditButton.Click, AddressOf DynamicEditButton_Click
+        AddHandler EventDeleteButton.Click, AddressOf DynamicEventDeleteButton_Click
+        AddHandler EventEditButton.Click, AddressOf DynamicEventEditButton_Click
+
+
     End Sub
 
-    Sub DynamicEditButton_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Sub DynamicEventEditButton_Click(ByVal sender As Object, ByVal e As EventArgs)
 
-        'Dim parentPanelName As String
-        'parentPanelName = Nothing
-
-        For Each controlObject As Control In flpTracker.Controls
+        For Each controlObject As Control In FlpEvents.Controls
             For Each childControlObject As Control In controlObject.Controls
                 If childControlObject.Name = DirectCast(sender, Control).Name.ToString Then
 
@@ -384,7 +385,7 @@ Public Class FormMain
 
                         If IsNumeric(MyString) Then
 
-                            EventRowIndex = CInt(MyString) - 1 'Used to edit Tracker row
+                            EventRowIndex = CInt(MyString) - 1 'Used to edit Event row
 
                             ' copy data from datatable to textboxes
                             FormEvents.TxtTitle.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Description").ToString
@@ -430,38 +431,13 @@ Public Class FormMain
 
     End Sub
 
-    Public Sub CreateTrackerDeleteButton(ByVal panelName As String)
-        Dim contactDeleteButton As Button
-        contactDeleteButton = New Button
-
-        'Set Properties
-        With contactDeleteButton
-            .AutoSize = True
-            .BackColor = Color.LightPink
-            .Location = New Point(330, 38)
-            .Name = "btnDelete" + EventPanelsAddedCount.ToString
-            .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
-            .Text = "Delete"
-        End With
-
-        'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In flpTracker.Controls
-            If controlObject.Name = panelName Then
-                controlObject.Controls.Add(contactDeleteButton)
-            End If
-        Next
-
-        'Add Handler for the Click Event
-        AddHandler contactDeleteButton.Click, AddressOf DynamicDeleteButton_Click
-    End Sub
-
-    Sub DynamicDeleteButton_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Sub DynamicEventDeleteButton_Click(ByVal sender As Object, ByVal e As EventArgs)
 
         Dim parentPanelName As String
         parentPanelName = Nothing
 
         'Remove Handler from Sender
-        For Each controlObject As Control In flpTracker.Controls
+        For Each controlObject As Control In FlpEvents.Controls
             For Each childControlObject As Control In controlObject.Controls
                 If childControlObject.Name = DirectCast(sender, Control).Name.ToString Then
 
@@ -479,7 +455,7 @@ Public Class FormMain
 
                     Next
 
-                    RemoveHandler childControlObject.Click, AddressOf DynamicDeleteButton_Click
+                    RemoveHandler childControlObject.Click, AddressOf DynamicEventDeleteButton_Click
                     parentPanelName = childControlObject.Parent.Name
                 End If
 
@@ -487,9 +463,9 @@ Public Class FormMain
 
         Next
 
-        For Each controlObject As Control In flpTracker.Controls
+        For Each controlObject As Control In FlpEvents.Controls
             If controlObject.Name = parentPanelName Then
-                flpTracker.Controls.Remove(controlObject)
+                FlpEvents.Controls.Remove(controlObject)
                 controlObject.Dispose()
             End If
         Next
@@ -500,7 +476,7 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub BtnSort_Click(sender As Object, e As EventArgs) Handles btnSort.Click
+    Private Sub BtnSortEvent_Click(sender As Object, e As EventArgs) Handles BtnSortEvent.Click
 
         If EventsSortOrder = "A" Then
             EventsDataTable.DefaultView.Sort = "SortDate ASC"
@@ -537,15 +513,15 @@ Public Class FormMain
 
 #Region "*** Contact Panels Display ***"
 
-    Sub DisplayContacts() Handles cboContact.SelectedIndexChanged
+    Sub DisplayContacts() Handles CboContactList.SelectedIndexChanged
 
-        flpContact.Controls.Clear()
+        FlpContacts.Controls.Clear()
         ContactPanelsAddedCount = 0
 
         Dim row As DataRow
         For Each row In ContactsDataTable.Rows
             ContactPanelsAddedCount += 1
-            Select Case cboContact.SelectedIndex
+            Select Case CboContactList.SelectedIndex
                 Case 0 'All Selected
                     CreateContactPanel()
                     Dim strFullName As String
@@ -556,28 +532,27 @@ Public Class FormMain
                     CreateContactNameLabel(CurrentContactPanelName, strFullName)
                     CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
                     CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                    CreateContactEditButton(CurrentContactPanelName)
-                    CreateContactDeleteButton(CurrentContactPanelName)
+                    CreateContactPanelButtons(CurrentContactPanelName)
                     Select Case row("Groups").ToString
                         Case "Acquaintance"
                             Dim unused As New Panel
-                            Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                            Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                             g.BackColor = Color.LightGreen
                         Case "Family"
                             Dim unused As New Panel
-                            Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                            Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                             g.BackColor = Color.LightBlue
                         Case "Friend"
                             Dim unused As New Panel
-                            Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                            Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                             g.BackColor = Color.Beige
                         Case "Business"
                             Dim unused As New Panel
-                            Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                            Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                             g.BackColor = Color.LightGray
                         Case "Other"
                             Dim unused As New Panel
-                            Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                            Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                             g.BackColor = Color.Bisque
                     End Select
                 Case 1 'Acquaintance Selected
@@ -591,10 +566,9 @@ Public Class FormMain
                         CreateContactNameLabel(CurrentContactPanelName, strFullName)
                         CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
                         CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactEditButton(CurrentContactPanelName)
-                        CreateContactDeleteButton(CurrentContactPanelName)
+                        CreateContactPanelButtons(CurrentContactPanelName)
                         Dim unused As New Panel
-                        Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                        Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.LightGreen
                     End If
                 Case 2 'Business Selected
@@ -608,10 +582,9 @@ Public Class FormMain
                         CreateContactNameLabel(CurrentContactPanelName, strFullName)
                         CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
                         CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactEditButton(CurrentContactPanelName)
-                        CreateContactDeleteButton(CurrentContactPanelName)
+                        CreateContactPanelButtons(CurrentContactPanelName)
                         Dim unused As New Panel
-                        Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                        Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.LightGray
                     End If
                 Case 3 'Family Selected
@@ -625,10 +598,9 @@ Public Class FormMain
                         CreateContactNameLabel(CurrentContactPanelName, strFullName)
                         CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
                         CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactEditButton(CurrentContactPanelName)
-                        CreateContactDeleteButton(CurrentContactPanelName)
+                        CreateContactPanelButtons(CurrentContactPanelName)
                         Dim unused As New Panel
-                        Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                        Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.LightBlue
                     End If
                 Case 4 'Friend Selected
@@ -642,10 +614,9 @@ Public Class FormMain
                         CreateContactNameLabel(CurrentContactPanelName, strFullName)
                         CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
                         CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactEditButton(CurrentContactPanelName)
-                        CreateContactDeleteButton(CurrentContactPanelName)
+                        CreateContactPanelButtons(CurrentContactPanelName)
                         Dim unused As New Panel
-                        Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                        Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.Beige
                     End If
                 Case 5 'Other Selected
@@ -659,10 +630,9 @@ Public Class FormMain
                         CreateContactNameLabel(CurrentContactPanelName, strFullName)
                         CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
                         CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactEditButton(CurrentContactPanelName)
-                        CreateContactDeleteButton(CurrentContactPanelName)
+                        CreateContactPanelButtons(CurrentContactPanelName)
                         Dim unused As New Panel
-                        Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                        Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.Bisque
                     End If
                 Case 6
@@ -678,28 +648,27 @@ Public Class FormMain
                         CreateContactNameLabel(CurrentContactPanelName, strFullName)
                         CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
                         CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactEditButton(CurrentContactPanelName)
-                        CreateContactDeleteButton(CurrentContactPanelName)
+                        CreateContactPanelButtons(CurrentContactPanelName)
                         Select Case row("Groups").ToString
                             Case "Acquaintance"
                                 Dim unused As New Panel
-                                Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                                Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                                 g.BackColor = Color.LightGreen
                             Case "Family"
                                 Dim unused As New Panel
-                                Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                                Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                                 g.BackColor = Color.LightBlue
                             Case "Friend"
                                 Dim unused As New Panel
-                                Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                                Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                                 g.BackColor = Color.Beige
                             Case "Business"
                                 Dim unused As New Panel
-                                Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                                Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                                 g.BackColor = Color.LightGray
                             Case "Other"
                                 Dim unused As New Panel
-                                Dim g As Panel = DirectCast(flpContact.Controls(CurrentContactPanelName), Panel)
+                                Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                                 g.BackColor = Color.Bisque
                         End Select
 
@@ -707,7 +676,7 @@ Public Class FormMain
             End Select
         Next row
 
-        lblContacts.Focus() 'Take the focus off the listbox, keep it from being highlighted
+        LblContacts.Focus() 'Take the focus off the listbox, keep it from being highlighted
 
     End Sub
 
@@ -725,7 +694,7 @@ Public Class FormMain
         End With
 
         'Add panel to flow layout panel
-        flpContact.Controls.Add(contactPanel)
+        FlpContacts.Controls.Add(contactPanel)
 
         'Update panel variables
         CurrentContactPanelName = contactPanel.Name
@@ -746,7 +715,7 @@ Public Class FormMain
         End With
 
         'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In flpContact.Controls
+        For Each controlObject As Control In FlpContacts.Controls
             If controlObject.Name = panelName Then
                 controlObject.Controls.Add(contactNameLabel)
             End If
@@ -767,7 +736,7 @@ Public Class FormMain
         End With
 
         'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In flpContact.Controls
+        For Each controlObject As Control In FlpContacts.Controls
             If controlObject.Name = panelName Then
                 controlObject.Controls.Add(contactNameLabel)
             End If
@@ -788,18 +757,20 @@ Public Class FormMain
         End With
 
         'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In flpContact.Controls
+        For Each controlObject As Control In FlpContacts.Controls
             If controlObject.Name = panelName Then
                 controlObject.Controls.Add(contactNameLabel)
             End If
         Next
     End Sub
 
-    Public Sub CreateContactEditButton(ByVal panelName As String)
+    Public Sub CreateContactPanelButtons(ByVal panelName As String)
         Dim ContactEditButton As Button
         ContactEditButton = New Button
+        Dim contactDeleteButton As Button
+        contactDeleteButton = New Button
 
-        'Set Properties
+        'Set Properties of Edit Button
         With ContactEditButton
             .AutoSize = True
             .BackColor = Color.LightBlue
@@ -809,27 +780,36 @@ Public Class FormMain
             .Text = "Edit"
         End With
 
-        'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In flpContact.Controls
+        'Set Properties of Delete Button
+        With contactDeleteButton
+            .AutoSize = True
+            .BackColor = Color.LightPink
+            .Location = New Point(330, 38)
+            .Name = "btnContactDelete" + ContactPanelsAddedCount.ToString
+            .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
+            .Text = "Delete"
+        End With
+
+        'Loop through panels and add buttons to passed panel
+        For Each controlObject As Control In FlpContacts.Controls
             If controlObject.Name = panelName Then
                 controlObject.Controls.Add(ContactEditButton)
+                controlObject.Controls.Add(contactDeleteButton)
             End If
         Next
 
         'Add Handler for the Click Event
         AddHandler ContactEditButton.Click, AddressOf DynamicContactEditButton_Click
+
     End Sub
 
     Sub DynamicContactEditButton_Click(ByVal sender As Object, ByVal e As EventArgs)
 
-        'Dim parentPanelName As String
-        'parentPanelName = Nothing
-
-        For Each controlObject As Control In flpContact.Controls
+        For Each controlObject As Control In FlpContacts.Controls
             For Each childControlObject As Control In controlObject.Controls
                 If childControlObject.Name = DirectCast(sender, Control).Name.ToString Then
 
-                    ' Get the datatable row number to edit 
+                    ' Get the datatable row number to edit from edit button name
                     For x = 4 To 1 Step -1
                         Dim MyString As String = childControlObject.Name.Substring(childControlObject.Name.Length - x)
                         If IsNumeric(MyString) Then
@@ -873,38 +853,13 @@ Public Class FormMain
 
     End Sub
 
-    Public Sub CreateContactDeleteButton(ByVal panelName As String)
-        Dim contactDeleteButton As Button
-        contactDeleteButton = New Button
-
-        'Set Properties
-        With contactDeleteButton
-            .AutoSize = True
-            .BackColor = Color.LightPink
-            .Location = New Point(330, 38)
-            .Name = "btnContactDelete" + ContactPanelsAddedCount.ToString
-            .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
-            .Text = "Delete"
-        End With
-
-        'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In flpContact.Controls
-            If controlObject.Name = panelName Then
-                controlObject.Controls.Add(contactDeleteButton)
-            End If
-        Next
-
-        'Add Handler for the Click Event
-        AddHandler contactDeleteButton.Click, AddressOf DynamicContactDeleteButton_Click
-    End Sub
-
     Sub DynamicContactDeleteButton_Click(ByVal sender As Object, ByVal e As EventArgs)
 
         Dim parentPanelName As String
         parentPanelName = Nothing
 
         'Remove Handler from Sender
-        For Each controlObject As Control In flpContact.Controls
+        For Each controlObject As Control In FlpContacts.Controls
             For Each childControlObject As Control In controlObject.Controls
                 If childControlObject.Name = DirectCast(sender, Control).Name.ToString Then
 
@@ -930,9 +885,9 @@ Public Class FormMain
 
         Next
 
-        For Each controlObject As Control In flpTracker.Controls
+        For Each controlObject As Control In FlpEvents.Controls
             If controlObject.Name = parentPanelName Then
-                flpTracker.Controls.Remove(controlObject)
+                FlpEvents.Controls.Remove(controlObject)
                 controlObject.Dispose()
             End If
         Next
@@ -943,7 +898,7 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub BtnContactSort_Click(sender As Object, e As EventArgs) Handles btnContactSort.Click
+    Private Sub BtnContactSort_Click(sender As Object, e As EventArgs) Handles BtnContactSort.Click
 
         If ContactsSortOrder = "A" Then
             ContactsDataTable.DefaultView.Sort = "SortName ASC"
@@ -956,12 +911,12 @@ Public Class FormMain
         End If
 
         DataTable2TSV(ContactsDataTable, ContactsFileName)
-        SaveSettings()
-        DisplayContacts()
+        SaveSettings()      'Saves the Sort order choice
+        DisplayContacts()   'Redisplay Contacts
 
     End Sub
 
-    Public Sub ContactsSort() 'To sort the file after an edit or add
+    Public Sub ContactsSort() 'To sort the file after an edit or add from FormContacts.vb
 
         If ContactsSortOrder = "D" Then
             ContactsDataTable.DefaultView.Sort = "SortName ASC"
@@ -987,6 +942,10 @@ Public Class FormMain
 
     End Sub
 
+    Private Sub BtnAddMemo_Click(sender As Object, e As EventArgs) Handles BtnAddMemo.Click
+        Enabled = False
+        FormMemos.Show()
+    End Sub
 
     Private Sub LstMemos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LstMemos.SelectedIndexChanged
 
@@ -1009,18 +968,18 @@ Public Class FormMain
 
 #Region "*** Event Procedures ***"
 
-    Private Sub MnuContacts_Click(sender As Object, e As EventArgs) Handles BtnAddContact.Click
-        Me.Enabled = False
+    Private Sub BtnAddContact_Click(sender As Object, e As EventArgs) Handles BtnAddContact.Click
+        Enabled = False
         FormContacts.Show()
     End Sub
 
-    Private Sub MnuTracker_Click(sender As Object, e As EventArgs) Handles btnTrackerAdd.Click
-        Me.Enabled = False
+    Private Sub BtnAddEvent_Click(sender As Object, e As EventArgs) Handles BtnAddEvent.Click
+        Enabled = False
         FormEvents.Show()
     End Sub
 
     Private Sub TmrClock_Tick(sender As Object, e As EventArgs) Handles TmrClock.Tick
-        lblClock.Text = Format(Date.Now, $"dddd: MMMM d, yyyy                  hh:mm:ss tt ")
+        LblClock.Text = Format(Date.Now, $"dddd: MMMM d, yyyy                  hh:mm:ss tt ")
     End Sub
 
     Private Sub MnuExit(sender As Object, e As EventArgs) Handles miExit.Click
@@ -1036,15 +995,10 @@ Public Class FormMain
 
 #Region "***** Browser Section *****"
 
-    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        Process.Start("http://www.google.com/#hl=en&q=" & txbSearch.Text.Replace(" ", "+"))
-        txbSearch.Text = ""
-        txbSearch.Focus()
-    End Sub
-
-    Private Sub BtnAddMemo_Click(sender As Object, e As EventArgs) Handles btnAddMemo.Click
-        Enabled = False
-        FormMemos.Show()
+    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
+        Process.Start("http://www.google.com/#hl=en&q=" & TxtSearch.Text.Replace(" ", "+"))
+        TxtSearch.Text = ""
+        TxtSearch.Focus()
     End Sub
 
     Private Sub CalendarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CalendarToolStripMenuItem1.Click

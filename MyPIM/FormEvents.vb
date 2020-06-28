@@ -142,7 +142,7 @@
     Private Sub ExitEventForm() Handles BtnExit.Click
 
         FormMain.Enabled = True
-        Dim unused = FormMain.lblTrackers.Focus()
+        Dim unused = FormMain.LblEvents.Focus()
         Close()
 
     End Sub

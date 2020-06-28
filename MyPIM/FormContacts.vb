@@ -71,7 +71,7 @@
 
     Private Sub ExitContacts() Handles BtnExitContact.Click
         FormMain.Enabled = True
-        Dim unused = FormMain.lblContacts.Focus()
+        Dim unused = FormMain.LblContacts.Focus()
         Close()
     End Sub
 #End Region

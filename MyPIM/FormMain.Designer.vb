@@ -24,7 +24,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Me.mmMain = New System.Windows.Forms.MenuStrip()
+        Me.MnuMain = New System.Windows.Forms.MenuStrip()
         Me.miFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.miExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.BrowserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -40,38 +40,38 @@ Partial Class FormMain
         Me.YouTubeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CalculatorToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.lblClock = New System.Windows.Forms.Label()
+        Me.LblClock = New System.Windows.Forms.Label()
         Me.TmrClock = New System.Windows.Forms.Timer(Me.components)
-        Me.txbSearch = New System.Windows.Forms.TextBox()
-        Me.btnSearch = New System.Windows.Forms.Button()
-        Me.cboEventList = New System.Windows.Forms.ComboBox()
-        Me.btnTrackerAdd = New System.Windows.Forms.Button()
-        Me.flpTracker = New System.Windows.Forms.FlowLayoutPanel()
-        Me.btnSort = New System.Windows.Forms.Button()
-        Me.cboContact = New System.Windows.Forms.ComboBox()
+        Me.TxtSearch = New System.Windows.Forms.TextBox()
+        Me.BtnSearch = New System.Windows.Forms.Button()
+        Me.CboEventList = New System.Windows.Forms.ComboBox()
+        Me.BtnAddEvent = New System.Windows.Forms.Button()
+        Me.FlpEvents = New System.Windows.Forms.FlowLayoutPanel()
+        Me.BtnSortEvent = New System.Windows.Forms.Button()
+        Me.CboContactList = New System.Windows.Forms.ComboBox()
         Me.BtnAddContact = New System.Windows.Forms.Button()
-        Me.flpContact = New System.Windows.Forms.FlowLayoutPanel()
-        Me.btnContactSort = New System.Windows.Forms.Button()
-        Me.cboEventTime = New System.Windows.Forms.ComboBox()
-        Me.lblMemos = New System.Windows.Forms.Label()
-        Me.lblContacts = New System.Windows.Forms.Label()
-        Me.lblTrackers = New System.Windows.Forms.Label()
-        Me.btnAddMemo = New System.Windows.Forms.Button()
+        Me.FlpContacts = New System.Windows.Forms.FlowLayoutPanel()
+        Me.BtnContactSort = New System.Windows.Forms.Button()
+        Me.CboEventTime = New System.Windows.Forms.ComboBox()
+        Me.LblMemos = New System.Windows.Forms.Label()
+        Me.LblContacts = New System.Windows.Forms.Label()
+        Me.LblEvents = New System.Windows.Forms.Label()
+        Me.BtnAddMemo = New System.Windows.Forms.Button()
         Me.LstMemos = New System.Windows.Forms.ListBox()
-        Me.mmMain.SuspendLayout()
+        Me.MnuMain.SuspendLayout()
         Me.SuspendLayout()
         '
-        'mmMain
+        'MnuMain
         '
-        Me.mmMain.BackColor = System.Drawing.Color.LightBlue
-        Me.mmMain.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.mmMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miFile, Me.BrowserToolStripMenuItem, Me.CalculatorToolStripMenuItem1})
-        Me.mmMain.Location = New System.Drawing.Point(0, 0)
-        Me.mmMain.Name = "mmMain"
-        Me.mmMain.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
-        Me.mmMain.Size = New System.Drawing.Size(1429, 33)
-        Me.mmMain.TabIndex = 0
-        Me.mmMain.Text = "MenuStrip1"
+        Me.MnuMain.BackColor = System.Drawing.Color.LightBlue
+        Me.MnuMain.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MnuMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miFile, Me.BrowserToolStripMenuItem, Me.CalculatorToolStripMenuItem1})
+        Me.MnuMain.Location = New System.Drawing.Point(0, 0)
+        Me.MnuMain.Name = "MnuMain"
+        Me.MnuMain.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
+        Me.MnuMain.Size = New System.Drawing.Size(1429, 33)
+        Me.MnuMain.TabIndex = 0
+        Me.MnuMain.Text = "MenuStrip1"
         '
         'miFile
         '
@@ -167,93 +167,93 @@ Partial Class FormMain
         Me.CalculatorToolStripMenuItem1.Size = New System.Drawing.Size(110, 29)
         Me.CalculatorToolStripMenuItem1.Text = "Calculator"
         '
-        'lblClock
+        'LblClock
         '
-        Me.lblClock.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.lblClock.BackColor = System.Drawing.Color.LightBlue
-        Me.lblClock.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblClock.Location = New System.Drawing.Point(463, 0)
-        Me.lblClock.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblClock.Name = "lblClock"
-        Me.lblClock.Size = New System.Drawing.Size(417, 33)
-        Me.lblClock.TabIndex = 1
-        Me.lblClock.Text = "Date and Time Display"
-        Me.lblClock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.LblClock.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.LblClock.BackColor = System.Drawing.Color.LightBlue
+        Me.LblClock.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblClock.Location = New System.Drawing.Point(463, 0)
+        Me.LblClock.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LblClock.Name = "LblClock"
+        Me.LblClock.Size = New System.Drawing.Size(417, 33)
+        Me.LblClock.TabIndex = 1
+        Me.LblClock.Text = "Date and Time Display"
+        Me.LblClock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TmrClock
         '
         '
-        'txbSearch
+        'TxtSearch
         '
-        Me.txbSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txbSearch.Location = New System.Drawing.Point(924, 1)
-        Me.txbSearch.Name = "txbSearch"
-        Me.txbSearch.Size = New System.Drawing.Size(382, 33)
-        Me.txbSearch.TabIndex = 7
+        Me.TxtSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtSearch.Location = New System.Drawing.Point(924, 1)
+        Me.TxtSearch.Name = "TxtSearch"
+        Me.TxtSearch.Size = New System.Drawing.Size(382, 33)
+        Me.TxtSearch.TabIndex = 7
         '
-        'btnSearch
+        'BtnSearch
         '
-        Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSearch.BackColor = System.Drawing.Color.Bisque
-        Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(1326, 0)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(91, 33)
-        Me.btnSearch.TabIndex = 8
-        Me.btnSearch.Text = "Search"
-        Me.btnSearch.UseVisualStyleBackColor = False
+        Me.BtnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnSearch.BackColor = System.Drawing.Color.Bisque
+        Me.BtnSearch.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnSearch.Location = New System.Drawing.Point(1326, 0)
+        Me.BtnSearch.Name = "BtnSearch"
+        Me.BtnSearch.Size = New System.Drawing.Size(91, 33)
+        Me.BtnSearch.TabIndex = 8
+        Me.BtnSearch.Text = "Search"
+        Me.BtnSearch.UseVisualStyleBackColor = False
         '
-        'cboEventList
+        'CboEventList
         '
-        Me.cboEventList.FormattingEnabled = True
-        Me.cboEventList.Items.AddRange(New Object() {"All Lists", "Appointments", "Bills", "Birthdays", "Other", "Starred"})
-        Me.cboEventList.Location = New System.Drawing.Point(32, 154)
-        Me.cboEventList.Name = "cboEventList"
-        Me.cboEventList.Size = New System.Drawing.Size(149, 33)
-        Me.cboEventList.TabIndex = 14
-        Me.cboEventList.Text = "All Lists"
+        Me.CboEventList.FormattingEnabled = True
+        Me.CboEventList.Items.AddRange(New Object() {"All Lists", "Appointments", "Bills", "Birthdays", "Other", "Starred"})
+        Me.CboEventList.Location = New System.Drawing.Point(32, 154)
+        Me.CboEventList.Name = "CboEventList"
+        Me.CboEventList.Size = New System.Drawing.Size(149, 33)
+        Me.CboEventList.TabIndex = 14
+        Me.CboEventList.Text = "All Lists"
         '
-        'btnTrackerAdd
+        'BtnAddEvent
         '
-        Me.btnTrackerAdd.BackColor = System.Drawing.Color.Bisque
-        Me.btnTrackerAdd.Location = New System.Drawing.Point(157, 100)
-        Me.btnTrackerAdd.Name = "btnTrackerAdd"
-        Me.btnTrackerAdd.Size = New System.Drawing.Size(139, 35)
-        Me.btnTrackerAdd.TabIndex = 11
-        Me.btnTrackerAdd.Text = "Add Event"
-        Me.btnTrackerAdd.UseVisualStyleBackColor = False
+        Me.BtnAddEvent.BackColor = System.Drawing.Color.Bisque
+        Me.BtnAddEvent.Location = New System.Drawing.Point(157, 100)
+        Me.BtnAddEvent.Name = "BtnAddEvent"
+        Me.BtnAddEvent.Size = New System.Drawing.Size(139, 35)
+        Me.BtnAddEvent.TabIndex = 11
+        Me.BtnAddEvent.Text = "Add Event"
+        Me.BtnAddEvent.UseVisualStyleBackColor = False
         '
-        'flpTracker
+        'FlpEvents
         '
-        Me.flpTracker.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.FlpEvents.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.flpTracker.AutoScroll = True
-        Me.flpTracker.Location = New System.Drawing.Point(14, 194)
-        Me.flpTracker.Name = "flpTracker"
-        Me.flpTracker.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
-        Me.flpTracker.Size = New System.Drawing.Size(443, 606)
-        Me.flpTracker.TabIndex = 13
+        Me.FlpEvents.AutoScroll = True
+        Me.FlpEvents.Location = New System.Drawing.Point(14, 194)
+        Me.FlpEvents.Name = "FlpEvents"
+        Me.FlpEvents.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
+        Me.FlpEvents.Size = New System.Drawing.Size(443, 606)
+        Me.FlpEvents.TabIndex = 13
         '
-        'btnSort
+        'BtnSortEvent
         '
-        Me.btnSort.BackColor = System.Drawing.Color.Bisque
-        Me.btnSort.Location = New System.Drawing.Point(355, 153)
-        Me.btnSort.Name = "btnSort"
-        Me.btnSort.Size = New System.Drawing.Size(75, 35)
-        Me.btnSort.TabIndex = 12
-        Me.btnSort.Text = "Sort"
-        Me.btnSort.UseVisualStyleBackColor = False
+        Me.BtnSortEvent.BackColor = System.Drawing.Color.Bisque
+        Me.BtnSortEvent.Location = New System.Drawing.Point(355, 153)
+        Me.BtnSortEvent.Name = "BtnSortEvent"
+        Me.BtnSortEvent.Size = New System.Drawing.Size(75, 35)
+        Me.BtnSortEvent.TabIndex = 12
+        Me.BtnSortEvent.Text = "Sort"
+        Me.BtnSortEvent.UseVisualStyleBackColor = False
         '
-        'cboContact
+        'CboContactList
         '
-        Me.cboContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboContact.FormattingEnabled = True
-        Me.cboContact.Items.AddRange(New Object() {"All Lists", "Acquaintance", "Business", "Family", "Friend", "Other", "Starred"})
-        Me.cboContact.Location = New System.Drawing.Point(981, 155)
-        Me.cboContact.Name = "cboContact"
-        Me.cboContact.Size = New System.Drawing.Size(149, 33)
-        Me.cboContact.TabIndex = 19
-        Me.cboContact.Text = "All Lists"
+        Me.CboContactList.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CboContactList.FormattingEnabled = True
+        Me.CboContactList.Items.AddRange(New Object() {"All Lists", "Acquaintance", "Business", "Family", "Friend", "Other", "Starred"})
+        Me.CboContactList.Location = New System.Drawing.Point(981, 155)
+        Me.CboContactList.Name = "CboContactList"
+        Me.CboContactList.Size = New System.Drawing.Size(149, 33)
+        Me.CboContactList.TabIndex = 19
+        Me.CboContactList.Text = "All Lists"
         '
         'BtnAddContact
         '
@@ -266,83 +266,83 @@ Partial Class FormMain
         Me.BtnAddContact.Text = "Add Contact"
         Me.BtnAddContact.UseVisualStyleBackColor = False
         '
-        'flpContact
+        'FlpContacts
         '
-        Me.flpContact.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.FlpContacts.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.flpContact.AutoScroll = True
-        Me.flpContact.Location = New System.Drawing.Point(964, 194)
-        Me.flpContact.Name = "flpContact"
-        Me.flpContact.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
-        Me.flpContact.Size = New System.Drawing.Size(455, 615)
-        Me.flpContact.TabIndex = 18
+        Me.FlpContacts.AutoScroll = True
+        Me.FlpContacts.Location = New System.Drawing.Point(964, 194)
+        Me.FlpContacts.Name = "FlpContacts"
+        Me.FlpContacts.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
+        Me.FlpContacts.Size = New System.Drawing.Size(455, 606)
+        Me.FlpContacts.TabIndex = 18
         '
-        'btnContactSort
+        'BtnContactSort
         '
-        Me.btnContactSort.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnContactSort.BackColor = System.Drawing.Color.Bisque
-        Me.btnContactSort.Location = New System.Drawing.Point(1306, 153)
-        Me.btnContactSort.Name = "btnContactSort"
-        Me.btnContactSort.Size = New System.Drawing.Size(75, 35)
-        Me.btnContactSort.TabIndex = 17
-        Me.btnContactSort.Text = "Sort"
-        Me.btnContactSort.UseVisualStyleBackColor = False
+        Me.BtnContactSort.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnContactSort.BackColor = System.Drawing.Color.Bisque
+        Me.BtnContactSort.Location = New System.Drawing.Point(1306, 153)
+        Me.BtnContactSort.Name = "BtnContactSort"
+        Me.BtnContactSort.Size = New System.Drawing.Size(75, 35)
+        Me.BtnContactSort.TabIndex = 17
+        Me.BtnContactSort.Text = "Sort"
+        Me.BtnContactSort.UseVisualStyleBackColor = False
         '
-        'cboEventTime
+        'CboEventTime
         '
-        Me.cboEventTime.FormattingEnabled = True
-        Me.cboEventTime.Items.AddRange(New Object() {"All Time", "Today", "Week", "Month", "Year"})
-        Me.cboEventTime.Location = New System.Drawing.Point(187, 154)
-        Me.cboEventTime.Name = "cboEventTime"
-        Me.cboEventTime.Size = New System.Drawing.Size(109, 33)
-        Me.cboEventTime.TabIndex = 21
-        Me.cboEventTime.Text = "All Time"
+        Me.CboEventTime.FormattingEnabled = True
+        Me.CboEventTime.Items.AddRange(New Object() {"All Time", "Today", "Week", "Month", "Year"})
+        Me.CboEventTime.Location = New System.Drawing.Point(187, 154)
+        Me.CboEventTime.Name = "CboEventTime"
+        Me.CboEventTime.Size = New System.Drawing.Size(109, 33)
+        Me.CboEventTime.TabIndex = 21
+        Me.CboEventTime.Text = "All Time"
         '
-        'lblMemos
+        'LblMemos
         '
-        Me.lblMemos.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.lblMemos.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMemos.Location = New System.Drawing.Point(469, 195)
-        Me.lblMemos.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblMemos.Name = "lblMemos"
-        Me.lblMemos.Size = New System.Drawing.Size(468, 33)
-        Me.lblMemos.TabIndex = 22
-        Me.lblMemos.Text = "Memos"
-        Me.lblMemos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.LblMemos.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.LblMemos.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblMemos.Location = New System.Drawing.Point(469, 195)
+        Me.LblMemos.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LblMemos.Name = "LblMemos"
+        Me.LblMemos.Size = New System.Drawing.Size(468, 33)
+        Me.LblMemos.TabIndex = 22
+        Me.LblMemos.Text = "Memos"
+        Me.LblMemos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'lblContacts
+        'LblContacts
         '
-        Me.lblContacts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblContacts.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblContacts.Location = New System.Drawing.Point(956, 64)
-        Me.lblContacts.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblContacts.Name = "lblContacts"
-        Me.lblContacts.Size = New System.Drawing.Size(461, 33)
-        Me.lblContacts.TabIndex = 23
-        Me.lblContacts.Text = "Contacts"
-        Me.lblContacts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.LblContacts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LblContacts.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblContacts.Location = New System.Drawing.Point(956, 64)
+        Me.LblContacts.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LblContacts.Name = "LblContacts"
+        Me.LblContacts.Size = New System.Drawing.Size(461, 33)
+        Me.LblContacts.TabIndex = 23
+        Me.LblContacts.Text = "Contacts"
+        Me.LblContacts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'lblTrackers
+        'LblEvents
         '
-        Me.lblTrackers.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTrackers.Location = New System.Drawing.Point(97, 64)
-        Me.lblTrackers.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblTrackers.Name = "lblTrackers"
-        Me.lblTrackers.Size = New System.Drawing.Size(264, 33)
-        Me.lblTrackers.TabIndex = 24
-        Me.lblTrackers.Text = "Events"
-        Me.lblTrackers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.LblEvents.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblEvents.Location = New System.Drawing.Point(97, 64)
+        Me.LblEvents.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LblEvents.Name = "LblEvents"
+        Me.LblEvents.Size = New System.Drawing.Size(264, 33)
+        Me.LblEvents.TabIndex = 24
+        Me.LblEvents.Text = "Events"
+        Me.LblEvents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'btnAddMemo
+        'BtnAddMemo
         '
-        Me.btnAddMemo.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnAddMemo.BackColor = System.Drawing.Color.Bisque
-        Me.btnAddMemo.Location = New System.Drawing.Point(609, 416)
-        Me.btnAddMemo.Name = "btnAddMemo"
-        Me.btnAddMemo.Size = New System.Drawing.Size(171, 36)
-        Me.btnAddMemo.TabIndex = 25
-        Me.btnAddMemo.Text = "Add Memo"
-        Me.btnAddMemo.UseVisualStyleBackColor = False
+        Me.BtnAddMemo.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.BtnAddMemo.BackColor = System.Drawing.Color.Bisque
+        Me.BtnAddMemo.Location = New System.Drawing.Point(609, 416)
+        Me.BtnAddMemo.Name = "BtnAddMemo"
+        Me.BtnAddMemo.Size = New System.Drawing.Size(171, 36)
+        Me.BtnAddMemo.TabIndex = 25
+        Me.BtnAddMemo.Text = "Add Memo"
+        Me.BtnAddMemo.UseVisualStyleBackColor = False
         '
         'LstMemos
         '
@@ -362,59 +362,59 @@ Partial Class FormMain
         Me.BackColor = System.Drawing.Color.OldLace
         Me.ClientSize = New System.Drawing.Size(1429, 831)
         Me.Controls.Add(Me.LstMemos)
-        Me.Controls.Add(Me.btnAddMemo)
-        Me.Controls.Add(Me.lblTrackers)
-        Me.Controls.Add(Me.lblContacts)
-        Me.Controls.Add(Me.lblMemos)
-        Me.Controls.Add(Me.cboEventTime)
-        Me.Controls.Add(Me.cboContact)
+        Me.Controls.Add(Me.BtnAddMemo)
+        Me.Controls.Add(Me.LblEvents)
+        Me.Controls.Add(Me.LblContacts)
+        Me.Controls.Add(Me.LblMemos)
+        Me.Controls.Add(Me.CboEventTime)
+        Me.Controls.Add(Me.CboContactList)
         Me.Controls.Add(Me.BtnAddContact)
-        Me.Controls.Add(Me.flpContact)
-        Me.Controls.Add(Me.btnContactSort)
-        Me.Controls.Add(Me.cboEventList)
-        Me.Controls.Add(Me.btnTrackerAdd)
-        Me.Controls.Add(Me.flpTracker)
-        Me.Controls.Add(Me.btnSort)
-        Me.Controls.Add(Me.btnSearch)
-        Me.Controls.Add(Me.txbSearch)
-        Me.Controls.Add(Me.lblClock)
-        Me.Controls.Add(Me.mmMain)
+        Me.Controls.Add(Me.FlpContacts)
+        Me.Controls.Add(Me.BtnContactSort)
+        Me.Controls.Add(Me.CboEventList)
+        Me.Controls.Add(Me.BtnAddEvent)
+        Me.Controls.Add(Me.FlpEvents)
+        Me.Controls.Add(Me.BtnSortEvent)
+        Me.Controls.Add(Me.BtnSearch)
+        Me.Controls.Add(Me.TxtSearch)
+        Me.Controls.Add(Me.LblClock)
+        Me.Controls.Add(Me.MnuMain)
         Me.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MainMenuStrip = Me.mmMain
+        Me.MainMenuStrip = Me.MnuMain
         Me.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.MinimumSize = New System.Drawing.Size(1445, 587)
         Me.Name = "FormMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "MyPIM"
-        Me.mmMain.ResumeLayout(False)
-        Me.mmMain.PerformLayout()
+        Me.MnuMain.ResumeLayout(False)
+        Me.MnuMain.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents mmMain As MenuStrip
+    Friend WithEvents MnuMain As MenuStrip
     Friend WithEvents miFile As ToolStripMenuItem
     Friend WithEvents miExit As ToolStripMenuItem
-    Friend WithEvents lblClock As Label
+    Friend WithEvents LblClock As Label
     Friend WithEvents TmrClock As Timer
-    Friend WithEvents txbSearch As TextBox
-    Friend WithEvents btnSearch As Button
-    Friend WithEvents cboEventList As ComboBox
-    Friend WithEvents btnTrackerAdd As Button
-    Friend WithEvents flpTracker As FlowLayoutPanel
-    Friend WithEvents btnSort As Button
-    Friend WithEvents cboContact As ComboBox
+    Friend WithEvents TxtSearch As TextBox
+    Friend WithEvents BtnSearch As Button
+    Friend WithEvents CboEventList As ComboBox
+    Friend WithEvents BtnAddEvent As Button
+    Friend WithEvents FlpEvents As FlowLayoutPanel
+    Friend WithEvents BtnSortEvent As Button
+    Friend WithEvents CboContactList As ComboBox
     Friend WithEvents BtnAddContact As Button
-    Friend WithEvents flpContact As FlowLayoutPanel
-    Friend WithEvents btnContactSort As Button
-    Friend WithEvents cboEventTime As ComboBox
-    Friend WithEvents lblMemos As Label
-    Friend WithEvents lblContacts As Label
-    Friend WithEvents lblTrackers As Label
-    Friend WithEvents btnAddMemo As Button
+    Friend WithEvents FlpContacts As FlowLayoutPanel
+    Friend WithEvents BtnContactSort As Button
+    Friend WithEvents CboEventTime As ComboBox
+    Friend WithEvents LblMemos As Label
+    Friend WithEvents LblContacts As Label
+    Friend WithEvents LblEvents As Label
+    Friend WithEvents BtnAddMemo As Button
     Friend WithEvents BrowserToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CalendarToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents CoronavirusToolStripMenuItem1 As ToolStripMenuItem

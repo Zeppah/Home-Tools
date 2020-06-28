@@ -144,9 +144,9 @@ Module ModMyPIM
                 SplitLine = Split(TextLine, Delimiter)           ' Separate the line into the SplitLine array
                 EventsSortOrder = SplitLine(0)                   ' Events display sort order
                 ContactsSortOrder = SplitLine(1)                 ' Contacts display sort order
-                FormMain.cboEventTime.SelectedIndex = CInt(SplitLine(2))   ' Events display range
-                FormMain.cboEventList.SelectedIndex = CInt(SplitLine(3))       ' Events Category choice
-                FormMain.cboContact.SelectedIndex = CInt(SplitLine(4))       ' Contact Category choice
+                FormMain.CboEventTime.SelectedIndex = CInt(SplitLine(2))   ' Events display range
+                FormMain.CboEventList.SelectedIndex = CInt(SplitLine(3))       ' Events Category choice
+                FormMain.CboContactList.SelectedIndex = CInt(SplitLine(4))       ' Contact Category choice
             Loop
             'Close the StreamReader
             objReader.Close()
@@ -156,8 +156,8 @@ Module ModMyPIM
     End Sub
     Public Sub SaveSettings()
         File.WriteAllText(SettingsFileName, EventsSortOrder & Delimiter & ContactsSortOrder _
-                          & Delimiter & FormMain.cboEventTime.SelectedIndex & Delimiter _
-                          & FormMain.cboEventList.SelectedIndex & Delimiter & FormMain.cboContact.SelectedIndex)
+                          & Delimiter & FormMain.CboEventTime.SelectedIndex & Delimiter _
+                          & FormMain.CboEventList.SelectedIndex & Delimiter & FormMain.CboContactList.SelectedIndex)
     End Sub
 
 #End Region
