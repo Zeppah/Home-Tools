@@ -249,7 +249,7 @@ Partial Class FormMain
         Me.cboContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboContact.FormattingEnabled = True
         Me.cboContact.Items.AddRange(New Object() {"All Lists", "Acquaintance", "Business", "Family", "Friend", "Other", "Starred"})
-        Me.cboContact.Location = New System.Drawing.Point(972, 155)
+        Me.cboContact.Location = New System.Drawing.Point(981, 155)
         Me.cboContact.Name = "cboContact"
         Me.cboContact.Size = New System.Drawing.Size(149, 33)
         Me.cboContact.TabIndex = 19
@@ -259,7 +259,7 @@ Partial Class FormMain
         '
         Me.BtnAddContact.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnAddContact.BackColor = System.Drawing.Color.Bisque
-        Me.BtnAddContact.Location = New System.Drawing.Point(1114, 98)
+        Me.BtnAddContact.Location = New System.Drawing.Point(1123, 98)
         Me.BtnAddContact.Name = "BtnAddContact"
         Me.BtnAddContact.Size = New System.Drawing.Size(127, 35)
         Me.BtnAddContact.TabIndex = 16
@@ -271,7 +271,7 @@ Partial Class FormMain
         Me.flpContact.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.flpContact.AutoScroll = True
-        Me.flpContact.Location = New System.Drawing.Point(955, 194)
+        Me.flpContact.Location = New System.Drawing.Point(964, 194)
         Me.flpContact.Name = "flpContact"
         Me.flpContact.Padding = New System.Windows.Forms.Padding(10, 5, 0, 0)
         Me.flpContact.Size = New System.Drawing.Size(455, 615)
@@ -281,7 +281,7 @@ Partial Class FormMain
         '
         Me.btnContactSort.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnContactSort.BackColor = System.Drawing.Color.Bisque
-        Me.btnContactSort.Location = New System.Drawing.Point(1297, 153)
+        Me.btnContactSort.Location = New System.Drawing.Point(1306, 153)
         Me.btnContactSort.Name = "btnContactSort"
         Me.btnContactSort.Size = New System.Drawing.Size(75, 35)
         Me.btnContactSort.TabIndex = 17
@@ -314,7 +314,7 @@ Partial Class FormMain
         '
         Me.lblContacts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblContacts.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblContacts.Location = New System.Drawing.Point(947, 64)
+        Me.lblContacts.Location = New System.Drawing.Point(956, 64)
         Me.lblContacts.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblContacts.Name = "lblContacts"
         Me.lblContacts.Size = New System.Drawing.Size(461, 33)

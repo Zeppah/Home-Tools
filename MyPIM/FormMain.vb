@@ -38,6 +38,7 @@ Public Class FormMain
         DisplayEvents()
         DisplayContacts()
         FillMemoListBox()
+
     End Sub
 
 #End Region
@@ -386,33 +387,33 @@ Public Class FormMain
                             EventRowIndex = CInt(MyString) - 1 'Used to edit Tracker row
 
                             ' copy data from datatable to textboxes
-                            FormEvents.tbxDescription.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Description").ToString
-                            FormEvents.dtpDate.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Date").ToString
+                            FormEvents.TxtTitle.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Description").ToString
+                            FormEvents.DtpDate.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Date").ToString
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Time").ToString = "True" Then
-                                FormEvents.cbxTime.Checked = True
-                                FormEvents.dtpTime.Text = Format(EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Date"), "HH:mm tt")
+                                FormEvents.ChkTime.Checked = True
+                                FormEvents.DtpTime.Text = Format(EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Date"), "HH:mm tt")
                             End If
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Bill").ToString = "True" Then
-                                FormEvents.cbxBill.Checked = True
-                                FormEvents.tbxAmount.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Amount").ToString
+                                FormEvents.ChkBill.Checked = True
+                                FormEvents.TxtAmount.Text = EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Amount").ToString
                             End If
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Appointment").ToString = "True" Then
-                                FormEvents.cbxAppointment.Checked = True
+                                FormEvents.ChkAppointment.Checked = True
                             End If
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Birthday").ToString = "True" Then
-                                FormEvents.cbxBirthday.Checked = True
+                                FormEvents.ChkBirthday.Checked = True
                             End If
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Other").ToString = "True" Then
-                                FormEvents.cbxOther.Checked = True
+                                FormEvents.ChkOther.Checked = True
                             End If
 
                             If EventsDataTable.Rows.Item(CInt(MyString) - 1).Item("Starred").ToString = "True" Then
-                                FormEvents.cbxStarred.Checked = True
+                                FormEvents.ChkStarred.Checked = True
                             End If
 
                             Exit For 'I put "Exit For" in here because once a number is found It should stop testing ***************
@@ -423,7 +424,7 @@ Public Class FormMain
             Next
         Next
 
-        FormEvents.btnAddTrackerRecord.Text = "Save"
+        FormEvents.BtnAddEventRecord.Text = "Save"
         Enabled = False
         FormEvents.Show()
 
@@ -517,7 +518,7 @@ Public Class FormMain
 
     End Sub
 
-    Friend Sub TrackerSort()
+    Friend Sub EventsSort()
 
         If EventsSortOrder = "A" Then
             EventsDataTable.DefaultView.Sort = "SortDate DESC"
