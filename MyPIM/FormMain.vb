@@ -14,7 +14,7 @@ Public Class FormMain
     'Indicates current Event panel to add controls to
     Private CurrentEventsPanelName As String = Nothing
 
-    'Indicates current contact panel to add controls to
+    'Indicates current Contact panel to add controls to
     Private CurrentContactPanelName As String = Nothing
 
 
@@ -36,7 +36,12 @@ Public Class FormMain
 
 #End Region
 
-#Region "*** Event Panels Display ***"
+#Region "*** Events Section ***"
+
+    Private Sub BtnAddEvent_Click(sender As Object, e As EventArgs) Handles BtnAddEvent.Click
+        Enabled = False
+        FormEvents.Show()
+    End Sub
 
     Sub DisplayEvents() Handles CboEventList.SelectedIndexChanged, CboEventTime.SelectedIndexChanged
 
@@ -82,8 +87,11 @@ Public Class FormMain
                     Case 0 'All Selected
                         panelname = CreateEventsPanel()
                         CreateEventNameLabel(panelname, row("Description").ToString)
-                        If row("Time").ToString = "True" And row("Bill").ToString = "False" And row("Birthday").ToString = "False" Then
-                            CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
+                        If row("Appointment").ToString = "True" Or row("Other").ToString = "True" Then
+                            CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
+                            If row("Time").ToString = "True" Then
+                                CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
+                            End If
                         ElseIf row("Bill").ToString = "True" Then
                             CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
                             CreateEventTimeLabel(panelname, "$ " & row("Amount").ToString)
@@ -100,14 +108,10 @@ Public Class FormMain
 
                             CreateEventDateLabel(panelname, Format(NextBirthDate, "MM/dd/yyyy"))
                             CreateEventTimeLabel(panelname, Age.ToString)
-                        ElseIf row("Appointment").ToString = "True" Then
-                            CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
-                        ElseIf row("Other").ToString = "True" Then
-                            CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
+
                         End If
 
+                        'Set the label colors according to category
                         If row("Appointment").ToString = "True" Then
                             Dim g As New Panel
                             g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
@@ -130,12 +134,13 @@ Public Class FormMain
                             panelname = CreateEventsPanel()
                             CreateEventNameLabel(panelname, row("Description").ToString)
                             CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
+                            If row("Time").ToString = "True" Then
+                                CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
+                            End If
                             CreateEventsPanelButtons(panelname)
                             Dim g As New Panel
                             g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.LightGreen
-
 
                         End If
 
@@ -197,9 +202,7 @@ Public Class FormMain
                         If strDetail = "True" Then
                             panelname = CreateEventsPanel()
                             CreateEventNameLabel(panelname, row("Description").ToString)
-                            If row("Time").ToString = "True" And row("Bill").ToString = "False" And row("Birthday").ToString = "False" Then
-                                CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
-                            ElseIf row("Bill").ToString = "True" Then
+                            If row("Bill").ToString = "True" Then
                                 CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
                                 CreateEventTimeLabel(panelname, "$ " & row("Amount").ToString)
                             ElseIf row("Birthday").ToString = "True" Then
@@ -494,7 +497,12 @@ Public Class FormMain
 
 #End Region
 
-#Region "*** Contact Panels Display ***"
+#Region "*** Contacts Section ***"
+
+    Private Sub BtnAddContact_Click(sender As Object, e As EventArgs) Handles BtnAddContact.Click
+        Enabled = False
+        FormContacts.Show()
+    End Sub
 
     Sub DisplayContacts() Handles CboContactList.SelectedIndexChanged
 
@@ -936,33 +944,6 @@ Public Class FormMain
 
 #End Region
 
-#Region "*** Event Procedures ***"
-
-    Private Sub BtnAddContact_Click(sender As Object, e As EventArgs) Handles BtnAddContact.Click
-        Enabled = False
-        FormContacts.Show()
-    End Sub
-
-    Private Sub BtnAddEvent_Click(sender As Object, e As EventArgs) Handles BtnAddEvent.Click
-        Enabled = False
-        FormEvents.Show()
-    End Sub
-
-    Private Sub TmrClock_Tick(sender As Object, e As EventArgs) Handles TmrClock.Tick
-        LblClock.Text = Format(Date.Now, $"dddd: MMMM d, yyyy                  hh:mm:ss tt ")
-    End Sub
-
-    Private Sub MnuExit(sender As Object, e As EventArgs) Handles miExit.Click
-        SaveSettings()
-        Application.Exit()
-    End Sub
-
-    Private Sub FrmMain_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        SaveSettings()
-    End Sub
-
-#End Region
-
 #Region "***** Browser Section *****"
 
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
@@ -1009,6 +990,23 @@ Public Class FormMain
 
     Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem.Click
         Process.Start("https://www.jango.com/")
+    End Sub
+
+#End Region
+
+#Region "*** Timer and Exit Procedures ***"
+
+    Private Sub TmrClock_Tick(sender As Object, e As EventArgs) Handles TmrClock.Tick
+        LblClock.Text = Format(Date.Now, $"dddd: MMMM d, yyyy                  hh:mm:ss tt ")
+    End Sub
+
+    Private Sub MnuExit(sender As Object, e As EventArgs) Handles miExit.Click
+        SaveSettings()
+        Application.Exit()
+    End Sub
+
+    Private Sub FrmMain_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        SaveSettings()
     End Sub
 
 #End Region

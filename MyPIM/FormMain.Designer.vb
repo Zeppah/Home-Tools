@@ -205,6 +205,7 @@ Partial Class FormMain
         '
         'CboEventList
         '
+        Me.CboEventList.BackColor = System.Drawing.Color.Bisque
         Me.CboEventList.FormattingEnabled = True
         Me.CboEventList.Items.AddRange(New Object() {"All Lists", "Appointments", "Bills", "Birthdays", "Other", "Starred"})
         Me.CboEventList.Location = New System.Drawing.Point(32, 154)
@@ -247,6 +248,7 @@ Partial Class FormMain
         'CboContactList
         '
         Me.CboContactList.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CboContactList.BackColor = System.Drawing.Color.Bisque
         Me.CboContactList.FormattingEnabled = True
         Me.CboContactList.Items.AddRange(New Object() {"All Lists", "Acquaintance", "Business", "Family", "Friend", "Other", "Starred"})
         Me.CboContactList.Location = New System.Drawing.Point(981, 155)
@@ -290,6 +292,7 @@ Partial Class FormMain
         '
         'CboEventTime
         '
+        Me.CboEventTime.BackColor = System.Drawing.Color.Bisque
         Me.CboEventTime.FormattingEnabled = True
         Me.CboEventTime.Items.AddRange(New Object() {"All Time", "Today", "Week", "Month", "Year"})
         Me.CboEventTime.Location = New System.Drawing.Point(187, 154)
@@ -346,7 +349,7 @@ Partial Class FormMain
         '
         'LstMemos
         '
-        Me.LstMemos.BackColor = System.Drawing.SystemColors.Window
+        Me.LstMemos.BackColor = System.Drawing.Color.Bisque
         Me.LstMemos.ForeColor = System.Drawing.SystemColors.WindowText
         Me.LstMemos.FormattingEnabled = True
         Me.LstMemos.ItemHeight = 25
