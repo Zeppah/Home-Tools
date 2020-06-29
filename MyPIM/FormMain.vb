@@ -504,18 +504,20 @@ Public Class FormMain
         Dim row As DataRow
         For Each row In ContactsDataTable.Rows
             ContactPanelsAddedCount += 1
+            Dim panelname As Panel
+
             Select Case CboContactList.SelectedIndex
                 Case 0 'All Selected
-                    CreateContactPanel()
+                    panelname = CreateContactPanel()
                     Dim strFullName As String
                     strFullName = row("First Name").ToString & " " & row("Middle Name").ToString & " " & row("Last Name").ToString
                     If strFullName = "  " Then
                         strFullName = row("Company").ToString
                     End If
-                    CreateContactNameLabel(CurrentContactPanelName, strFullName)
-                    CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
-                    CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                    CreateContactPanelButtons(CurrentContactPanelName)
+                    CreateContactNameLabel(panelname, strFullName)
+                    CreateContactPhoneLabel(panelname, row("Phone").ToString)
+                    CreateContactEmailLabel(panelname, row("Email").ToString)
+                    CreateContactPanelButtons(panelname)
                     Select Case row("Groups").ToString
                         Case "Acquaintance"
                             Dim unused As New Panel
@@ -540,80 +542,80 @@ Public Class FormMain
                     End Select
                 Case 1 'Acquaintance Selected
                     If row("Groups").ToString = "Acquaintance" Then
-                        CreateContactPanel()
+                        panelname = CreateContactPanel()
                         Dim strFullName As String
                         strFullName = row("First Name").ToString & " " & row("Middle Name").ToString & " " & row("Last Name").ToString
                         If strFullName = "  " Then
                             strFullName = row("Company").ToString
                         End If
-                        CreateContactNameLabel(CurrentContactPanelName, strFullName)
-                        CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
-                        CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactPanelButtons(CurrentContactPanelName)
+                        CreateContactNameLabel(panelname, strFullName)
+                        CreateContactPhoneLabel(panelname, row("Phone").ToString)
+                        CreateContactEmailLabel(panelname, row("Email").ToString)
+                        CreateContactPanelButtons(panelname)
                         Dim unused As New Panel
                         Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.LightGreen
                     End If
                 Case 2 'Business Selected
                     If row("Groups").ToString = "Business" Then
-                        CreateContactPanel()
+                        panelname = CreateContactPanel()
                         Dim strFullName As String
                         strFullName = row("First Name").ToString & " " & row("Middle Name").ToString & " " & row("Last Name").ToString
                         If strFullName = "  " Then
                             strFullName = row("Company").ToString
                         End If
-                        CreateContactNameLabel(CurrentContactPanelName, strFullName)
-                        CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
-                        CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactPanelButtons(CurrentContactPanelName)
+                        CreateContactNameLabel(panelname, strFullName)
+                        CreateContactPhoneLabel(panelname, row("Phone").ToString)
+                        CreateContactEmailLabel(panelname, row("Email").ToString)
+                        CreateContactPanelButtons(panelname)
                         Dim unused As New Panel
                         Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.LightGray
                     End If
                 Case 3 'Family Selected
                     If row("Groups").ToString = "Family" Then
-                        CreateContactPanel()
+                        panelname = CreateContactPanel()
                         Dim strFullName As String
                         strFullName = row("First Name").ToString & " " & row("Middle Name").ToString & " " & row("Last Name").ToString
                         If strFullName = "  " Then
                             strFullName = row("Company").ToString
                         End If
-                        CreateContactNameLabel(CurrentContactPanelName, strFullName)
-                        CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
-                        CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactPanelButtons(CurrentContactPanelName)
+                        CreateContactNameLabel(panelname, strFullName)
+                        CreateContactPhoneLabel(panelname, row("Phone").ToString)
+                        CreateContactEmailLabel(panelname, row("Email").ToString)
+                        CreateContactPanelButtons(panelname)
                         Dim unused As New Panel
                         Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.LightBlue
                     End If
                 Case 4 'Friend Selected
                     If row("Groups").ToString = "Friend" Then
-                        CreateContactPanel()
+                        panelname = CreateContactPanel()
                         Dim strFullName As String
                         strFullName = row("First Name").ToString & " " & row("Middle Name").ToString & " " & row("Last Name").ToString
                         If strFullName = "  " Then
                             strFullName = row("Company").ToString
                         End If
-                        CreateContactNameLabel(CurrentContactPanelName, strFullName)
-                        CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
-                        CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactPanelButtons(CurrentContactPanelName)
+                        CreateContactNameLabel(panelname, strFullName)
+                        CreateContactPhoneLabel(panelname, row("Phone").ToString)
+                        CreateContactEmailLabel(panelname, row("Email").ToString)
+                        CreateContactPanelButtons(panelname)
                         Dim unused As New Panel
                         Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.Beige
                     End If
                 Case 5 'Other Selected
                     If row("Groups").ToString = "Other" Then
-                        CreateContactPanel()
+                        panelname = CreateContactPanel()
                         Dim strFullName As String
                         strFullName = row("First Name").ToString & " " & row("Middle Name").ToString & " " & row("Last Name").ToString
                         If strFullName = "  " Then
                             strFullName = row("Company").ToString
                         End If
-                        CreateContactNameLabel(CurrentContactPanelName, strFullName)
-                        CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
-                        CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactPanelButtons(CurrentContactPanelName)
+                        CreateContactNameLabel(panelname, strFullName)
+                        CreateContactPhoneLabel(panelname, row("Phone").ToString)
+                        CreateContactEmailLabel(panelname, row("Email").ToString)
+                        CreateContactPanelButtons(panelname)
                         Dim unused As New Panel
                         Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.Bisque
@@ -622,16 +624,16 @@ Public Class FormMain
                     Dim strDetail As String
                     strDetail = row("Starred").ToString
                     If strDetail = "True" Then
-                        CreateContactPanel()
+                        panelname = CreateContactPanel()
                         Dim strFullName As String
                         strFullName = row("First Name").ToString & " " & row("Middle Name").ToString & " " & row("Last Name").ToString
                         If strFullName = "  " Then
                             strFullName = row("Company").ToString
                         End If
-                        CreateContactNameLabel(CurrentContactPanelName, strFullName)
-                        CreateContactPhoneLabel(CurrentContactPanelName, row("Phone").ToString)
-                        CreateContactEmailLabel(CurrentContactPanelName, row("Email").ToString)
-                        CreateContactPanelButtons(CurrentContactPanelName)
+                        CreateContactNameLabel(panelname, strFullName)
+                        CreateContactPhoneLabel(panelname, row("Phone").ToString)
+                        CreateContactEmailLabel(panelname, row("Email").ToString)
+                        CreateContactPanelButtons(panelname)
                         Select Case row("Groups").ToString
                             Case "Acquaintance"
                                 Dim unused As New Panel
@@ -663,7 +665,7 @@ Public Class FormMain
 
     End Sub
 
-    Public Sub CreateContactPanel()
+    Public Function CreateContactPanel() As Panel
 
         Dim contactPanel As Panel
         contactPanel = New Panel()
@@ -682,9 +684,10 @@ Public Class FormMain
         'Update panel variables
         CurrentContactPanelName = contactPanel.Name
 
-    End Sub
+        Return contactPanel
+    End Function
 
-    Public Sub CreateContactNameLabel(ByVal panelName As String, ByVal textToShow As String)
+    Public Sub CreateContactNameLabel(ByVal panelName As Panel, ByVal textToShow As String)
         Dim contactNameLabel As Label
         contactNameLabel = New Label
 
@@ -697,15 +700,11 @@ Public Class FormMain
             .Text = textToShow
         End With
 
-        'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In FlpContacts.Controls
-            If controlObject.Name = panelName Then
-                controlObject.Controls.Add(contactNameLabel)
-            End If
-        Next
+        panelName.Controls.Add(contactNameLabel)
+
     End Sub
 
-    Public Sub CreateContactPhoneLabel(ByVal panelName As String, ByVal textToShow As String)
+    Public Sub CreateContactPhoneLabel(ByVal panelName As Panel, ByVal textToShow As String)
         Dim contactNameLabel As Label
         contactNameLabel = New Label
 
@@ -718,15 +717,11 @@ Public Class FormMain
             .Text = textToShow
         End With
 
-        'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In FlpContacts.Controls
-            If controlObject.Name = panelName Then
-                controlObject.Controls.Add(contactNameLabel)
-            End If
-        Next
+        panelName.Controls.Add(contactNameLabel)
+
     End Sub
 
-    Public Sub CreateContactEmailLabel(ByVal panelName As String, ByVal textToShow As String)
+    Public Sub CreateContactEmailLabel(ByVal panelName As Panel, ByVal textToShow As String)
         Dim contactNameLabel As Label
         contactNameLabel = New Label
 
@@ -739,15 +734,11 @@ Public Class FormMain
             .Text = textToShow
         End With
 
-        'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In FlpContacts.Controls
-            If controlObject.Name = panelName Then
-                controlObject.Controls.Add(contactNameLabel)
-            End If
-        Next
+        panelName.Controls.Add(contactNameLabel)
+
     End Sub
 
-    Public Sub CreateContactPanelButtons(ByVal panelName As String)
+    Public Sub CreateContactPanelButtons(ByVal panelName As Panel)
         Dim ContactEditButton As Button
         ContactEditButton = New Button
         Dim contactDeleteButton As Button
@@ -773,16 +764,12 @@ Public Class FormMain
             .Text = "Delete"
         End With
 
-        'Loop through panels and add buttons to passed panel
-        For Each controlObject As Control In FlpContacts.Controls
-            If controlObject.Name = panelName Then
-                controlObject.Controls.Add(ContactEditButton)
-                controlObject.Controls.Add(contactDeleteButton)
-            End If
-        Next
+        panelName.Controls.Add(ContactEditButton)
+        panelName.Controls.Add(contactDeleteButton)
 
         'Add Handler for the Click Event
         AddHandler ContactEditButton.Click, AddressOf DynamicContactEditButton_Click
+        AddHandler contactDeleteButton.Click, AddressOf DynamicContactDeleteButton_Click
 
     End Sub
 
