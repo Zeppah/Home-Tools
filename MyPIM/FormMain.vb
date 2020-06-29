@@ -47,11 +47,10 @@ Public Class FormMain
 
         FlpEvents.Controls.Clear()
         EventPanelsAddedCount = 0
-        Dim timeperiod As Integer
-        Dim row As DataRow
-        Dim strDetail As String
-        Dim EndDate As Date
-        Dim result As Integer
+        Dim timeperiod As Integer   'The date range to display
+        Dim row As DataRow          'The DataTable row associated with the current panel being displayed
+        Dim EndDate As Date         'The end date for records selected to display
+        Dim result As Integer       'Is the Sort Date before the end date? <= 0 means yes so display it
 
 
 
@@ -113,15 +112,15 @@ Public Class FormMain
 
                         'Set the label colors according to category
                         If row("Appointment").ToString = "True" Then
-                            Dim g As New Panel
+                            Dim g As Panel
                             g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.LightGreen
                         ElseIf row("Bill").ToString = "True" Then
-                            Dim g As New Panel
+                            Dim g As Panel
                             g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.Pink
                         ElseIf row("Other").ToString = "True" Then
-                            Dim g As New Panel
+                            Dim g As Panel
                             g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.Bisque
                         End If
@@ -129,8 +128,7 @@ Public Class FormMain
                         CreateEventsPanelButtons(panelname)
 
                     Case 1 'Appointment Selected
-                        strDetail = row("Appointment").ToString
-                        If strDetail = "True" Then
+                        If row("Appointment").ToString = "True" Then
                             panelname = CreateEventsPanel()
                             CreateEventNameLabel(panelname, row("Description").ToString)
                             CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
@@ -138,28 +136,25 @@ Public Class FormMain
                                 CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
                             End If
                             CreateEventsPanelButtons(panelname)
-                            Dim g As New Panel
+                            Dim g As Panel
                             g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.LightGreen
-
                         End If
 
                     Case 2 'Bill Selected
-                        strDetail = row("Bill").ToString
-                        If strDetail = "True" Then
+                        If row("Bill").ToString = "True" Then
                             panelname = CreateEventsPanel()
                             CreateEventNameLabel(panelname, row("Description").ToString)
                             CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
                             CreateEventTimeLabel(panelname, "$ " & row("Amount").ToString)
                             CreateEventsPanelButtons(panelname)
-                            Dim g As New Panel
+                            Dim g As Panel
                             g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.Pink
                         End If
 
                     Case 3 'Birthday Selected
-                        strDetail = row("Birthday").ToString
-                        If strDetail = "True" Then
+                        If row("Birthday").ToString = "True" Then
                             panelname = CreateEventsPanel()
                             CreateEventNameLabel(panelname, row("Description").ToString)
 
@@ -180,11 +175,10 @@ Public Class FormMain
                         End If
 
                     Case 4 'Other Selected
-                        strDetail = row("Other").ToString
-                        If strDetail = "True" Then
+                        If row("Other").ToString = "True" Then
                             panelname = CreateEventsPanel()
                             CreateEventNameLabel(panelname, row("Description").ToString)
-                            CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy")) 'HH:mm:ss")) '.ToString).Format("d")
+                            CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
                             If row("Time").ToString = "True" And row("Bill").ToString = "False" Then
                                 CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
                             ElseIf row("Bill").ToString = "True" Then
@@ -194,19 +188,17 @@ Public Class FormMain
                             Dim unused As New Panel
                             Dim g As Panel = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.Bisque
-
-
                         End If
+
                     Case 5 'Starred Item
-                        strDetail = row("Starred").ToString
-                        If strDetail = "True" Then
+                        If row("Starred").ToString = "True" Then
                             panelname = CreateEventsPanel()
                             CreateEventNameLabel(panelname, row("Description").ToString)
                             If row("Bill").ToString = "True" Then
                                 CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
                                 CreateEventTimeLabel(panelname, "$ " & row("Amount").ToString)
                             ElseIf row("Birthday").ToString = "True" Then
-                                Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
+                                Dim Birthdate As Date = CDate(row("Date"))
                                 Dim Age As Integer
                                 Age = CInt(DateDiff(DateInterval.Year, Birthdate, Date.Today))
                                 If Age = 0 Then Age = 1
@@ -218,10 +210,7 @@ Public Class FormMain
 
                                 CreateEventDateLabel(panelname, Format(NextBirthDate, "MM/dd/yyyy"))
                                 CreateEventTimeLabel(panelname, Age.ToString)
-                            ElseIf row("Appointment").ToString = "True" Then
-                                CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
-                                CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
-                            ElseIf row("Other").ToString = "True" Then
+                            ElseIf row("Appointment").ToString = "True" Or row("Other").ToString = "True" Then
                                 CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
                                 CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
                             End If
@@ -280,7 +269,7 @@ Public Class FormMain
         With eventNameLabel
             .AutoSize = True
             .Location = New Point(10, 8)
-            .Name = "lblContactName" + EventPanelsAddedCount.ToString
+            .Name = "LblEventName" + EventPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = textToShow
         End With
@@ -297,7 +286,7 @@ Public Class FormMain
         With eventDateLabel
             .AutoSize = True
             .Location = New Point(10, 28)
-            .Name = "lblContactName" + EventPanelsAddedCount.ToString
+            .Name = "LblEventDate" + EventPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = textToShow
         End With
@@ -314,7 +303,7 @@ Public Class FormMain
         With eventTimeLabel
             .AutoSize = True
             .Location = New Point(10, 48)
-            .Name = "lblContactName" + EventPanelsAddedCount.ToString
+            .Name = "LblEventTime" + EventPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = textToShow
         End With
@@ -334,7 +323,7 @@ Public Class FormMain
             .AutoSize = True
             .BackColor = Color.LightBlue
             .Location = New Point(330, 5)
-            .Name = "btnEdit" + EventPanelsAddedCount.ToString
+            .Name = "BtnEventEdit" + EventPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = "Edit"
         End With
@@ -344,7 +333,7 @@ Public Class FormMain
             .AutoSize = True
             .BackColor = Color.LightPink
             .Location = New Point(330, 38)
-            .Name = "btnDelete" + EventPanelsAddedCount.ToString
+            .Name = "BtnEventDelete" + EventPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = "Delete"
         End With
@@ -576,7 +565,6 @@ Public Class FormMain
                         CreateContactPhoneLabel(panelname, row("Phone").ToString)
                         CreateContactEmailLabel(panelname, row("Email").ToString)
                         CreateContactPanelButtons(panelname)
-                        Dim unused As New Panel
                         Dim g As Panel = DirectCast(FlpContacts.Controls(CurrentContactPanelName), Panel)
                         g.BackColor = Color.LightGray
                     End If
@@ -683,7 +671,7 @@ Public Class FormMain
             .BorderStyle = CType(1, BorderStyle)
             .BackColor = Color.LightBlue
             .Size = New Size(420, 75)
-            .Name = "pnlContact" + (ContactPanelsAddedCount + 1).ToString
+            .Name = "PnlContact" + (ContactPanelsAddedCount + 1).ToString
         End With
 
         'Add panel to flow layout panel
@@ -703,7 +691,7 @@ Public Class FormMain
         With contactNameLabel
             .AutoSize = True
             .Location = New Point(10, 8)
-            .Name = "lblContactName" + ContactPanelsAddedCount.ToString
+            .Name = "LblContactName" + ContactPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = textToShow
         End With
@@ -720,7 +708,7 @@ Public Class FormMain
         With contactNameLabel
             .AutoSize = True
             .Location = New Point(10, 28)
-            .Name = "lblPhoneName" + ContactPanelsAddedCount.ToString
+            .Name = "LblContactPhone" + ContactPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = textToShow
         End With
@@ -737,7 +725,7 @@ Public Class FormMain
         With contactNameLabel
             .AutoSize = True
             .Location = New Point(10, 48)
-            .Name = "lblEmailName" + ContactPanelsAddedCount.ToString
+            .Name = "LblContactEmail" + ContactPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = textToShow
         End With
@@ -757,7 +745,7 @@ Public Class FormMain
             .AutoSize = True
             .BackColor = Color.LightBlue
             .Location = New Point(330, 5)
-            .Name = "btnEdit" + ContactPanelsAddedCount.ToString
+            .Name = "BtnContactEdit" + ContactPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = "Edit"
         End With
@@ -767,7 +755,7 @@ Public Class FormMain
             .AutoSize = True
             .BackColor = Color.LightPink
             .Location = New Point(330, 38)
-            .Name = "btnContactDelete" + ContactPanelsAddedCount.ToString
+            .Name = "BtnContactDelete" + ContactPanelsAddedCount.ToString
             .Font = New Font("Microsoft Sans Serif", 12, FontStyle.Bold)
             .Text = "Delete"
         End With
