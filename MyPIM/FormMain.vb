@@ -48,8 +48,10 @@ Public Class FormMain
         Dim EndDate As Date
         Dim result As Integer
 
+
+
         For Each row In EventsDataTable.Rows
-            EventPanelsAddedCount += 1 ' This needs to count the rows to name the buttons to corraspond to the datarecord
+            EventPanelsAddedCount += 1 ' This counts the rows to name the buttons to corraspond to the DataTable record
 
             'Set the time period to display Event panels
             Select Case CboEventTime.SelectedIndex
@@ -72,17 +74,18 @@ Public Class FormMain
                     EndDate = Today.AddDays(timeperiod)
                     result = DateTime.Compare(CDate(row("SortDate")), EndDate)
             End Select
-            If result <= 0 Then
+
+            If result <= 0 Then 'The row SortDate is before or equal to the EndDate selected.
 
                 Select Case CboEventList.SelectedIndex
                     Case 0 'All Selected
                         CreateEventsPanel()
-                        CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                        CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
                         If row("Time").ToString = "True" And row("Bill").ToString = "False" And row("Birthday").ToString = "False" Then
-                            CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                         ElseIf row("Bill").ToString = "True" Then
-                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
+                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateEventTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
                         ElseIf row("Birthday").ToString = "True" Then
                             Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
                             Dim Age As Integer
@@ -94,14 +97,14 @@ Public Class FormMain
 
                             Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentEventsPanelName, Age.ToString)
+                            CreateEventDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
+                            CreateEventTimeLabel(CurrentEventsPanelName, Age.ToString)
                         ElseIf row("Appointment").ToString = "True" Then
-                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                         ElseIf row("Other").ToString = "True" Then
-                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                         End If
 
                         If row("Appointment").ToString = "True" Then
@@ -124,9 +127,9 @@ Public Class FormMain
                         strDetail = row("Appointment").ToString
                         If strDetail = "True" Then
                             CreateEventsPanel()
-                            CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
-                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                             CreateEventsPanelButtons(CurrentEventsPanelName)
                             Dim g As New Panel
                             g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
@@ -139,9 +142,9 @@ Public Class FormMain
                         strDetail = row("Bill").ToString
                         If strDetail = "True" Then
                             CreateEventsPanel()
-                            CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
-                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
+                            CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateEventTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
                             CreateEventsPanelButtons(CurrentEventsPanelName)
                             Dim g As New Panel
                             g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
@@ -152,7 +155,7 @@ Public Class FormMain
                         strDetail = row("Birthday").ToString
                         If strDetail = "True" Then
                             CreateEventsPanel()
-                            CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                            CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
 
                             Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
                             Dim Age As Integer
@@ -163,8 +166,8 @@ Public Class FormMain
                             End If
                             Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
-                            CreateTrackerTimeLabel(CurrentEventsPanelName, Age.ToString)
+                            CreateEventDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
+                            CreateEventTimeLabel(CurrentEventsPanelName, Age.ToString)
 
                             CreateEventsPanelButtons(CurrentEventsPanelName)
 
@@ -174,12 +177,12 @@ Public Class FormMain
                         strDetail = row("Other").ToString
                         If strDetail = "True" Then
                             CreateEventsPanel()
-                            CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
-                            CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy")) 'HH:mm:ss")) '.ToString).Format("d")
+                            CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy")) 'HH:mm:ss")) '.ToString).Format("d")
                             If row("Time").ToString = "True" And row("Bill").ToString = "False" Then
-                                CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                             ElseIf row("Bill").ToString = "True" Then
-                                CreateTrackerTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
+                                CreateEventTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
                             End If
                             CreateEventsPanelButtons(CurrentEventsPanelName)
                             Dim unused As New Panel
@@ -192,12 +195,12 @@ Public Class FormMain
                         strDetail = row("Starred").ToString
                         If strDetail = "True" Then
                             CreateEventsPanel()
-                            CreateTrackerNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                            CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
                             If row("Time").ToString = "True" And row("Bill").ToString = "False" And row("Birthday").ToString = "False" Then
-                                CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                             ElseIf row("Bill").ToString = "True" Then
-                                CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                                CreateTrackerTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
+                                CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateEventTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
                             ElseIf row("Birthday").ToString = "True" Then
                                 Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
                                 Dim Age As Integer
@@ -209,14 +212,14 @@ Public Class FormMain
 
                                 Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                                CreateTrackerDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
-                                CreateTrackerTimeLabel(CurrentEventsPanelName, Age.ToString)
+                                CreateEventDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
+                                CreateEventTimeLabel(CurrentEventsPanelName, Age.ToString)
                             ElseIf row("Appointment").ToString = "True" Then
-                                CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                                CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                             ElseIf row("Other").ToString = "True" Then
-                                CreateTrackerDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                                CreateTrackerTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
                             End If
 
                             If row("Appointment").ToString = "True" Then
@@ -234,9 +237,6 @@ Public Class FormMain
                             End If
 
                             CreateEventsPanelButtons(CurrentEventsPanelName)
-
-
-
                         End If
 
                 End Select
@@ -249,31 +249,31 @@ Public Class FormMain
 
     Public Sub CreateEventsPanel()
 
-        Dim contactPanel As Panel
-        contactPanel = New Panel()
+        Dim eventPanel As Panel
+        eventPanel = New Panel()
 
         'Set panel properties
-        With contactPanel
+        With eventPanel
             .BorderStyle = CType(1, BorderStyle)
             .BackColor = Color.LightBlue
             .Size = New Size(420, 75)
-            .Name = "pnlTracker" + (EventPanelsAddedCount + 1).ToString
+            .Name = "PnlEvent" + (EventPanelsAddedCount + 1).ToString
         End With
 
         'Add panel to flow layout panel
-        FlpEvents.Controls.Add(contactPanel)
+        FlpEvents.Controls.Add(eventPanel)
 
         'Update panel variables
-        CurrentEventsPanelName = contactPanel.Name
+        CurrentEventsPanelName = eventPanel.Name
 
     End Sub
 
-    Public Sub CreateTrackerNameLabel(ByVal panelName As String, ByVal textToShow As String)
-        Dim contactNameLabel As Label
-        contactNameLabel = New Label
+    Public Sub CreateEventNameLabel(ByVal panelName As String, ByVal textToShow As String)
+        Dim eventNameLabel As Label
+        eventNameLabel = New Label
 
         'Set Properties
-        With contactNameLabel
+        With eventNameLabel
             .AutoSize = True
             .Location = New Point(10, 8)
             .Name = "lblContactName" + EventPanelsAddedCount.ToString
@@ -284,17 +284,17 @@ Public Class FormMain
         'Loop through panels and add new label to passed panel
         For Each controlObject As Control In FlpEvents.Controls
             If controlObject.Name = panelName Then
-                controlObject.Controls.Add(contactNameLabel)
+                controlObject.Controls.Add(eventNameLabel)
             End If
         Next
     End Sub
 
-    Public Sub CreateTrackerDateLabel(ByVal panelName As String, ByVal textToShow As String)
-        Dim contactPhoneLabel As Label
-        contactPhoneLabel = New Label
+    Public Sub CreateEventDateLabel(ByVal panelName As String, ByVal textToShow As String)
+        Dim eventDateLabel As Label
+        eventDateLabel = New Label
 
-        'Set Properties
-        With contactPhoneLabel
+        'Set Properties 
+        With eventDateLabel
             .AutoSize = True
             .Location = New Point(10, 28)
             .Name = "lblContactName" + EventPanelsAddedCount.ToString
@@ -305,17 +305,17 @@ Public Class FormMain
         'Loop through panels and add new label to passed panel
         For Each controlObject As Control In FlpEvents.Controls
             If controlObject.Name = panelName Then
-                controlObject.Controls.Add(contactPhoneLabel)
+                controlObject.Controls.Add(eventDateLabel)
             End If
         Next
     End Sub
 
-    Public Sub CreateTrackerTimeLabel(ByVal panelName As String, ByVal textToShow As String)
-        Dim contactTimeLabel As Label
-        contactTimeLabel = New Label
+    Public Sub CreateEventTimeLabel(ByVal panelName As String, ByVal textToShow As String)
+        Dim eventTimeLabel As Label
+        eventTimeLabel = New Label
 
         'Set Properties
-        With contactTimeLabel
+        With eventTimeLabel
             .AutoSize = True
             .Location = New Point(10, 48)
             .Name = "lblContactName" + EventPanelsAddedCount.ToString
@@ -326,7 +326,7 @@ Public Class FormMain
         'Loop through panels and add new label to passed panel
         For Each controlObject As Control In FlpEvents.Controls
             If controlObject.Name = panelName Then
-                controlObject.Controls.Add(contactTimeLabel)
+                controlObject.Controls.Add(eventTimeLabel)
             End If
         Next
     End Sub
