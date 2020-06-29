@@ -76,16 +76,17 @@ Public Class FormMain
             End Select
 
             If result <= 0 Then 'The row SortDate is before or equal to the EndDate selected.
+                Dim panelname As Panel
 
                 Select Case CboEventList.SelectedIndex
                     Case 0 'All Selected
-                        CreateEventsPanel()
-                        CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                        panelname = CreateEventsPanel()
+                        CreateEventNameLabel(panelname, row("Description").ToString)
                         If row("Time").ToString = "True" And row("Bill").ToString = "False" And row("Birthday").ToString = "False" Then
-                            CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
                         ElseIf row("Bill").ToString = "True" Then
-                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateEventTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
+                            CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateEventTimeLabel(panelname, "$ " & row("Amount").ToString)
                         ElseIf row("Birthday").ToString = "True" Then
                             Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
                             Dim Age As Integer
@@ -97,14 +98,14 @@ Public Class FormMain
 
                             Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                            CreateEventDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
-                            CreateEventTimeLabel(CurrentEventsPanelName, Age.ToString)
+                            CreateEventDateLabel(panelname, Format(NextBirthDate, "MM/dd/yyyy"))
+                            CreateEventTimeLabel(panelname, Age.ToString)
                         ElseIf row("Appointment").ToString = "True" Then
-                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
                         ElseIf row("Other").ToString = "True" Then
-                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                            CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
                         End If
 
                         If row("Appointment").ToString = "True" Then
@@ -121,16 +122,16 @@ Public Class FormMain
                             g.BackColor = Color.Bisque
                         End If
 
-                        CreateEventsPanelButtons(CurrentEventsPanelName)
+                        CreateEventsPanelButtons(panelname)
 
                     Case 1 'Appointment Selected
                         strDetail = row("Appointment").ToString
                         If strDetail = "True" Then
-                            CreateEventsPanel()
-                            CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
-                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
-                            CreateEventsPanelButtons(CurrentEventsPanelName)
+                            panelname = CreateEventsPanel()
+                            CreateEventNameLabel(panelname, row("Description").ToString)
+                            CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
+                            CreateEventsPanelButtons(panelname)
                             Dim g As New Panel
                             g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.LightGreen
@@ -141,11 +142,11 @@ Public Class FormMain
                     Case 2 'Bill Selected
                         strDetail = row("Bill").ToString
                         If strDetail = "True" Then
-                            CreateEventsPanel()
-                            CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
-                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                            CreateEventTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
-                            CreateEventsPanelButtons(CurrentEventsPanelName)
+                            panelname = CreateEventsPanel()
+                            CreateEventNameLabel(panelname, row("Description").ToString)
+                            CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
+                            CreateEventTimeLabel(panelname, "$ " & row("Amount").ToString)
+                            CreateEventsPanelButtons(panelname)
                             Dim g As New Panel
                             g = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.Pink
@@ -154,8 +155,8 @@ Public Class FormMain
                     Case 3 'Birthday Selected
                         strDetail = row("Birthday").ToString
                         If strDetail = "True" Then
-                            CreateEventsPanel()
-                            CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                            panelname = CreateEventsPanel()
+                            CreateEventNameLabel(panelname, row("Description").ToString)
 
                             Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
                             Dim Age As Integer
@@ -166,25 +167,25 @@ Public Class FormMain
                             End If
                             Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                            CreateEventDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
-                            CreateEventTimeLabel(CurrentEventsPanelName, Age.ToString)
+                            CreateEventDateLabel(panelname, Format(NextBirthDate, "MM/dd/yyyy"))
+                            CreateEventTimeLabel(panelname, Age.ToString)
 
-                            CreateEventsPanelButtons(CurrentEventsPanelName)
+                            CreateEventsPanelButtons(panelname)
 
                         End If
 
                     Case 4 'Other Selected
                         strDetail = row("Other").ToString
                         If strDetail = "True" Then
-                            CreateEventsPanel()
-                            CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
-                            CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy")) 'HH:mm:ss")) '.ToString).Format("d")
+                            panelname = CreateEventsPanel()
+                            CreateEventNameLabel(panelname, row("Description").ToString)
+                            CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy")) 'HH:mm:ss")) '.ToString).Format("d")
                             If row("Time").ToString = "True" And row("Bill").ToString = "False" Then
-                                CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
                             ElseIf row("Bill").ToString = "True" Then
-                                CreateEventTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
+                                CreateEventTimeLabel(panelname, "$ " & row("Amount").ToString)
                             End If
-                            CreateEventsPanelButtons(CurrentEventsPanelName)
+                            CreateEventsPanelButtons(panelname)
                             Dim unused As New Panel
                             Dim g As Panel = DirectCast(FlpEvents.Controls(CurrentEventsPanelName), Panel)
                             g.BackColor = Color.Bisque
@@ -194,13 +195,13 @@ Public Class FormMain
                     Case 5 'Starred Item
                         strDetail = row("Starred").ToString
                         If strDetail = "True" Then
-                            CreateEventsPanel()
-                            CreateEventNameLabel(CurrentEventsPanelName, row("Description").ToString)
+                            panelname = CreateEventsPanel()
+                            CreateEventNameLabel(panelname, row("Description").ToString)
                             If row("Time").ToString = "True" And row("Bill").ToString = "False" And row("Birthday").ToString = "False" Then
-                                CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
                             ElseIf row("Bill").ToString = "True" Then
-                                CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                                CreateEventTimeLabel(CurrentEventsPanelName, "$ " & row("Amount").ToString)
+                                CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateEventTimeLabel(panelname, "$ " & row("Amount").ToString)
                             ElseIf row("Birthday").ToString = "True" Then
                                 Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
                                 Dim Age As Integer
@@ -212,14 +213,14 @@ Public Class FormMain
 
                                 Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                                CreateEventDateLabel(CurrentEventsPanelName, Format(NextBirthDate, "MM/dd/yyyy"))
-                                CreateEventTimeLabel(CurrentEventsPanelName, Age.ToString)
+                                CreateEventDateLabel(panelname, Format(NextBirthDate, "MM/dd/yyyy"))
+                                CreateEventTimeLabel(panelname, Age.ToString)
                             ElseIf row("Appointment").ToString = "True" Then
-                                CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                                CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
                             ElseIf row("Other").ToString = "True" Then
-                                CreateEventDateLabel(CurrentEventsPanelName, Format(row("Date"), "MM/dd/yyyy"))
-                                CreateEventTimeLabel(CurrentEventsPanelName, Format(row("Date"), "HH:mm tt"))
+                                CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
+                                CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
                             End If
 
                             If row("Appointment").ToString = "True" Then
@@ -236,7 +237,7 @@ Public Class FormMain
                                 g.BackColor = Color.Bisque
                             End If
 
-                            CreateEventsPanelButtons(CurrentEventsPanelName)
+                            CreateEventsPanelButtons(panelname)
                         End If
 
                 End Select
@@ -247,7 +248,7 @@ Public Class FormMain
 
     End Sub
 
-    Public Sub CreateEventsPanel()
+    Public Function CreateEventsPanel() As Panel
 
         Dim eventPanel As Panel
         eventPanel = New Panel()
@@ -265,10 +266,10 @@ Public Class FormMain
 
         'Update panel variables
         CurrentEventsPanelName = eventPanel.Name
+        Return eventPanel
+    End Function
 
-    End Sub
-
-    Public Sub CreateEventNameLabel(ByVal panelName As String, ByVal textToShow As String)
+    Public Sub CreateEventNameLabel(ByVal panelName As Panel, ByVal textToShow As String)
         Dim eventNameLabel As Label
         eventNameLabel = New Label
 
@@ -281,15 +282,11 @@ Public Class FormMain
             .Text = textToShow
         End With
 
-        'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In FlpEvents.Controls
-            If controlObject.Name = panelName Then
-                controlObject.Controls.Add(eventNameLabel)
-            End If
-        Next
+        panelName.Controls.Add(eventNameLabel)
+
     End Sub
 
-    Public Sub CreateEventDateLabel(ByVal panelName As String, ByVal textToShow As String)
+    Public Sub CreateEventDateLabel(ByVal panelName As Panel, ByVal textToShow As String)
         Dim eventDateLabel As Label
         eventDateLabel = New Label
 
@@ -302,15 +299,11 @@ Public Class FormMain
             .Text = textToShow
         End With
 
-        'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In FlpEvents.Controls
-            If controlObject.Name = panelName Then
-                controlObject.Controls.Add(eventDateLabel)
-            End If
-        Next
+        panelName.Controls.Add(eventDateLabel)
+
     End Sub
 
-    Public Sub CreateEventTimeLabel(ByVal panelName As String, ByVal textToShow As String)
+    Public Sub CreateEventTimeLabel(ByVal panelName As Panel, ByVal textToShow As String)
         Dim eventTimeLabel As Label
         eventTimeLabel = New Label
 
@@ -323,15 +316,11 @@ Public Class FormMain
             .Text = textToShow
         End With
 
-        'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In FlpEvents.Controls
-            If controlObject.Name = panelName Then
-                controlObject.Controls.Add(eventTimeLabel)
-            End If
-        Next
+        panelName.Controls.Add(eventTimeLabel)
+
     End Sub
 
-    Public Sub CreateEventsPanelButtons(ByVal panelName As String)
+    Public Sub CreateEventsPanelButtons(ByVal panelName As Panel)
         Dim EventDeleteButton As Button
         EventDeleteButton = New Button
         Dim EventEditButton As Button
@@ -357,14 +346,8 @@ Public Class FormMain
             .Text = "Delete"
         End With
 
-
-        'Loop through panels and add new label to passed panel
-        For Each controlObject As Control In FlpEvents.Controls
-            If controlObject.Name = panelName Then
-                controlObject.Controls.Add(EventDeleteButton)
-                controlObject.Controls.Add(EventEditButton)
-            End If
-        Next
+        panelName.Controls.Add(EventDeleteButton)
+        panelName.Controls.Add(EventEditButton)
 
         'Add Handler for the Click Event
         AddHandler EventDeleteButton.Click, AddressOf DynamicEventDeleteButton_Click
