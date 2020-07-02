@@ -28,6 +28,7 @@ Public Class FormMain
         TSV2DataTable(ContactsDataTable, ContactsFileName)
         AddMemosDataTableColumns()
         TSV2DataTable(MemosDataTable, MemosFileName)
+        EventsSort()
         DisplayEvents()
         DisplayContacts()
         FillMemoListBox()
@@ -456,18 +457,22 @@ Public Class FormMain
         If EventsSortOrder = "A" Then
             EventsDataTable.DefaultView.Sort = "SortDate ASC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
+            LblSortMethod.Text = "Date ASC"
             EventsSortOrder = "D"
         ElseIf EventsSortOrder = "D" Then
             EventsDataTable.DefaultView.Sort = "SortDate DESC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
+            LblSortMethod.Text = "Date DESC"
             EventsSortOrder = "DA"
         ElseIf EventsSortOrder = "DA" Then
             EventsDataTable.DefaultView.Sort = "Description ASC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
+            LblSortMethod.Text = "Description ASC"
             EventsSortOrder = "DD"
         Else
             EventsDataTable.DefaultView.Sort = "Description DESC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
+            LblSortMethod.Text = "Description DESC"
             EventsSortOrder = "A"
         End If
 
@@ -479,24 +484,32 @@ Public Class FormMain
     End Sub
 
     Friend Sub EventsSort()
-
+        'Shift Each selection forward because they were set to advance on next sort button selection
         If EventsSortOrder = "A" Then
-            EventsDataTable.DefaultView.Sort = "SortDate DESC"
+            EventsDataTable.DefaultView.Sort = "Description DESC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
+            LblSortMethod.Text = "Description DESC"
+            'EventsSortOrder = "A"
         ElseIf EventsSortOrder = "D" Then
             EventsDataTable.DefaultView.Sort = "SortDate ASC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
+            LblSortMethod.Text = "Date ASC"
+            ' EventsSortOrder = "D"
         ElseIf EventsSortOrder = "DA" Then
-            EventsDataTable.DefaultView.Sort = "Description DESC"
+            EventsDataTable.DefaultView.Sort = "SortDate DESC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
+            LblSortMethod.Text = "Date DESC"
+            ' EventsSortOrder = "DD"
         Else
             EventsDataTable.DefaultView.Sort = "Description ASC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
+            LblSortMethod.Text = "Description ASC"
+            ' EventsSortOrder = "DA"
         End If
 
         DataTable2TSV(EventsDataTable, EventsFileName)
         DisplayEvents()
-
+        'SaveSettings()
     End Sub
 
 #End Region

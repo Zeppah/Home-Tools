@@ -58,6 +58,7 @@ Partial Class FormMain
         Me.LblEvents = New System.Windows.Forms.Label()
         Me.BtnAddMemo = New System.Windows.Forms.Button()
         Me.LstMemos = New System.Windows.Forms.ListBox()
+        Me.LblSortMethod = New System.Windows.Forms.Label()
         Me.MnuMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -208,7 +209,7 @@ Partial Class FormMain
         Me.CboEventList.BackColor = System.Drawing.Color.Bisque
         Me.CboEventList.FormattingEnabled = True
         Me.CboEventList.Items.AddRange(New Object() {"All Lists", "Appointments", "Bills", "Birthdays", "Other", "Starred"})
-        Me.CboEventList.Location = New System.Drawing.Point(32, 154)
+        Me.CboEventList.Location = New System.Drawing.Point(32, 141)
         Me.CboEventList.Name = "CboEventList"
         Me.CboEventList.Size = New System.Drawing.Size(149, 33)
         Me.CboEventList.TabIndex = 14
@@ -238,7 +239,7 @@ Partial Class FormMain
         'BtnSortEvent
         '
         Me.BtnSortEvent.BackColor = System.Drawing.Color.Bisque
-        Me.BtnSortEvent.Location = New System.Drawing.Point(355, 153)
+        Me.BtnSortEvent.Location = New System.Drawing.Point(355, 140)
         Me.BtnSortEvent.Name = "BtnSortEvent"
         Me.BtnSortEvent.Size = New System.Drawing.Size(75, 35)
         Me.BtnSortEvent.TabIndex = 12
@@ -251,7 +252,7 @@ Partial Class FormMain
         Me.CboContactList.BackColor = System.Drawing.Color.Bisque
         Me.CboContactList.FormattingEnabled = True
         Me.CboContactList.Items.AddRange(New Object() {"All Lists", "Acquaintance", "Business", "Family", "Friend", "Other", "Starred"})
-        Me.CboContactList.Location = New System.Drawing.Point(981, 155)
+        Me.CboContactList.Location = New System.Drawing.Point(981, 142)
         Me.CboContactList.Name = "CboContactList"
         Me.CboContactList.Size = New System.Drawing.Size(149, 33)
         Me.CboContactList.TabIndex = 19
@@ -283,7 +284,7 @@ Partial Class FormMain
         '
         Me.BtnContactSort.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnContactSort.BackColor = System.Drawing.Color.Bisque
-        Me.BtnContactSort.Location = New System.Drawing.Point(1306, 153)
+        Me.BtnContactSort.Location = New System.Drawing.Point(1306, 140)
         Me.BtnContactSort.Name = "BtnContactSort"
         Me.BtnContactSort.Size = New System.Drawing.Size(75, 35)
         Me.BtnContactSort.TabIndex = 17
@@ -295,7 +296,7 @@ Partial Class FormMain
         Me.CboEventTime.BackColor = System.Drawing.Color.Bisque
         Me.CboEventTime.FormattingEnabled = True
         Me.CboEventTime.Items.AddRange(New Object() {"All Time", "Today", "Week", "Month", "Year"})
-        Me.CboEventTime.Location = New System.Drawing.Point(187, 154)
+        Me.CboEventTime.Location = New System.Drawing.Point(187, 141)
         Me.CboEventTime.Name = "CboEventTime"
         Me.CboEventTime.Size = New System.Drawing.Size(109, 33)
         Me.CboEventTime.TabIndex = 21
@@ -358,12 +359,23 @@ Partial Class FormMain
         Me.LstMemos.Size = New System.Drawing.Size(341, 179)
         Me.LstMemos.TabIndex = 28
         '
+        'LblSortMethod
+        '
+        Me.LblSortMethod.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblSortMethod.Location = New System.Drawing.Point(355, 178)
+        Me.LblSortMethod.Name = "LblSortMethod"
+        Me.LblSortMethod.Size = New System.Drawing.Size(102, 13)
+        Me.LblSortMethod.TabIndex = 29
+        Me.LblSortMethod.Text = "Alpha ASC"
+        Me.LblSortMethod.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.OldLace
         Me.ClientSize = New System.Drawing.Size(1429, 831)
+        Me.Controls.Add(Me.LblSortMethod)
         Me.Controls.Add(Me.LstMemos)
         Me.Controls.Add(Me.BtnAddMemo)
         Me.Controls.Add(Me.LblEvents)
@@ -432,4 +444,5 @@ Partial Class FormMain
     Friend WithEvents CalculatorToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LstMemos As ListBox
+    Friend WithEvents LblSortMethod As Label
 End Class
