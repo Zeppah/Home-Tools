@@ -39,11 +39,6 @@ Public Class FormMain
 
 #Region "*** Events Section ***"
 
-    Private Sub BtnAddEvent_Click(sender As Object, e As EventArgs) Handles BtnAddEvent.Click
-        Enabled = False
-        FormEvents.Show()
-    End Sub
-
     Sub DisplayEvents() Handles CboEventList.SelectedIndexChanged, CboEventTime.SelectedIndexChanged
 
         FlpEvents.Controls.Clear()
@@ -91,12 +86,17 @@ Public Class FormMain
                             CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
                             If row("Time").ToString = "True" Then
                                 CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
+                            Else
+                                Dim ReturnString As String
+                                Dim OtherDate As Date = CDate(row("Date"))
+                                ReturnString = DateCompare(OtherDate, Date.Today)
+                                CreateEventTimeLabel(panelname, ReturnString)
                             End If
                         ElseIf row("Bill").ToString = "True" Then
                             CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
                             CreateEventTimeLabel(panelname, "$ " & row("Amount").ToString)
                         ElseIf row("Birthday").ToString = "True" Then
-                            Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
+                            Dim Birthdate As Date = CDate(row("Date"))
                             Dim Age As Integer
                             Age = CInt(DateDiff(DateInterval.Year, Birthdate, Date.Today))
                             If Age = 0 Then Age = 1
@@ -106,8 +106,11 @@ Public Class FormMain
 
                             Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                            CreateEventDateLabel(panelname, Format(NextBirthDate, "MM/dd/yyyy"))
-                            CreateEventTimeLabel(panelname, Age.ToString)
+                            CreateEventDateLabel(panelname, Format(Birthdate, "MM/dd/yyyy"))
+
+                            Dim ReturnString As String
+                            ReturnString = DateCompare(Birthdate, Date.Today)
+                            CreateEventTimeLabel(panelname, ReturnString)
 
                         End If
 
@@ -135,6 +138,11 @@ Public Class FormMain
                             CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
                             If row("Time").ToString = "True" Then
                                 CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
+                            Else
+                                Dim ReturnString As String
+                                Dim OtherDate As Date = CDate(row("Date"))
+                                ReturnString = DateCompare(OtherDate, Date.Today)
+                                CreateEventTimeLabel(panelname, ReturnString)
                             End If
                             CreateEventsPanelButtons(panelname)
                             Dim g As Panel
@@ -159,7 +167,7 @@ Public Class FormMain
                             panelname = CreateEventsPanel()
                             CreateEventNameLabel(panelname, row("Description").ToString)
 
-                            Dim Birthdate As Date = CDate(row("Date"))  ' Birthdate
+                            Dim Birthdate As Date = CDate(row("Date"))
                             Dim Age As Integer
                             Age = CInt(DateDiff(DateInterval.Year, Birthdate, Date.Today))
                             If Birthdate.Month <= Date.Today.Month And Birthdate.Day < Date.Today.Day _
@@ -168,8 +176,11 @@ Public Class FormMain
                             End If
                             Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                            CreateEventDateLabel(panelname, Format(NextBirthDate, "MM/dd/yyyy"))
-                            CreateEventTimeLabel(panelname, Age.ToString)
+                            CreateEventDateLabel(panelname, Format(Birthdate, "MM/dd/yyyy"))
+
+                            Dim ReturnString As String
+                            ReturnString = DateCompare(Birthdate, Date.Today)
+                            CreateEventTimeLabel(panelname, ReturnString)
 
                             CreateEventsPanelButtons(panelname)
 
@@ -184,6 +195,11 @@ Public Class FormMain
                                 CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
                             ElseIf row("Bill").ToString = "True" Then
                                 CreateEventTimeLabel(panelname, "$ " & row("Amount").ToString)
+                            Else
+                                Dim ReturnString As String
+                                Dim OtherDate As Date = CDate(row("Date"))
+                                ReturnString = DateCompare(OtherDate, Date.Today)
+                                CreateEventTimeLabel(panelname, ReturnString)
                             End If
                             CreateEventsPanelButtons(panelname)
                             Dim unused As New Panel
@@ -209,11 +225,21 @@ Public Class FormMain
 
                                 Dim NextBirthDate As Date = DateAdd("yyyy", Age, Birthdate)
 
-                                CreateEventDateLabel(panelname, Format(NextBirthDate, "MM/dd/yyyy"))
-                                CreateEventTimeLabel(panelname, Age.ToString)
+                                CreateEventDateLabel(panelname, Format(Birthdate, "MM/dd/yyyy"))
+
+                                Dim ReturnString As String
+                                ReturnString = DateCompare(Birthdate, Date.Today)
+                                CreateEventTimeLabel(panelname, ReturnString)
                             ElseIf row("Appointment").ToString = "True" Or row("Other").ToString = "True" Then
                                 CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
-                                CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
+                                If row("Time").ToString = "True" Then
+                                    CreateEventTimeLabel(panelname, Format(row("Date"), "HH:mm tt"))
+                                Else
+                                    Dim ReturnString As String
+                                    Dim OtherDate As Date = CDate(row("Date"))
+                                    ReturnString = DateCompare(OtherDate, Date.Today)
+                                    CreateEventTimeLabel(panelname, ReturnString)
+                                End If
                             End If
 
                             If row("Appointment").ToString = "True" Then
@@ -452,6 +478,11 @@ Public Class FormMain
 
     End Sub
 
+    Private Sub BtnAddEvent_Click(sender As Object, e As EventArgs) Handles BtnAddEvent.Click
+        Enabled = False
+        FormEvents.Show()
+    End Sub
+
     Private Sub BtnSortEvent_Click(sender As Object, e As EventArgs) Handles BtnSortEvent.Click
 
         If EventsSortOrder = "A" Then
@@ -506,6 +537,92 @@ Public Class FormMain
         DataTable2TSV(EventsDataTable, EventsFileName)
         DisplayEvents()
     End Sub
+
+    Private Function DateCompare(ByVal Date1 As Date, ByVal date2 As Date) As String
+        'Date1 = LowestDate, Date2 = Highest Date
+
+        Dim Days As Integer = Nothing
+        Dim Months As Integer
+        Dim Years As Integer = Nothing
+
+        'Convert Date1/Date2 months and years into months.
+        Dim Date1Months As Integer = Date1.Year * 12 + Date1.Month
+        Dim Date2Months As Integer = date2.Year * 12 + date2.Month
+        'Get the number of Months between the two dates. Subtract 1 (we will add this back later where necessary)
+        Months = Date2Months - Date1Months - 1
+
+        'See how many days are within the Month Date1/Date2 reside.
+        Dim DaysInDate1Month As Integer = Date.DaysInMonth(Date1.Year, Date1.Month)
+        Dim DaysInDate2Month As Integer = Date.DaysInMonth(date2.Year, date2.Month)
+
+
+        If Date1.Day = DaysInDate1Month And date2.Day = DaysInDate2Month Then
+            'If Both Date1 and Date2 occur on the LastDayOfTheMonth.
+
+            'We count this as a month rather than x amount of days.
+            'Therefore add 1 to Months and set Days to zero.
+            'note: We subtracted a month when we first grabbed the number of Months. Add it back here.
+            Months += 1
+            Days = 0
+        ElseIf Date1.Day = DaysInDate1Month And date2.Day < DaysInDate2Month Then
+            'If Date1 occur's on the LastDayOfTheMonth but Date2 resides on a day prior to the end of it's month.
+
+            'We know the number of Days between the two dates will be the number of Days in Date2.
+            Days = date2.Day
+        Else
+            'If Neither Date1 or Date2 occur on the LastDayOfTheMonth then we can do a day count ourselves.
+            Select Case Date1.Day
+
+                Case Is < date2.Day
+                    'If Date2's Day is higher then Date1's Day then the 'Months' value will represent the number of months upto the Month that Date2 resides.
+
+                    'The number of days will therefore be the difference between Date1/Date2's Day values.
+                    Days = date2.Day - Date1.Day
+
+                    'note: We subtracted a month when we first grabbed the number of Months. Add it back here.
+                    Months += 1
+                Case Is > date2.Day
+                    'If Date2's Day is lower then Date1's Day then the 'Months' value will represent the number of months upto the Month prior to that which Date2 resides.
+
+                    'First we need to find out the month prior to Date2's month value.
+                    Dim MonthBeforeDate2 As Integer = date2.Month
+                    'If Date2 occurs in January, then we will also need to use the previous year in our calculation.
+                    Dim Date2Year As Integer = date2.Year
+                    If MonthBeforeDate2 = 1 Then
+                        MonthBeforeDate2 = 12
+                        Date2Year -= 1
+                    Else : MonthBeforeDate2 -= 1
+                    End If
+
+                    'Next we will see how many days occur between the value of Date1's Day and the end of the month prior to Date2.
+                    Dim DaysLeftInMonthBeforeDate2 As Long = Date.DaysInMonth(Date2Year, MonthBeforeDate2) - Date1.Day
+
+                    'Finally we can add the number of Days in Date2.
+                    Days = CInt(DaysLeftInMonthBeforeDate2 + date2.Day)
+                Case Is = date2.Day
+                    'If the Day value in Date1/Date2 matches.
+
+                    'note: We subtracted a month when we first grabbed the number of Months. Add it back here.
+                    Months += 1
+            End Select
+
+        End If
+
+        'The last step is to work out the number of Years. We can work this out from the 'Months'.
+        'note: We left this until last because there may have been a few neccessary changes to the Months value along the way.
+        If Months >= 12 Then
+            Do Until Months < 12
+                Years += 1
+                Months -= 12
+            Loop
+        End If
+
+        'Display results
+        Dim dateString As String
+        dateString = Format(Years & " Years " & Months & " Months " & Days & " Days")
+        Return dateString
+
+    End Function
 
 #End Region
 

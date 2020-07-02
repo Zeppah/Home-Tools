@@ -5,6 +5,7 @@
     Private dateTimeValue As New Date   'The date of the event
     Private nextAge As Integer          'Used to calculate the next birthday
     Private nextBirthDate As Date       'The next birthdate for sort and display
+
     Private Sub BtnAddEventRecord_Click(sender As Object, e As EventArgs) Handles BtnAddEventRecord.Click
         dateTimeValue = DtpDate.Value.Date + DtpTime.Value.TimeOfDay
         nextAge = CInt(DateDiff(DateInterval.Year, dateTimeValue, Date.Today))
@@ -37,7 +38,7 @@
             newrow("Other") = ChkOther.Checked
             newrow("Starred") = ChkStarred.Checked
 
-            If ChkBirthday.Checked Then
+            If ChkBirthday.Checked Or ChkOther.Checked Then
                 CalculateNextBirthdate()
                 newrow("SortDate") = nextBirthDate
             Else
@@ -61,7 +62,7 @@
             EventsDataTable.Rows.Item(EventRowIndex).Item("Other") = ChkOther.Checked
             EventsDataTable.Rows.Item(EventRowIndex).Item("Starred") = ChkStarred.Checked
 
-            If ChkBirthday.Checked Then
+            If ChkBirthday.Checked Or ChkOther.Checked Then
                 CalculateNextBirthdate()
                 EventsDataTable.Rows.Item(EventRowIndex).Item("SortDate") = nextBirthDate
             Else
