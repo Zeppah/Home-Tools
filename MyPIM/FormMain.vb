@@ -489,27 +489,22 @@ Public Class FormMain
             EventsDataTable.DefaultView.Sort = "Description DESC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
             LblSortMethod.Text = "Description DESC"
-            'EventsSortOrder = "A"
         ElseIf EventsSortOrder = "D" Then
             EventsDataTable.DefaultView.Sort = "SortDate ASC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
             LblSortMethod.Text = "Date ASC"
-            ' EventsSortOrder = "D"
         ElseIf EventsSortOrder = "DA" Then
             EventsDataTable.DefaultView.Sort = "SortDate DESC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
             LblSortMethod.Text = "Date DESC"
-            ' EventsSortOrder = "DD"
         Else
             EventsDataTable.DefaultView.Sort = "Description ASC"
             EventsDataTable = EventsDataTable.DefaultView.ToTable
             LblSortMethod.Text = "Description ASC"
-            ' EventsSortOrder = "DA"
         End If
 
         DataTable2TSV(EventsDataTable, EventsFileName)
         DisplayEvents()
-        'SaveSettings()
     End Sub
 
 #End Region
