@@ -28,6 +28,7 @@ Public Class FormMain
         TSV2DataTable(ContactsDataTable, ContactsFileName)
         AddMemosDataTableColumns()
         TSV2DataTable(MemosDataTable, MemosFileName)
+        CalculateNewSortDate()
         EventsSort()
         DisplayEvents()
         DisplayContacts()
@@ -672,6 +673,37 @@ Public Class FormMain
         Return dateString
 
     End Function
+
+
+    'Calculates newSortDate when starting the program for Birthdays and Others
+    Private Sub CalculateNewSortDate()
+        Dim currentDate As Date
+        Dim rowInteger As Integer = 0
+        Dim nextAge As Integer
+        Dim newSortDate As Date
+
+        For Each row In EventsDataTable.Rows
+
+            If EventsDataTable.Rows.Item(rowInteger).Item("Birthday").ToString = "True" Or EventsDataTable.Rows.Item(rowInteger).Item("Other").ToString = "True" Then
+
+                currentDate = CDate(EventsDataTable.Rows.Item(rowInteger).Item("Date"))
+                nextAge = CInt(DateDiff(DateInterval.Year, currentDate, Date.Today))
+
+
+                If (currentDate.Month <= Date.Today.Month And currentDate.Day < Date.Today.Day) Or currentDate.Month < Date.Today.Month Then
+                    nextAge += 1
+                End If
+                If nextAge = 0 Then nextAge = 1
+                newSortDate = DateAdd("yyyy", nextAge, currentDate)
+
+
+                EventsDataTable.Rows.Item(rowInteger).Item("SortDate") = newSortDate
+                rowInteger += 1
+            End If
+        Next row
+    End Sub
+
+
 
 #End Region
 
