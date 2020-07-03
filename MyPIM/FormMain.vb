@@ -89,7 +89,14 @@ Public Class FormMain
                             Else
                                 Dim ReturnString As String
                                 Dim OtherDate As Date = CDate(row("Date"))
-                                ReturnString = DateCompare(OtherDate, Date.Today)
+                                If OtherDate > Date.Today Then
+                                    ReturnString = DateCompare(Date.Today, OtherDate)
+                                    ReturnString = "Left: " & ReturnString
+                                Else
+                                    ReturnString = DateCompare(OtherDate, Date.Today)
+                                    ReturnString = "Passed: " & ReturnString
+                                End If
+
                                 CreateEventTimeLabel(panelname, ReturnString)
                             End If
                         ElseIf row("Bill").ToString = "True" Then
@@ -109,7 +116,14 @@ Public Class FormMain
                             CreateEventDateLabel(panelname, Format(Birthdate, "MM/dd/yyyy"))
 
                             Dim ReturnString As String
-                            ReturnString = DateCompare(Birthdate, Date.Today)
+                            If Birthdate > Date.Today Then
+                                ReturnString = DateCompare(Date.Today, Birthdate)
+                                ReturnString = "Left: " & ReturnString
+                            Else
+                                ReturnString = DateCompare(Birthdate, Date.Today)
+                                ReturnString = "Passed: " & ReturnString
+                            End If
+
                             CreateEventTimeLabel(panelname, ReturnString)
 
                         End If
@@ -141,7 +155,14 @@ Public Class FormMain
                             Else
                                 Dim ReturnString As String
                                 Dim OtherDate As Date = CDate(row("Date"))
-                                ReturnString = DateCompare(OtherDate, Date.Today)
+                                If OtherDate > Date.Today Then
+                                    ReturnString = DateCompare(Date.Today, OtherDate)
+                                    ReturnString = "Left: " & ReturnString
+                                Else
+                                    ReturnString = DateCompare(OtherDate, Date.Today)
+                                    ReturnString = "Passed: " & ReturnString
+                                End If
+
                                 CreateEventTimeLabel(panelname, ReturnString)
                             End If
                             CreateEventsPanelButtons(panelname)
@@ -179,7 +200,14 @@ Public Class FormMain
                             CreateEventDateLabel(panelname, Format(Birthdate, "MM/dd/yyyy"))
 
                             Dim ReturnString As String
-                            ReturnString = DateCompare(Birthdate, Date.Today)
+                            If Birthdate > Date.Today Then
+                                ReturnString = DateCompare(Date.Today, Birthdate)
+                                ReturnString = "Left: " & ReturnString
+                            Else
+                                ReturnString = DateCompare(Birthdate, Date.Today)
+                                ReturnString = "Passed: " & ReturnString
+                            End If
+
                             CreateEventTimeLabel(panelname, ReturnString)
 
                             CreateEventsPanelButtons(panelname)
@@ -198,7 +226,14 @@ Public Class FormMain
                             Else
                                 Dim ReturnString As String
                                 Dim OtherDate As Date = CDate(row("Date"))
-                                ReturnString = DateCompare(OtherDate, Date.Today)
+                                If OtherDate > Date.Today Then
+                                    ReturnString = DateCompare(Date.Today, OtherDate)
+                                    ReturnString = "Left: " & ReturnString
+                                Else
+                                    ReturnString = DateCompare(OtherDate, Date.Today)
+                                    ReturnString = "Passed: " & ReturnString
+                                End If
+
                                 CreateEventTimeLabel(panelname, ReturnString)
                             End If
                             CreateEventsPanelButtons(panelname)
@@ -228,7 +263,14 @@ Public Class FormMain
                                 CreateEventDateLabel(panelname, Format(Birthdate, "MM/dd/yyyy"))
 
                                 Dim ReturnString As String
-                                ReturnString = DateCompare(Birthdate, Date.Today)
+                                If Birthdate > Date.Today Then
+                                    ReturnString = DateCompare(Date.Today, Birthdate)
+                                    ReturnString = "Left: " & ReturnString
+                                Else
+                                    ReturnString = DateCompare(Birthdate, Date.Today)
+                                    ReturnString = "Passed: " & ReturnString
+                                End If
+
                                 CreateEventTimeLabel(panelname, ReturnString)
                             ElseIf row("Appointment").ToString = "True" Or row("Other").ToString = "True" Then
                                 CreateEventDateLabel(panelname, Format(row("Date"), "MM/dd/yyyy"))
@@ -237,7 +279,14 @@ Public Class FormMain
                                 Else
                                     Dim ReturnString As String
                                     Dim OtherDate As Date = CDate(row("Date"))
-                                    ReturnString = DateCompare(OtherDate, Date.Today)
+                                    If OtherDate > Date.Today Then
+                                        ReturnString = DateCompare(Date.Today, OtherDate)
+                                        ReturnString = "Left: " & ReturnString
+                                    Else
+                                        ReturnString = DateCompare(OtherDate, Date.Today)
+                                        ReturnString = "Passed: " & ReturnString
+                                    End If
+
                                     CreateEventTimeLabel(panelname, ReturnString)
                                 End If
                             End If
